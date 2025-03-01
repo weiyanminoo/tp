@@ -21,14 +21,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Glenn Liew Zi Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennliew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glennliew)]
+[[portfolio](team/glennliew.md)]
 
-* Role: Team Lead
+* Role: Developer (Documentation)
 * Responsibilities: UI
 
 ### Johnny Doe
