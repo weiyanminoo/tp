@@ -11,15 +11,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Arulanandam James Beryl
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jamesberyl.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jamesberyl)]
+[[portfolio](team/jamesberyl.md)]
 
-* Role: Project Advisor
+* Role: Tester
+* Responsibilities: 'Filter' feature
 
 ### Glenn Liew Zi Yi
 
