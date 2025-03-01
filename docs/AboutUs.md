@@ -1,6 +1,6 @@
 ---
-  layout: default.md
-  title: "About Us"
+layout:default.md
+title:"About Us"
 ---
 
 # About Us
@@ -11,51 +11,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Arulanandam James Beryl
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jamesberyl.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jamesberyl)]
+[[portfolio](team/jamesberyl.md)]
 
-* Role: Project Advisor
+* Role: Tester
+* Responsibilities: 'Filter' feature
 
-### Jane Doe
+### Glenn Liew Zi Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennliew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glennliew)]
+[[portfolio](team/glennliew.md)]
 
-* Role: Team Lead
+* Role: Developer (Documentation)
 * Responsibilities: UI
 
-### Johnny Doe
+### Junjie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junjie.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/grassheadd)] [[portfolio](team/junjie.md)]
 
-* Role: Developer
+* Role: Developer (code quality)
 * Responsibilities: Data
 
-### Jean Doe
+### Geng Yudong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gengyudong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/gengyudong)]
+[[Portfolio](team/gengyudong.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer (Team Lead)
+* Responsibilities: Feature - Delete Contacts
 
-### James Doe
+### Wei Yan Min Oo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weiyanminoo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/weiyanminoo)]
+[portfolio](team/weiyanminoo.md)
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer (Integration)
+* Responsibilities: In charge of 'Add' feature
