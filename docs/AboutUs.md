@@ -1,6 +1,6 @@
 ---
-layout: default
-title: "About Us"
+layout:default.md
+title:"About Us"
 ---
 
 # About Us
@@ -41,15 +41,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer (code quality)
 * Responsibilities: Data
 
-### Jean Doe
+### Geng Yudong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gengyudong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/gengyudong)]
+[[Portfolio](team/gengyudong.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer (Team Lead)
+* Responsibilities: Feature - Delete Contacts
 
 ### Wei Yan Min Oo
 
