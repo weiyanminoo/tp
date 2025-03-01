@@ -32,13 +32,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer (Documentation)
 * Responsibilities: UI
 
-### Johnny Doe
+### Junjie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junjie.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/grassheadd)] [[portfolio](team/junjie.md)]
 
-* Role: Developer
+* Role: Developer (code quality)
 * Responsibilities: Data
 
 ### Geng Yudong
