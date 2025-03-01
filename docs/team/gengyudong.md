@@ -1,6 +1,6 @@
 ---
   layout: default.md
-  title: "Geng Yudong's Project Portfolio Page"
+  title:"Geng Yudong's Project Portfolio Page"
 ---
 
 ### Project: AddressBook Level 3
