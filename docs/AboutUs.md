@@ -58,4 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[Portfolio](team/weiyanminoo.md)]
 
 * Role: Developer (Integration)
-* Responsibilities: In charge of 'Add' feature
+* Responsibilities: Feature - Add Contacts
