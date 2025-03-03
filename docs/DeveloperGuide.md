@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* freelance wedding planners who need to manage contacts for multiple weddings
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -287,14 +287,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                     | So that I can…​                                         |
+|----------|---------|------------------------------------------------------------------|---------------------------------------------------------|
+| `* * *`  | user    | add a client/vendor with their details                           | keep track of my contacts                               |
+| `* * *`  | user    | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors           |
+| `* * *`  | user    | retrieve a client/vendor's record                                | view the details of my clients/vendors                  |
+| `* * *`  | user    | update a client/vendor's detail                                  | have the most updated information for my contacts       |
+| `* * *`  | user    | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding       |
+| `* * *`  | user    | link vendors to specific weddings                                | know which vendors are handling which events            |
+| `* * *`  | user    | filter according to roles / event                                | have a clear picture of who I need to liaise with for   |
+| `* *`    | user    | hide private contact details                                     | minimize chance of someone else seeing them by accident |
+| `* *`    | user    | receive automatic reminders for upcoming tasks                   | avoid missing important deadlines                       |
+| `*`      | user    | generate the wedding day itinerary                               | ensure that all events during the day runs smoothly     |
+| `*`      | user    | share secure, real-time event summaries with clients and vendors | share information with all personnel involved           |
 
 *{More to be added}*
 
