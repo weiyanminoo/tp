@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -300,16 +300,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EasyWeds` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a Contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User inputs the command to add contact
+2.  EasyWeds validates each field and checks for duplicates
+3.  EasyWeds adds the new contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The compulsory field(s) is/are empty.
+
+    * 2a1. EasyWeds shows an error message. 
+
+        Use case resumes at step 1.
+
+
+**Use case: UC02 - Delete a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  EasyWeds shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  EasyWeds deletes the contact
 
     Use case ends.
 
@@ -321,11 +340,104 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. EasyWeds shows an error message.
+  
+        Use case resumes at step 2.
 
-      Use case resumes at step 2.
+
+**Use case: UC03 - Search Contacts**
+
+**MSS**
+
+1.  User requests search for contacts that have a certain 'keyword'
+2.  EasyWeds shows a list of contacts that matches the 'keyword'
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The search input is empty.
+
+    * 2a1. EasyWeds shows an error message
+
+        Use case resumes at step 1.
+
+* 3a. No matching contact is found.
+
+    * 3a1. EasyWeds shows a message that says "No matching contacts found". 
+  
+        Use case ends.
+
+
+**Use case: UC04 - Add a Wedding Event**
+
+**MSS**
+
+1.  User inputs the command to add wedding
+2.  EasyWeds validates each field and checks for duplicates
+3.  EasyWeds adds the new wedding 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The compulsory field(s) is/are empty.
+
+    * 2a1. EasyWeds shows an error message.
+
+        Use case resumes at step 1.
+
+
+**Use case: UC05 - Tag Contacts to Wedding Events**
+
+**MSS**
+
+1.  User inputs the command to tag a contact to a wedding event
+2.  EasyWeds validates both parameters
+3.  EasyWeds adds the tag for the wedding event to the contact specified
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact does not exist.
+
+    * 2a1. EasyWeds shows a message that says "The contact does not exist".
+  
+        Use case ends.
+
+* 2b. The wedding does not exist.
+
+    * 2b1. EasyWeds shows a message that says "The wedding does not exist". 
+  
+        Use case ends.
+
+
+**Use case: UC06 - Filter Contacts**
+
+**MSS**
+
+1.  User requests filtering contacts that are tagged to a certain wedding event
+2.  EasyWeds shows a list of contacts that contain the tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wedding does not exist.
+
+    * 2a1. EasyWeds shows a message that says "The wedding does not exist". 
+  
+        Use case resumes at step 1.
+
+* 2b. There are no contacts tagged to the wedding.
+
+    * 2b1. EasyWeds shows a message that says "No contact found for this wedding".
+  
+        Use case resumes at step 1.
 
 *{More to be added}*
+
 
 ### Non-Functional Requirements
 
