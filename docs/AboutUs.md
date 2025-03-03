@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer (Documentation)
 * Responsibilities: UI
 
-### Junjie
+### Hu Junjie
 
-<img src="images/junjie.png" width="200px">
+<img src="images/grassheadd.png" width="200px">
 
 [[github](http://github.com/grassheadd)] [[portfolio](team/junjie.md)]
 
