@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **MSS**: Main Success Scenario which describes the most straightforward interaction for a given use case, which assumes nothing goes wrong
 
 --------------------------------------------------------------------------------------------------------------------
 
