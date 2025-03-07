@@ -1,6 +1,6 @@
 ---
-layout:default.md
-title:"About Us"
+layout: default.md
+title: "About Us"
 ---
 
 # About Us
@@ -10,36 +10,6 @@ We are a team based in the [School of Computing, National University of Singapor
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
-
-### Arulanandam James Beryl
-
-<img src="images/jamesberyl.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/jamesberyl)]
-[[portfolio](team/jamesberyl.md)]
-
-* Role: Tester
-* Responsibilities: 'Filter' feature
-
-### Glenn Liew Zi Yi
-
-<img src="images/glennliew.png" width="200px">
-
-[[github](http://github.com/glennliew)]
-[[portfolio](team/glennliew.md)]
-
-* Role: Developer (Documentation)
-* Responsibilities: UI
-
-### Hu Junjie
-
-<img src="images/grassheadd.png" width="200px">
-
-[[github](http://github.com/grassheadd)] [[portfolio](team/junjie.md)]
-
-* Role: Developer (code quality)
-* Responsibilities: Data
 
 ### Geng Yudong
 
@@ -51,12 +21,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer (Team Lead)
 * Responsibilities: Feature - Delete Contacts
 
+### Glenn Liew Zi Yi
+
+<img src="images/glennliew.png" width="200px">
+
+[[Github](http://github.com/glennliew)]
+[[Portfolio](team/glennliew.md)]
+
+* Role: Developer (Documentation)
+* Responsibilities: UI
+
+### Hu Junjie
+
+<img src="images/grassheadd.png" width="200px">
+
+[[Github](http://github.com/grassheadd)] [[Portfolio](team/junjie.md)]
+
+* Role: Developer (Code Quality)
+* Responsibilities: Data
+
+### Arulanandam James Beryl
+
+<img src="images/jamesberyl.png" width="200px">
+
+[[Github](https://github.com/jamesberyl)]
+[[Portfolio](team/jamesberyl.md)]
+
+* Role: Developer (Testing)
+* Responsibilities: Feature - Filter Contacts
+
 ### Wei Yan Min Oo
 
 <img src="images/weiyanminoo.png" width="200px">
 
-[[github](http://github.com/weiyanminoo)]
-[portfolio](team/weiyanminoo.md)
+[[Github](http://github.com/weiyanminoo)]
+[[Portfolio](team/weiyanminoo.md)]
 
 * Role: Developer (Integration)
-* Responsibilities: In charge of 'Add' feature
+* Responsibilities: Feature - Add Contacts
