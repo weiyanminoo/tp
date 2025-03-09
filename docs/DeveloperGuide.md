@@ -461,6 +461,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **MSS**: Main Success Scenario which describes the most straightforward interaction for a given use case, which assumes nothing goes wrong
+* **Client**: A person who hires a wedding planner to organise their wedding. Clients in EasyWeds are individuals or couples whose event details are tracked within the system
+* **Vendor**: A service provider involved in the wedding, such as florists, caterers, photographers. Vendors in EasyWeds are linked to events and are categorised based on their service types
 
 --------------------------------------------------------------------------------------------------------------------
 
