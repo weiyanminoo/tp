@@ -1,9 +1,8 @@
-package seedu.address.model.tag ;
+package seedu.address.model.tag;
 
-import seedu.address.model.person.Person;
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s tags contain the specified tag (case-insensitive).
