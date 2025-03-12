@@ -3,14 +3,18 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be either 'Client' or 'Vendor'";
+    private static final Set<String> ALLOWED_TAGS = new HashSet<>(Arrays.asList("Client", "Vendor"));
 
     public final String tagName;
 
@@ -29,7 +33,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return ALLOWED_TAGS.contains(test);
     }
 
     @Override
@@ -55,8 +59,8 @@ public class Tag {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
     }
-
 }
