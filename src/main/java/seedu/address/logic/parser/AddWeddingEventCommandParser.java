@@ -24,12 +24,10 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
      */
     @Override
     public AddWeddingEventCommand parse(String args) throws ParseException {
-        // Tokenize using wedding-specific prefixes
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
-        // Check if required prefixes are present, and no extra preamble text
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -37,20 +35,16 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
                     MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingEventCommand.MESSAGE_USAGE));
         }
 
-        // (Optional) Ensure no duplicate prefixes used
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
-        // Parse each value
         String weddingId = argMultimap.getValue(PREFIX_WEDDING_ID).get();
         String weddingName = argMultimap.getValue(PREFIX_WEDDING_NAME).get();
         String weddingDate = argMultimap.getValue(PREFIX_WEDDING_DATE).get();
         String location = argMultimap.getValue(PREFIX_WEDDING_LOCATION).get();
 
-        // Construct a Wedding object
         Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, location);
 
-        // Return the new AddWeddingEventCommand
         return new AddWeddingEventCommand(wedding);
     }
 

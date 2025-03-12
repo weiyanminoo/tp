@@ -50,7 +50,6 @@ class JsonAdaptedWedding {
      * @throws IllegalValueException if there were any data constraints violated in the adapted wedding.
      */
     public Wedding toModelType() throws IllegalValueException {
-        // Validate each field if needed
         if (weddingId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "weddingId"));
         }
@@ -63,9 +62,6 @@ class JsonAdaptedWedding {
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "location"));
         }
-
-        // If you have validation in your Wedding class, call it here.
-        // e.g., if (!Wedding.isValidWeddingId(weddingId)) { ... }
 
         return new Wedding(weddingId, weddingName, weddingDate, location);
     }
