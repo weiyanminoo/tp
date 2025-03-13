@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 
 public class TagMatchesPredicateTest {
 
@@ -50,6 +51,7 @@ public class TagMatchesPredicateTest {
                 new Name("Alice"),
                 new Phone("12345678"),
                 new Email("alice@example.com"),
+                new Role("Stylist"),
                 new Address("Block 123"),
                 clientTagSet
         );
@@ -71,6 +73,7 @@ public class TagMatchesPredicateTest {
                 new Name("Bob"),
                 new Phone("87654321"),
                 new Email("bob@example.com"),
+                new Role("Stylist"),
                 new Address("Block 456"),
                 vendorTagSet
         );
@@ -93,6 +96,7 @@ public class TagMatchesPredicateTest {
                 new Name("Charlie"),
                 new Phone("99999999"),
                 new Email("charlie@example.com"),
+                new Role("Stylist"),
                 new Address("Block 789"),
                 emptyTagSet
         ));
