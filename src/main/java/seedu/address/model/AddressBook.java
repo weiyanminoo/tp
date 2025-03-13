@@ -52,7 +52,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setWeddings(List<Wedding> weddings) { this.weddings.setWeddings(weddings); }
+    public void setWeddings(List<Wedding> weddings) {
+        this.weddings.setWeddings(weddings);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.

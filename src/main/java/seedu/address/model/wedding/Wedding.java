@@ -6,10 +6,10 @@ import java.util.Objects;
  * Represents a Wedding event in EasyWeds.
  */
 public class Wedding {
-    private final String weddingId;    // Unique identifier
-    private final String weddingName;  // e.g., "John & Jane's Wedding"
-    private final String weddingDate;  // e.g., "20 Feb 2025"
-    private final String location;     // e.g., "Grand Ballroom"
+    private final String weddingId;
+    private final String weddingName;
+    private final String weddingDate;
+    private final String location;
 
     /**
      * Creates a Wedding object with the given fields.
@@ -37,6 +37,12 @@ public class Wedding {
         return location;
     }
 
+    /**
+     * Returns true if this wedding and the given {@code otherWedding} have the same wedding ID.
+     *
+     * @param otherWedding The other wedding to compare against.
+     * @return True if both weddings share the same wedding ID, false otherwise.
+     */
     public boolean isSameWedding(Wedding otherWedding) {
         if (otherWedding == this) {
             return true;
