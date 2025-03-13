@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.testutil.TypicalPersons;
+import seedu.address.testutil.TypicalWeddings;
 
 public class JsonSerializableAddressBookTest {
 
@@ -19,6 +20,10 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+
+    private static final Path TYPICAL_WEDDINGS_FILE = TEST_DATA_FOLDER.resolve("typicalWeddingsAddressBook.json");
+    private static final Path INVALID_WEDDING_FILE = TEST_DATA_FOLDER.resolve("invalidWeddingAddressBook.json");
+    private static final Path DUPLICATE_WEDDING_FILE = TEST_DATA_FOLDER.resolve("duplicateWeddingAddressBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -44,4 +49,21 @@ public class JsonSerializableAddressBookTest {
                 dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_typicalWeddingsFile_success() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_WEDDINGS_FILE,
+                JsonSerializableAddressBook.class).get();
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        AddressBook typicalWeddingsAddressBook = TypicalWeddings.getTypicalAddressBook();
+        assertEquals(addressBookFromFile, typicalWeddingsAddressBook);
+    }
+
+    @Test
+    public void toModelType_duplicateWeddings_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_WEDDING_FILE,
+                JsonSerializableAddressBook.class).get();
+        // The error message you throw for duplicates in your JSONSerializableAddressBook
+        assertThrows(IllegalValueException.class,
+                JsonSerializableAddressBook.MESSAGE_DUPLICATE_WEDDING, dataFromFile::toModelType);
+    }
 }
