@@ -8,14 +8,14 @@ import java.util.Objects;
 public class Wedding {
     private static int nextId = 1; // Static counter to keep track of Wedding ID
     private final String weddingId;
-    private final String weddingName;
-    private final String weddingDate;
-    private final String location;
+    private final WeddingName weddingName;
+    private final WeddingDate weddingDate;
+    private final WeddingLocation location;
 
     /**
      * Creates a Wedding object with the given fields.
      */
-    public Wedding(String weddingName, String weddingDate, String location) {
+    public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
         this.weddingId = "W" + nextId++;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
@@ -25,7 +25,7 @@ public class Wedding {
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(String weddingId, String weddingName, String weddingDate, String location) {
+    public Wedding(String weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
@@ -41,15 +41,15 @@ public class Wedding {
         return weddingId;
     }
 
-    public String getWeddingName() {
+    public WeddingName getWeddingName() {
         return weddingName;
     }
 
-    public String getWeddingDate() {
+    public WeddingDate getWeddingDate() {
         return weddingDate;
     }
 
-    public String getLocation() {
+    public WeddingLocation getLocation() {
         return location;
     }
 
@@ -67,7 +67,9 @@ public class Wedding {
             return false;
         }
 
-        return this.getWeddingId().equals(otherWedding.getWeddingId());
+        return this.weddingName.equals(otherWedding.weddingName)
+                && this.weddingDate.equals(otherWedding.weddingDate)
+                && this.location.equals(otherWedding.location);
     }
 
     @Override
