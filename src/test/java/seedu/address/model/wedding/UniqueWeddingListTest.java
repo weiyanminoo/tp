@@ -54,8 +54,8 @@ public class UniqueWeddingListTest {
         // Create another Wedding with the same ID as WEDDING_A
         // but different date/location to confirm duplication is determined by ID.
         Wedding sameIdWedding = new Wedding(
-                WEDDING_A.getWeddingId(), // reuse the same auto-generated ID
-                "Alice & Bob Wedding",    // name can match or differ; ID is the key
+                WEDDING_A.getWeddingId(),
+                "Alice & Bob Wedding",
                 "2025-03-03",
                 "Hotel"
         );
