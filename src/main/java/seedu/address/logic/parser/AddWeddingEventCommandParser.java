@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddWeddingEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 /**
  * Parses input arguments and creates a new AddWeddingEventCommand object.
@@ -40,9 +43,9 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
                 PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
         // Extract field values
-        String weddingName = argMultimap.getValue(PREFIX_WEDDING_NAME).get();
-        String weddingDate = argMultimap.getValue(PREFIX_WEDDING_DATE).get();
-        String location = argMultimap.getValue(PREFIX_WEDDING_LOCATION).get();
+        WeddingName weddingName = ParserUtil.parseWeddingName(argMultimap.getValue(PREFIX_WEDDING_NAME).get());
+        WeddingDate weddingDate = ParserUtil.parseWeddingDate(argMultimap.getValue(PREFIX_WEDDING_DATE).get());
+        WeddingLocation location = ParserUtil.parseWeddingLocation(argMultimap.getValue(PREFIX_WEDDING_LOCATION).get());
 
         Wedding wedding = new Wedding(weddingName, weddingDate, location);
 
