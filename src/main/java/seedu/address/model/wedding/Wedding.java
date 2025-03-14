@@ -6,6 +6,7 @@ import java.util.Objects;
  * Represents a Wedding event in EasyWeds.
  */
 public class Wedding {
+    private static int nextId = 1; // Static counter to keep track of Wedding ID
     private final String weddingId;
     private final String weddingName;
     private final String weddingDate;
@@ -14,11 +15,26 @@ public class Wedding {
     /**
      * Creates a Wedding object with the given fields.
      */
+    public Wedding(String weddingName, String weddingDate, String location) {
+        this.weddingId = "W" + nextId++;
+        this.weddingName = weddingName;
+        this.weddingDate = weddingDate;
+        this.location = location;
+    }
+
+    /**
+     * Creates a Wedding object with a specified ID (useful for restoration).
+     */
     public Wedding(String weddingId, String weddingName, String weddingDate, String location) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
+
+        int numericPart = Integer.parseInt(weddingId.substring(1)); // skip 'W'
+        if (numericPart >= nextId) {
+            nextId = numericPart + 1;
+        }
     }
 
     public String getWeddingId() {

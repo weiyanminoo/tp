@@ -15,8 +15,8 @@ public class AddWeddingEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a wedding to the address book. "
             + "Parameters: "
-            + "id/WEDDING_ID n/NAME d/DATE l/LOCATION\n"
-            + "Example: " + COMMAND_WORD + " id/W-001 n/John & Jane's Wedding d/20-Feb-2025 l/Grand Ballroom";
+            + "n/NAME d/DATE l/LOCATION\n"
+            + "Example: " + COMMAND_WORD + " n/John & Jane's Wedding d/20-Feb-2025 l/Grand Ballroom";
 
     public static final String MESSAGE_SUCCESS = "New wedding added: %1$s";
     public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the address book";
