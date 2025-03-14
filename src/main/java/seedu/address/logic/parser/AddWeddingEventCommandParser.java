@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_NAME;
 
@@ -15,7 +14,7 @@ import seedu.address.model.wedding.Wedding;
 /**
  * Parses input arguments and creates a new AddWeddingEventCommand object.
  */
-public class  AddWeddingEventCommandParser implements Parser<AddWeddingEventCommand> {
+public class AddWeddingEventCommandParser implements Parser<AddWeddingEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddWeddingEventCommand
