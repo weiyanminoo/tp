@@ -13,5 +13,6 @@
     "role": "photographer",
     "address": "4th street",
     "tags" : [ "Client" ]
-  } ]
+  } ],
+  "weddings": []
 }

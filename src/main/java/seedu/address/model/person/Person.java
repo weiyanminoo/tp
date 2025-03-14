@@ -30,7 +30,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Role role, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, role, address, tags);
 
         boolean hasRequiredTag = tags.stream()
                 .anyMatch(tag -> tag.tagName.equals("Client") || tag.tagName.equals("Vendor"));

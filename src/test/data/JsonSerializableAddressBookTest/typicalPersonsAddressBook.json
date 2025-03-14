@@ -49,5 +49,6 @@
     "role" : "host",
     "address" : "4th street",
     "tags" : [ "Vendor" ]
-  } ]
+  } ],
+  "weddings": []
 }
