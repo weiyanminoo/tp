@@ -17,8 +17,10 @@ import seedu.address.model.wedding.exceptions.WeddingNotFoundException;
 
 public class UniqueWeddingListTest {
 
-    private static final Wedding WEDDING_A = new Wedding("W001", "Alice & Bob Wedding", "2025-01-01", "Beach");
-    private static final Wedding WEDDING_B = new Wedding("W002", "Carol & David Wedding", "2025-02-02", "Garden");
+    // By default, these two use the constructor that auto-generates IDs.
+    // For example, WEDDING_A might end up with "W1", WEDDING_B with "W2".
+    private static final Wedding WEDDING_A = new Wedding("Alice & Bob Wedding", "2025-01-01", "Beach");
+    private static final Wedding WEDDING_B = new Wedding("Carol & David Wedding", "2025-02-02", "Garden");
 
     private final UniqueWeddingList uniqueWeddingList = new UniqueWeddingList();
 
@@ -48,8 +50,16 @@ public class UniqueWeddingListTest {
     @Test
     public void add_duplicateWedding_throwsDuplicateWeddingException() {
         uniqueWeddingList.add(WEDDING_A);
-        // Same ID => isSameWedding(...) returns true
-        Wedding sameIdWedding = new Wedding("W001", "Alice & Bob Wedding", "2025-03-03", "Hotel");
+
+        // Create another Wedding with the same ID as WEDDING_A
+        // but different date/location to confirm duplication is determined by ID.
+        Wedding sameIdWedding = new Wedding(
+                WEDDING_A.getWeddingId(),
+                "Alice & Bob Wedding",
+                "2025-03-03",
+                "Hotel"
+        );
+        // Now isSameWedding(...) returns true because IDs match
         assertThrows(DuplicateWeddingException.class, () -> uniqueWeddingList.add(sameIdWedding));
     }
 
@@ -66,17 +76,23 @@ public class UniqueWeddingListTest {
 
     @Test
     public void setWedding_targetNotInList_throwsWeddingNotFoundException() {
+        // Attempt to edit a Wedding that isn't in the list
         assertThrows(WeddingNotFoundException.class, () -> uniqueWeddingList.setWedding(WEDDING_A, WEDDING_A));
     }
 
     @Test
     public void setWedding_editedWeddingIsSameWedding_success() {
         uniqueWeddingList.add(WEDDING_A);
-        // same wedding (same ID) but maybe different details
-        Wedding editedWeddingA = new Wedding("W001", "Alice & Bob Wedding", "2025-01-01", "New Location");
+
+        // Create an edited version of WEDDING_A with the same ID but different location
+        Wedding editedWeddingA = new Wedding(
+                WEDDING_A.getWeddingId(),
+                WEDDING_A.getWeddingName(),
+                WEDDING_A.getWeddingDate(),
+                "New Location"
+        );
         uniqueWeddingList.setWedding(WEDDING_A, editedWeddingA);
 
-        // The internal list should have the updated wedding
         UniqueWeddingList expectedList = new UniqueWeddingList();
         expectedList.add(editedWeddingA);
         assertEquals(expectedList, uniqueWeddingList);
@@ -84,8 +100,10 @@ public class UniqueWeddingListTest {
 
     @Test
     public void setWedding_editedWeddingHasDifferentIdentity_success() {
+        // WEDDING_A and WEDDING_B have different IDs
         uniqueWeddingList.add(WEDDING_A);
         uniqueWeddingList.setWedding(WEDDING_A, WEDDING_B);
+
         UniqueWeddingList expectedList = new UniqueWeddingList();
         expectedList.add(WEDDING_B);
         assertEquals(expectedList, uniqueWeddingList);
@@ -93,11 +111,19 @@ public class UniqueWeddingListTest {
 
     @Test
     public void setWedding_editedWeddingHasNonUniqueIdentity_throwsDuplicateWeddingException() {
+        // We have two different weddings in the list
         uniqueWeddingList.add(WEDDING_A);
         uniqueWeddingList.add(WEDDING_B);
-        // Attempt to set WEDDING_B to WEDDING_A (same ID as WEDDING_A => duplicate)
+
+        // Attempt to set WEDDING_B to have WEDDING_A's ID => duplicates
+        Wedding editedB = new Wedding(
+                WEDDING_A.getWeddingId(),
+                WEDDING_B.getWeddingName(),
+                WEDDING_B.getWeddingDate(),
+                WEDDING_B.getLocation()
+        );
         assertThrows(DuplicateWeddingException.class, () ->
-                uniqueWeddingList.setWedding(WEDDING_B, WEDDING_A));
+                uniqueWeddingList.setWedding(WEDDING_B, editedB));
     }
 
     // ========================== REMOVE TESTS ==========================
@@ -153,7 +179,14 @@ public class UniqueWeddingListTest {
 
     @Test
     public void setWeddings_listWithDuplicateWeddings_throwsDuplicateWeddingException() {
-        List<Wedding> listWithDuplicateWeddings = Arrays.asList(WEDDING_A, WEDDING_A);
+        // Two Weddings with the same ID => Duplicate
+        Wedding weddingDuplicateA = new Wedding(
+                WEDDING_A.getWeddingId(),
+                WEDDING_A.getWeddingName(),
+                WEDDING_A.getWeddingDate(),
+                "Different Place"
+        );
+        List<Wedding> listWithDuplicateWeddings = Arrays.asList(WEDDING_A, weddingDuplicateA);
         assertThrows(DuplicateWeddingException.class, () ->
                 uniqueWeddingList.setWeddings(listWithDuplicateWeddings));
     }

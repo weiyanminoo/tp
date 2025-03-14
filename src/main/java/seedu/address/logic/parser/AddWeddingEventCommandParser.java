@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_NAME;
 
@@ -26,24 +25,26 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
     public AddWeddingEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
+                        PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
+        // Check that all required prefixes are present
         if (!arePrefixesPresent(argMultimap,
-                PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION)
+                PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingEventCommand.MESSAGE_USAGE));
         }
 
+        // Ensure no duplicate prefixes for the required fields
         argMultimap.verifyNoDuplicatePrefixesFor(
-                PREFIX_WEDDING_ID, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
+                PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
-        String weddingId = argMultimap.getValue(PREFIX_WEDDING_ID).get();
+        // Extract field values
         String weddingName = argMultimap.getValue(PREFIX_WEDDING_NAME).get();
         String weddingDate = argMultimap.getValue(PREFIX_WEDDING_DATE).get();
         String location = argMultimap.getValue(PREFIX_WEDDING_LOCATION).get();
 
-        Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, location);
+        Wedding wedding = new Wedding(weddingName, weddingDate, location);
 
         return new AddWeddingEventCommand(wedding);
     }
