@@ -17,8 +17,8 @@ import seedu.address.model.wedding.exceptions.WeddingNotFoundException;
 
 public class UniqueWeddingListTest {
 
-    private static final Wedding WEDDING_A = new Wedding("W001", "Alice & Bob Wedding", "2025-01-01", "Beach");
-    private static final Wedding WEDDING_B = new Wedding("W002", "Carol & David Wedding", "2025-02-02", "Garden");
+    private static final Wedding WEDDING_A = new Wedding("Alice & Bob Wedding", "2025-01-01", "Beach");
+    private static final Wedding WEDDING_B = new Wedding("Carol & David Wedding", "2025-02-02", "Garden");
 
     private final UniqueWeddingList uniqueWeddingList = new UniqueWeddingList();
 
