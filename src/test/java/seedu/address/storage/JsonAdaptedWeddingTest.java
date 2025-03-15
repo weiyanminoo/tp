@@ -13,7 +13,7 @@ public class JsonAdaptedWeddingTest {
 
     private static final String VALID_WEDDING_ID = "W001";
     private static final String VALID_WEDDING_NAME = "John & Jane Wedding";
-    private static final String VALID_WEDDING_DATE = "2025-06-15";
+    private static final String VALID_WEDDING_DATE = "15-Jun-2026";
     private static final String VALID_LOCATION = "Central Park";
 
     private static final String MISSING_FIELD_MESSAGE_FORMAT = "Wedding's %s field is missing!";
@@ -24,10 +24,10 @@ public class JsonAdaptedWeddingTest {
                 VALID_WEDDING_ID, VALID_WEDDING_NAME, VALID_WEDDING_DATE, VALID_LOCATION);
         Wedding wedding = adaptedWedding.toModelType();
 
-        assertEquals(VALID_WEDDING_ID, wedding.getWeddingId());
-        assertEquals(VALID_WEDDING_NAME, wedding.getWeddingName());
-        assertEquals(VALID_WEDDING_DATE, wedding.getWeddingDate());
-        assertEquals(VALID_LOCATION, wedding.getLocation());
+        assertEquals(VALID_WEDDING_ID, wedding.getWeddingId().value);
+        assertEquals(VALID_WEDDING_NAME, wedding.getWeddingName().fullWeddingName);
+        assertEquals(VALID_WEDDING_DATE, wedding.getWeddingDate().value);
+        assertEquals(VALID_LOCATION, wedding.getLocation().venue);
     }
 
     @Test
