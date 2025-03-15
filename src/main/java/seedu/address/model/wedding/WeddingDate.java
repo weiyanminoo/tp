@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Wedding's date (e.g., "2025-12-01").
+ * Represents a Wedding's date
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}.
  */
 public class WeddingDate {
@@ -12,7 +12,6 @@ public class WeddingDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Wedding date should be in the format 'DD-MMM-YYYY', e.g. '20-Dec-2025'.\n";
 
-    // You might prefer a LocalDate parse with more robust checks.
     public static final String VALIDATION_REGEX = "^\\d{1,2}-[A-Za-z]{3}-\\d{4}$";
 
 
