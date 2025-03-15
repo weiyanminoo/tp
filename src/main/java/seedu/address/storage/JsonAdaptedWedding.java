@@ -6,7 +6,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.wedding.*;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 /**
  * Jackson-friendly version of {@link Wedding}.
