@@ -16,7 +16,7 @@ public class Wedding {
      * Creates a Wedding object with the given fields.
      */
     public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
-        this.weddingId = new WeddingId("W" + nextId++);
+        this.weddingId = new WeddingId("W" + nextId);
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
