@@ -37,6 +37,20 @@ public class Wedding {
         }
     }
 
+    /**
+     * For read-only access to the current counter value.
+     */
+    public static int getNextId() {
+        return nextId;
+    }
+
+    /**
+     * For forcibly resetting the counter, e.g. if a duplicate was detected.
+     */
+    public static void setNextId(int newValue) {
+        nextId = newValue;
+    }
+
     public WeddingId getWeddingId() {
         return weddingId;
     }
