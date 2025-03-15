@@ -16,6 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
@@ -139,6 +140,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String weddingId} into a {@code WeddingId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weddingId} is invalid.
+     */
+    public static WeddingId parseWeddingId(String weddingId) throws ParseException {
+        requireNonNull(weddingId);
+        String trimmedId = weddingId.trim();
+        if (!WeddingId.isValidWeddingId(trimmedId)) {
+            throw new ParseException(WeddingId.MESSAGE_CONSTRAINTS);
+        }
+        return new WeddingId(trimmedId);
     }
 
     /**

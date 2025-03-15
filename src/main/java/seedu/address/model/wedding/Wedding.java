@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class Wedding {
     private static int nextId = 1; // Static counter to keep track of Wedding ID
-    private final String weddingId;
+    private final WeddingId weddingId;
     private final WeddingName weddingName;
     private final WeddingDate weddingDate;
     private final WeddingLocation location;
@@ -16,7 +16,7 @@ public class Wedding {
      * Creates a Wedding object with the given fields.
      */
     public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
-        this.weddingId = "W" + nextId++;
+        this.weddingId = new WeddingId("W" + nextId++);
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
@@ -25,19 +25,19 @@ public class Wedding {
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(String weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
 
-        int numericPart = Integer.parseInt(weddingId.substring(1)); // skip 'W'
+        int numericPart = Integer.parseInt(weddingId.value.substring(1)); // skip 'W'
         if (numericPart >= nextId) {
             nextId = numericPart + 1;
         }
     }
 
-    public String getWeddingId() {
+    public WeddingId getWeddingId() {
         return weddingId;
     }
 
