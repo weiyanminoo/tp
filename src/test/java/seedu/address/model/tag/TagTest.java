@@ -1,9 +1,11 @@
 package seedu.address.model.tag;
 
-
 import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.wedding.WeddingId;
 
 public class TagTest {
 
@@ -13,27 +15,17 @@ public class TagTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        // Empty string
-        assertThrows(IllegalArgumentException.class, () -> new Tag(""));
-
-        // Random invalid string
-        assertThrows(IllegalArgumentException.class, () -> new Tag("friends"));
-
-        // Mixed case not exactly "Client" or "Vendor"
-        assertThrows(IllegalArgumentException.class, () -> new Tag("client"));
-        assertThrows(IllegalArgumentException.class, () -> new Tag("VENDOR"));
+    public void constructor_invalidWeddingId_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Tag(new WeddingId("")));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(new WeddingId("friends")));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(new WeddingId("client")));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(new WeddingId("VENDOR")));
     }
 
     @Test
-    public void constructor_validTagName_success() {
-        // Should not throw any exception
-        new Tag("Client");
-        new Tag("Vendor");
-    }
-
-    @Test
-    public void isValidTagName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+    public void constructor_validWeddingId_success() {
+        // Should not throw any exception for valid wedding ids.
+        assertDoesNotThrow(() -> new Tag(new WeddingId("W1")));
+        assertDoesNotThrow(() -> new Tag(new WeddingId("W2")));
     }
 }
