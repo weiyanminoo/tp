@@ -1,0 +1,18 @@
+{
+  "persons": [],
+  "weddings": [
+    {
+      "weddingId": "W001",
+      "weddingName": "John & Jane Wedding",
+      "weddingDate": "15-Jun-2026",
+      "location": "Central Park"
+    },
+    {
+      "weddingId": "W001",
+      "weddingName": "John & Jane Wedding",
+      "weddingDate": "15-Jun-2026",
+      "location": "Central Park"
+    }
+  ]
+}
+

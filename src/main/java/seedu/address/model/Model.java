@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.Wedding;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    boolean hasWedding(Wedding wedding);
+
+    void addWedding(Wedding wedding);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Wedding} backed by the internal list.
+     */
+    ObservableList<Wedding> getFilteredWeddingList();
+
+    /**
+     * Updates the filter of the filtered wedding list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredWeddingList(Predicate<Wedding> predicate);
 }
