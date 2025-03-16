@@ -64,6 +64,14 @@ public class CommandTestUtil {
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Caterer!"; // '!' not allowed in roles
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
 
+    public static final String VALID_WEDDING_NAME_JOHN = "John & Jane's Wedding";
+    public static final String VALID_WEDDING_DATE_JOHN = "20-Dec-2025";
+    public static final String VALID_WEDDING_LOCATION_JOHN = "Beach Resort";
+
+    public static final String INVALID_WEDDING_NAME_DESC = " n/   "; // empty name
+    public static final String INVALID_WEDDING_DATE_DESC = " d/20-XYZ-2025"; // invalid date format
+    public static final String INVALID_WEDDING_LOCATION_DESC = " l/   "; // empty location
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

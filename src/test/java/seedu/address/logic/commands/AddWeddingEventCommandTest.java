@@ -19,6 +19,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -34,7 +37,14 @@ public class AddWeddingEventCommandTest {
     @Test
     public void execute_weddingAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingWeddingAdded modelStub = new ModelStubAcceptingWeddingAdded();
-        Wedding validWedding = new Wedding("W001", "John & Jane's Wedding", "20-Feb-2025", "Grand Ballroom");
+        // Suppose your new Wedding constructor looks like:
+        // public Wedding(WeddingName name, WeddingDate date, WeddingLocation location) { ... }
+
+        Wedding validWedding = new Wedding(
+                new WeddingName("John & Jane's Wedding"),
+                new WeddingDate("20-Feb-2025"),
+                new WeddingLocation("Grand Ballroom")
+        );
 
         CommandResult commandResult = new AddWeddingEventCommand(validWedding).execute(modelStub);
 
@@ -45,18 +55,32 @@ public class AddWeddingEventCommandTest {
 
     @Test
     public void execute_duplicateWedding_throwsCommandException() {
-        Wedding validWedding = new Wedding("W001", "John & Jane's Wedding", "20-Feb-2025", "Grand Ballroom");
+        // Same wedding details
+        Wedding validWedding = new Wedding(
+                new WeddingName("John & Jane's Wedding"),
+                new WeddingDate("20-Feb-2025"),
+                new WeddingLocation("Grand Ballroom")
+        );
         AddWeddingEventCommand addWeddingCommand = new AddWeddingEventCommand(validWedding);
         ModelStub modelStub = new ModelStubWithWedding(validWedding);
 
+        // Expecting a CommandException because modelStub already has `validWedding`
         assertThrows(CommandException.class,
                 AddWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Wedding aliceWedding = new Wedding("W001", "Alice & Bob's Wedding", "21-Feb-2025", "Central Park");
-        Wedding bobWedding = new Wedding("W002", "Bob & Charlie's Wedding", "22-Feb-2025", "Garden");
+        Wedding aliceWedding = new Wedding(
+                new WeddingName("Alice & Bob's Wedding"),
+                new WeddingDate("21-Feb-2025"),
+                new WeddingLocation("Central Park")
+        );
+        Wedding bobWedding = new Wedding(
+                new WeddingName("Bob & Charlie's Wedding"),
+                new WeddingDate("22-Feb-2025"),
+                new WeddingLocation("Garden")
+        );
 
         AddWeddingEventCommand addAliceWeddingCommand = new AddWeddingEventCommand(aliceWedding);
         AddWeddingEventCommand addBobWeddingCommand = new AddWeddingEventCommand(bobWedding);

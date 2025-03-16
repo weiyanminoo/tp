@@ -7,16 +7,16 @@ import java.util.Objects;
  */
 public class Wedding {
     private static int nextId = 1; // Static counter to keep track of Wedding ID
-    private final String weddingId;
-    private final String weddingName;
-    private final String weddingDate;
-    private final String location;
+    private final WeddingId weddingId;
+    private final WeddingName weddingName;
+    private final WeddingDate weddingDate;
+    private final WeddingLocation location;
 
     /**
      * Creates a Wedding object with the given fields.
      */
-    public Wedding(String weddingName, String weddingDate, String location) {
-        this.weddingId = "W" + nextId++;
+    public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
+        this.weddingId = new WeddingId("W" + nextId);
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
@@ -25,31 +25,45 @@ public class Wedding {
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(String weddingId, String weddingName, String weddingDate, String location) {
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
 
-        int numericPart = Integer.parseInt(weddingId.substring(1)); // skip 'W'
+        int numericPart = Integer.parseInt(weddingId.value.substring(1)); // skip 'W'
         if (numericPart >= nextId) {
             nextId = numericPart + 1;
         }
     }
 
-    public String getWeddingId() {
+    /**
+     * For read-only access to the current counter value.
+     */
+    public static int getNextId() {
+        return nextId;
+    }
+
+    /**
+     * For forcibly resetting the counter, e.g. if a duplicate was detected.
+     */
+    public static void setNextId(int newValue) {
+        nextId = newValue;
+    }
+
+    public WeddingId getWeddingId() {
         return weddingId;
     }
 
-    public String getWeddingName() {
+    public WeddingName getWeddingName() {
         return weddingName;
     }
 
-    public String getWeddingDate() {
+    public WeddingDate getWeddingDate() {
         return weddingDate;
     }
 
-    public String getLocation() {
+    public WeddingLocation getLocation() {
         return location;
     }
 
@@ -67,7 +81,9 @@ public class Wedding {
             return false;
         }
 
-        return this.getWeddingId().equals(otherWedding.getWeddingId());
+        return this.weddingName.equals(otherWedding.weddingName)
+                && this.weddingDate.equals(otherWedding.weddingDate)
+                && this.location.equals(otherWedding.location);
     }
 
     @Override

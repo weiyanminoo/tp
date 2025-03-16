@@ -15,6 +15,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,5 +140,65 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String weddingId} into a {@code WeddingId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weddingId} is invalid.
+     */
+    public static WeddingId parseWeddingId(String weddingId) throws ParseException {
+        requireNonNull(weddingId);
+        String trimmedId = weddingId.trim();
+        if (!WeddingId.isValidWeddingId(trimmedId)) {
+            throw new ParseException(WeddingId.MESSAGE_CONSTRAINTS);
+        }
+        return new WeddingId(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String weddingName} into a {@code WeddingName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weddingName} is invalid.
+     */
+    public static WeddingName parseWeddingName(String weddingName) throws ParseException {
+        requireNonNull(weddingName);
+        String trimmedName = weddingName.trim();
+        if (!WeddingName.isValidName(trimmedName)) {
+            throw new ParseException(WeddingName.MESSAGE_CONSTRAINTS);
+        }
+        return new WeddingName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String weddingDate} into a {@code WeddingDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weddingDate} is invalid.
+     */
+    public static WeddingDate parseWeddingDate(String weddingDate) throws ParseException {
+        requireNonNull(weddingDate);
+        String trimmedDate = weddingDate.trim();
+        if (!WeddingDate.isValidDate(trimmedDate)) {
+            throw new ParseException(WeddingDate.MESSAGE_CONSTRAINTS);
+        }
+        return new WeddingDate(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String weddingLocation} into a {@code WeddingLocation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code weddingLocation} is invalid.
+     */
+    public static WeddingLocation parseWeddingLocation(String weddingLocation) throws ParseException {
+        requireNonNull(weddingLocation);
+        String trimmedLocation = weddingLocation.trim();
+        if (!WeddingLocation.isValidLocation(trimmedLocation)) {
+            throw new ParseException(WeddingLocation.MESSAGE_CONSTRAINTS);
+        }
+        return new WeddingLocation(trimmedLocation);
     }
 }

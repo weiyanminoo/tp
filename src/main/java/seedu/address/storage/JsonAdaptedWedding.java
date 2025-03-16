@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 /**
  * Jackson-friendly version of {@link Wedding}.
@@ -38,10 +42,10 @@ class JsonAdaptedWedding {
      * Converts a given {@code Wedding} into this class for Jackson use.
      */
     public JsonAdaptedWedding(Wedding source) {
-        this.weddingId = source.getWeddingId();
-        this.weddingName = source.getWeddingName();
-        this.weddingDate = source.getWeddingDate();
-        this.location = source.getLocation();
+        this.weddingId = source.getWeddingId().value;
+        this.weddingName = source.getWeddingName().fullWeddingName;
+        this.weddingDate = source.getWeddingDate().value;
+        this.location = source.getLocation().venue;
     }
 
     /**
@@ -53,17 +57,24 @@ class JsonAdaptedWedding {
         if (weddingId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "weddingId"));
         }
+        final WeddingId modelWeddingId = new WeddingId(weddingId);
+
         if (weddingName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "weddingName"));
         }
+        final WeddingName modelWeddingName = new WeddingName(weddingName);
+
         if (weddingDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "weddingDate"));
         }
+        final WeddingDate modelWeddingDate = new WeddingDate(weddingDate);
+
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "location"));
         }
+        final WeddingLocation modelLocation = new WeddingLocation(location);
 
-        return new Wedding(weddingId, weddingName, weddingDate, location);
+        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation);
     }
 
     @Override

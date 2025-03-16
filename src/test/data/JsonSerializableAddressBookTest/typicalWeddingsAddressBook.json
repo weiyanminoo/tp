@@ -4,13 +4,13 @@
     {
       "weddingId": "W001",
       "weddingName": "John & Jane Wedding",
-      "weddingDate": "2025-06-15",
+      "weddingDate": "15-Jun-2025",
       "location": "Central Park"
     },
     {
       "weddingId": "W002",
       "weddingName": "Alice & Bob Wedding",
-      "weddingDate": "2025-09-10",
+      "weddingDate": "10-Sep-2025",
       "location": "Beachside Resort"
     }
   ]
