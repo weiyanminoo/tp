@@ -13,8 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
-    /* New Wedding Prefixes */
-    public static final Prefix PREFIX_WEDDING_ID = new Prefix("id/");
+    /* Wedding Prefixes */
     public static final Prefix PREFIX_WEDDING_NAME = new Prefix("n/");
     public static final Prefix PREFIX_WEDDING_DATE = new Prefix("d/");
     public static final Prefix PREFIX_WEDDING_LOCATION = new Prefix("l/");
