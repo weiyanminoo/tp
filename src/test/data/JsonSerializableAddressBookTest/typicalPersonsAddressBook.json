@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "role" : "florist",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "Client" ]
+    "tags" : []
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
