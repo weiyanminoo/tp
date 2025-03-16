@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
 
 /**
@@ -170,5 +172,31 @@ public class ModelManager implements Model {
     public void updateFilteredWeddingList(Predicate<Wedding> predicate) {
         requireNonNull(predicate);
         filteredWeddings.setPredicate(predicate);
+    }
+
+
+    /**
+     * Tags a person with the given tag.
+     *
+     * @param person the person to be tagged.
+     * @param tag the tag to add.
+     * @throws AssertionError if the person is not found in the address book.
+     */
+    @Override
+    public void tagPerson(Person person, Tag tag) {
+        requireNonNull(person);
+        requireNonNull(tag);
+
+        // Create an updated person instance with the new tag added.
+        Person updatedPerson = person.withAddedTag(tag);
+
+        // Update the person in the address book.
+        try {
+            addressBook.setPerson(person, updatedPerson);
+        } catch (PersonNotFoundException e) {
+            throw new AssertionError("The target person cannot be missing", e);
+        }
+
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
