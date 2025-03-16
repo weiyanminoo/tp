@@ -3,22 +3,23 @@ package seedu.address.model.tag;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.WeddingId;
 
 /**
- * Tests that a {@code Person}'s tags contain the specified tag (case-insensitive).
+ * Tests that a {@code Person}'s tags contain the specified WeddingId.
  */
 public class TagMatchesPredicate implements Predicate<Person> {
-    private final String tagToMatch;
+    private final WeddingId weddingIdToMatch;
 
-    public TagMatchesPredicate(String tagToMatch) {
-        this.tagToMatch = tagToMatch;
+    public TagMatchesPredicate(WeddingId weddingIdToMatch) {
+        this.weddingIdToMatch = weddingIdToMatch;
     }
 
     @Override
     public boolean test(Person person) {
-        // Check each tag in the person's tag set
+        // Check each tag in the person's tag set for a matching WeddingId
         for (Tag tag : person.getTags()) {
-            if (tag.tagName.equalsIgnoreCase(tagToMatch)) {
+            if (tag.weddingId.equals(weddingIdToMatch)) {
                 return true;
             }
         }
@@ -29,6 +30,6 @@ public class TagMatchesPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof TagMatchesPredicate
-                && tagToMatch.equalsIgnoreCase(((TagMatchesPredicate) other).tagToMatch));
+                && weddingIdToMatch.equals(((TagMatchesPredicate) other).weddingIdToMatch));
     }
 }
