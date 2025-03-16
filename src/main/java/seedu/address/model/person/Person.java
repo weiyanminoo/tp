@@ -32,13 +32,6 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Role role, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, role, address, tags);
 
-        boolean hasRequiredTag = tags.stream()
-                .anyMatch(tag -> tag.tagName.equals("Client") || tag.tagName.equals("Vendor"));
-
-        if (!hasRequiredTag) {
-            throw new IllegalArgumentException("A person must have at least one tag: 'Client' or 'Vendor'.");
-        }
-
         this.name = name;
         this.phone = phone;
         this.email = email;
