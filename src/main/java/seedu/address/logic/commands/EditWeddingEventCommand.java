@@ -88,7 +88,8 @@ public class EditWeddingEventCommand extends Command {
 
         WeddingId originalId = weddingToEdit.getWeddingId();
         WeddingDate updatedDate = editWeddingDescriptor.getWeddingDate().orElse(weddingToEdit.getWeddingDate());
-        WeddingLocation updatedLocation = editWeddingDescriptor.getWeddingLocation().orElse(weddingToEdit.getWeddingLocation());
+        WeddingLocation updatedLocation = editWeddingDescriptor.getWeddingLocation()
+                                            .orElse(weddingToEdit.getWeddingLocation());
         WeddingName updatedName = editWeddingDescriptor.getWeddingName().orElse(weddingToEdit.getWeddingName());
 
         return new Wedding(originalId, updatedName, updatedDate, updatedLocation);
