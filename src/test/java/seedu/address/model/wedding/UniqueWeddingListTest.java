@@ -112,7 +112,7 @@ public class UniqueWeddingListTest {
                 WEDDING_A.getWeddingId(), // or WEDDING_A's name/date/location
                 WEDDING_A.getWeddingName(),
                 WEDDING_A.getWeddingDate(),
-                WEDDING_A.getLocation()
+                WEDDING_A.getWeddingLocation()
         );
         assertThrows(DuplicateWeddingException.class, () ->
                 uniqueWeddingList.setWedding(WEDDING_B, editedB));

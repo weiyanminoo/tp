@@ -50,6 +50,14 @@ public class UniqueWeddingList implements Iterable<Wedding> {
     }
 
     /**
+     * Returns the wedding with the given ID.
+     * The wedding must exist in the list.
+     */
+    public Wedding getWedding(int index) {
+        return internalList.get(index);
+    }
+
+    /**
      * Replaces the wedding {@code target} in the list with {@code editedWedding}.
      * {@code target} must exist in the list.
      * The wedding identity of {@code editedWedding} must not be the same as another existing wedding in the list.

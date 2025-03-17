@@ -27,7 +27,7 @@ public class JsonAdaptedWeddingTest {
         assertEquals(VALID_WEDDING_ID, wedding.getWeddingId().value);
         assertEquals(VALID_WEDDING_NAME, wedding.getWeddingName().fullWeddingName);
         assertEquals(VALID_WEDDING_DATE, wedding.getWeddingDate().value);
-        assertEquals(VALID_LOCATION, wedding.getLocation().venue);
+        assertEquals(VALID_LOCATION, wedding.getWeddingLocation().venue);
     }
 
     @Test
