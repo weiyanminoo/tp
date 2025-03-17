@@ -55,8 +55,13 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        // Display each WeddingId tag associated with the person.
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.weddingId.toString()))
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.weddingId.toString());
+                    tagLabel.getStyleClass().add("wedding-tag");
+                    tags.getChildren().add(tagLabel);
+                });
     }
 }

@@ -5,13 +5,13 @@
     "email": "hans@example.com",
     "role": "florist",
     "address": "4th street",
-    "tags" : [ "Client" ]
+    "tags" : [ ]
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "role" : "stylist",
     "address": "4th street",
-    "tags" : [ "Client" ]
+    "tags" : [ ]
   } ]
 }

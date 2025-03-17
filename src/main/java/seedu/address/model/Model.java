@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
 
 /**
@@ -100,4 +101,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
+
+    void tagPerson(Person person, Tag tag);
 }

@@ -3,7 +3,6 @@ package seedu.address.model.tag;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,19 +14,20 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
+import seedu.address.model.wedding.WeddingId;
 
 public class TagMatchesPredicateTest {
 
     @Test
     public void equals() {
-        TagMatchesPredicate firstPredicate = new TagMatchesPredicate("Client");
-        TagMatchesPredicate secondPredicate = new TagMatchesPredicate("Vendor");
+        TagMatchesPredicate firstPredicate = new TagMatchesPredicate(new WeddingId("W1"));
+        TagMatchesPredicate secondPredicate = new TagMatchesPredicate(new WeddingId("W2"));
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TagMatchesPredicate firstPredicateCopy = new TagMatchesPredicate("Client");
+        TagMatchesPredicate firstPredicateCopy = new TagMatchesPredicate(new WeddingId("W1"));
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,55 +42,53 @@ public class TagMatchesPredicateTest {
 
     @Test
     public void test_personContainsTag_returnsTrue() {
-        // Create a Person with the "Client" tag
-        Set<Tag> clientTagSet = new HashSet<>();
-        clientTagSet.add(new Tag("Client"));
+        // Create a Person with the wedding id "W1"
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.add(new Tag(new WeddingId("W1")));
 
-        Person personWithClientTag = new Person(
+        Person personWithTag = new Person(
                 new Name("Alice"),
                 new Phone("12345678"),
                 new Email("alice@example.com"),
                 new Role("Stylist"),
                 new Address("Block 123"),
-                clientTagSet
+                tagSet
         );
 
-        // Predicate with a lowercase "client" to check case-insensitivity
-        TagMatchesPredicate predicate = new TagMatchesPredicate("client");
+        // Predicate with matching wedding id "W1"
+        TagMatchesPredicate predicate = new TagMatchesPredicate(new WeddingId("W1"));
 
-        // The predicate should return true since the person has a "Client" tag
-        assertTrue(predicate.test(personWithClientTag));
+        // The predicate should return true since the person has a matching tag.
+        assertTrue(predicate.test(personWithTag));
     }
 
     @Test
     public void test_personDoesNotContainTag_returnsFalse() {
-        // Create a Person with the "Vendor" tag
-        Set<Tag> vendorTagSet = new HashSet<>();
-        vendorTagSet.add(new Tag("Vendor"));
+        // Create a Person with wedding id "W2"
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.add(new Tag(new WeddingId("W2")));
 
-        Person personWithVendorTag = new Person(
+        Person personWithDifferentTag = new Person(
                 new Name("Bob"),
                 new Phone("87654321"),
                 new Email("bob@example.com"),
                 new Role("Stylist"),
                 new Address("Block 456"),
-                vendorTagSet
+                tagSet
         );
 
-        // Predicate checking for "Client"
-        TagMatchesPredicate predicate = new TagMatchesPredicate("Client");
+        // Predicate checking for wedding id "W1"
+        TagMatchesPredicate predicate = new TagMatchesPredicate(new WeddingId("W1"));
 
-        // The predicate should return false since the person only has "Vendor"
-        assertFalse(predicate.test(personWithVendorTag));
+        // The predicate should return false since the person only has tag "W2"
+        assertFalse(predicate.test(personWithDifferentTag));
     }
 
     @Test
-    public void constructor_noTags_allowsEmptyTagSet() {
-        // Create an empty set of tags
-        Set<Tag> emptyTagSet = Collections.emptySet();
-
-        // Create the Person without expecting an exception.
-        Person personWithNoTags = new Person(
+    public void test_personWithEmptyTags_returnsFalse() {
+        // Create a Person with an empty tag set.
+        Set<Tag> emptyTagSet = new HashSet<>();
+        Person personWithNoTag = new Person(
                 new Name("Charlie"),
                 new Phone("99999999"),
                 new Email("charlie@example.com"),
@@ -99,7 +97,8 @@ public class TagMatchesPredicateTest {
                 emptyTagSet
         );
 
-        // Assert that the Person's tag set is empty.
-        assertTrue(personWithNoTags.getTags().isEmpty());
+        // Predicate for any wedding id should return false.
+        TagMatchesPredicate predicate = new TagMatchesPredicate(new WeddingId("W1"));
+        assertFalse(predicate.test(personWithNoTag));
     }
 }
