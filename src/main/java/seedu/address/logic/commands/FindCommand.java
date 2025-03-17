@@ -2,28 +2,46 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in address book whose name or role contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names or roles contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " alice bob charlie"
+            + "Example: " + COMMAND_WORD + " florist photographer";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final List<String> keywords;
+    private final Predicate<Person> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    /**
+     * Constructs a FindCommand using the given keywords.
+     * Combines the name and role predicates with an OR condition.
+     *
+     * @param keywords The list of keywords to search for.
+     */
+    public FindCommand(List<String> keywords) {
+        requireNonNull(keywords);
+        // Store a copy of the keywords
+        this.keywords = new ArrayList<>(keywords);
+        // Create the composite predicate - match if name OR role contains any keyword
+        this.predicate = new NameContainsKeywordsPredicate(keywords).or(new RoleContainsKeywordsPredicate(keywords));
     }
 
     @Override
@@ -46,13 +64,13 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return keywords.equals(otherFindCommand.keywords);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("keywords", keywords)
                 .toString();
     }
 }
