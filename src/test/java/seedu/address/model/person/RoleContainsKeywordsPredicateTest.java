@@ -41,7 +41,8 @@ public class RoleContainsKeywordsPredicateTest {
     @Test
     public void test_roleContainsKeywords_returnsTrue() {
         // One keyword
-        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.singletonList("florist"));
+        RoleContainsKeywordsPredicate predicate =
+                new RoleContainsKeywordsPredicate(Collections.singletonList("florist"));
         assertTrue(predicate.test(new PersonBuilder().withRole("florist photographer").build()));
 
         // Multiple keywords
