@@ -1,7 +1,6 @@
 package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
@@ -86,19 +85,21 @@ public class TagMatchesPredicateTest {
     }
 
     @Test
-    public void constructor_noTags_throwsIllegalArgumentException() {
+    public void constructor_noTags_allowsEmptyTagSet() {
         // Create an empty set of tags
         Set<Tag> emptyTagSet = Collections.emptySet();
 
-        // Expect the Person constructor to throw IllegalArgumentException
-        // because we enforce tag field to be either 'Client' or 'Vendor'
-        assertThrows(IllegalArgumentException.class, () -> new Person(
+        // Create the Person without expecting an exception.
+        Person personWithNoTags = new Person(
                 new Name("Charlie"),
                 new Phone("99999999"),
                 new Email("charlie@example.com"),
                 new Role("Stylist"),
                 new Address("Block 789"),
                 emptyTagSet
-        ));
+        );
+
+        // Assert that the Person's tag set is empty.
+        assertTrue(personWithNoTags.getTags().isEmpty());
     }
 }

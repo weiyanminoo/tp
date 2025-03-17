@@ -40,7 +40,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         role = new Role(DEFAULT_ROLE);
         address = new Address(DEFAULT_ADDRESS);
-        tags = SampleDataUtil.getTagSet(DEFAULT_TAG);
+        // Start with an empty set instead of a default tag.
+        tags = new HashSet<>();
     }
 
     /**
@@ -106,5 +107,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, role, address, tags);
     }
-
 }
