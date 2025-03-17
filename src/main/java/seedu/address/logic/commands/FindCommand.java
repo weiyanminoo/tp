@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -26,6 +27,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie"
             + "Example: " + COMMAND_WORD + " florist photographer";
 
+    private final List<String> keywords;
     private final Predicate<Person> predicate;
 
     /**
@@ -36,11 +38,10 @@ public class FindCommand extends Command {
      */
     public FindCommand(List<String> keywords) {
         requireNonNull(keywords);
-        // Create individual predicates
-        Predicate<Person> namePredicate = new NameContainsKeywordsPredicate(keywords);
-        Predicate<Person> rolePredicate = new RoleContainsKeywordsPredicate(keywords);
-        // Combine them using logical OR
-        this.predicate = namePredicate.or(rolePredicate);
+        // Store a copy of the keywords
+        this.keywords = new ArrayList<>(keywords);
+        // Create the composite predicate - match if name OR role contains any keyword
+        this.predicate = new NameContainsKeywordsPredicate(keywords).or(new RoleContainsKeywordsPredicate(keywords));
     }
 
     @Override
@@ -63,13 +64,13 @@ public class FindCommand extends Command {
         }
 
         FindCommand otherFindCommand = (FindCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        return keywords.equals(otherFindCommand.keywords);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("keywords", keywords)
                 .toString();
     }
 }
