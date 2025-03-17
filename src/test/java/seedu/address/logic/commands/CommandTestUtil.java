@@ -62,7 +62,6 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Caterer!"; // '!' not allowed in roles
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
     public static final String VALID_WEDDING_NAME_JOHN = "John & Jane's Wedding";
     public static final String VALID_WEDDING_DATE_JOHN = "20-Dec-2025";

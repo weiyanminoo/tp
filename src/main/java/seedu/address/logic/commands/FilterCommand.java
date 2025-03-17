@@ -22,8 +22,7 @@ public class FilterCommand extends Command {
             + "Parameters: WEDDING_ID\n"
             + "Example: " + COMMAND_WORD + " W12345";
 
-    public static final String MESSAGE_SUCCESS = "Filtered persons by wedding.\n"
-            + "Wedding Information:\n"
+    public static final String MESSAGE_SUCCESS = "Filtered persons by wedding:\n" 
             + "ID: %1$s\n"
             + "Name: %2$s\n"
             + "Date: %3$s\n"
