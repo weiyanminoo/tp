@@ -166,7 +166,8 @@ public class EditCommandParserTest {
 
         // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY
-                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB;
+                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_BOB
+                + ADDRESS_DESC_BOB + EMAIL_DESC_BOB;
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE, PREFIX_ADDRESS));
 
