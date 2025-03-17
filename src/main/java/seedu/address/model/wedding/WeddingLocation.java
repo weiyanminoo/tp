@@ -12,7 +12,6 @@ public class WeddingLocation {
     public static final String MESSAGE_CONSTRAINTS =
             "Wedding location should not be blank.";
 
-    // Disallows empty or all-whitespace strings.
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
 
     public final String venue;

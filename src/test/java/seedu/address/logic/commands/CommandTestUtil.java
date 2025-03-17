@@ -36,8 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "Photographer";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_CLIENT = "Client";
-    public static final String VALID_TAG_VENDOR = "Vendor";
+    public static final String VALID_TAG_AMY = "W1";
+    public static final String VALID_TAG_BOB = "W2";
 
     // Updated to match the new valid tags
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -50,8 +50,8 @@ public class CommandTestUtil {
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_CLIENT = " " + VALID_TAG_CLIENT;
-    public static final String TAG_DESC_VENDOR = " " + VALID_TAG_VENDOR;
+    public static final String TAG_DESC_CLIENT = " " + VALID_TAG_AMY;
+    public static final String TAG_DESC_VENDOR = " " + VALID_TAG_BOB;
 
     // Invalid tags (not "Client" or "Vendor")
     public static final String INVALID_TAG_DESC = " " + "friend"; // "friend" is not allowed

@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.wedding.WeddingId;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,9 +32,14 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG = "Client";
+    // Use a valid wedding id as the valid tag.
+    private static final String VALID_TAG = "W1";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    // set of valid wedding ids for tag-related tests.
+    private static final Set<WeddingId> VALID_WEDDING_IDS =
+            new HashSet<>(Collections.singletonList(new WeddingId(VALID_TAG)));
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -43,7 +49,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -147,49 +153,51 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+    // Tag-related tests now require a set of valid WeddingIds.
+
     @Test
     public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null, VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG, VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG));
+        Tag expectedTag = new Tag(new WeddingId(VALID_TAG));
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG, VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+        Tag expectedTag = new Tag(new WeddingId(VALID_TAG));
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace, VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null, VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG, INVALID_TAG),
+                VALID_WEDDING_IDS));
     }
 
     @Test
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+        assertTrue(ParserUtil.parseTags(Collections.emptyList(), VALID_WEDDING_IDS).isEmpty());
     }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG)));
-
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG), VALID_WEDDING_IDS);
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(new WeddingId(VALID_TAG))));
         assertEquals(expectedTagSet, actualTagSet);
     }
 }

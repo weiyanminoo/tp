@@ -2,13 +2,13 @@
   "persons": [],
   "weddings": [
     {
-      "weddingId": "W001",
+      "weddingId": "W1",
       "weddingName": "John & Jane Wedding",
       "weddingDate": "15-Jun-2025",
       "location": "Central Park"
     },
     {
-      "weddingId": "W002",
+      "weddingId": "W2",
       "weddingName": "Alice & Bob Wedding",
       "weddingDate": "10-Sep-2025",
       "location": "Beachside Resort"
