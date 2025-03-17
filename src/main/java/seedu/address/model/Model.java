@@ -95,7 +95,8 @@ public interface Model {
     /**
      * Replaces the given wedding {@code target} with {@code editedWedding}.
      * {@code target} must exist in the address book.
-     * The wedding identity of {@code editedWedding} must not be the same as another existing wedding in the address book.
+     * The wedding identity of {@code editedWedding} must not be the same as another existing wedding
+     * in the address book.
      */
     void setWedding(Wedding target, Wedding editedWedding);
 
