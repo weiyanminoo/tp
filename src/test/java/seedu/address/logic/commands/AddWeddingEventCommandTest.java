@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingLocation;
@@ -37,9 +38,7 @@ public class AddWeddingEventCommandTest {
     @Test
     public void execute_weddingAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingWeddingAdded modelStub = new ModelStubAcceptingWeddingAdded();
-        // Suppose your new Wedding constructor looks like:
-        // public Wedding(WeddingName name, WeddingDate date, WeddingLocation location) { ... }
-
+        // Create a valid wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
                 new WeddingDate("20-Feb-2025"),
@@ -55,7 +54,7 @@ public class AddWeddingEventCommandTest {
 
     @Test
     public void execute_duplicateWedding_throwsCommandException() {
-        // Same wedding details
+        // Create a wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
                 new WeddingDate("20-Feb-2025"),
@@ -64,7 +63,7 @@ public class AddWeddingEventCommandTest {
         AddWeddingEventCommand addWeddingCommand = new AddWeddingEventCommand(validWedding);
         ModelStub modelStub = new ModelStubWithWedding(validWedding);
 
-        // Expecting a CommandException because modelStub already has `validWedding`
+        // Expect a CommandException because modelStub already has `validWedding`
         assertThrows(CommandException.class,
                 AddWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
     }
@@ -117,6 +116,11 @@ public class AddWeddingEventCommandTest {
 
         @Override
         public void addWedding(Wedding wedding) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void tagPerson(Person person, Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 

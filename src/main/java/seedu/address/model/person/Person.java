@@ -31,7 +31,6 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Role role, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, role, address, tags);
-
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -79,6 +78,19 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns a new Person with the WeddingId tag added.
+     *
+     * @param tag The tag to be added.
+     * @return A new Person instance with the tag added.
+     */
+    public Person withAddedTag(Tag tag) {
+        requireAllNonNull(tag);
+        Set<Tag> newTags = new HashSet<>(this.tags);
+        newTags.add(tag);
+        return new Person(name, phone, email, role, address, newTags);
     }
 
     /**

@@ -119,25 +119,37 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @param tag the input wedding id string.
+     * @param validWeddingIds a set of wedding ids that exist in the system.
+     * @throws ParseException if the given {@code tag} is invalid or the wedding id does not exist.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Tag parseTag(String tag, Set<WeddingId> validWeddingIds) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        WeddingId weddingId;
+        try {
+            weddingId = parseWeddingId(trimmedTag);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage(), e);
         }
-        return new Tag(trimmedTag);
+        if (!validWeddingIds.contains(weddingId)) {
+            throw new ParseException("The wedding id " + trimmedTag + " does not exist in the system.");
+        }
+        return new Tag(weddingId);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags the collection of wedding id strings.
+     * @param validWeddingIds a set of wedding ids that exist in the system.
+     * @throws ParseException if any of the given tags is invalid or does not exist.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Tag> parseTags(Collection<String> tags, Set<WeddingId> validWeddingIds) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+        for (String tagString : tags) {
+            tagSet.add(parseTag(tagString, validWeddingIds));
         }
         return tagSet;
     }
