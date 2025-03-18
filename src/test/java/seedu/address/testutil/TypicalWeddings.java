@@ -7,6 +7,10 @@ import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A utility class containing a list of {@code Wedding} objects to be used in tests.
  */
@@ -21,9 +25,9 @@ public class TypicalWeddings {
 
     public static final Wedding WEDDING_TWO = new Wedding(
             new WeddingId("W002"),
-            new WeddingName("Alice & Bob Wedding"),
-            new WeddingDate("10-Sep-2025"),
-            new WeddingLocation("Beachside Resort")
+            new WeddingName("Cheryl & Ben Wedding"),
+            new WeddingDate("15-Jun-2025"),
+            new WeddingLocation("Central Park")
     );
 
     private TypicalWeddings() {
@@ -38,5 +42,9 @@ public class TypicalWeddings {
         ab.addWedding(WEDDING_ONE);
         ab.addWedding(WEDDING_TWO);
         return ab;
+    }
+
+    public static List<Wedding> getTypicalWeddings() {
+        return new ArrayList<>(Arrays.asList(WEDDING_ONE, WEDDING_TWO));
     }
 }

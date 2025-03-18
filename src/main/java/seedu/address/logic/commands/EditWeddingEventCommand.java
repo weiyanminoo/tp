@@ -63,11 +63,12 @@ public class EditWeddingEventCommand extends Command {
         requireNonNull(model);
         List<Wedding> lastShownList = model.getFilteredWeddingList();
 
-        if (index.getValueInt() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX);
-        }
+        // Find the wedding by its ID
+        Wedding weddingToEdit = lastShownList.stream()
+                .filter(wedding -> wedding.getWeddingId().equals(index))
+                .findFirst()
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX));
 
-        Wedding weddingToEdit = lastShownList.get(index.getValueInt());
         Wedding editedWedding = createEditedWedding(weddingToEdit, editWeddingDescriptor);
 
         if (!weddingToEdit.equals(editedWedding) && model.hasWedding(editedWedding)) {
@@ -110,10 +111,10 @@ public class EditWeddingEventCommand extends Command {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("index", index)
-                .add("editWeddingDescriptor", editWeddingDescriptor)
-                .toString();
+        return String.format(
+                "EditWeddingEventCommand{index=%s, editWeddingDescriptor=%s}",
+                index.toString(),
+                editWeddingDescriptor.toString());
     }
 
     /**
@@ -184,11 +185,12 @@ public class EditWeddingEventCommand extends Command {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this)
-                    .add("weddingName", weddingName)
-                    .add("weddingDate", weddingDate)
-                    .add("weddingLocation", weddingLocation)
-                    .toString();
+            return String.format(
+                    "EditWeddingDescriptor{weddingName=Optional[%s], weddingDate=Optional[%s], weddingLocation=Optional[%s]}",
+                    weddingName == null ? "" : weddingName.toString(),
+                    weddingDate == null ? "" : weddingDate.toString(),
+                    weddingLocation == null ? "" : weddingLocation.toString());
         }
+
     }
 }

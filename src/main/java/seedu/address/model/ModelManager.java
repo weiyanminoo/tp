@@ -139,12 +139,22 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
 
         ModelManager otherModelManager = (ModelManager) other;
+
+        // Debug statements to log the state of the fields
+        System.out.println("This addressBook: " + this.addressBook);
+        System.out.println("Other addressBook: " + otherModelManager.addressBook);
+        System.out.println("This userPrefs: " + this.userPrefs);
+        System.out.println("Other userPrefs: " + otherModelManager.userPrefs);
+        System.out.println("This filteredPersons: " + this.filteredPersons);
+        System.out.println("Other filteredPersons: " + otherModelManager.filteredPersons);
+        System.out.println("This filteredWeddings: " + this.filteredWeddings);
+        System.out.println("Other filteredWeddings: " + otherModelManager.filteredWeddings);
+
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
@@ -181,7 +191,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredWeddings.setPredicate(predicate);
     }
-
 
     /**
      * Tags a person with the given tag.

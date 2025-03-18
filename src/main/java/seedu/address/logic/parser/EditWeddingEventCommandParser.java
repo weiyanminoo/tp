@@ -25,17 +25,13 @@ public class EditWeddingEventCommandParser implements Parser<EditWeddingEventCom
     @Override
     public EditWeddingEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        System.out.println("EditWeddingEventCommandParser called");
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 args, PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
         WeddingId index;
         try {
-            System.out.println("argMultiMap: " + argMultimap.getPreamble());
-            System.out.println("reach try print out index");
             index = ParserUtil.parseWeddingId(argMultimap.getPreamble());
-            System.out.println("Wedding ID: " + index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditWeddingEventCommand.MESSAGE_USAGE), pe);
@@ -45,11 +41,8 @@ public class EditWeddingEventCommandParser implements Parser<EditWeddingEventCom
                 PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
 
         EditWeddingDescriptor editWeddingDescriptor = new EditWeddingDescriptor();
-        System.out.println("EditWeddingDescriptor created");
 
         if (argMultimap.getValue(PREFIX_WEDDING_NAME).isPresent()) {
-            System.out.println("Wedding Name edit called: "
-                    + argMultimap.getValue(PREFIX_WEDDING_NAME).get());
             editWeddingDescriptor.setWeddingName(
                     ParserUtil.parseWeddingName(argMultimap.getValue(PREFIX_WEDDING_NAME).get()));
         }
@@ -68,7 +61,6 @@ public class EditWeddingEventCommandParser implements Parser<EditWeddingEventCom
             throw new ParseException(EditWeddingEventCommand.MESSAGE_NOT_EDITED);
         }
 
-        System.out.println("reached before creating EditWeddingEventCommand");
         return new EditWeddingEventCommand(index, editWeddingDescriptor);
     }
 }
