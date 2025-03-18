@@ -2,12 +2,13 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditWeddingEventCommand.EditWeddingDescriptor;
 import seedu.address.model.wedding.Wedding;
-import seedu.address.model.wedding.WeddingId;
-import seedu.address.model.wedding.WeddingName;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
-
+/**
+ * A utility class to help with building EditWeddingDescriptor objects.
+ */
 public class EditWeddingDescriptorBuilder {
 
     private EditWeddingDescriptor descriptor;

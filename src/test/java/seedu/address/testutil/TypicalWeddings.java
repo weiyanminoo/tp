@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A utility class containing a list of {@code Wedding} objects to be used in tests.

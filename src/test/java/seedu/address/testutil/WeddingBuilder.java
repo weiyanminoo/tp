@@ -1,7 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.wedding.*;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
+/**
+ * A utility class to help with building Wedding objects.
+ */
 public class WeddingBuilder {
 
     public static final String DEFAULT_WEDDING_ID = "W001";

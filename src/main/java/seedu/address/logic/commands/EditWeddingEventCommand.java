@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -186,7 +185,8 @@ public class EditWeddingEventCommand extends Command {
         @Override
         public String toString() {
             return String.format(
-                    "EditWeddingDescriptor{weddingName=Optional[%s], weddingDate=Optional[%s], weddingLocation=Optional[%s]}",
+                    "EditWeddingDescriptor{weddingName=Optional[%s], weddingDate=Optional[%s], "
+                            + "weddingLocation=Optional[%s]}",
                     weddingName == null ? "" : weddingName.toString(),
                     weddingDate == null ? "" : weddingDate.toString(),
                     weddingLocation == null ? "" : weddingLocation.toString());

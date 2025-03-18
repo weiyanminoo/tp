@@ -1,30 +1,23 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_WEDDINGS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalWeddings.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.EditWeddingEventCommand.EditWeddingDescriptor;
-import seedu.address.model.*;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.wedding.*;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.testutil.EditWeddingDescriptorBuilder;
-import seedu.address.testutil.TypicalWeddings;
 import seedu.address.testutil.WeddingBuilder;
 
 /**
@@ -33,59 +26,48 @@ import seedu.address.testutil.WeddingBuilder;
  */
 public class EditWeddingEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static final Wedding WEDDING_ONE = new WeddingBuilder()
+            .withWeddingId("W001")
+            .withWeddingName("John & Jane Wedding")
+            .withWeddingDate("15-Jun-2025")
+            .withWeddingLocation("Central Park")
+            .build();
 
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-//        // 1. Identify the "originalWedding" from the model's current list
-//        Wedding originalWedding = model.getFilteredWeddingList().get(0);
-//
-//        // 2. Create the "editedWedding" with new details (same ID, but different name/date/location)
-//        Wedding editedWedding = new WeddingBuilder()
-//                .withWeddingId(originalWedding.getWeddingId().toString())
-//                .withWeddingName("Unique Wedding Name")
-//                .withWeddingDate("25-Dec-2028")
-//                .withWeddingLocation("Some Unique Location")
-//                .build();
-//
-//        // 3. Build the descriptor from the editedWedding
-//        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(editedWedding).build();
-//
-//        // 4. Create the EditWeddingEventCommand with the original wedding's ID
-//        EditWeddingEventCommand command = new EditWeddingEventCommand(
-//                originalWedding.getWeddingId(), descriptor);
-//
-//        // 5. Construct the expected message
-//        String expectedMessage = String.format(EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
-//                Messages.format(editedWedding));
-//
-//        // 6. Create an expectedModel that replicates the same replacement
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.setWedding(originalWedding, editedWedding);
-//        // Make sure to call updateFilteredWeddingList if your command does it
-//        expectedModel.updateFilteredWeddingList(PREDICATE_SHOW_ALL_WEDDINGS);
-//
-//        // 7. Debug prints to confirm alignment
-//        System.out.println("Original Wedding (Before Edit): " + originalWedding);
-//        System.out.println("Edited Wedding: " + editedWedding);
-//        System.out.println("Wedding ID used in Command: " + originalWedding.getWeddingId());
-//        System.out.println("Model before execution: " + model.getFilteredWeddingList());
-//        System.out.println("Expected model before execution: " + expectedModel.getFilteredWeddingList());
-//        System.out.println(model.equals(expectedModel));
-//
-//        // 8. Assert that command success aligns with the expected model
-//        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-//    }
+    private static final Wedding WEDDING_TWO = new WeddingBuilder()
+            .withWeddingId("W002")
+            .withWeddingName("Alice & Bob Wedding")
+            .withWeddingDate("10-Sep-2025")
+            .withWeddingLocation("Beachside Resort")
+            .build();
+
+    private final Model model = createModelWithWeddings();
+
+    private static Model createModelWithWeddings() {
+        AddressBook ab = new AddressBook();
+        ab.addWedding(WEDDING_ONE);
+        ab.addWedding(WEDDING_TWO);
+        return new ModelManager(ab, new UserPrefs());
+    }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Wedding editedWedding = new WeddingBuilder().build();
+        Wedding editedWedding = new WeddingBuilder()
+                .withWeddingId("W001")
+                .withWeddingName("Unique Wedding Name")
+                .withWeddingDate("25-Dec-2028")
+                .withWeddingLocation("Some Unique Location")
+                .build();
+
         EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(editedWedding).build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), descriptor);
+        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+                new WeddingId("W001"), descriptor);
 
-        String expectedMessage = String.format(EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS, Messages.format(editedWedding));
+        String expectedMessage = String.format(
+                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                Messages.format(editedWedding)
+        );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = createModelWithWeddings();
         expectedModel.setWedding(WEDDING_ONE, editedWedding);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -93,58 +75,84 @@ public class EditWeddingEventCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Wedding editedWedding = new WeddingBuilder().withWeddingName("Unique Wedding Name").build();
-        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder().withWeddingName("Unique Wedding Name").build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), descriptor);
+        Wedding partialEditWedding = new WeddingBuilder(WEDDING_ONE)
+                .withWeddingName("Unique Wedding Name")
+                .build();
 
-        String expectedMessage = String.format(EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS, Messages.format(editedWedding));
+        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder()
+                .withWeddingName("Unique Wedding Name")
+                .build();
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setWedding(WEDDING_ONE, editedWedding);
+        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+                new WeddingId("W001"), descriptor);
+
+        String expectedMessage = String.format(
+                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                Messages.format(partialEditWedding)
+        );
+
+        Model expectedModel = createModelWithWeddings();
+        expectedModel.setWedding(WEDDING_ONE, partialEditWedding);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), new EditWeddingDescriptor());
-        Wedding editedWedding = model.getFilteredWeddingList().get(0);
+        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+                new WeddingId("W001"), new EditWeddingDescriptor()
+        );
+        Wedding unmodifiedWedding = model.getFilteredWeddingList().get(0);
 
-        String expectedMessage = String.format(EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS, Messages.format(editedWedding));
+        String expectedMessage = String.format(
+                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                Messages.format(unmodifiedWedding)
+        );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = createModelWithWeddings();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_duplicateWeddingUnfilteredList_failure() {
-        Wedding firstWedding = model.getFilteredWeddingList().get(0);
-        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(firstWedding).build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(WEDDING_TWO.getWeddingId(), descriptor);
+        // Attempt to edit WEDDING_TWO to have the same details as WEDDING_ONE
+        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
+        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+                new WeddingId("W002"), descriptor
+        );
 
-        assertThrows(CommandException.class, EditWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> editCommand.execute(model));
+        assertThrows(CommandException.class,
+                EditWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> editCommand.execute(model));
     }
 
     @Test
     public void execute_invalidWeddingIdUnfilteredList_failure() {
         WeddingId invalidWeddingId = new WeddingId("W999");
-        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder().withWeddingName("Unique Wedding Name").build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(invalidWeddingId, descriptor);
+        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder()
+                .withWeddingName("Unique Wedding Name")
+                .build();
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX, () -> editCommand.execute(model));
+        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+                invalidWeddingId, descriptor
+        );
+
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX, () -> editCommand.execute(model));
     }
-
 
     @Test
     public void equals() {
         final EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
-        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), descriptor);
+        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(
+                new WeddingId("W001"), descriptor
+        );
 
         // same values -> returns true
         EditWeddingDescriptor copyDescriptor = new EditWeddingDescriptor(descriptor);
-        EditWeddingEventCommand commandWithSameValues = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), copyDescriptor);
+        EditWeddingEventCommand commandWithSameValues = new EditWeddingEventCommand(
+                new WeddingId("W001"), copyDescriptor
+        );
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -157,22 +165,28 @@ public class EditWeddingEventCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditWeddingEventCommand(WEDDING_TWO.getWeddingId(), descriptor)));
+        assertFalse(standardCommand.equals(new EditWeddingEventCommand(
+                new WeddingId("W002"), descriptor)));
 
         // different descriptor -> returns false
         EditWeddingDescriptor differentDescriptor = new EditWeddingDescriptorBuilder(WEDDING_TWO).build();
-        assertFalse(standardCommand.equals(new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), differentDescriptor)));
+        assertFalse(standardCommand.equals(new EditWeddingEventCommand(
+                new WeddingId("W001"), differentDescriptor)));
     }
 
     @Test
     public void toStringMethod() {
         final EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
-        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(WEDDING_ONE.getWeddingId(), descriptor);
+        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(
+                new WeddingId("W001"), descriptor
+        );
 
-        String expectedString = "EditWeddingEventCommand{index=W001, editWeddingDescriptor=EditWeddingDescriptor{"
-                + "weddingName=Optional[John & Jane Wedding], weddingDate=Optional[15-Jun-2025], weddingLocation=Optional[Central Park]}}";
-        System.out.println(standardCommand.toString());
+        String expectedString = "EditWeddingEventCommand{index=W001, "
+                + "editWeddingDescriptor=EditWeddingDescriptor{"
+                + "weddingName=Optional[John & Jane Wedding], "
+                + "weddingDate=Optional[15-Jun-2025], "
+                + "weddingLocation=Optional[Central Park]}}";
+
         assertEquals(expectedString, standardCommand.toString());
     }
-
 }
