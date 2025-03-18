@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The compulsory field(s) is/are empty.
 
-    * 2a1. EasyWeds shows an error message. 
+    * 2a1. EasyWeds shows an error message.
 
         Use case resumes at step 1.
 
@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. EasyWeds shows an error message.
-  
+
         Use case resumes at step 2.
 
 
@@ -369,8 +369,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. No matching contact is found.
 
-    * 3a1. EasyWeds shows a message that says "No matching contacts found". 
-  
+    * 3a1. EasyWeds shows a message that says "No matching contacts found".
+
         Use case ends.
 
 
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User inputs the command to add wedding
 2.  EasyWeds validates each field and checks for duplicates
-3.  EasyWeds adds the new wedding 
+3.  EasyWeds adds the new wedding
 
     Use case ends.
 
@@ -408,13 +408,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The contact does not exist.
 
     * 2a1. EasyWeds shows a message that says "The contact does not exist".
-  
+
         Use case ends.
 
 * 2b. The wedding does not exist.
 
-    * 2b1. EasyWeds shows a message that says "The wedding does not exist". 
-  
+    * 2b1. EasyWeds shows a message that says "The wedding does not exist".
+
         Use case ends.
 
 
@@ -431,14 +431,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The wedding does not exist.
 
-    * 2a1. EasyWeds shows a message that says "The wedding does not exist". 
-  
+    * 2a1. EasyWeds shows a message that says "The wedding does not exist".
+
         Use case resumes at step 1.
 
 * 2b. There are no contacts tagged to the wedding.
 
     * 2b1. EasyWeds shows a message that says "No contact found for this wedding".
-  
+
         Use case resumes at step 1.
 
 *{More to be added}*
@@ -453,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The application should handle errors gracefully, providing clear and helpful error messages.
 6. Adhere to a consistent coding style with comprehensive inline documentation and JavaDocs.
 7. User interface should be intuitive and accessible
-8. Candidate data should be stored securely, ensuring unauthorized users cannot access sensitive information. 
+8. Candidate data should be stored securely, ensuring unauthorized users cannot access sensitive information.
 9. Data should not be lost between each session and be persistently stored.
 *{More to be added}*
 
