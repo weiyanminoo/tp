@@ -74,7 +74,7 @@ class JsonAdaptedWedding {
         }
         final WeddingLocation modelLocation = new WeddingLocation(location);
 
-        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation);
+        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation, true);
     }
 
     @Override
