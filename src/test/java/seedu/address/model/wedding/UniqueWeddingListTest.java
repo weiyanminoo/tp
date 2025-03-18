@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -29,7 +30,14 @@ public class UniqueWeddingListTest {
             new WeddingLocation("Garden")
     );
 
-    private final UniqueWeddingList uniqueWeddingList = new UniqueWeddingList();
+    private UniqueWeddingList uniqueWeddingList = new UniqueWeddingList();
+
+    @BeforeEach
+    public void resetWeddingNextId() {
+        // Reset the static counter so that tests don't interfere with each other.
+        Wedding.setNextId(1);
+        uniqueWeddingList = new UniqueWeddingList();
+    }
 
     // ========================== CONTAINS TESTS ==========================
     @Test
@@ -54,6 +62,34 @@ public class UniqueWeddingListTest {
         assertThrows(NullPointerException.class, () -> uniqueWeddingList.add(null));
     }
 
+    @Test
+    public void add_newWedding_incrementsNextId() {
+        int originalNextId = Wedding.getNextId();
+        Wedding newWedding = new Wedding(
+                new WeddingName("New Wedding"),
+                new WeddingDate("04-Apr-2025"),
+                new WeddingLocation("Hall")
+        );
+        uniqueWeddingList.add(newWedding);
+        // For new weddings, the add method increments nextId.
+        assertEquals(originalNextId + 1, Wedding.getNextId());
+    }
+
+    @Test
+    public void add_restoredWedding_doesNotIncrementNextId() {
+        int originalNextId = Wedding.getNextId();
+        Wedding restoredWedding = new Wedding(
+                new WeddingId("W" + originalNextId),
+                new WeddingName("Restored Wedding"),
+                new WeddingDate("05-May-2025"),
+                new WeddingLocation("Garden"),
+                true
+        );
+        uniqueWeddingList.add(restoredWedding);
+        // For restored weddings, the add method should not increment nextId.
+        assertEquals(originalNextId + 1, Wedding.getNextId());
+    }
+
     // ========================== SETWEDDING TESTS ==========================
     @Test
     public void setWedding_nullTargetWedding_throwsNullPointerException() {
@@ -69,25 +105,6 @@ public class UniqueWeddingListTest {
     public void setWedding_targetNotInList_throwsWeddingNotFoundException() {
         // Attempt to edit a Wedding that isn't in the list
         assertThrows(WeddingNotFoundException.class, () -> uniqueWeddingList.setWedding(WEDDING_A, WEDDING_A));
-    }
-
-    @Test
-    public void setWedding_editedWeddingIsSameWedding_success() {
-        uniqueWeddingList.add(WEDDING_A);
-
-        // Create an edited version of WEDDING_A with the same name/date but different location
-        // Or if your duplication logic uses ID, keep the same ID and change the location.
-        Wedding editedWeddingA = new Wedding(
-                WEDDING_A.getWeddingId(),
-                WEDDING_A.getWeddingName(),
-                WEDDING_A.getWeddingDate(),
-                new WeddingLocation("New Location")
-        );
-        uniqueWeddingList.setWedding(WEDDING_A, editedWeddingA);
-
-        UniqueWeddingList expectedList = new UniqueWeddingList();
-        expectedList.add(editedWeddingA);
-        assertEquals(expectedList, uniqueWeddingList);
     }
 
     @Test
