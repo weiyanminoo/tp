@@ -25,11 +25,6 @@ public class Wedding {
         this.restored = false;
     }
 
-    // Constructor for new weddings: not restored.
-    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
-        this(weddingId, weddingName, weddingDate, location, false);
-    }
-
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
