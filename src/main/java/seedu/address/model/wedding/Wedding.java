@@ -12,6 +12,8 @@ public class Wedding {
     private final WeddingDate weddingDate;
     private final WeddingLocation location;
 
+    private final boolean restored;
+
     /**
      * Creates a Wedding object with the given fields.
      */
@@ -20,21 +22,34 @@ public class Wedding {
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
+        this.restored = false;
+    }
+
+    // Constructor for new weddings: not restored.
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
+        this(weddingId, weddingName, weddingDate, location, false);
     }
 
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location, boolean isRestored) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
+        this.restored = isRestored;
 
-        int numericPart = Integer.parseInt(weddingId.value.substring(1)); // skip 'W'
-        if (numericPart >= nextId) {
-            nextId = numericPart + 1;
+        if (isRestored) {
+            int numericPart = Integer.parseInt(weddingId.value.substring(1)); // skip 'W'
+            if (numericPart >= nextId) {
+                nextId = numericPart + 1;
+            }
         }
+    }
+
+    public boolean isRestored() {
+        return restored;
     }
 
     /**

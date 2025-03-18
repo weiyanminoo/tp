@@ -46,7 +46,10 @@ public class UniqueWeddingList implements Iterable<Wedding> {
             throw new DuplicateWeddingException();
         }
         internalList.add(toAdd);
-        Wedding.setNextId(Wedding.getNextId() + 1); // Increment only after adding
+        // Only increment nextId if this is a new wedding.
+        if (!toAdd.isRestored()) {
+            Wedding.setNextId(Wedding.getNextId() + 1);
+        }
     }
 
     /**
