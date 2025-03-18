@@ -81,13 +81,19 @@ public class AddCommand extends Command implements ForceableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // If not forced and a duplicate is detected, store this command and signal that confirmation is needed.
         if (!isForce && model.hasPerson(toAdd)) {
+            // In normal mode, if a duplicate exists, store this command and signal confirmation required.
             ConfirmationManager.getInstance().setPendingCommand(this);
             return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true);
         }
 
-        model.addPerson(toAdd);
+        if (isForce) {
+            // Force mode: bypass duplicate check.
+            model.forceAddPerson(toAdd);
+        } else {
+            // Normal mode: add person normally.
+            model.addPerson(toAdd);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

@@ -47,12 +47,19 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicatePerson_returnsConfirmationResult() throws Exception {
+        // Prepare a valid person.
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
+        // Create a model stub that already contains the person.
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        // Execute the add command in normal mode.
+        CommandResult commandResult = addCommand.execute(modelStub);
+
+        // Instead of expecting an exception, we expect a duplicate warning with confirmation required.
+        assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON, commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequiresConfirmation());
     }
 
     @Test
@@ -82,7 +89,7 @@ public class AddCommandTest {
     @Test
     public void toStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + ", isForce=false}";
         assertEquals(expected, addCommand.toString());
     }
 
@@ -122,6 +129,11 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void forceAddPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -202,6 +214,7 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
     }
 
     /**
