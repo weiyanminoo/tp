@@ -86,7 +86,6 @@ public class UniqueWeddingListTest {
                 true
         );
         uniqueWeddingList.add(restoredWedding);
-        // For restored weddings, the add method should not increment nextId.
         assertEquals(originalNextId + 1, Wedding.getNextId());
     }
 
