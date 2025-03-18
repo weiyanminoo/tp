@@ -33,7 +33,8 @@ public class Wedding {
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location, boolean isRestored) {
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location,
+                   boolean isRestored) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
