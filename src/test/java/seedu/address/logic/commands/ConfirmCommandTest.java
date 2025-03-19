@@ -1,7 +1,16 @@
 package seedu.address.logic.commands;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
+import javafx.collections.ObservableList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.wedding.Wedding;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -108,32 +117,32 @@ public class ConfirmCommandTest {
     private class ModelStub implements Model {
 
         @Override
-        public void setUserPrefs(seedu.address.model.ReadOnlyUserPrefs userPrefs) {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public seedu.address.model.ReadOnlyUserPrefs getUserPrefs() {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public seedu.address.commons.core.GuiSettings getGuiSettings() {
+        public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setGuiSettings(seedu.address.commons.core.GuiSettings guiSettings) {
+        public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public java.nio.file.Path getAddressBookFilePath() {
+        public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(java.nio.file.Path addressBookFilePath) {
+        public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -148,12 +157,12 @@ public class ConfirmCommandTest {
         }
 
         @Override
-        public void setAddressBook(seedu.address.model.ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public seedu.address.model.ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -173,38 +182,42 @@ public class ConfirmCommandTest {
         }
 
         @Override
-        public javafx.collections.ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(java.util.function.Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasWedding(seedu.address.model.wedding.Wedding wedding) {
+        public boolean hasWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addWedding(seedu.address.model.wedding.Wedding wedding) {
+        public void addWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public javafx.collections.ObservableList<seedu.address.model.wedding.Wedding> getFilteredWeddingList() {
+        public void setWedding(Wedding target, Wedding editedWedding) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredWeddingList(java.util.function.Predicate<seedu.address.model.wedding.Wedding>
-                                                              predicate) {
+        public ObservableList<Wedding> getFilteredWeddingList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void tagPerson(Person person, seedu.address.model.tag.Tag tag) {
+        public void updateFilteredWeddingList(Predicate<Wedding> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void tagPerson(Person person, Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
     }
