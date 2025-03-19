@@ -27,8 +27,8 @@ public class Tag {
      * Two {@code Tag} objects are considered equal if they have the same {@code weddingId}.
      *
      * @param other The object to compare with this {@code Tag}.
-     * @return {@code true} if the given object is a {@code Tag} with the same {@code weddingId},
-     * otherwise {@code false}.
+     * @return {@code true} if the given object is a {@code Tag} with the same {@code weddingId}, otherwise
+     *     {@code false}.
      */
     @Override
     public boolean equals(Object other) {

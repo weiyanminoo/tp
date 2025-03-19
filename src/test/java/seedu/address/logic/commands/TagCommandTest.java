@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import java.util.Set;
 
@@ -10,16 +15,18 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.wedding.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 
 public class TagCommandTest {
 
@@ -113,8 +120,8 @@ public class TagCommandTest {
         Index targetIndex = Index.fromZeroBased(0);
         WeddingId weddingId = new WeddingId("W12345");
         TagCommand tagCommand = new TagCommand(targetIndex, weddingId);
-        String expectedString = "seedu.address.logic.commands." +
-                "TagCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=0}, weddingId=W12345}";
+        String expectedString = "seedu.address.logic.commands."
+                + "TagCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=0}, weddingId=W12345}";
         assertEquals(expectedString, tagCommand.toString());
     }
 
@@ -123,8 +130,8 @@ public class TagCommandTest {
         Index targetIndex = Index.fromZeroBased(1);
         WeddingId weddingId = new WeddingId("W67890");
         TagCommand tagCommand = new TagCommand(targetIndex, weddingId);
-        String expectedString = "seedu.address.logic.commands." +
-                "TagCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=1}, weddingId=W67890}";
+        String expectedString = "seedu.address.logic.commands."
+               + "TagCommand{targetIndex=seedu.address.commons.core.index.Index{zeroBasedIndex=1}, weddingId=W67890}";
         assertEquals(expectedString, tagCommand.toString());
     }
 }
