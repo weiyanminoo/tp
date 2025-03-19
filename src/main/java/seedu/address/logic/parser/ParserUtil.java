@@ -162,7 +162,9 @@ public class ParserUtil {
      */
     public static WeddingId parseWeddingId(String weddingId) throws ParseException {
         requireNonNull(weddingId);
+        System.out.println("reach parser util parseWeddingId");
         String trimmedId = weddingId.trim();
+        System.out.println("trimmedId: " + trimmedId);
         if (!WeddingId.isValidWeddingId(trimmedId)) {
             throw new ParseException(WeddingId.MESSAGE_CONSTRAINTS);
         }
