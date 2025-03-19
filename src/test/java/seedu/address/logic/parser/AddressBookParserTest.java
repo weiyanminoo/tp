@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddWeddingEventCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -101,6 +102,12 @@ public class AddressBookParserTest {
     public void parseCommand_tag() throws Exception {
         String userInput = TagCommand.COMMAND_WORD + " 1 W123";
         assertTrue(parser.parseCommand(userInput) instanceof TagCommand);
+    }
+
+    @Test
+    public void parseCommand_confirm() throws Exception {
+        assertTrue(parser.parseCommand(ConfirmCommand.COMMAND_WORD) instanceof ConfirmCommand);
+        assertTrue(parser.parseCommand(ConfirmCommand.COMMAND_WORD + "   ") instanceof ConfirmCommand);
     }
 
     @Test

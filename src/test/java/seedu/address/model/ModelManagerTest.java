@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -128,5 +130,27 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void forceAddPerson_duplicatePerson_addsDuplicate() {
+        // Create an empty address book and default user preferences.
+        AddressBook addressBook = new AddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+
+        // Create a valid person.
+        Person validPerson = new PersonBuilder().build();
+
+        // Add the person normally.
+        modelManager.addPerson(validPerson);
+        // Now force-add the same person, bypassing the duplicate check.
+        modelManager.forceAddPerson(validPerson);
+
+        // Verify that both instances were added (i.e. duplicates are present in forced mode).
+        assertEquals(2, modelManager.getFilteredPersonList().size());
+        // Optionally, verify that both entries are equal to validPerson.
+        assertEquals(validPerson, modelManager.getFilteredPersonList().get(0));
+        assertEquals(validPerson, modelManager.getFilteredPersonList().get(1));
     }
 }

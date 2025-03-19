@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.RequiresConfirmationException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -37,13 +38,25 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a person to the list in normal mode.
+     * The person must not already exist in the list; otherwise, a {@code RequiresConfirmationException} is thrown.
      */
     public void add(Person toAdd) {
+        add(toAdd, false);
+    }
+
+    /**
+     * Adds a person to the list.
+     *
+     * @param toAdd The person to add.
+     * @param force If {@code true}, the duplicate check is bypassed.
+     *              If {@code false}, a duplicate (as defined by {@code Person#isSamePerson(Person)})
+     *              will result in a {@code RequiresConfirmationException}.
+     */
+    public void add(Person toAdd, boolean force) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+        if (contains(toAdd) && !force) {
+            throw new RequiresConfirmationException();
         }
         internalList.add(toAdd);
     }

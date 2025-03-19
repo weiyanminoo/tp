@@ -21,8 +21,6 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Role role;
-
-    // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -75,9 +73,20 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+        if (otherPerson == null) {
+            return false;
+        }
+        String normalizedThisName = normalize(name.toString());
+        String normalizedOtherName = normalize(otherPerson.getName().toString());
+        return normalizedThisName.equals(normalizedOtherName);
+    }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+    /**
+     * Helper method to normalize a name by trimming leading/trailing spaces,
+     * converting to lower case and replacing multiple spaces with a single space
+     */
+    private String normalize(String s) {
+        return s.trim().toLowerCase().replaceAll("\\s+", " ");
     }
 
     /**

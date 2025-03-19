@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.RequiresConfirmationException;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -55,7 +56,7 @@ public class UniquePersonListTest {
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+        assertThrows(RequiresConfirmationException.class, () -> uniquePersonList.add(ALICE));
     }
 
     @Test
