@@ -86,12 +86,26 @@ public class Person {
      * @param tag The tag to be added.
      * @return A new Person instance with the tag added.
      */
-    public Person withAddedTag(Tag tag) {
+    public Person addTag(Tag tag) {
         requireAllNonNull(tag);
         Set<Tag> newTags = new HashSet<>(this.tags);
         newTags.add(tag);
         return new Person(name, phone, email, role, address, newTags);
     }
+
+    /**
+     * Returns a new Person with the WeddingId tag removed.
+     *
+     * @param tag The tag to be removed.
+     * @return A new Person instance with the tag removed.
+     */
+    public Person removeTag(Tag tag) {
+        requireAllNonNull(tag);
+        Set<Tag> newTags = new HashSet<>(this.tags);
+        newTags.remove(tag);
+        return new Person(name, phone, email, role, address, newTags);
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

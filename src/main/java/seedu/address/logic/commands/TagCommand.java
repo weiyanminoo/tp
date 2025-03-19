@@ -41,6 +41,13 @@ public class TagCommand extends Command {
         this.weddingId = weddingId;
     }
 
+    /**
+     * Executes the tag command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return the command result.
+     * @throws CommandException if the index is invalid or the wedding id does not exist.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -66,6 +73,9 @@ public class TagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, personToTag.getName().fullName, weddingId));
     }
 
+    /**
+     * Returns true if both TagCommands have the same target index and wedding id.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -81,6 +91,9 @@ public class TagCommand extends Command {
                 && weddingId.equals(otherTagCommand.weddingId);
     }
 
+    /**
+     * Returns the string representation of the TagCommand.
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)

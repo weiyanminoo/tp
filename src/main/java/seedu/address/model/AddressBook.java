@@ -140,7 +140,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
 
-
     //// util methods
 
     @Override

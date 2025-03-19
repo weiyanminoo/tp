@@ -124,7 +124,7 @@ public class Wedding {
 
     @Override
     public String toString() {
-        return String.format("Wedding: %s (ID: %s) Date: %s Location: %s",
+        return String.format("\nWedding: %s (ID: %s)\nDate: %s\nLocation: %s",
                 weddingName, weddingId, weddingDate, location);
     }
 }
