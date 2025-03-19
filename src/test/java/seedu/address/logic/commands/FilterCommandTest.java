@@ -135,11 +135,11 @@ public class FilterCommandTest {
         expectedModel.addWedding(emptyWedding);
 
         FilterCommand filterCommand = new FilterCommand(emptyWeddingId);
-        String expectedMessage = String.format(FilterCommand.MESSAGE_SUCCESS,
-                emptyWedding.getWeddingId(),
-                emptyWedding.getWeddingName(),
-                emptyWedding.getWeddingDate(),
-                emptyWedding.getWeddingLocation());
+        String expectedMessage = String.format(FilterCommand.MESSAGE_NO_PERSONS_FOUND,
+                emptyWedding.getWeddingId().value,
+                emptyWedding.getWeddingName().fullWeddingName,
+                emptyWedding.getWeddingDate().value,
+                emptyWedding.getWeddingLocation().venue);
 
         expectedModel.updateFilteredPersonList(new TagMatchesPredicate(emptyWeddingId));
 

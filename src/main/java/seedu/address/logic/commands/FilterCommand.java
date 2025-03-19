@@ -28,6 +28,13 @@ public class FilterCommand extends Command {
             + "Date: %3$s\n"
             + "Location: %4$s";
 
+    public static final String MESSAGE_NO_PERSONS_FOUND = "Filtered persons by wedding:\n"
+            + "ID: %1$s\n"
+            + "Name: %2$s\n"
+            + "Date: %3$s\n"
+            + "Location: %4$s\n"
+            + "No clients/vendors found for this wedding!";
+
     private final WeddingId weddingIdToFilter;
 
     /**
@@ -53,6 +60,16 @@ public class FilterCommand extends Command {
 
         // Update person list using the TagMatchesPredicate.
         model.updateFilteredPersonList(new TagMatchesPredicate(weddingIdToFilter));
+
+        // Check how many persons matched
+        int count = model.getFilteredPersonList().size();
+        if (count == 0) {
+            return new CommandResult(String.format(MESSAGE_NO_PERSONS_FOUND,
+                    matchingWedding.getWeddingId().value,
+                    matchingWedding.getWeddingName().fullWeddingName,
+                    matchingWedding.getWeddingDate().value,
+                    matchingWedding.getWeddingLocation().venue));
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 matchingWedding.getWeddingId(),
