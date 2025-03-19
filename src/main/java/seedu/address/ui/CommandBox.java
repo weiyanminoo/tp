@@ -33,6 +33,11 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Handles the Enter button pressed event.
+     * <p>
+     * The command text is executed and the resulting CommandResult is checked.
+     * If the command does not require confirmation, the input field is cleared.
+     * Otherwise, the user's input is preserved so that they can edit or confirm.
+     * </p>
      */
     @FXML
     private void handleCommandEntered() {
@@ -42,8 +47,11 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
+            CommandResult commandResult = commandExecutor.execute(commandText);
+            // Only clear the command box if the command does NOT require confirmation.
+            if (!commandResult.isRequiresConfirmation()) {
+                commandTextField.setText("");
+            }
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }

@@ -77,11 +77,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the address book in normal mode.
+     * Delegates to addPerson with force set to false.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        addPerson(p, false);
+    }
+
+    /**
+     * Adds a person to the address book.
+     *
+     * @param p The person to add.
+     * @param force If true, bypass duplicate checks; if false, enforce uniqueness.
+     */
+    public void addPerson(Person p, boolean force) {
+        persons.add(p, force);
     }
 
     /**

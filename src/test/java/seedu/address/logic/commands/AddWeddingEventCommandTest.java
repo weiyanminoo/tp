@@ -136,6 +136,11 @@ public class AddWeddingEventCommandTest {
         }
 
         @Override
+        public void forceAddPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
