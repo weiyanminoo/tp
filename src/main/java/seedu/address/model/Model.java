@@ -16,6 +16,7 @@ import seedu.address.model.wedding.WeddingId;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Wedding> PREDICATE_SHOW_ALL_WEDDINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -95,6 +96,14 @@ public interface Model {
     Wedding getWeddingById(WeddingId weddingId);
 
     void deleteWedding(Wedding wedding);
+
+    /**
+     * Replaces the given wedding {@code target} with {@code editedWedding}.
+     * {@code target} must exist in the address book.
+     * The wedding identity of {@code editedWedding} must not be the same as another existing wedding
+     * in the address book.
+     */
+    void setWedding(Wedding target, Wedding editedWedding);
 
     /**
      * Returns an unmodifiable view of the list of {@code Wedding} backed by the internal list.

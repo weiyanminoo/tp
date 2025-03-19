@@ -112,6 +112,11 @@ public class AddWeddingEventCommandTest {
         }
 
         @Override
+        public void setWedding(Wedding target, Wedding editedWedding) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }

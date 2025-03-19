@@ -140,18 +140,19 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
 
         ModelManager otherModelManager = (ModelManager) other;
+
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredWeddings.equals(otherModelManager.filteredWeddings);
     }
 
+    //=========== Wedding ================================================================================
     @Override
     public boolean hasWedding(Wedding wedding) {
         requireNonNull(wedding);
@@ -162,6 +163,13 @@ public class ModelManager implements Model {
     public void addWedding(Wedding wedding) {
         addressBook.addWedding(wedding);
         updateFilteredWeddingList(w -> true); // Show all after adding
+    }
+
+    @Override
+    public void setWedding(Wedding target, Wedding editedWedding) {
+        requireAllNonNull(target, editedWedding);
+
+        addressBook.setWedding(target, editedWedding);
     }
 
     @Override

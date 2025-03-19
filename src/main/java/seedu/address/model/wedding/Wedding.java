@@ -10,18 +10,18 @@ public class Wedding {
     private final WeddingId weddingId;
     private final WeddingName weddingName;
     private final WeddingDate weddingDate;
-    private final WeddingLocation location;
+    private final WeddingLocation weddingLocation;
 
     private final boolean restored;
 
     /**
      * Creates a Wedding object with the given fields.
      */
-    public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
+    public Wedding(WeddingName weddingName, WeddingDate weddingDate, WeddingLocation weddingLocation) {
         this.weddingId = new WeddingId("W" + nextId);
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
-        this.location = location;
+        this.weddingLocation = weddingLocation;
         this.restored = false;
     }
 
@@ -33,12 +33,13 @@ public class Wedding {
     /**
      * Creates a Wedding object with a specified ID (useful for restoration).
      */
-    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location,
-                   boolean isRestored) {
+
+    public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate,
+                   WeddingLocation weddingLocation, boolean isRestored) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
-        this.location = location;
+        this.weddingLocation = weddingLocation;
         this.restored = isRestored;
 
         if (isRestored) {
@@ -79,8 +80,8 @@ public class Wedding {
         return weddingDate;
     }
 
-    public WeddingLocation getLocation() {
-        return location;
+    public WeddingLocation getWeddingLocation() {
+        return weddingLocation;
     }
 
     /**
@@ -99,7 +100,7 @@ public class Wedding {
 
         return this.weddingName.equals(otherWedding.weddingName)
                 && this.weddingDate.equals(otherWedding.weddingDate)
-                && this.location.equals(otherWedding.location);
+                && this.weddingLocation.equals(otherWedding.weddingLocation);
     }
 
     @Override
@@ -114,17 +115,17 @@ public class Wedding {
         return weddingId.equals(otherWedding.weddingId)
                 && weddingName.equals(otherWedding.weddingName)
                 && weddingDate.equals(otherWedding.weddingDate)
-                && location.equals(otherWedding.location);
+                && weddingLocation.equals(otherWedding.weddingLocation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(weddingId, weddingName, weddingDate, location);
+        return Objects.hash(weddingId, weddingName, weddingDate, weddingLocation);
     }
 
     @Override
     public String toString() {
         return String.format("\nWedding: %s (ID: %s)\nDate: %s\nLocation: %s",
-                weddingName, weddingId, weddingDate, location);
+                weddingName, weddingId, weddingDate, weddingLocation);
     }
 }
