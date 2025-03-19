@@ -31,8 +31,8 @@ public class PersonTest {
 
     @BeforeEach
     void setUp() {
-        WeddingId weddingId1 = new WeddingId("1");
-        WeddingId weddingId2 = new WeddingId("2");
+        WeddingId weddingId1 = new WeddingId("W1");
+        WeddingId weddingId2 = new WeddingId("W2");
         tag1 = new Tag(weddingId1);
         tag2 = new Tag(weddingId2);
         Set<Tag> initialTags = new HashSet<>();

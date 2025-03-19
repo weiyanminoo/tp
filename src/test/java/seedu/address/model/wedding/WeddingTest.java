@@ -174,7 +174,7 @@ public class WeddingTest {
                 new WeddingDate("01-Dec-2025"),
                 new WeddingLocation("Paris")
         );
-        String expected = String.format("Wedding: %s (ID: %s) Date: %s Location: %s",
+        String expected = String.format("\nWedding: %s (ID: %s)\nDate: %s\nLocation: %s",
                 w.getWeddingName(), w.getWeddingId(), w.getWeddingDate(), w.getWeddingLocation());
         assertEquals(expected, w.toString());
     }
