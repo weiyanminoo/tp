@@ -85,7 +85,6 @@ public class AddressBookParser {
             return new AddWeddingEventCommandParser().parse(arguments);
 
         case EditWeddingEventCommand.COMMAND_WORD:
-            System.out.println("parsing from addressbook");
             return new EditWeddingEventCommandParser().parse(arguments);
 
         case FilterCommand.COMMAND_WORD:
