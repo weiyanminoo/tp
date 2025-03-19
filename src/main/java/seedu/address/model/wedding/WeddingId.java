@@ -16,6 +16,8 @@ public class WeddingId {
 
     public final String value;
 
+    public final int valueInt;
+
     /**
      * Constructs a {@code WeddingId}.
      *
@@ -25,6 +27,14 @@ public class WeddingId {
         requireNonNull(id);
         checkArgument(isValidWeddingId(id), MESSAGE_CONSTRAINTS);
         this.value = id;
+        this.valueInt = Integer.parseInt(id.substring(1)); // Parse the numeric part only
+    }
+
+    /**
+     *  Returns integer value of Id
+     */
+    public int getValueInt() {
+        return valueInt;
     }
 
     /**

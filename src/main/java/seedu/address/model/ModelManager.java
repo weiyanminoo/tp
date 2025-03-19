@@ -139,18 +139,19 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
 
         ModelManager otherModelManager = (ModelManager) other;
+
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredWeddings.equals(otherModelManager.filteredWeddings);
     }
 
+    //=========== Wedding ================================================================================
     @Override
     public boolean hasWedding(Wedding wedding) {
         requireNonNull(wedding);
@@ -164,6 +165,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setWedding(Wedding target, Wedding editedWedding) {
+        requireAllNonNull(target, editedWedding);
+
+        addressBook.setWedding(target, editedWedding);
+    }
+
+    @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
         return filteredWeddings;
     }
@@ -173,7 +181,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredWeddings.setPredicate(predicate);
     }
-
 
     /**
      * Tags a person with the given tag.
