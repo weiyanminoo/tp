@@ -36,9 +36,10 @@ public class AddCommand extends Command implements ForceableCommand {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON =
-            "WARNING: This person may already exist in the address book. \n"
-            + "If you wish to proceed, use 'Ctrl / Command + A' to clear the input box and input 'y' to confirm. \n"
-            + "Else, edit your input and press 'Enter'. ";
+            "WARNING: This person may already exist in the address book.\n"
+            + "If you wish to proceed, use 'Ctrl / Command + A' and press 'Delete / Backspace' to clear the input box\n"
+            + "and input 'y' to confirm.\n"
+            + "Else, edit your input directly and press 'Enter'. ";
 
     private final Person toAdd;
     private final boolean isForce;
