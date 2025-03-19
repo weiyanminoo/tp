@@ -105,7 +105,7 @@ public class FilterCommandTest {
                 wedding.getWeddingId(),
                 wedding.getWeddingName(),
                 wedding.getWeddingDate(),
-                wedding.getLocation());
+                wedding.getWeddingLocation());
 
         expectedModel.updateFilteredPersonList(new TagMatchesPredicate(WEDDING_ID_W1));
 
@@ -139,7 +139,7 @@ public class FilterCommandTest {
                 emptyWedding.getWeddingId(),
                 emptyWedding.getWeddingName(),
                 emptyWedding.getWeddingDate(),
-                emptyWedding.getLocation());
+                emptyWedding.getWeddingLocation());
 
         expectedModel.updateFilteredPersonList(new TagMatchesPredicate(emptyWeddingId));
 

@@ -58,7 +58,7 @@ public class FilterCommand extends Command {
                 matchingWedding.getWeddingId(),
                 matchingWedding.getWeddingName(),
                 matchingWedding.getWeddingDate(),
-                matchingWedding.getLocation()));
+                matchingWedding.getWeddingLocation()));
     }
 
     @Override
