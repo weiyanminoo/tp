@@ -78,10 +78,6 @@ Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
-<box type="tip" seamless>
-
-</box>
-
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
