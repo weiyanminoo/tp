@@ -88,6 +88,7 @@ public class ListWeddingEventCommandTest {
                     .append("\nLocation: ").append(wedding.getWeddingLocation().toString())
                     .append("\n");
         }
-        assertCommandSuccess(new ListWeddingEventCommand(), model, ListWeddingEventCommand.MESSAGE_SUCCESS + output, expectedModel);
+        assertCommandSuccess(new ListWeddingEventCommand(), model,
+                ListWeddingEventCommand.MESSAGE_SUCCESS + output, expectedModel);
     }
 }
