@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.WeddingId;
 
 public class FilterCommandParserTest {
@@ -48,5 +50,32 @@ public class FilterCommandParserTest {
 
         // Different wedding ID -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
+    }
+
+    @Test
+    public void parse_emptyArgs_throwsParseException() {
+        // Arrange
+        String userInput = "";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_multipleArgs_throwsParseException() {
+        // Arrange
+        String userInput = "W12345 W67890";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_invalidWeddingId_throwsParseException() {
+        // Arrange
+        String userInput = "invalid_wedding_id";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 }
