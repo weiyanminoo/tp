@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# Easy-Weds Developer Guide
+# EasyWeds Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
