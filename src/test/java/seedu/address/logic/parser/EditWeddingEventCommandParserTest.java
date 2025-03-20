@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEDDING_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEDDING_LOCATION_DESC;
@@ -16,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditWeddingEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.wedding.WeddingId;
 
 public class EditWeddingEventCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
