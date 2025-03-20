@@ -172,6 +172,18 @@ Examples:
 
 ### Untagging a person : `untag`
 
+Untags an existing contact from an existing wedding event.
+
+Format: `untag INDEX WEDDING_ID`
+
+* Untags the person at the specified `INDEX` from the wedding event specified by `WEDDING_ID`.
+* The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Wedding id is the unique identifier of the wedding event.
+* Contacts can only be untagged from wedding events that are already existing in the system.
+
+Examples:
+* `untag 1 W1` untags the first person from the wedding event with weddingId `W1`
+* `untag 1 W2` untags the first person from the wedding event with weddingId `W2`. Now the first person will be tagged to `W1` and untagged from `W2`.
 
 ### Filtering contacts : `filter`
 
@@ -284,7 +296,7 @@ _Details coming soon ..._
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
 | **List**          | `list`                                                                                                                                                         |
 | **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
-| **Untag**         |                                                                                                                                                                |
+| **Untag**         | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
 | **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
 | **AddWedding**    | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**   | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
