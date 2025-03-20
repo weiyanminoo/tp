@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -179,6 +180,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Wedding getWeddingById(WeddingId weddingId) {
+        requireNonNull(weddingId);
+        return addressBook.getWeddingList().stream()
+                .filter(wedding -> wedding.getWeddingId().equals(weddingId))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public void deleteWedding(Wedding wedding) {
+        addressBook.removeWedding(wedding);
+    }
+
+    @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
         return filteredWeddings;
     }
@@ -202,13 +217,30 @@ public class ModelManager implements Model {
         requireNonNull(tag);
 
         // Create an updated person instance with the new tag added.
-        Person updatedPerson = person.withAddedTag(tag);
+        Person updatedPerson = person.addTag(tag);
 
         // Update the person in the address book.
         try {
             addressBook.setPerson(person, updatedPerson);
         } catch (PersonNotFoundException e) {
             throw new AssertionError("The target person cannot be missing", e);
+        }
+
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void removeTagFromAllContacts(Tag tag) {
+        requireNonNull(tag);
+        for (Person person : addressBook.getPersonList()) {
+            if (person.getTags().contains(tag)) {
+                Person updatedPerson = person.removeTag(tag);
+                try {
+                    addressBook.setPerson(person, updatedPerson);
+                } catch (PersonNotFoundException e) {
+                    throw new AssertionError("The target person cannot be missing", e);
+                }
+            }
         }
 
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

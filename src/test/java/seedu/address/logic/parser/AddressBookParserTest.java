@@ -19,6 +19,7 @@ import seedu.address.logic.commands.AddWeddingEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteWeddingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditWeddingEventCommand;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -120,6 +122,13 @@ public class AddressBookParserTest {
     public void parseCommand_editWeddingEvent() throws Exception {
         String userInput = EditWeddingEventCommand.COMMAND_WORD + " W3 " + PREFIX_WEDDING_NAME + "New Wedding Name";
         assertTrue(parser.parseCommand(userInput) instanceof EditWeddingEventCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteWedding() throws Exception {
+        String userInput = DeleteWeddingCommand.COMMAND_WORD + " W12345";
+        DeleteWeddingCommand command = (DeleteWeddingCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteWeddingCommand(new WeddingId("W12345")), command);
     }
 
     @Test

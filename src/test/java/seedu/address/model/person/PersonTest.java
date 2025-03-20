@@ -13,11 +13,97 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
+
+    private Person person;
+    private Tag tag1;
+    private Tag tag2;
+
+    @BeforeEach
+    void setUp() {
+        WeddingId weddingId1 = new WeddingId("W1");
+        WeddingId weddingId2 = new WeddingId("W2");
+        tag1 = new Tag(weddingId1);
+        tag2 = new Tag(weddingId2);
+        Set<Tag> initialTags = new HashSet<>();
+        Name name = new Name("Alice");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("alice@example.com");
+        Role role = new Role("Bride");
+        Address address = new Address("123 Wedding St");
+        person = new Person(name, phone, email, role, address, initialTags);
+
+    }
+
+    @Test
+    void addTag_newTag_tagAddedSuccessfully() {
+        Person updatedPerson = person.addTag(tag1);
+
+        // Ensure the original person is unchanged (immutability)
+        assertFalse(person.getTags().contains(tag1));
+
+        // Ensure the new person contains the tag
+        assertTrue(updatedPerson.getTags().contains(tag1));
+        assertEquals(1, updatedPerson.getTags().size());
+    }
+
+    @Test
+    void addTag_duplicateTag_noDuplicateAdded() {
+        Person updatedPerson = person.addTag(tag1);
+        Person updatedAgain = updatedPerson.addTag(tag1);
+
+        // Ensure the tag is not duplicated
+        assertEquals(1, updatedAgain.getTags().size());
+    }
+
+    @Test
+    void removeTag_existingTag_tagRemovedSuccessfully() {
+        Person updatedPerson = person.addTag(tag1);
+        Person finalPerson = updatedPerson.removeTag(tag1);
+
+        // Ensure the tag is removed
+        assertFalse(finalPerson.getTags().contains(tag1));
+        assertEquals(0, finalPerson.getTags().size());
+    }
+
+    @Test
+    void removeTag_nonExistentTag_noChangeToTags() {
+        Person updatedPerson = person.removeTag(tag1);
+
+        // Ensure that trying to remove a tag that doesn't exist doesn't break anything
+        assertEquals(0, updatedPerson.getTags().size());
+    }
+
+    @Test
+    void removeTag_multipleTagsOnlyOneRemoved_remainingTagsUnchanged() {
+        Person updatedPerson = person.addTag(tag1).addTag(tag2);
+        Person finalPerson = updatedPerson.removeTag(tag1);
+
+        // Ensure only tag1 is removed
+        assertFalse(finalPerson.getTags().contains(tag1));
+        assertTrue(finalPerson.getTags().contains(tag2));
+        assertEquals(1, finalPerson.getTags().size());
+    }
+
+    @Test
+    void addTag_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> person.addTag(null));
+    }
+
+    @Test
+    void removeTag_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> person.removeTag(null));
+    }
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {

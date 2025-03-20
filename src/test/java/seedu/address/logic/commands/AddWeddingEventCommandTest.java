@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
@@ -125,7 +126,22 @@ public class AddWeddingEventCommandTest {
         }
 
         @Override
+        public Wedding getWeddingById(WeddingId weddingId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteWedding(Wedding wedding) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void tagPerson(Person person, Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeTagFromAllContacts(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 
