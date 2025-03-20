@@ -22,6 +22,14 @@ public class Tag {
         this.weddingId = weddingId;
     }
 
+    /**
+     * Checks if this {@code Tag} is equal to another object.
+     * Two {@code Tag} objects are considered equal if they have the same {@code weddingId}.
+     *
+     * @param other The object to compare with this {@code Tag}.
+     * @return {@code true} if the given object is a {@code Tag} with the same {@code weddingId}, otherwise
+     *     {@code false}.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -34,6 +42,11 @@ public class Tag {
         return weddingId.equals(otherTag.weddingId);
     }
 
+    /**
+     * Returns the hash code of this {@code Tag}.
+     *
+     * @return The hash code of this {@code Tag}.
+     */
     @Override
     public int hashCode() {
         return weddingId.hashCode();

@@ -21,8 +21,6 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Role role;
-
-    // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -75,9 +73,20 @@ public class Person {
         if (otherPerson == this) {
             return true;
         }
+        if (otherPerson == null) {
+            return false;
+        }
+        String normalizedThisName = normalize(name.toString());
+        String normalizedOtherName = normalize(otherPerson.getName().toString());
+        return normalizedThisName.equals(normalizedOtherName);
+    }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+    /**
+     * Helper method to normalize a name by trimming leading/trailing spaces,
+     * converting to lower case and replacing multiple spaces with a single space
+     */
+    private String normalize(String s) {
+        return s.trim().toLowerCase().replaceAll("\\s+", " ");
     }
 
     /**
@@ -86,12 +95,26 @@ public class Person {
      * @param tag The tag to be added.
      * @return A new Person instance with the tag added.
      */
-    public Person withAddedTag(Tag tag) {
+    public Person addTag(Tag tag) {
         requireAllNonNull(tag);
         Set<Tag> newTags = new HashSet<>(this.tags);
         newTags.add(tag);
         return new Person(name, phone, email, role, address, newTags);
     }
+
+    /**
+     * Returns a new Person with the WeddingId tag removed.
+     *
+     * @param tag The tag to be removed.
+     * @return A new Person instance with the tag removed.
+     */
+    public Person removeTag(Tag tag) {
+        requireAllNonNull(tag);
+        Set<Tag> newTags = new HashSet<>(this.tags);
+        newTags.remove(tag);
+        return new Person(name, phone, email, role, address, newTags);
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

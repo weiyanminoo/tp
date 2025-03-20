@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
 
 /**
  * The API of the Model component.
@@ -73,6 +74,12 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given person, bypassing duplicate checks.
+     * This method should be used only when the user confirms that a duplicate is acceptable.
+     */
+    void forceAddPerson(Person person);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -91,6 +98,10 @@ public interface Model {
     boolean hasWedding(Wedding wedding);
 
     void addWedding(Wedding wedding);
+
+    Wedding getWeddingById(WeddingId weddingId);
+
+    void deleteWedding(Wedding wedding);
 
     /**
      * Replaces the given wedding {@code target} with {@code editedWedding}.
@@ -111,5 +122,16 @@ public interface Model {
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
 
+    /**
+     * Tags a person with a tag.
+     * @param person The person to be tagged.
+     * @param tag The tag to be added.
+     */
     void tagPerson(Person person, Tag tag);
+
+    /**
+     * Removes a tag from all contacts.
+     * @param tag The tag to be removed.
+     */
+    void removeTagFromAllContacts(Tag tag);
 }
