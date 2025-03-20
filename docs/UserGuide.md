@@ -20,7 +20,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -31,7 +31,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -75,12 +75,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a person : `add`
 
-Adds a person to the address book.
+Adds a person to the contact book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
 <box type="tip" seamless>
 
@@ -103,7 +102,7 @@ Examples:
 
 ### Adding a Wedding Event : `addWedding`
 
-Adds a Wedding Event to the address book.
+Adds a Wedding Event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
 
@@ -112,13 +111,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the contact book.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the contact book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/ROLE]
 
@@ -160,11 +159,35 @@ Format: `tag INDEX WEDDING_ID`
 
 * Tags the person at the specified `INDEX` to the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Contacts can only be tagged to wedding events that are already existing in the system
+* Wedding id is the unique identifier of the wedding event.
+* Contacts can only be tagged to wedding events that are already existing in the system.
+* Each contact can be tagged to more than one wedding event.
+
+Examples:
+* `tag 1 W1` tags the first person to the wedding event with weddingId `W1`
+* `tag 1 W2` tags the first person to the wedding event with weddingId `W2`. Now the first person will be tagged to both `W1` and `W2`.
+
+### Untagging a person : `untag`
+
+
+### Filtering contacts : `filter`
+
+Filters contacts related to a specified wedding id.
+
+Format: `filter WEDDING_ID`
+
+* Filters contacts that are tagged with the specified `WEDDING_ID`
+* Wedding id is the unique identifier of the wedding event.
+* Wedding details of the event specified by `WEDDING_ID` will be displayed on the message output box.
+
+Examples:
+* `filter W4` displays the details of `W4` and returns the contacts that are tagged to `W4`.
+
+  ![result for 'filter W4'](images/filterW4.png)
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the contact book.
 
 Format: `delete INDEX`
 
@@ -180,7 +203,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the contact book.
 
 Format: `clear`
 
@@ -192,11 +215,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+EasyWeds data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
@@ -229,10 +252,16 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List**   | `list`
-**Help**   | `help`
+**Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer`
+**AddWedding** | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding! d/20-Feb-2025 l/Marina Bay Sands
+**Clear**    | `clear`
+**Delete**   | `delete INDEX`<br> e.g., `delete 3`
+**DeleteWedding** | 
+**Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**EditWedding** |
+**Filter**   | `filter WEDDING_ID` <br> e.g., `filter W4`
+**Find**     | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**List**     | `list`
+**Tag**      | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`
+**Untag**    |
+**Help**     | `help`
