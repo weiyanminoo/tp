@@ -27,7 +27,7 @@ public class EditWeddingEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the wedding identified by the weddingId used in the displayed wedding list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: W + index"
+            + "Parameters: weddingId"
             + " n/NAME"
             + " d/DATE"
             + " l/LOCATION"

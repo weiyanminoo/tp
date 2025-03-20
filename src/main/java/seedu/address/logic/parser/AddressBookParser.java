@@ -79,7 +79,6 @@ public class AddressBookParser {
             return new ListCommand();
 
         case ListWeddingEventCommand.COMMAND_WORD:
-            System.out.println("ListWeddingEventCommand called");
             return new ListWeddingEventCommand();
 
         case ExitCommand.COMMAND_WORD:

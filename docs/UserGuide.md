@@ -140,9 +140,9 @@ Examples:
 
 Edit an existing Wedding Event in the contact book.
 
-Format: `editWedding INDEX [n/NAME] [d/DATE] [l/LOCATION]`
+Format: `editWedding weddingId [n/NAME] [d/DATE] [l/LOCATION]`
 
-* Edits the Wedding Event at the specified `weddingId`. The index refers to the index number shown in the displayed Wedding Event list. The index **must be 'W' followed by a positive integer** 1, 2, 3, …​
+* Edits the Wedding Event at the specified `weddingId`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Details of wedding you want to edit cannot be the same as what is already in the wedding.
