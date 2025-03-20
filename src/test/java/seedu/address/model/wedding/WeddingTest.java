@@ -24,7 +24,7 @@ public class WeddingTest {
         // Verify basic fields
         assertEquals(new WeddingName("Alice & Bob"), w.getWeddingName());
         assertEquals(new WeddingDate("01-Dec-2025"), w.getWeddingDate());
-        assertEquals(new WeddingLocation("Paris"), w.getLocation());
+        assertEquals(new WeddingLocation("Paris"), w.getWeddingLocation());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class WeddingTest {
         assertEquals("W10", w.getWeddingId().value);
         assertEquals(new WeddingName("Charlie & Diana"), w.getWeddingName());
         assertEquals(new WeddingDate("01-Jan-2026"), w.getWeddingDate());
-        assertEquals(new WeddingLocation("Hawaii"), w.getLocation());
+        assertEquals(new WeddingLocation("Hawaii"), w.getWeddingLocation());
     }
 
     @Test
@@ -174,8 +174,8 @@ public class WeddingTest {
                 new WeddingDate("01-Dec-2025"),
                 new WeddingLocation("Paris")
         );
-        String expected = String.format("Wedding: %s (ID: %s) Date: %s Location: %s",
-                w.getWeddingName(), w.getWeddingId(), w.getWeddingDate(), w.getLocation());
+        String expected = String.format("\nWedding: %s (ID: %s)\nDate: %s\nLocation: %s",
+                w.getWeddingName(), w.getWeddingId(), w.getWeddingDate(), w.getWeddingLocation());
         assertEquals(expected, w.toString());
     }
 }

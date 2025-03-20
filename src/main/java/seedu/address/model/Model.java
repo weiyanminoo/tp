@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
 
 /**
  * The API of the Model component.
@@ -15,6 +16,7 @@ import seedu.address.model.wedding.Wedding;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Wedding> PREDICATE_SHOW_ALL_WEDDINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -72,6 +74,12 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given person, bypassing duplicate checks.
+     * This method should be used only when the user confirms that a duplicate is acceptable.
+     */
+    void forceAddPerson(Person person);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -90,6 +98,18 @@ public interface Model {
     boolean hasWedding(Wedding wedding);
 
     void addWedding(Wedding wedding);
+
+    Wedding getWeddingById(WeddingId weddingId);
+
+    void deleteWedding(Wedding wedding);
+
+    /**
+     * Replaces the given wedding {@code target} with {@code editedWedding}.
+     * {@code target} must exist in the address book.
+     * The wedding identity of {@code editedWedding} must not be the same as another existing wedding
+     * in the address book.
+     */
+    void setWedding(Wedding target, Wedding editedWedding);
 
     /**
      * Returns an unmodifiable view of the list of {@code Wedding} backed by the internal list.
@@ -111,4 +131,10 @@ public interface Model {
      * Removes the specified tag from the specified person.
      */
     void untagPerson(Person person, Tag tag);
+
+    /**
+     * Removes a tag from all contacts.
+     * @param tag The tag to be removed.
+     */
+    void removeTagFromAllContacts(Tag tag);
 }

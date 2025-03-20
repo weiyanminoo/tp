@@ -45,7 +45,7 @@ class JsonAdaptedWedding {
         this.weddingId = source.getWeddingId().value;
         this.weddingName = source.getWeddingName().fullWeddingName;
         this.weddingDate = source.getWeddingDate().value;
-        this.location = source.getLocation().venue;
+        this.location = source.getWeddingLocation().venue;
     }
 
     /**
@@ -74,7 +74,7 @@ class JsonAdaptedWedding {
         }
         final WeddingLocation modelLocation = new WeddingLocation(location);
 
-        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation);
+        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation, true);
     }
 
     @Override

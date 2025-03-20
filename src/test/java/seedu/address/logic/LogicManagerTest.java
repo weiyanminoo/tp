@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -19,6 +20,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -29,6 +32,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.Wedding;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -86,6 +90,37 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_noInputs_returnsAddressBook() {
+        ReadOnlyAddressBook addressBook = logic.getAddressBook();
+        assertNotNull(addressBook);
+    }
+
+    @Test
+    public void getFilteredWeddingList_noInputs_returnsFilteredWeddingList() {
+        ObservableList<Wedding> weddingList = logic.getFilteredWeddingList();
+        assertNotNull(weddingList);
+    }
+
+    @Test
+    public void getAddressBookFilePath_noInputs_returnsAddressBookFilePath() {
+        Path addressBookFilePath = logic.getAddressBookFilePath();
+        assertNotNull(addressBookFilePath);
+    }
+
+    @Test
+    public void getGuiSettings_noInputs_returnsGuiSettings() {
+        GuiSettings guiSettings = logic.getGuiSettings();
+        assertNotNull(guiSettings);
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(800, 600, 0, 0);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**

@@ -12,13 +12,17 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddWeddingEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteWeddingCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditWeddingEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListWeddingEventCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -75,6 +79,9 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListWeddingEventCommand.COMMAND_WORD:
+            return new ListWeddingEventCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -84,11 +91,20 @@ public class AddressBookParser {
         case AddWeddingEventCommand.COMMAND_WORD:
             return new AddWeddingEventCommandParser().parse(arguments);
 
+        case EditWeddingEventCommand.COMMAND_WORD:
+            return new EditWeddingEventCommandParser().parse(arguments);
+
+        case DeleteWeddingCommand.COMMAND_WORD:
+            return new DeleteWeddingCommandParser().parse(arguments);
+
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
+
+        case ConfirmCommand.COMMAND_WORD:
+            return new ConfirmCommandParser().parse(arguments);
 
         case UntagCommand.COMMAND_WORD:
             return new UntagCommandParser().parse(arguments);

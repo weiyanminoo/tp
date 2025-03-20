@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,16 +15,24 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddWeddingEventCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteWeddingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditWeddingEventCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListWeddingEventCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.WeddingId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -63,7 +72,6 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
@@ -85,6 +93,49 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listWedding() throws Exception {
+        assertTrue(parser.parseCommand(ListWeddingEventCommand.COMMAND_WORD) instanceof ListWeddingEventCommand);
+        assertTrue(parser.parseCommand(ListWeddingEventCommand.COMMAND_WORD + " 3") instanceof ListWeddingEventCommand);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        String userInput = FilterCommand.COMMAND_WORD + " W1";
+        assertTrue(parser.parseCommand(userInput) instanceof FilterCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        String userInput = TagCommand.COMMAND_WORD + " 1 W123";
+        assertTrue(parser.parseCommand(userInput) instanceof TagCommand);
+    }
+
+    @Test
+    public void parseCommand_confirm() throws Exception {
+        assertTrue(parser.parseCommand(ConfirmCommand.COMMAND_WORD) instanceof ConfirmCommand);
+        assertTrue(parser.parseCommand(ConfirmCommand.COMMAND_WORD + "   ") instanceof ConfirmCommand);
+    }
+
+    @Test
+    public void parseCommand_addWeddingEvent() throws Exception {
+        String userInput = AddWeddingEventCommand.COMMAND_WORD + " n/Alice & Bob d/01-Dec-2025 l/Paris";
+        assertTrue(parser.parseCommand(userInput) instanceof AddWeddingEventCommand);
+    }
+
+    @Test
+    public void parseCommand_editWeddingEvent() throws Exception {
+        String userInput = EditWeddingEventCommand.COMMAND_WORD + " W3 " + PREFIX_WEDDING_NAME + "New Wedding Name";
+        assertTrue(parser.parseCommand(userInput) instanceof EditWeddingEventCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteWedding() throws Exception {
+        String userInput = DeleteWeddingCommand.COMMAND_WORD + " W12345";
+        DeleteWeddingCommand command = (DeleteWeddingCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteWeddingCommand(new WeddingId("W12345")), command);
     }
 
     @Test
