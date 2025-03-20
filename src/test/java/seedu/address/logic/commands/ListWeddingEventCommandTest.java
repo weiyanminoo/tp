@@ -80,7 +80,14 @@ public class ListWeddingEventCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListWeddingEventCommand(), model,
-                ListWeddingEventCommand.MESSAGE_SUCCESS + model.getFilteredWeddingList().toString(), expectedModel);
+        StringBuilder output = new StringBuilder();
+        for (Wedding wedding : model.getFilteredWeddingList()) {
+            output.append("\nWedding: ").append(wedding.getWeddingName().toString())
+                    .append(" (ID: ").append(wedding.getWeddingId().toString()).append(")")
+                    .append("\nDate: ").append(wedding.getWeddingDate().toString())
+                    .append("\nLocation: ").append(wedding.getWeddingLocation().toString())
+                    .append("\n");
+        }
+        assertCommandSuccess(new ListWeddingEventCommand(), model, ListWeddingEventCommand.MESSAGE_SUCCESS + output, expectedModel);
     }
 }
