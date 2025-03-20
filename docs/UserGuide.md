@@ -100,27 +100,6 @@ Examples:
     1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
-### Adding a Wedding Event : `addWedding`
-
-Adds a Wedding Event to the contact book.
-
-Format: `addWedding n/NAME d/DATE l/LOCATION`
-
-Examples:
-* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the contact book.
-
-Format: `list`
-
-### Listing all Wedding Events : `listWedding`
-
-Shows a list of all Wedding Events in the contact book.
-
-Format: `listWedding`
-
 ### Editing a person : `edit`
 
 Edits an existing person in the contact book.
@@ -135,20 +114,19 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/photographer` Edits the name of the 2nd person to be `Betsy Crower` and her role to `photographer`.
 
-### Editing a Wedding Event : `editWedding`
+### Deleting a person : `delete`
 
-Edit an existing Wedding Event in the contact book.
+Deletes the specified person from the contact book.
 
-Format: `editWedding weddingId [n/NAME] [d/DATE] [l/LOCATION]`
+Format: `delete INDEX`
 
-* Edits the Wedding Event at the specified `weddingId`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Details of wedding you want to edit cannot be the same as what is already in the wedding.
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Locating persons by name : `find`
 
@@ -169,6 +147,12 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the contact book.
+
+Format: `list`
 
 ### Tagging a person to a Wedding : `tag`
 
@@ -204,21 +188,45 @@ Examples:
 
   ![result for 'filter W4'](images/filterW4.png)
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the contact book.
+### Adding a Wedding Event : `addWedding`
 
-Format: `delete INDEX`
+Adds a Wedding Event to the contact book.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `addWedding n/NAME d/DATE l/LOCATION`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
+
+### Editing a Wedding Event : `editWedding`
+
+Edit an existing Wedding Event in the contact book.
+
+Format: `editWedding weddingId [n/NAME] [d/DATE] [l/LOCATION]`
+
+* Edits the Wedding Event at the specified `weddingId`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Details of wedding you want to edit cannot be the same as what is already in the wedding.
+
+Examples:
+* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
+* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
 
 ### Deleting a Wedding Event : `deleteWedding`
+* Deletes the specified wedding event from the contact book.
+
+Format: `deleteWedding weddingId`
+
+* Deletes the wedding event with the specified `weddingId`.
+* The weddingId must be a valid `weddingId`.
+* Tags of contacts associated to the deleted wedding event will be removed.
+
+### Listing all Wedding Events : `listWedding`
+
+Shows a list of all Wedding Events in the contact book.
+
+Format: `listWedding`
 
 ### Clearing all entries : `clear`
 
@@ -269,18 +277,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer`
-**AddWedding** | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding! d/20-Feb-2025 l/Marina Bay Sands
-**Clear**    | `clear`
-**Delete**   | `delete INDEX`<br> e.g., `delete 3`
-**DeleteWedding** | 
-**Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**EditWedding** |
-**Filter**   | `filter WEDDING_ID` <br> e.g., `filter W4`
-**Find**     | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
-**List**     | `list`
-**Tag**      | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`
-**Untag**    |
-**Help**     | `help`
+| Action            | Format, Examples                                                                                                                                               |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer` |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                   |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
+| **List**          | `list`                                                                                                                                                         |
+| **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
+| **Untag**         |                                                                                                                                                                |
+| **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
+| **AddWedding**    | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
+| **EditWedding**   | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
+| **DeleteWedding** | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
+| **ListWedding**   | `listWedding`                                                                                                                                                  |
+| **Clear**         | `clear`                                                                                                                                                        |
+| **Exit**          | `exit`                                                                                                                                                         |
