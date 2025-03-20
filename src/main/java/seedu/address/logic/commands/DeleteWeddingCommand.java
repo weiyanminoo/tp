@@ -18,9 +18,8 @@ public class DeleteWeddingCommand extends Command {
     public static final String COMMAND_WORD = "deleteWedding";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a wedding from the address book. "
-            + "Parameters: "
-            + "w/WEDDING_ID\n"
-            + "Example: " + COMMAND_WORD + " w/W1";
+            + "Parameters: WEDDING_ID\n"
+            + "Example: " + COMMAND_WORD + " W1";
 
     public static final String MESSAGE_SUCCESS = "Deleted wedding: %1$s";
     public static final String MESSAGE_WEDDING_NOT_FOUND = "The wedding with the specified wedding id does not exist.";
