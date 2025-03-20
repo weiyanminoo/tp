@@ -121,6 +121,7 @@ Shows a list of all Wedding Events in the contact book.
 
 Format: `listWedding`
 
+
 ### Editing a person : `edit`
 
 Edits an existing person in the contact book.
