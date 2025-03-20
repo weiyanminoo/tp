@@ -22,7 +22,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar easyweds.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -53,10 +53,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [r/ROLE]` can be used as `n/John Doe r/Florist` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `edit n/NAME [r/ROLE]` can be used as `edit n/John Doe r/Florist` or as `edit n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -89,8 +86,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**Note:** A person with a similar name to an existing person in the contacts will be flagged out
+**Note:** A person with the same name or a similar name to an existing person in the contacts will be flagged out
 * If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
+    * `Alex Yeoh` (exactly the same)
     * `alex<space>yeoh` (no capitalization)
     * `Alex<space><space>Yeoh` (extra spacing)
     * `Alex<space><space>yeoh` (combination of the 2)
@@ -128,7 +126,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Locating persons by name : `find`
+### Locating persons by name or role: `find`
 
 Finds persons whose names or roles contain any of the given keywords.
 
@@ -153,6 +151,44 @@ Examples:
 Shows a list of all persons in the contact book.
 
 Format: `list`
+
+### Adding a Wedding Event : `addWedding`
+
+Adds a Wedding Event to the contact book.
+
+Format: `addWedding n/NAME d/DATE l/LOCATION`
+
+Examples:
+* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
+
+### Editing a Wedding Event : `editWedding`
+
+Edit an existing Wedding Event in the contact book.
+
+Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
+
+* Edits the Wedding Event at the specified `WEDDING_ID`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Details of wedding you want to edit cannot be the same as what is already in the wedding.
+
+Examples:
+* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
+* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
+
+### Deleting a Wedding Event : `deleteWedding`
+* Deletes the specified wedding event from the contact book.
+
+Format: `deleteWedding WEDDING_ID`
+
+* Deletes the wedding event with the specified `WEDDING_ID`.
+* Tags of contacts associated to the deleted wedding event will be removed.
+
+### Listing all Wedding Events : `listWedding`
+
+Shows a list of all Wedding Events in the contact book.
+
+Format: `listWedding`
 
 ### Tagging a person to a Wedding : `tag`
 
@@ -199,45 +235,6 @@ Examples:
 
   ![result for 'filter W4'](images/filterW4.png)
 
-
-### Adding a Wedding Event : `addWedding`
-
-Adds a Wedding Event to the contact book.
-
-Format: `addWedding n/NAME d/DATE l/LOCATION`
-
-Examples:
-* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
-
-### Editing a Wedding Event : `editWedding`
-
-Edit an existing Wedding Event in the contact book.
-
-Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
-
-* Edits the Wedding Event at the specified `WEDDING_ID`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Details of wedding you want to edit cannot be the same as what is already in the wedding.
-
-Examples:
-* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
-
-### Deleting a Wedding Event : `deleteWedding`
-* Deletes the specified wedding event from the contact book.
-
-Format: `deleteWedding WEDDING_ID`
-
-* Deletes the wedding event with the specified `WEDDING_ID`.
-* Tags of contacts associated to the deleted wedding event will be removed.
-
-### Listing all Wedding Events : `listWedding`
-
-Shows a list of all Wedding Events in the contact book.
-
-Format: `listWedding`
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact book.
@@ -261,8 +258,8 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -274,7 +271,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -294,12 +291,12 @@ _Details coming soon ..._
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
 | **List**          | `list`                                                                                                                                                         |
-| **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
-| **Untag**         | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
-| **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
 | **AddWedding**    | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**   | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding** | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
 | **ListWedding**   | `listWedding`                                                                                                                                                  |
+| **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
+| **Untag**         | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
+| **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
 | **Clear**         | `clear`                                                                                                                                                        |
 | **Exit**          | `exit`                                                                                                                                                         |

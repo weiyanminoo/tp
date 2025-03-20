@@ -313,94 +313,217 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User inputs the command to add contact
-2.  EasyWeds validates each field and checks for duplicates
-3.  EasyWeds adds the new contact
+2.  EasyWeds adds the new contact
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The compulsory field(s) is/are empty.
+* 2a. The field(s) is/are empty.
 
-    * 2a1. EasyWeds shows an error message.
+    * 2a1. An error message is shown.
 
-        Use case resumes at step 1.
+        Use case ends.
+
+* 2b. The name of the new contact matches an existing contact in the list.
+
+    * 2b1. An error message is shown.
+  
+    * 2b2. User has to confirm whether to add this duplicate contact.
+
+        Use case ends.
 
 
-**Use case: UC02 - Delete a Contact**
+**Use case: UC02 - List Contacts**
 
 **MSS**
 
-1.  User requests to list contacts
+1.  User inputs the command to list contacts
+2.  EasyWeds shows the list of contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no contacts to show.
+
+    Use case ends.
+
+
+**Use case: UC03 - Delete a Contact**
+
+**MSS**
+
+1.  User requests to list contacts (UC02)
 2.  EasyWeds shows a list of contacts
-3.  User requests to delete a specific contact in the list
+3.  User requests to delete a specific contact
 4.  EasyWeds deletes the contact
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The contact does not exist in the list.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. EasyWeds shows an error message.
+    * 3a1. An error message is shown.
 
         Use case resumes at step 2.
 
 
-**Use case: UC03 - Search Contacts**
+**Use case: UC04 - Edit a Contact**
 
 **MSS**
 
-1.  User requests search for contacts that have a certain 'keyword'
+1.  User requests to list contacts (UC02)
+2.  EasyWeds shows a list of contacts
+3.  User requests to edit a specific contact in the list
+4.  EasyWeds edits the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The contact does not exist in the list.
+
+    * 3a1. An error message is shown.
+
+        Use case resumes at step 2.
+
+* 3b. The edited name is a duplicate of an existing name in the list.
+
+    * 3b1. An error message is shown.
+
+        Use case resumes at step 2.
+
+
+**Use case: UC05 - Search Contacts by Name**
+
+**MSS**
+
+1.  User requests search for contacts that have a certain 'keyword' in their name
 2.  EasyWeds shows a list of contacts that matches the 'keyword'
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The search input is empty.
+* 2a. No matching contact is found.
 
-    * 2a1. EasyWeds shows an error message
-
-        Use case resumes at step 1.
-
-* 3a. No matching contact is found.
-
-    * 3a1. EasyWeds shows a message that says "No matching contacts found".
+    * 2a1. An error message is shown.
 
         Use case ends.
 
 
-**Use case: UC04 - Add a Wedding Event**
+**Use case: UC06 - Search Contacts by Role**
 
 **MSS**
 
-1.  User inputs the command to add wedding
-2.  EasyWeds validates each field and checks for duplicates
-3.  EasyWeds adds the new wedding
+1.  User requests search for contacts that have a certain 'keyword' in their role
+2.  EasyWeds shows a list of contacts that matches the 'keyword'
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The compulsory field(s) is/are empty.
+* 2a. No matching contact is found.
 
-    * 2a1. EasyWeds shows an error message.
+    * 2a1. An error message is shown.
 
-        Use case resumes at step 1.
+        Use case ends.
 
 
-**Use case: UC05 - Tag Contacts to Wedding Events**
+**Use case: UC07 - Add a Wedding Event**
+
+**MSS**
+
+1.  User inputs the command to add wedding
+2.  EasyWeds adds the new wedding
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The field(s) is/are empty.
+
+    * 2a1. An error message is shown.
+
+        Use case ends.
+
+* 2a. All the fields in the input match an existing wedding event in the list.
+
+    * 2a1. An error message is shown.
+
+        Use case ends.
+
+
+**Use case: UC08 - List Wedding Events**
+
+**MSS**
+
+1.  User inputs the command to list wedding events
+2.  EasyWeds shows the list of wedding events
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no wedding events to show.
+
+    Use case ends.
+
+
+**Use case: UC09 - Delete a Wedding Event**
+
+**MSS**
+
+1.  User requests to list wedding events (UC08)
+2.  EasyWeds shows a list of wedding events
+3.  User requests to delete a specific wedding event
+4.  EasyWeds deletes the wedding event
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The wedding event does not exist in the list.
+
+    * 3a1. An error message is shown.
+
+        Use case resumes at step 2.
+
+
+**Use case: UC10 - Edit a Wedding Event**
+
+**MSS**
+
+1.  User requests to list wedding events (UC08)
+2.  EasyWeds shows a list of wedding events
+3.  User requests to edit a specific wedding event in the list
+4.  EasyWeds edits the wedding event
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The wedding event does not exist in the list.
+
+    * 3a1. An error message is shown.
+
+        Use case resumes at step 2.
+
+* 3b. The edited wedding name, date and location is a duplicate of an existing wedding event in the list.
+
+    * 3b1. An error message is shown.
+
+        Use case resumes at step 2.
+
+
+**Use case: UC11 - Tag Contacts to Wedding Events**
 
 **MSS**
 
 1.  User inputs the command to tag a contact to a wedding event
-2.  EasyWeds validates both parameters
-3.  EasyWeds adds the tag for the wedding event to the contact specified
+2.  EasyWeds adds the tag for the wedding event to the contact specified
 
     Use case ends.
 
@@ -408,18 +531,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The contact does not exist.
 
-    * 2a1. EasyWeds shows a message that says "The contact does not exist".
+    * 2a1. An error message is shown.
 
         Use case ends.
 
 * 2b. The wedding does not exist.
 
-    * 2b1. EasyWeds shows a message that says "The wedding does not exist".
+    * 2b1. An error message is shown.
 
         Use case ends.
 
 
-**Use case: UC06 - Filter Contacts**
+**Use case: UC12 - Untag Contact from Wedding Event**
+
+**MSS**
+
+1.  User inputs the command to untag a contact from a wedding event
+2.  EasyWeds removes the tag for the wedding event from the contact specified
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact does not exist.
+
+    * 2a1. An error message is shown.
+
+        Use case ends
+
+* 2b. The wedding does not exist.
+
+    * 2b1. An error message is shown.
+
+        Use case ends.
+
+* 2c. The wedding specified is not tagged to this contact.
+
+    * 2c1. An error message is shown.
+
+        Use case ends.
+
+
+**Use case: UC13 - Filter Contacts**
 
 **MSS**
 
@@ -432,15 +585,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The wedding does not exist.
 
-    * 2a1. EasyWeds shows a message that says "The wedding does not exist".
+    * 2a1. An error message is shown.
 
-        Use case resumes at step 1.
+        Use case ends.
 
 * 2b. There are no contacts tagged to the wedding.
 
-    * 2b1. EasyWeds shows a message that says "No contact found for this wedding".
+    * 2b1. An error message is shown.
 
-        Use case resumes at step 1.
+        Use case ends.
 
 *{More to be added}*
 
