@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -40,5 +42,30 @@ public class UntagCommandTest {
         UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_PERSON, weddingId);
 
         assertCommandFailure(untagCommand, model, UntagCommand.MESSAGE_PERSON_NOT_TAGGED);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_PERSON, defaultWedding.getWeddingId());
+        assertTrue(untagCommand.equals(untagCommand));
+    }
+
+    @Test
+    public void equals_differentObject_returnsFalse() {
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_PERSON, defaultWedding.getWeddingId());
+        UntagCommand differentUntagCommand = new UntagCommand(INDEX_FIRST_PERSON, new WeddingId("W54321"));
+        assertFalse(untagCommand.equals(differentUntagCommand));
+    }
+
+    @Test
+    public void equals_nullObject_returnsFalse() {
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_PERSON, defaultWedding.getWeddingId());
+        assertFalse(untagCommand.equals(null));
+    }
+
+    @Test
+    public void equals_differentType_returnsFalse() {
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_PERSON, defaultWedding.getWeddingId());
+        assertFalse(untagCommand.equals(5));
     }
 }
