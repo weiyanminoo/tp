@@ -199,4 +199,20 @@ public class ModelManager implements Model {
 
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    /**
+     * Removes the given tag from the given person.
+     *
+     * @param personToUntag the person to be untagged.
+     * @param tag the tag to remove.
+     */
+    @Override
+    public void untagPerson(Person personToUntag, Tag tag) {
+        requireNonNull(personToUntag);
+        requireNonNull(tag);
+
+        Person updatedPerson = personToUntag.removeTag(tag);
+        addressBook.setPerson(personToUntag, updatedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }

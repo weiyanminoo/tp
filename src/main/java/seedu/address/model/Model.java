@@ -102,5 +102,13 @@ public interface Model {
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
 
+    /**
+     * Tags a person with the given tag.
+     */
     void tagPerson(Person person, Tag tag);
+
+    /**
+     * Removes the specified tag from the specified person.
+     */
+    void untagPerson(Person person, Tag tag);
 }

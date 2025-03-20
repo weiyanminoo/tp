@@ -124,6 +124,10 @@ public class AddWeddingEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void untagPerson(Person person, Tag tag) {
+            throw new AssertionError("This method should not be called."); }
+
         // --- Person-related methods (not used by this command test) ---
         @Override
         public void addPerson(Person person) {

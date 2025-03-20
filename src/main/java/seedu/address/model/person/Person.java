@@ -94,6 +94,18 @@ public class Person {
     }
 
     /**
+     * Returns a new Person with the specified {@code tagToRemove} removed.
+     *
+     * @param tagToRemove The tag to be removed.
+     * @return A new Person instance with the tag removed.
+     */
+    public Person removeTag(Tag tagToRemove) {
+        Set<Tag> newTags = new HashSet<>(getTags());
+        newTags.remove(tagToRemove);
+        return new Person(getName(), getPhone(), getEmail(), getRole(), getAddress(), newTags);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
