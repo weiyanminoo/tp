@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEDDING_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEDDING_LOCATION_DESC;
@@ -8,16 +10,19 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_WEDDING_DATE_JO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEDDING_LOCATION_JOHN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEDDING_NAME_JOHN;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditWeddingEventCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.wedding.WeddingId;
 
 public class EditWeddingEventCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditWeddingEventCommand.MESSAGE_USAGE);
 
-    private EditWeddingEventCommandParser parser = new EditWeddingEventCommandParser();
+    private final EditWeddingEventCommandParser parser = new EditWeddingEventCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -91,5 +96,41 @@ public class EditWeddingEventCommandParserTest {
 
         // valid index followed by invalid wedding location
         assertParseFailure(parser, "1" + " l/" + INVALID_WEDDING_LOCATION_DESC, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidWeddingId_throwsParseException() {
+        // Arrange
+        String userInput = "a n/John's Wedding d/2023-12-25 l/Beach";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_noFieldsSpecified_throwsParseException() {
+        // Arrange
+        String userInput = "1";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_throwsParseException() {
+        // Arrange
+        String userInput = "1 n/John's Wedding n/Another Wedding d/2023-12-25 l/Beach";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_noWeddingId_throwsParseException() {
+        // Arrange
+        String userInput = "n/John's Wedding d/2023-12-25 l/Beach";
+
+        // Act & Assert
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 }

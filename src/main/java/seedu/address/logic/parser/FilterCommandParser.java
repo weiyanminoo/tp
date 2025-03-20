@@ -22,11 +22,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         // Trim any trailing spaces.
         String trimmedArgs = args.trim();
-        String[] tokens = trimmedArgs.split("\\s+");
+        // If the user didn't provide a wedding id
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
 
-        // If the user didn't provide a wedding id or provides more than 1 wedding id
+        String[] tokens = trimmedArgs.split("\\s+");
+        // If the user provides more than 1 wedding id
         if (tokens.length != 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT + FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
         try {
