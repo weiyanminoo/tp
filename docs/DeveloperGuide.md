@@ -356,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list contacts (UC02)
 2.  EasyWeds shows a list of contacts
-3.  User requests to delete a specific contact in the list
+3.  User requests to delete a specific contact
 4.  EasyWeds deletes the contact
 
     Use case ends.
@@ -478,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list wedding events (UC08)
 2.  EasyWeds shows a list of wedding events
-3.  User requests to delete a specific wedding event in the list
+3.  User requests to delete a specific wedding event
 4.  EasyWeds deletes the wedding event
 
     Use case ends.
