@@ -140,7 +140,7 @@ Examples:
 
 Edit an existing Wedding Event in the contact book.
 
-Format: `editWedding weddingId [n/NAME] [d/DATE] [l/LOCATION]`
+Format: `editWedding [weddingId] [n/NAME] [d/DATE] [l/LOCATION]`
 
 * Edits the Wedding Event at the specified `weddingId`.
 * At least one of the optional fields must be provided.
