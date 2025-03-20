@@ -16,6 +16,7 @@ public class ListWeddingEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredWeddingList(Model.PREDICATE_SHOW_ALL_WEDDINGS);
         String test = model.getFilteredWeddingList().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS + test));
     }

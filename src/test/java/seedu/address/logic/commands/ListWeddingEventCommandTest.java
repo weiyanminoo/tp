@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -75,5 +76,11 @@ public class ListWeddingEventCommandTest {
         assertTrue(listWeddingEventCommand.equals(listWeddingEventCommand));
         assertTrue(listWeddingEventCommand.equals(listWeddingEventCommandCopy));
         assertFalse(listWeddingEventCommand.equals(listCommand));
+    }
+
+    @Test
+    public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ListWeddingEventCommand(), model,
+                ListWeddingEventCommand.MESSAGE_SUCCESS + model.getFilteredWeddingList().toString(), expectedModel);
     }
 }
