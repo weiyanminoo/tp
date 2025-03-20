@@ -103,7 +103,7 @@ public class Person {
     }
 
     /**
-     * Returns a new Person with the WeddingId tag removed.
+     * Returns a new Person with the specified {@code tagToRemove} removed.
      *
      * @param tag The tag to be removed.
      * @return A new Person instance with the tag removed.
@@ -114,7 +114,6 @@ public class Person {
         newTags.remove(tag);
         return new Person(name, phone, email, role, address, newTags);
     }
-
 
     /**
      * Returns true if both persons have the same identity and data fields.
