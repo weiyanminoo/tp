@@ -131,6 +131,19 @@ Examples:
 
 ### Editing a Wedding Event : `editWedding`
 
+Edit an existing Wedding Event in the contact book.
+
+Format: `editWedding INDEX [n/NAME] [d/DATE] [l/LOCATION]`
+
+* Edits the Wedding Event at the specified `INDEX`. The index refers to the index number shown in the displayed Wedding Event list. The index **must be 'W' followed by a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Details of wedding you want to edit cannot be the same as what is already in the wedding.
+
+Examples:
+* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
+* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
+
 ### Locating persons by name : `find`
 
 Finds persons whose names or roles contain any of the given keywords.
