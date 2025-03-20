@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# EasyWeds User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. It streamlines planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -31,7 +31,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com r/Florist a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -76,7 +76,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the address book.
 
@@ -90,6 +90,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Adding a Wedding Event : `addWedding`
+
+Adds a Wedding Event to the address book.
+
+Format: `addWedding n/NAME d/DATE l/LOCATION`
+
+Examples:
+* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
 
 ### Listing all persons : `list`
 
@@ -114,7 +123,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Editing a Wedding Event : `editWedding`
+
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -132,6 +143,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Tagging a person to a Wedding : `tag`
+
+Tags an existing contact to an existing wedding event.
+
+Format: `tag INDEX WEDDING_ID`
+
+* Tags the person at the specified `INDEX` to the wedding event specified by `WEDDING_ID`.
+* The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Contacts can only be tagged to wedding events that are already existing in the system
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -145,6 +166,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting a Wedding Event : `deleteWedding`
 
 ### Clearing all entries : `clear`
 
