@@ -183,7 +183,6 @@ Format: `untag INDEX WEDDING_ID`
 
 Examples:
 * `untag 1 W1` untags the first person from the wedding event with weddingId `W1`
-* `untag 1 W2` untags the first person from the wedding event with weddingId `W2`. Now the first person will be tagged to `W1` and untagged from `W2`.
 
 ### Filtering contacts : `filter`
 
