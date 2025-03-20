@@ -202,9 +202,9 @@ Examples:
 
 Edit an existing Wedding Event in the contact book.
 
-Format: `editWedding weddingId [n/NAME] [d/DATE] [l/LOCATION]`
+Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 
-* Edits the Wedding Event at the specified `weddingId`.
+* Edits the Wedding Event at the specified `WEDDING_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Details of wedding you want to edit cannot be the same as what is already in the wedding.
@@ -216,10 +216,9 @@ Examples:
 ### Deleting a Wedding Event : `deleteWedding`
 * Deletes the specified wedding event from the contact book.
 
-Format: `deleteWedding weddingId`
+Format: `deleteWedding WEDDING_ID`
 
-* Deletes the wedding event with the specified `weddingId`.
-* The weddingId must be a valid `weddingId`.
+* Deletes the wedding event with the specified `WEDDING_ID`.
 * Tags of contacts associated to the deleted wedding event will be removed.
 
 ### Listing all Wedding Events : `listWedding`
