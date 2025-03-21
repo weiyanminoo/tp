@@ -66,7 +66,7 @@ public class AddWeddingCommandTest {
 
         // Expect a CommandException because modelStub already has `validWedding`
         assertThrows(CommandException.class,
-                seedu.address.logic.commands.AddWeddingCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
+                AddWeddingCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
     }
 
     @Test

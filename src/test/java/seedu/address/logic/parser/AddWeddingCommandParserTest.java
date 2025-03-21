@@ -47,12 +47,12 @@ public class AddWeddingCommandParserTest {
         // Missing wedding name prefix
         String userInputMissingName = " d/20-Dec-2025 l/Beach Resort";
         assertParseFailure(parser, userInputMissingName,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AddWeddingCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingCommand.MESSAGE_USAGE));
 
         // Missing date prefix
         String userInputMissingDate = " n/John & Jane's Wedding l/Beach Resort";
         assertParseFailure(parser, userInputMissingDate,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AddWeddingCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingCommand.MESSAGE_USAGE));
 
         // Missing location prefix
         String userInputMissingLocation = " n/John & Jane's Wedding d/20-Dec-2025";
