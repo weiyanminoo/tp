@@ -35,7 +35,7 @@ public class AddWeddingCommandParser implements Parser<AddWeddingCommand> {
                 PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AddWeddingCommand.MESSAGE_USAGE));
+                    MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingCommand.MESSAGE_USAGE));
         }
 
         // Ensure no duplicate prefixes for the required fields

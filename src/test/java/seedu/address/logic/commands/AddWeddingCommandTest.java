@@ -48,7 +48,7 @@ public class AddWeddingCommandTest {
 
         CommandResult commandResult = new AddWeddingCommand(validWedding).execute(modelStub);
 
-        assertEquals(String.format(seedu.address.logic.commands.AddWeddingCommand.MESSAGE_SUCCESS, validWedding),
+        assertEquals(String.format(AddWeddingCommand.MESSAGE_SUCCESS, validWedding),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validWedding), modelStub.weddingsAdded);
     }
