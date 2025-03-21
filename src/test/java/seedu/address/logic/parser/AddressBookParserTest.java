@@ -14,22 +14,9 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddWeddingEventCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ConfirmCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteWeddingCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.EditWeddingEventCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListWeddingEventCommand;
-import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.EditWeddingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.wedding.WeddingId;
@@ -97,8 +84,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listWedding() throws Exception {
-        assertTrue(parser.parseCommand(ListWeddingEventCommand.COMMAND_WORD) instanceof ListWeddingEventCommand);
-        assertTrue(parser.parseCommand(ListWeddingEventCommand.COMMAND_WORD + " 3") instanceof ListWeddingEventCommand);
+        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD) instanceof ListWeddingCommand);
+        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD + " 3") instanceof ListWeddingCommand);
     }
 
     @Test
@@ -121,14 +108,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addWeddingEvent() throws Exception {
-        String userInput = AddWeddingEventCommand.COMMAND_WORD + " n/Alice & Bob d/01-Dec-2025 l/Paris";
-        assertTrue(parser.parseCommand(userInput) instanceof AddWeddingEventCommand);
+        String userInput = seedu.address.logic.commands.AddWeddingCommand.COMMAND_WORD + " n/Alice & Bob d/01-Dec-2025 l/Paris";
+        assertTrue(parser.parseCommand(userInput) instanceof AddWeddingCommand);
     }
 
     @Test
     public void parseCommand_editWeddingEvent() throws Exception {
-        String userInput = EditWeddingEventCommand.COMMAND_WORD + " W3 " + PREFIX_WEDDING_NAME + "New Wedding Name";
-        assertTrue(parser.parseCommand(userInput) instanceof EditWeddingEventCommand);
+        String userInput = EditWeddingCommand.COMMAND_WORD + " W3 " + PREFIX_WEDDING_NAME + "New Wedding Name";
+        assertTrue(parser.parseCommand(userInput) instanceof EditWeddingCommand);
     }
 
     @Test

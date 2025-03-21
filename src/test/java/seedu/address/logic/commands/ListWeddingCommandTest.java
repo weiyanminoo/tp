@@ -22,7 +22,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  *
  */
-public class ListWeddingEventCommandTest {
+public class ListWeddingCommandTest {
     private static final WeddingId WEDDING_ID_W1 = new WeddingId("W1");
     private static final WeddingId WEDDING_ID_W2 = new WeddingId("W2");
     private static final WeddingId WEDDING_ID_NONEXISTENT = new WeddingId("W999");
@@ -68,13 +68,13 @@ public class ListWeddingEventCommandTest {
 
     @Test
     public void equals() {
-        ListWeddingEventCommand listWeddingEventCommand = new ListWeddingEventCommand();
-        ListWeddingEventCommand listWeddingEventCommandCopy = new ListWeddingEventCommand();
+        ListWeddingCommand listWeddingCommand = new ListWeddingCommand();
+        ListWeddingCommand listWeddingCommandCopy = new ListWeddingCommand();
         ListCommand listCommand = new ListCommand();
 
-        assertTrue(listWeddingEventCommand.equals(listWeddingEventCommand));
-        assertTrue(listWeddingEventCommand.equals(listWeddingEventCommandCopy));
-        assertFalse(listWeddingEventCommand.equals(listCommand));
+        assertTrue(listWeddingCommand.equals(listWeddingCommand));
+        assertTrue(listWeddingCommand.equals(listWeddingCommandCopy));
+        assertFalse(listWeddingCommand.equals(listCommand));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ListWeddingEventCommandTest {
                     .append("\nLocation: ").append(wedding.getWeddingLocation().toString())
                     .append("\n");
         }
-        assertCommandSuccess(new ListWeddingEventCommand(), model,
-                ListWeddingEventCommand.MESSAGE_SUCCESS + output, expectedModel);
+        assertCommandSuccess(new ListWeddingCommand(), model,
+                ListWeddingCommand.MESSAGE_SUCCESS + output, expectedModel);
     }
 }

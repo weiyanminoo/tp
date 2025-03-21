@@ -27,13 +27,13 @@ import seedu.address.model.wedding.WeddingName;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code AddWeddingEventCommand}.
+ * {@code AddWeddingCommand}.
  */
-public class AddWeddingEventCommandTest {
+public class AddWeddingCommandTest {
 
     @Test
     public void constructor_nullWedding_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddWeddingEventCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddWeddingCommand(null));
     }
 
     @Test
@@ -46,9 +46,9 @@ public class AddWeddingEventCommandTest {
                 new WeddingLocation("Grand Ballroom")
         );
 
-        CommandResult commandResult = new AddWeddingEventCommand(validWedding).execute(modelStub);
+        CommandResult commandResult = new AddWeddingCommand(validWedding).execute(modelStub);
 
-        assertEquals(String.format(AddWeddingEventCommand.MESSAGE_SUCCESS, validWedding),
+        assertEquals(String.format(seedu.address.logic.commands.AddWeddingCommand.MESSAGE_SUCCESS, validWedding),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validWedding), modelStub.weddingsAdded);
     }
@@ -61,12 +61,12 @@ public class AddWeddingEventCommandTest {
                 new WeddingDate("20-Feb-2025"),
                 new WeddingLocation("Grand Ballroom")
         );
-        AddWeddingEventCommand addWeddingCommand = new AddWeddingEventCommand(validWedding);
+        AddWeddingCommand addWeddingCommand = new AddWeddingCommand(validWedding);
         ModelStub modelStub = new ModelStubWithWedding(validWedding);
 
         // Expect a CommandException because modelStub already has `validWedding`
         assertThrows(CommandException.class,
-                AddWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
+                seedu.address.logic.commands.AddWeddingCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
     }
 
     @Test
@@ -82,14 +82,14 @@ public class AddWeddingEventCommandTest {
                 new WeddingLocation("Garden")
         );
 
-        AddWeddingEventCommand addAliceWeddingCommand = new AddWeddingEventCommand(aliceWedding);
-        AddWeddingEventCommand addBobWeddingCommand = new AddWeddingEventCommand(bobWedding);
+        AddWeddingCommand addAliceWeddingCommand = new AddWeddingCommand(aliceWedding);
+        AddWeddingCommand addBobWeddingCommand = new AddWeddingCommand(bobWedding);
 
         // same object -> returns true
         assertTrue(addAliceWeddingCommand.equals(addAliceWeddingCommand));
 
         // same values -> returns true
-        AddWeddingEventCommand addAliceWeddingCommandCopy = new AddWeddingEventCommand(aliceWedding);
+        AddWeddingCommand addAliceWeddingCommandCopy = new AddWeddingCommand(aliceWedding);
         assertTrue(addAliceWeddingCommand.equals(addAliceWeddingCommandCopy));
 
         // different types -> returns false

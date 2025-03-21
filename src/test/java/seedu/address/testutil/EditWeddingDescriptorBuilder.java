@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditWeddingEventCommand.EditWeddingDescriptor;
+import seedu.address.logic.commands.EditWeddingCommand.EditWeddingDescriptor;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingLocation;

@@ -9,7 +9,7 @@ import seedu.address.model.wedding.Wedding;
 /**
  * Adds a Wedding event to the address book.
  */
-public class AddWeddingEventCommand extends Command {
+public class AddWeddingCommand extends Command {
 
     public static final String COMMAND_WORD = "addWedding";
 
@@ -24,9 +24,9 @@ public class AddWeddingEventCommand extends Command {
     private final Wedding toAdd;
 
     /**
-     * Creates an AddWeddingEventCommand to add the specified {@code Wedding}.
+     * Creates an AddWeddingCommand to add the specified {@code Wedding}.
      */
-    public AddWeddingEventCommand(Wedding wedding) {
+    public AddWeddingCommand(Wedding wedding) {
         requireNonNull(wedding);
         toAdd = wedding;
     }
@@ -46,7 +46,7 @@ public class AddWeddingEventCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof AddWeddingEventCommand
-                && toAdd.equals(((AddWeddingEventCommand) other).toAdd));
+                || (other instanceof AddWeddingCommand
+                && toAdd.equals(((AddWeddingCommand) other).toAdd));
     }
 }
