@@ -9,7 +9,7 @@ import seedu.address.model.wedding.Wedding;
 /**
  * Lists all wedding events in the address book to the user.
  */
-public class ListWeddingEventCommand extends Command {
+public class ListWeddingCommand extends Command {
     public static final String COMMAND_WORD = "listWedding";
     public static final String MESSAGE_SUCCESS = "All wedding events: ";
 
@@ -34,6 +34,6 @@ public class ListWeddingEventCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof ListWeddingEventCommand);
+            || (other instanceof ListWeddingCommand);
     }
 }

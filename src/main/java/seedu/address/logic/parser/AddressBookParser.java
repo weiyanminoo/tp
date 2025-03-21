@@ -9,24 +9,23 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddWeddingEventCommand;
+import seedu.address.logic.commands.AddWeddingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteWeddingCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditWeddingEventCommand;
+import seedu.address.logic.commands.EditWeddingCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListWeddingEventCommand;
+import seedu.address.logic.commands.ListWeddingCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Parses user input.
  */
@@ -79,8 +78,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ListWeddingEventCommand.COMMAND_WORD:
-            return new ListWeddingEventCommand();
+        case ListWeddingCommand.COMMAND_WORD:
+            return new ListWeddingCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -88,11 +87,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddWeddingEventCommand.COMMAND_WORD:
-            return new AddWeddingEventCommandParser().parse(arguments);
+        case AddWeddingCommand.COMMAND_WORD:
+            return new AddWeddingCommandParser().parse(arguments);
 
-        case EditWeddingEventCommand.COMMAND_WORD:
-            return new EditWeddingEventCommandParser().parse(arguments);
+        case EditWeddingCommand.COMMAND_WORD:
+            return new EditWeddingCommandParser().parse(arguments);
 
         case DeleteWeddingCommand.COMMAND_WORD:
             return new DeleteWeddingCommandParser().parse(arguments);

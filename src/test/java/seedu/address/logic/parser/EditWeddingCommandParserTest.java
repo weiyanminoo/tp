@@ -12,14 +12,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditWeddingEventCommand;
+import seedu.address.logic.commands.EditWeddingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class EditWeddingEventCommandParserTest {
+public class EditWeddingCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditWeddingEventCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditWeddingCommand.MESSAGE_USAGE);
 
-    private final EditWeddingEventCommandParser parser = new EditWeddingEventCommandParser();
+    private final EditWeddingCommandParser parser = new EditWeddingCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
