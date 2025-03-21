@@ -71,7 +71,6 @@ public class ListWeddingEventCommandTest {
         ListWeddingEventCommand listWeddingEventCommand = new ListWeddingEventCommand();
         ListWeddingEventCommand listWeddingEventCommandCopy = new ListWeddingEventCommand();
         ListCommand listCommand = new ListCommand();
-        System.out.println("model" + model.getFilteredWeddingList());
 
         assertTrue(listWeddingEventCommand.equals(listWeddingEventCommand));
         assertTrue(listWeddingEventCommand.equals(listWeddingEventCommandCopy));
