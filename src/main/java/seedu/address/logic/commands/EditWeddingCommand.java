@@ -20,7 +20,7 @@ import seedu.address.model.wedding.WeddingName;
 /**
  * Edits the details of an existing wedding event in the address book.
  */
-public class EditWeddingEventCommand extends Command {
+public class EditWeddingCommand extends Command {
 
     public static final String COMMAND_WORD = "editWedding";
 
@@ -44,12 +44,12 @@ public class EditWeddingEventCommand extends Command {
     private final EditWeddingDescriptor editWeddingDescriptor;
 
     /**
-     * Creates an EditWeddingEventCommand to edit the wedding with the specified {@code weddingId}.
+     * Creates an EditWeddingCommand to edit the wedding with the specified {@code weddingId}.
      *
      * @param weddingId The ID of the wedding to edit.
      * @param editWeddingDescriptor Details of the wedding fields to edit.
      */
-    public EditWeddingEventCommand(WeddingId weddingId, EditWeddingDescriptor editWeddingDescriptor) {
+    public EditWeddingCommand(WeddingId weddingId, EditWeddingDescriptor editWeddingDescriptor) {
         requireNonNull(weddingId);
         requireNonNull(editWeddingDescriptor);
 
@@ -100,10 +100,10 @@ public class EditWeddingEventCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof EditWeddingEventCommand)) {
+        if (!(other instanceof EditWeddingCommand)) {
             return false;
         }
-        EditWeddingEventCommand e = (EditWeddingEventCommand) other;
+        EditWeddingCommand e = (EditWeddingCommand) other;
         return index.equals(e.index)
                 && editWeddingDescriptor.equals(e.editWeddingDescriptor);
     }
@@ -111,7 +111,7 @@ public class EditWeddingEventCommand extends Command {
     @Override
     public String toString() {
         return String.format(
-                "EditWeddingEventCommand{index=%s, editWeddingDescriptor=%s}",
+                "EditWeddingCommand{index=%s, editWeddingDescriptor=%s}",
                 index.toString(),
                 editWeddingDescriptor.toString());
     }

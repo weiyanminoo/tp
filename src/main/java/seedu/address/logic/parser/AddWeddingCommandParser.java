@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddWeddingEventCommand;
+import seedu.address.logic.commands.AddWeddingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
@@ -15,17 +15,17 @@ import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
 /**
- * Parses input arguments and creates a new AddWeddingEventCommand object.
+ * Parses input arguments and creates a new AddWeddingCommand object.
  */
-public class AddWeddingEventCommandParser implements Parser<AddWeddingEventCommand> {
+public class AddWeddingCommandParser implements Parser<AddWeddingCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddWeddingEventCommand
-     * and returns an AddWeddingEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddWeddingCommand
+     * and returns an AddWeddingCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format.
      */
     @Override
-    public AddWeddingEventCommand parse(String args) throws ParseException {
+    public AddWeddingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION);
@@ -35,7 +35,7 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
                 PREFIX_WEDDING_NAME, PREFIX_WEDDING_DATE, PREFIX_WEDDING_LOCATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingEventCommand.MESSAGE_USAGE));
+                    MESSAGE_INVALID_COMMAND_FORMAT, AddWeddingCommand.MESSAGE_USAGE));
         }
 
         // Ensure no duplicate prefixes for the required fields
@@ -49,7 +49,7 @@ public class AddWeddingEventCommandParser implements Parser<AddWeddingEventComma
 
         Wedding wedding = new Wedding(weddingName, weddingDate, location);
 
-        return new AddWeddingEventCommand(wedding);
+        return new AddWeddingCommand(wedding);
     }
 
     /**
