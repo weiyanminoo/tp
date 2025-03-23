@@ -28,31 +28,6 @@ import seedu.address.testutil.PersonBuilder;
 public class ClearCommandTest {
 
     /**
-     * A Model stub that simulates a modifiable AddressBook.
-     * <p>
-     * This stub holds an {@code AddressBook} instance and implements only the methods used by {@code ClearCommand}.
-     * </p>
-     */
-    private class ModelStubForClear extends ModelStub {
-        private AddressBook addressBook;
-
-        ModelStubForClear(AddressBook addressBook) {
-            this.addressBook = addressBook;
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return addressBook;
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            // Simulate clearing by replacing the address book with a new empty one.
-            this.addressBook = new AddressBook(newData);
-        }
-    }
-
-    /**
      * Tests that executing {@code ClearCommand} on an empty address book immediately returns success.
      */
     @Test
@@ -64,7 +39,7 @@ public class ClearCommandTest {
         CommandResult result = clearCommand.execute(modelStub);
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
-        // Address book should remain empty.
+        // Contact book should remain empty.
         assertTrue(modelStub.getAddressBook().getPersonList().isEmpty());
     }
 
@@ -74,9 +49,10 @@ public class ClearCommandTest {
      */
     @Test
     public void execute_nonEmptyAddressBook_returnsConfirmationResult() {
-        // Create an AddressBook with one person.
-        AddressBook addressBook = new AddressBookBuilder().withPerson(
-                new PersonBuilder().withName("Test Person").build()).build();
+        // Create a contact book with one person.
+        AddressBook addressBook = new AddressBookBuilder()
+                .withPerson(new PersonBuilder().withName("Test Person").build())
+                .build();
         ModelStubForClear modelStub = new ModelStubForClear(addressBook);
         ClearCommand clearCommand = new ClearCommand(); // normal mode
 
@@ -84,26 +60,61 @@ public class ClearCommandTest {
 
         assertEquals(ClearCommand.MESSAGE_CONFIRMATION_REQUIRED, result.getFeedbackToUser());
         assertTrue(result.isRequiresConfirmation());
-        // The address book remains non-empty.
+        // The contact book remains non-empty.
         assertFalse(modelStub.getAddressBook().getPersonList().isEmpty());
     }
 
     /**
-     * Tests that executing {@code ClearCommand} in force mode successfully clears the address book.
+     * Tests that executing {@code ClearCommand} in force mode successfully clears the contact book.
      */
     @Test
     public void execute_forceClear_success() {
-        // Create an AddressBook with one person.
-        AddressBook addressBook = new AddressBookBuilder().withPerson(
-                new PersonBuilder().withName("Test Person").build()).build();
+        // Create a contact book with one person.
+        AddressBook addressBook = new AddressBookBuilder()
+                .withPerson(new PersonBuilder().withName("Test Person").build())
+                .build();
         ModelStubForClear modelStub = new ModelStubForClear(addressBook);
         ClearCommand clearCommand = new ClearCommand(true); // force mode
 
         CommandResult result = clearCommand.execute(modelStub);
 
         assertEquals(ClearCommand.MESSAGE_SUCCESS, result.getFeedbackToUser());
-        // The address book should now be empty.
+        // The contact book should now be empty.
         assertTrue(modelStub.getAddressBook().getPersonList().isEmpty());
+    }
+
+    /**
+     * Tests that the createForceCommand() method returns a ClearCommand with the force flag set to true.
+     */
+    @Test
+    public void createForceCommand_returnsCommandWithForceTrue() {
+        ClearCommand clearCommand = new ClearCommand(); // normal mode
+        ForceableCommand forceCommand = clearCommand.createForceCommand();
+        assertTrue(forceCommand instanceof ClearCommand);
+        ClearCommand forcedClearCommand = (ClearCommand) forceCommand;
+        // Compare with a new ClearCommand constructed in force mode.
+        ClearCommand expected = new ClearCommand(true);
+        assertEquals(expected, forcedClearCommand);
+    }
+
+    /**
+     * Tests the toString() method for ClearCommand in normal mode.
+     */
+    @Test
+    public void toString_normalMode_returnsExpectedString() {
+        ClearCommand clearCommand = new ClearCommand(false);
+        String expected = ClearCommand.class.getCanonicalName() + "{isForce=false}";
+        assertEquals(expected, clearCommand.toString());
+    }
+
+    /**
+     * Tests the toString() method for ClearCommand in force mode.
+     */
+    @Test
+    public void toString_forceMode_returnsExpectedString() {
+        ClearCommand clearCommand = new ClearCommand(true);
+        String expected = ClearCommand.class.getCanonicalName() + "{isForce=true}";
+        assertEquals(expected, clearCommand.toString());
     }
 
     /**
@@ -132,6 +143,31 @@ public class ClearCommandTest {
     }
 
     /**
+     * A Model stub that simulates a modifiable AddressBook.
+     * <p>
+     * This stub holds an {@code AddressBook} instance and implements only the methods used by {@code ClearCommand}.
+     * </p>
+     */
+    private class ModelStubForClear extends ModelStub {
+        private AddressBook addressBook;
+
+        ModelStubForClear(AddressBook addressBook) {
+            this.addressBook = addressBook;
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return addressBook;
+        }
+
+        @Override
+        public void setAddressBook(ReadOnlyAddressBook newData) {
+            // Simulate clearing by replacing the address book with a new empty one.
+            this.addressBook = new AddressBook(newData);
+        }
+    }
+
+    /**
      * A default Model stub that has all methods failing.
      * <p>
      * This is used to ensure that only the methods relevant to ClearCommand are called during testing.
@@ -142,121 +178,98 @@ public class ClearCommandTest {
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void forceAddPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean hasWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void addWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setWedding(Wedding target, Wedding editedWedding) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ObservableList<Wedding> getFilteredWeddingList() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void updateFilteredWeddingList(Predicate<Wedding> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public Wedding getWeddingById(WeddingId id) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void deleteWedding(Wedding wedding) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void tagPerson(Person person, Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void untagPerson(Person person, Tag tag) {
-            throw new AssertionError("This method should not be called."); }
-
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void removeTagFromAllContacts(Tag tag) {
             throw new AssertionError("This method should not be called.");
