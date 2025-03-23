@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
 
 import seedu.address.logic.commands.DeleteTaskCommand;
@@ -10,20 +11,18 @@ import java.util.stream.Stream;
 
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
-    private static final Prefix PREFIX_INDEX = new Prefix("i/");
-
     @Override
     public DeleteTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_WEDDING_ID, PREFIX_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_WEDDING_ID, PREFIX_TASK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_WEDDING_ID, PREFIX_INDEX)
+        if (!arePrefixesPresent(argMultimap, PREFIX_WEDDING_ID, PREFIX_TASK_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(DeleteTaskCommand.MESSAGE_USAGE);
         }
 
         String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
-        String indexStr = argMultimap.getValue(PREFIX_INDEX).get();
+        String indexStr = argMultimap.getValue(PREFIX_TASK_INDEX).get();
 
         WeddingId weddingId = new WeddingId(weddingIdStr);
         int taskIndex;
