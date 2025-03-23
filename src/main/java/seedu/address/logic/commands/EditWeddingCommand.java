@@ -92,7 +92,17 @@ public class EditWeddingCommand extends Command {
                                             .orElse(weddingToEdit.getWeddingLocation());
         WeddingName updatedName = editWeddingDescriptor.getWeddingName().orElse(weddingToEdit.getWeddingName());
 
-        return new Wedding(originalId, updatedName, updatedDate, updatedLocation);
+        Wedding editedWedding = new Wedding(
+                originalId,
+                updatedName,
+                updatedDate,
+                updatedLocation,
+                weddingToEdit.isRestored()
+        );
+
+        weddingToEdit.getTasks().forEach(editedWedding::addTask);
+
+        return editedWedding;
     }
 
     @Override
