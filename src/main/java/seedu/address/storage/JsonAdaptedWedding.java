@@ -1,6 +1,9 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +14,7 @@ import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
+import seedu.address.model.wedding.WeddingTask;
 
 /**
  * Jackson-friendly version of {@link Wedding}.
@@ -24,6 +28,8 @@ class JsonAdaptedWedding {
     private final String weddingDate;
     private final String location;
 
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedWedding} with the given wedding details.
      */
@@ -31,11 +37,16 @@ class JsonAdaptedWedding {
     public JsonAdaptedWedding(@JsonProperty("weddingId") String weddingId,
                               @JsonProperty("weddingName") String weddingName,
                               @JsonProperty("weddingDate") String weddingDate,
-                              @JsonProperty("location") String location) {
+                              @JsonProperty("location") String location,
+                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks){
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.location = location;
+
+        if (tasks != null) {
+            this.tasks.addAll(tasks);
+        }
     }
 
     /**
@@ -46,6 +57,11 @@ class JsonAdaptedWedding {
         this.weddingName = source.getWeddingName().fullWeddingName;
         this.weddingDate = source.getWeddingDate().value;
         this.location = source.getWeddingLocation().venue;
+
+        // Convert each Task to a JsonAdaptedTask
+        this.tasks.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -74,7 +90,16 @@ class JsonAdaptedWedding {
         }
         final WeddingLocation modelLocation = new WeddingLocation(location);
 
-        return new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation, true);
+        // Mark as restored so we can update nextId if needed
+        Wedding wedding = new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation, true);
+
+        // Convert tasks from JSON to model tasks
+        for (JsonAdaptedTask jsonTask : tasks) {
+            WeddingTask task = jsonTask.toModelType();
+            wedding.addTask(task);
+        }
+
+        return wedding;
     }
 
     @Override
