@@ -15,7 +15,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to a specified wedding.\n"
             + "Parameters: w/WEDDING_ID d/TASK_DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " w/W001 d/Book photographer";
+            + "Example: " + COMMAND_WORD + " w/W1 d/Book photographer";
 
     public static final String MESSAGE_SUCCESS = "New task added to wedding %1$s:\n%2$s";
     public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";

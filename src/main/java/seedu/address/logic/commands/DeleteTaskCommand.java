@@ -14,7 +14,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from a specified wedding.\n"
             + "Parameters: w/WEDDING_ID i/TASK_INDEX\n"
-            + "Example: " + COMMAND_WORD + " w/W001 i/2";
+            + "Example: " + COMMAND_WORD + " w/W1 i/2";
 
     public static final String MESSAGE_SUCCESS = "Deleted task from wedding %1$s:\n%2$s";
     public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";
