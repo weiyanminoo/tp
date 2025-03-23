@@ -90,10 +90,8 @@ class JsonAdaptedWedding {
         }
         final WeddingLocation modelLocation = new WeddingLocation(location);
 
-        // Mark as restored so we can update nextId if needed
         Wedding wedding = new Wedding(modelWeddingId, modelWeddingName, modelWeddingDate, modelLocation, true);
 
-        // Convert tasks from JSON to model tasks
         for (JsonAdaptedTask jsonTask : tasks) {
             WeddingTask task = jsonTask.toModelType();
             wedding.addTask(task);

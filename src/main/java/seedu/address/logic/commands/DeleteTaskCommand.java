@@ -32,15 +32,13 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1. Find the wedding
         Wedding wedding = model.getFilteredWeddingList().stream()
                 .filter(w -> w.getWeddingId().equals(weddingId))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_WEDDING_NOT_FOUND, weddingId.value)));
 
-        // 2. Attempt to remove the task
         try {
-            WeddingTask removed = wedding.removeTask(taskIndex - 1); // zero-based indexing
+            WeddingTask removed = wedding.removeTask(taskIndex - 1);
             return new CommandResult(String.format(MESSAGE_SUCCESS, weddingId.value, removed));
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_TASK_INDEX, weddingId.value));

@@ -30,20 +30,17 @@ public class ListTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1. Find wedding
         Wedding wedding = model.getFilteredWeddingList().stream()
                 .filter(w -> w.getWeddingId().equals(weddingId))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_WEDDING_NOT_FOUND, weddingId.value)));
 
-        // 2. Retrieve tasks
         List<WeddingTask> tasks = wedding.getTasks();
 
         if (tasks.isEmpty()) {
             return new CommandResult("No tasks found for wedding " + weddingId.value);
         }
 
-        // 3. Build a result string
         StringBuilder sb = new StringBuilder();
         sb.append("Tasks for Wedding ").append(weddingId.value).append(":\n");
         for (int i = 0; i < tasks.size(); i++) {

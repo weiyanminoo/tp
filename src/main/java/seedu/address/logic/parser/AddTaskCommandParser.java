@@ -24,7 +24,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
-        // Convert weddingIdStr to WeddingId object
         WeddingId weddingId = new WeddingId(weddingIdStr);
 
         return new AddTaskCommand(weddingId, description);
