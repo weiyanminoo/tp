@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.wedding.WeddingTask;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingTask;
 
-
+/**
+ * Adds a new task to a specific wedding identified by a Wedding ID.
+ */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";

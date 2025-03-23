@@ -28,8 +28,8 @@ import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.ListWeddingCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.TagCommand;
-import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

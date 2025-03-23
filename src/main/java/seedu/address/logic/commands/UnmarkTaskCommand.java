@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingTask;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Marks a task as not done for a specific wedding identified by a Wedding ID.
+ */
 public class UnmarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
@@ -23,6 +26,12 @@ public class UnmarkTaskCommand extends Command {
     private final WeddingId weddingId;
     private final int taskIndex;
 
+    /**
+     * Creates a UnmarkTaskCommand to mark the specified task in the given wedding as not done.
+     *
+     * @param weddingId The ID of the wedding containing the task.
+     * @param taskIndex The 1-based index of the task to mark as not done.
+     */
     public UnmarkTaskCommand(WeddingId weddingId, int taskIndex) {
         this.weddingId = weddingId;
         this.taskIndex = taskIndex;
@@ -32,14 +41,12 @@ public class UnmarkTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // 1. Find wedding
         Wedding wedding = model.getFilteredWeddingList().stream()
                 .filter(w -> w.getWeddingId().equals(weddingId))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(
                         String.format(MESSAGE_WEDDING_NOT_FOUND, weddingId.value)));
 
-        // 2. Unmark the specified task
         try {
             WeddingTask taskToUnmark = wedding.getTasks().get(taskIndex - 1);
             taskToUnmark.unmark();

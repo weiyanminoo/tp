@@ -1,14 +1,17 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
+
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.WeddingId;
 
-import java.util.stream.Stream;
-
+/**
+ * Parses input arguments and creates a new MarkTaskCommand object.
+ */
 public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
 
     @Override

@@ -38,7 +38,7 @@ class JsonAdaptedWedding {
                               @JsonProperty("weddingName") String weddingName,
                               @JsonProperty("weddingDate") String weddingDate,
                               @JsonProperty("location") String location,
-                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks){
+                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.weddingId = weddingId;
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;

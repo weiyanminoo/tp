@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.wedding.WeddingTask;
-import seedu.address.model.wedding.Wedding;
-import seedu.address.model.wedding.WeddingId;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingTask;
 
+/**
+ * Lists all tasks for a specific wedding identified by a Wedding ID.
+ */
 public class ListTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "listTask";
@@ -22,6 +25,11 @@ public class ListTaskCommand extends Command {
 
     private final WeddingId weddingId;
 
+    /**
+     * Constructs a ListTaskCommand to display tasks for the specified wedding.
+     *
+     * @param weddingId The ID of the wedding whose tasks are to be listed.
+     */
     public ListTaskCommand(WeddingId weddingId) {
         this.weddingId = weddingId;
     }

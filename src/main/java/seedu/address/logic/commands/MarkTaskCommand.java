@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.wedding.WeddingTask;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingTask;
 
+/**
+ * Marks a task as done for a specific wedding identified by a Wedding ID.
+ */
 public class MarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
@@ -23,6 +26,12 @@ public class MarkTaskCommand extends Command {
     private final WeddingId weddingId;
     private final int taskIndex;
 
+    /**
+     * Creates a MarkTaskCommand to mark the specified task in the given wedding as done.
+     *
+     * @param weddingId The ID of the wedding containing the task.
+     * @param taskIndex The 1-based index of the task to mark as done.
+     */
     public MarkTaskCommand(WeddingId weddingId, int taskIndex) {
         requireNonNull(weddingId);
         this.weddingId = weddingId;

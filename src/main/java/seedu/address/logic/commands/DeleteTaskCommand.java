@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.wedding.WeddingTask;
-import seedu.address.model.wedding.Wedding;
-import seedu.address.model.wedding.WeddingId;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingTask;
+
+/**
+ * Deletes a task to a specific wedding identified by a Wedding ID.
+ */
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteTask";
@@ -23,6 +26,12 @@ public class DeleteTaskCommand extends Command {
     private final WeddingId weddingId;
     private final int taskIndex;
 
+    /**
+     * Constructs a DeleteTaskCommand to remove the specified task from the given wedding.
+     *
+     * @param weddingId The ID of the wedding from which the task will be deleted.
+     * @param taskIndex The 1-based index of the task to delete.
+     */
     public DeleteTaskCommand(WeddingId weddingId, int taskIndex) {
         this.weddingId = weddingId;
         this.taskIndex = taskIndex;
