@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
+
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.WeddingId;
@@ -8,7 +10,6 @@ import java.util.stream.Stream;
 
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
-    private static final Prefix PREFIX_WEDDING_ID = new Prefix("w/");
     private static final Prefix PREFIX_INDEX = new Prefix("i/");
 
     @Override

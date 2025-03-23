@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEDDING_ID;
+
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.WeddingId;
@@ -7,8 +9,6 @@ import seedu.address.model.wedding.WeddingId;
 import java.util.stream.Stream;
 
 public class ListTaskCommandParser implements Parser<ListTaskCommand> {
-
-    private static final Prefix PREFIX_WEDDING_ID = new Prefix("w/");
 
     @Override
     public ListTaskCommand parse(String args) throws ParseException {
