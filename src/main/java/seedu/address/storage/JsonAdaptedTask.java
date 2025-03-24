@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Objects;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.wedding.WeddingTask;
