@@ -20,6 +20,14 @@ Class Name
 Class Phone
 Class Role
 
+Class UniqueWeddingList
+Class Wedding
+Class WeddingId
+Class WeddingName
+Class WeddingDate
+Class WeddingLocation
+Class WeddingTask
+
 Class I #FFFFFF
 }
 
@@ -51,5 +59,14 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 Email -[hidden]right-> Role
 
+AddressBook *--> "1" UniqueWeddingList
+UniqueWeddingList --> "~* all" Wedding
+Wedding *--> WeddingId
+Wedding *--> WeddingName
+Wedding *--> WeddingDate
+Wedding *--> WeddingLocation
+Wedding *--> "*" WeddingTask
+
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Wedding
 @enduml
