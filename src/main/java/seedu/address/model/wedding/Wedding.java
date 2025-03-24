@@ -1,5 +1,8 @@
 package seedu.address.model.wedding;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,8 +14,8 @@ public class Wedding {
     private final WeddingName weddingName;
     private final WeddingDate weddingDate;
     private final WeddingLocation weddingLocation;
-
     private final boolean restored;
+    private final List<WeddingTask> tasks;
 
     /**
      * Creates a Wedding object with the given fields.
@@ -23,9 +26,15 @@ public class Wedding {
         this.weddingDate = weddingDate;
         this.weddingLocation = weddingLocation;
         this.restored = false;
+
+        // Initialize tasks for a newly created wedding
+        this.tasks = new ArrayList<>();
     }
 
-    // Constructor for new weddings: not restored.
+    /**
+     * Creates a Wedding object with a specified ID (useful for restoration),
+     * defaulting to not restored.
+     */
     public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
         this(weddingId, weddingName, weddingDate, location, false);
     }
@@ -42,12 +51,38 @@ public class Wedding {
         this.weddingLocation = weddingLocation;
         this.restored = isRestored;
 
+        // Initialize tasks for a restored wedding (empty by default)
+        this.tasks = new ArrayList<>();
+
         if (isRestored) {
             int numericPart = Integer.parseInt(weddingId.value.substring(1)); // skip 'W'
             if (numericPart >= nextId) {
                 nextId = numericPart + 1;
             }
         }
+    }
+
+    /**
+     * Returns the list of tasks for this wedding as an unmodifiable list.
+     */
+    public List<WeddingTask> getTasks() {
+        return Collections.unmodifiableList(tasks);
+    }
+
+    /**
+     * Adds a task to this wedding's task list.
+     */
+    public void addTask(WeddingTask task) {
+        tasks.add(task);
+    }
+
+    /**
+     * Removes a task from this wedding by zero-based index.
+     * @return The removed Task.
+     * @throws IndexOutOfBoundsException if the index is invalid.
+     */
+    public WeddingTask removeTask(int index) throws IndexOutOfBoundsException {
+        return tasks.remove(index);
     }
 
     public boolean isRestored() {

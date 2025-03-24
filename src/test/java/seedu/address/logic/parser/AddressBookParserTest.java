@@ -15,10 +15,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AddWeddingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ConfirmCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DeleteWeddingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -28,8 +30,12 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.ListWeddingCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.wedding.WeddingId;
@@ -139,13 +145,61 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+    public void parseCommand_addTask() throws Exception {
+        // Example input: "addTask w/W1 desc/Book florist"
+        String userInput = AddTaskCommand.COMMAND_WORD + " w/W1 desc/Book florist";
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(userInput);
+        assertEquals(new AddTaskCommand(new WeddingId("W1"), "Book florist"), command);
     }
 
     @Test
-    public void parseCommand_unknownCommand_throwsParseException() {
+    public void parseCommand_deleteTask() throws Exception {
+        // Example input: "deleteTask w/W1 i/2"
+        String userInput = DeleteTaskCommand.COMMAND_WORD + " w/W1 i/2";
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(userInput);
+        assertEquals(new DeleteTaskCommand(new WeddingId("W1"), 2), command);
+    }
+
+    @Test
+    public void parseCommand_listTask() throws Exception {
+        // Example input: "listTask w/W1"
+        String userInput = ListTaskCommand.COMMAND_WORD + " w/W1";
+        assertTrue(parser.parseCommand(userInput) instanceof ListTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_markTask() throws Exception {
+        // Example input: "mark w/W1 i/1"
+        String userInput = MarkTaskCommand.COMMAND_WORD + " w/W1 i/1";
+        MarkTaskCommand command = (MarkTaskCommand) parser.parseCommand(userInput);
+        assertEquals(new MarkTaskCommand(new WeddingId("W1"), 1), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkTask() throws Exception {
+        // Example input: "unmark w/W1 i/3"
+        String userInput = UnmarkTaskCommand.COMMAND_WORD + " w/W1 i/3";
+        UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(userInput);
+        assertEquals(new UnmarkTaskCommand(new WeddingId("W1"), 3), command);
+    }
+
+    @Test
+    public void parseCommand_untag() throws Exception {
+        // Example input: "untag 1 W123"
+        // or if your parser uses a different prefix approach, adapt accordingly
+        String userInput = UntagCommand.COMMAND_WORD + " 1 W123";
+        assertTrue(parser.parseCommand(userInput) instanceof UntagCommand);
+    }
+
+    @Test
+    public void parseCommand_unrecognisedInput_throwsParseException() {
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+                        -> parser.parseCommand(""));
+    }
+
+    @Test
+    public void parseCommand_unknownCommand_throwsParseException() throws Exception {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }
