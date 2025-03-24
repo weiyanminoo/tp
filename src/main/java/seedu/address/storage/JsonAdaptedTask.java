@@ -3,6 +3,8 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.wedding.WeddingTask;
 
@@ -46,5 +48,23 @@ class JsonAdaptedTask {
             task.markAsDone();
         }
         return task;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof JsonAdaptedTask)) {
+            return false;
+        }
+        JsonAdaptedTask o = (JsonAdaptedTask) other;
+        return Objects.equals(description, o.description)
+                && isDone == o.isDone;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, isDone);
     }
 }
