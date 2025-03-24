@@ -13,13 +13,13 @@ public class AddWeddingCommand extends Command {
 
     public static final String COMMAND_WORD = "addWedding";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a wedding to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a wedding to the contact book. "
             + "Parameters: "
             + "n/NAME d/DATE l/LOCATION\n"
             + "Example: " + COMMAND_WORD + " n/John & Jane's Wedding d/20-Feb-2025 l/Grand Ballroom";
 
     public static final String MESSAGE_SUCCESS = "New wedding added: %1$s";
-    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book";
 
     private final Wedding toAdd;
 

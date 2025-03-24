@@ -38,7 +38,7 @@ public class EditWeddingCommand extends Command {
 
     public static final String MESSAGE_EDIT_WEDDING_SUCCESS = "Edited Wedding: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book.";
 
     private final WeddingId index;
     private final EditWeddingDescriptor editWeddingDescriptor;
