@@ -58,8 +58,8 @@ public class ListTaskCommandTest {
         ListTaskCommand command = new ListTaskCommand(INVALID_WEDDING_ID);
 
         assertThrows(CommandException.class,
-                String.format(ListTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(ListTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), (
+                ) -> command.execute(modelStub));
     }
 
     @Test

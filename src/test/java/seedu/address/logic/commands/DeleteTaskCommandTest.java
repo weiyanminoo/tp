@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
@@ -52,8 +52,8 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand command = new DeleteTaskCommand(INVALID_WEDDING_ID, 1);
 
         assertThrows(CommandException.class,
-                String.format(DeleteTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(DeleteTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), () ->
+                        command.execute(modelStub));
     }
 
     @Test
@@ -63,8 +63,8 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand command = new DeleteTaskCommand(VALID_WEDDING_ID, 3);
 
         assertThrows(CommandException.class,
-                String.format(DeleteTaskCommand.MESSAGE_INVALID_TASK_INDEX, VALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(DeleteTaskCommand.MESSAGE_INVALID_TASK_INDEX, VALID_WEDDING_ID.value), () ->
+                        command.execute(modelStub));
     }
 
     @Test

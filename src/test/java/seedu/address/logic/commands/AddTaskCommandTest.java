@@ -52,8 +52,8 @@ public class AddTaskCommandTest {
         AddTaskCommand command = new AddTaskCommand(INVALID_WEDDING_ID, VALID_DESCRIPTION);
 
         assertThrows(CommandException.class,
-                String.format(AddTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(AddTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), () ->
+                        command.execute(modelStub));
     }
 
     @Test

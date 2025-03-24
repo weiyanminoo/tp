@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,8 +50,8 @@ public class MarkTaskCommandTest {
         MarkTaskCommand command = new MarkTaskCommand(INVALID_WEDDING_ID, 1);
 
         assertThrows(CommandException.class,
-                String.format(MarkTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(MarkTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), () ->
+                        command.execute(modelStub));
     }
 
     @Test
@@ -61,8 +61,8 @@ public class MarkTaskCommandTest {
         MarkTaskCommand command = new MarkTaskCommand(VALID_WEDDING_ID, 3);
 
         assertThrows(CommandException.class,
-                String.format(MarkTaskCommand.MESSAGE_INVALID_TASK_INDEX, VALID_WEDDING_ID.value),
-                () -> command.execute(modelStub));
+                String.format(MarkTaskCommand.MESSAGE_INVALID_TASK_INDEX, VALID_WEDDING_ID.value), () ->
+                        command.execute(modelStub));
     }
 
     @Test
