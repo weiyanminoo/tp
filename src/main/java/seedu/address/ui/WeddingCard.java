@@ -18,6 +18,8 @@ public class WeddingCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label weddingName;
     @FXML
     private Label weddingId;
@@ -34,8 +36,9 @@ public class WeddingCard extends UiPart<Region> {
     public WeddingCard(Wedding wedding, int displayedIndex) {
         super(FXML);
         this.wedding = wedding;
-        weddingId.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ". ");
         weddingName.setText(wedding.getWeddingName().toString());
+        weddingId.setText("ID: " + wedding.getWeddingId().toString()); // Make it clearer
         weddingDate.setText(wedding.getWeddingDate().toString());
         weddingLocation.setText(wedding.getWeddingLocation().toString());
         weddingTask.setText(wedding.getTasks().toString());

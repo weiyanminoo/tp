@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         if (showWeddingList) {
             fillInnerPartsWedding();
         } else {
-            fillInnerParts();
+            fillInnerPartsPerson();
         }
 
         isShowWeddingList = showWeddingList;
@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerPartsPerson() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
