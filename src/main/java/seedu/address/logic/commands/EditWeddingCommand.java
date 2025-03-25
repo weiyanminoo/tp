@@ -38,7 +38,7 @@ public class EditWeddingCommand extends Command {
 
     public static final String MESSAGE_EDIT_WEDDING_SUCCESS = "Edited Wedding: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book.";
 
     private final WeddingId index;
     private final EditWeddingDescriptor editWeddingDescriptor;
@@ -92,7 +92,17 @@ public class EditWeddingCommand extends Command {
                                             .orElse(weddingToEdit.getWeddingLocation());
         WeddingName updatedName = editWeddingDescriptor.getWeddingName().orElse(weddingToEdit.getWeddingName());
 
-        return new Wedding(originalId, updatedName, updatedDate, updatedLocation);
+        Wedding editedWedding = new Wedding(
+                originalId,
+                updatedName,
+                updatedDate,
+                updatedLocation,
+                weddingToEdit.isRestored()
+        );
+
+        weddingToEdit.getTasks().forEach(editedWedding::addTask);
+
+        return editedWedding;
     }
 
     @Override
