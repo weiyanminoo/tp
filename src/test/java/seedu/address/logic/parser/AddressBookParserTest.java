@@ -111,7 +111,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listWeddingByDate() throws Exception {
         assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD) instanceof ListWeddingByDateCommand);
-        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD + " 3") instanceof ListWeddingByDateCommand);
+        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD + " 3")
+                instanceof ListWeddingByDateCommand);
     }
 
     @Test
@@ -207,6 +208,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() throws Exception {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }
