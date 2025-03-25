@@ -1,15 +1,14 @@
 package seedu.address.ui;
 
-
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.wedding.Wedding;
 
+/**
+ * An UI component that displays information of a {@code Wedding}.
+ */
 public class WeddingCard extends UiPart<Region> {
 
     private static final String FXML = "WeddingListCard.fxml";
@@ -25,7 +24,9 @@ public class WeddingCard extends UiPart<Region> {
     @FXML
     private Label weddingDate;
     @FXML
-    private Label weddingVenue;
+    private Label weddingLocation;
+    @FXML
+    private Label weddingTask;
 
     /**
      * Creates a {@code WeddingCard} with the given {@code Wedding} and index to display.
@@ -36,8 +37,7 @@ public class WeddingCard extends UiPart<Region> {
         weddingId.setText(displayedIndex + ". ");
         weddingName.setText(wedding.getWeddingName().toString());
         weddingDate.setText(wedding.getWeddingDate().toString());
-        weddingVenue.setText(wedding.getWeddingLocation().toString());
+        weddingLocation.setText(wedding.getWeddingLocation().toString());
+        weddingTask.setText(wedding.getTasks().toString());
     }
-
-
 }

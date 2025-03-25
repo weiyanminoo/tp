@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private boolean isShowWeddingList = false;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -108,6 +110,29 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    /**
+     * Switches the view between wedding list and person list.
+     * @param showWeddingList true if wedding list should be shown, false if person list should be shown
+     */
+    public void switchView(boolean showWeddingList) {
+        if (showWeddingList == isShowWeddingList) {
+            return;
+        }
+
+        personListPanelPlaceholder.getChildren().clear();
+        if (weddingListPanelPlaceholder != null) {
+            weddingListPanelPlaceholder.getChildren().clear();
+        }
+
+        if (showWeddingList) {
+            fillInnerPartsWedding();
+        } else {
+            fillInnerParts();
+        }
+
+        isShowWeddingList = showWeddingList;
     }
 
     /**
@@ -207,6 +232,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            switchView(commandResult.isShowWeddingList());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

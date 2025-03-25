@@ -28,7 +28,9 @@ public class ListWeddingCommand extends Command {
                     .append("\n");
         }
 
-        return new CommandResult(MESSAGE_SUCCESS + output);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, model.getFilteredWeddingList().size()),
+                false, false, true, false); // Set showWeddingList to true
     }
 
     @Override
