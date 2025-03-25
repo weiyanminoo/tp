@@ -43,4 +43,19 @@ public class WeddingCard extends UiPart<Region> {
         weddingLocation.setText(wedding.getWeddingLocation().toString());
         weddingTask.setText(wedding.getTasks().toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof WeddingCard)) {
+            return false;
+        }
+
+        WeddingCard card = (WeddingCard) other;
+        return id.getText().equals(card.id.getText())
+                && wedding.equals(card.wedding);
+    }
 }
