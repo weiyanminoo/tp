@@ -13,11 +13,7 @@ public class WeddingListPanelTest {
 
     @BeforeAll
     public static void initFxRuntime() {
-        try {
-            javafx.application.Platform.startup(() -> {});
-        } catch (IllegalStateException e) {
-            // JavaFX platform already started
-        }
+        javafx.application.Platform.startup(() -> {});
     }
 
     @Test

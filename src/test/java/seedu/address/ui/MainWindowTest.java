@@ -44,7 +44,7 @@ public class MainWindowTest {
     }
 
     /**
-     * A simple stub of Logic used for testing MainWindow logic
+     * Stub of Logic that provides a fixed response to execute().
      */
     private class LogicStub implements Logic {
         @Override
