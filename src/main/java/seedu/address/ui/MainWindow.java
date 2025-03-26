@@ -53,7 +53,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane logoPlaceholder;  // or just keep it if you want to manipulate it
+    private StackPane logoPlaceholder;
     @FXML
     private ImageView logoImageView;
 
