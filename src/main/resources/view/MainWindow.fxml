@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="EasyWeds" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -34,21 +35,17 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="logoPlaceholder"
-                   VBox.vgrow="NEVER"
-                   style="-fx-alignment: CENTER;"
-                   prefHeight="80"
-                   styleClass="pane-with-border">
-          <ImageView fx:id="logoImageView"
-                     fitHeight="60"
-                     preserveRatio="true" />
-        </StackPane>
+        <!-- HBox containing Command Box (left) and Logo (right) -->
+        <HBox fx:id="commandRow" spacing="10" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <StackPane fx:id="commandBoxPlaceholder" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="5" right="10" bottom="5" left="10" />
+            </padding>
+          </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+          <!-- Logo on the right -->
+          <ImageView fx:id="logoImageView" fitHeight="50" preserveRatio="true" />
+        </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="150" maxHeight="400">
