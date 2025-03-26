@@ -6,11 +6,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="EasyWeds" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -33,18 +35,37 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+        <!--
+                    HBox containing a VBox (with command box + result display) on the left,
+                    and the logo on the right.
+                -->
+        <HBox fx:id="topRow" spacing="10" styleClass="pane-with-border" VBox.vgrow="NEVER">
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="150" maxHeight="400">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+          <!-- Left column with Command Box on top, Result Display below -->
+          <VBox fx:id="leftColumn" spacing="10" HBox.hgrow="ALWAYS">
+
+            <!-- Command Box -->
+            <StackPane fx:id="commandBoxPlaceholder">
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+            </StackPane>
+
+            <!-- Result Display -->
+            <StackPane fx:id="resultDisplayPlaceholder"
+                       minHeight="100" prefHeight="150" maxHeight="400">
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+            </StackPane>
+          </VBox>
+
+          <!-- Logo on the right (larger if desired) -->
+          <ImageView fx:id="logoImageView"
+                     fitHeight="80"
+                     preserveRatio="true"
+                     style="-fx-cursor: hand;" />
+        </HBox>
 
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
