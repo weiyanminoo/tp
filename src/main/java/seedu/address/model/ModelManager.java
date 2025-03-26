@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -27,7 +29,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Wedding> filteredWeddings;
+    private final SortedList<Wedding> sortedWeddings;
 
+    private boolean sortWeddingsByDate = false;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,6 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredWeddings = new FilteredList<>(this.addressBook.getWeddingList());
+        sortedWeddings = new SortedList<>(filteredWeddings);
     }
 
     public ModelManager() {
@@ -195,7 +200,40 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
+        if (sortWeddingsByDate) {
+            return sortedWeddings;
+        }
         return filteredWeddings;
+    }
+
+    @Override
+    public void setSortWeddingsByDate(boolean sortByDate) {
+        this.sortWeddingsByDate = sortByDate;
+        if (sortByDate) {
+            Comparator<Wedding> dateComparator = createWeddingDateComparator();
+            sortedWeddings.setComparator(dateComparator);
+        } else {
+            sortedWeddings.setComparator(null);
+        }
+    }
+
+    @Override
+    public boolean isSortingWeddingsByDate() {
+        return sortWeddingsByDate;
+    }
+
+    private Comparator<Wedding> createWeddingDateComparator() {
+        return Comparator.comparing(wedding ->
+                java.time.LocalDate.parse(
+                        wedding.getWeddingDate().toString(),
+                        java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy")
+                )
+        );
+    }
+
+    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
+        sortedWeddings.setComparator(comparator);
+        return sortedWeddings;
     }
 
     @Override

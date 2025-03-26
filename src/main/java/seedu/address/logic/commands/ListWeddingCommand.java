@@ -15,6 +15,7 @@ public class ListWeddingCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setSortWeddingsByDate(false);
         model.updateFilteredWeddingList(Model.PREDICATE_SHOW_ALL_WEDDINGS);
 
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);

@@ -117,33 +117,28 @@ public class MainWindow extends UiPart<Stage> {
      * @param showWeddingList true if wedding list should be shown, false if person list should be shown
      */
     void switchView(boolean showWeddingList) {
-        if (showWeddingList == isShowWeddingList) {
-            return; // Already in correct view
-        }
-
         personListPanelPlaceholder.getChildren().clear();
         weddingListPanelPlaceholder.getChildren().clear();
 
         personListPanelPlaceholder.setVisible(!showWeddingList);
         weddingListPanelPlaceholder.setVisible(showWeddingList);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().clear();
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().clear();
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
         if (showWeddingList) {
-            weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
-            weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
+            displayWeddingList();
         } else {
             personListPanel = new PersonListPanel(logic.getFilteredPersonList());
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         }
 
         isShowWeddingList = showWeddingList;
+    }
+
+    /**
+     * Displays the wedding list, sorted by date if needed.
+     */
+    private void displayWeddingList() {
+        weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
+        weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
     }
 
     /**
