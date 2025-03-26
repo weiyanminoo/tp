@@ -323,7 +323,7 @@ Clears all entries from the contact book.
 
 Format: `clear`
 
-**Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates. 
+**Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
 
 
 ### Exiting the program : `exit`

@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.model.wedding.Wedding;
-
 
 /**
  * Lists all wedding events in the address book to the user.
@@ -19,16 +17,7 @@ public class ListWeddingCommand extends Command {
         requireNonNull(model);
         model.updateFilteredWeddingList(Model.PREDICATE_SHOW_ALL_WEDDINGS);
 
-        StringBuilder output = new StringBuilder();
-        for (Wedding wedding : model.getFilteredWeddingList()) {
-            output.append("\nWedding: ").append(wedding.getWeddingName().toString())
-                    .append(" (ID: ").append(wedding.getWeddingId().toString()).append(")")
-                    .append("\nDate: ").append(wedding.getWeddingDate().toString())
-                    .append("\nLocation: ").append(wedding.getWeddingLocation().toString())
-                    .append("\n");
-        }
-
-        return new CommandResult(MESSAGE_SUCCESS + output);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
     }
 
     @Override
