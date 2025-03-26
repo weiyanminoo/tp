@@ -26,7 +26,7 @@ public class AddCommand extends Command implements ForceableCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_ADDRESS + "ADDRESS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
