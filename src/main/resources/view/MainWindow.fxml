@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
@@ -32,6 +33,16 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+
+        <StackPane fx:id="logoPlaceholder"
+                   VBox.vgrow="NEVER"
+                   style="-fx-alignment: CENTER;"
+                   prefHeight="80"
+                   styleClass="pane-with-border">
+          <ImageView fx:id="logoImageView"
+                     fitHeight="60"
+                     preserveRatio="true" />
+        </StackPane>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
