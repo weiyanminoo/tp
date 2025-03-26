@@ -43,7 +43,7 @@
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
           </StackPane>
-          
+
           <!-- Logo on the right side of command box -->
           <VBox alignment="CENTER" minWidth="100" prefWidth="100" HBox.hgrow="NEVER" styleClass="logo-container">
             <ImageView fx:id="logoImageView" fitWidth="70" preserveRatio="true">
@@ -53,7 +53,7 @@
         </HBox>
 
         <!-- Result Display section -->
-        <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" 
+        <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER"
                    minHeight="100" prefHeight="100">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />

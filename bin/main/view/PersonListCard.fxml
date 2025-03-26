@@ -15,7 +15,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="50" />
     </columnConstraints>
-    
+
     <!-- Left side: Person info -->
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -35,7 +35,7 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
-    
+
     <!-- Right side: Role -->
     <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
       <padding>
