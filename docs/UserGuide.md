@@ -30,7 +30,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
    If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.
 <br>
    _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.<br>
-   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._  
+   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal.
 3. Once you navigate into the correct directory, i.e. when you type `ls`, you see easyweds.jar being listed, type the `java -jar easyweds.jar` command in the command terminal to run the application.<br>
    A Graphic User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
