@@ -72,6 +72,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+
 ### Adding a person : `add`
 
 Adds a person to the contact book.
@@ -94,6 +95,7 @@ Examples:
     1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
+
 ### Editing a person : `edit`
 
 Edits an existing person in the contact book.
@@ -108,6 +110,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/photographer` Edits the name of the 2nd person to be `Betsy Crower` and her role to `photographer`.
 
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the contact book.
@@ -121,6 +124,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
 
 ### Locating persons by name or role: `find`
 
@@ -142,49 +146,119 @@ Examples:
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the contact book.
 
 Format: `list`
 
+
 ### Adding a Wedding Event : `addWedding`
 
-Adds a Wedding Event to the contact book.
+Adds a wedding event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
 
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
 
+
 ### Editing a Wedding Event : `editWedding`
 
-Edit an existing Wedding Event in the contact book.
+Edit an existing wedding event in the contact book.
 
 Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 
-* Edits the Wedding Event at the specified `WEDDING_ID`.
+* Edits the wedding event at the specified `WEDDING_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Details of wedding you want to edit cannot be the same as what is already in the wedding.
 
 Examples:
-* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st Wedding Event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd Wedding Event to be `John & Jane's Wedding`.
+* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st wedding event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
+* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
+
 
 ### Deleting a Wedding Event : `deleteWedding`
-* Deletes the specified wedding event from the contact book.
+
+Deletes the specified wedding event from the contact book.
 
 Format: `deleteWedding WEDDING_ID`
 
 * Deletes the wedding event with the specified `WEDDING_ID`.
 * Tags of contacts associated to the deleted wedding event will be removed.
 
+
 ### Listing all Wedding Events : `listWedding`
 
-Shows a list of all Wedding Events in the contact book.
+Shows a list of all wedding events in the contact book.
 
 Format: `listWedding`
+
+
+### Adding a Wedding Task : `addTask`
+
+Adds a new Task to a specified wedding event.
+
+Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
+
+* Adds a new Task to a wedding event specified by `WEDDING_ID`.
+
+Examples:
+* `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
+
+
+### Listing all Wedding Tasks : `listTask`
+
+Shows a list of all Tasks of a specified wedding event.
+
+Format: `listTask w/WEDDING_ID`
+
+Examples: `listWedding w/W1` Show a list of all Tasks of the wedding event `W1`.
+
+
+### Marking a Wedding Task : `mark`
+
+Marks a specified task of a specified wedding event as completed.
+
+Format: `mark w/WEDDING_ID i/TASK_INDEX`
+
+* Marks the task at the specified `INDEX` from the wedding event specified by `WEDDING_ID` as completed.
+* The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* `WEDDING_ID` is the unique identifier of the wedding event.
+
+Examples:
+* `mark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as completed.
+
+
+### Unmarking a Wedding Task : `unmark`
+
+Marks a specified task of a specified wedding as not completed.
+
+Format: `unmark w/WEDDING_ID i/TASK_INDEX`
+
+* Marks the task at the specified `INDEX` from the wedding event specified by `WEDDING_ID` as not completed.
+* The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* `WEDDING_ID` is the unique identifier of the wedding event.
+
+Examples:
+* `unmark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as not completed.
+
+
+### Deleting a Wedding Task : `deleteTask`
+
+Deletes the specified task from a specified wedding event.
+
+Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
+
+* Deletes the task at the specified `INDEX` from the wedding task list of the wedding event specified by `WEDDING_ID`.
+* The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* `WEDDING_ID` is the unique identifier of the wedding event.
+
+Examples:
+* `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
+
 
 ### Tagging a person to a Wedding : `tag`
 
@@ -194,13 +268,14 @@ Format: `tag INDEX WEDDING_ID`
 
 * Tags the person at the specified `INDEX` to the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Wedding id is the unique identifier of the wedding event.
+* `WEDDING_ID` is the unique identifier of the wedding event.
 * Contacts can only be tagged to wedding events that are already existing in the system.
 * Each contact can be tagged to more than one wedding event.
 
 Examples:
-* `tag 1 W1` tags the first person to the wedding event with weddingId `W1`
-* `tag 1 W2` tags the first person to the wedding event with weddingId `W2`. Now the first person will be tagged to both `W1` and `W2`.
+* `tag 1 W1` tags the first person to the wedding event `W1`
+* `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+
 
 ### Untagging a person : `untag`
 
@@ -210,11 +285,12 @@ Format: `untag INDEX WEDDING_ID`
 
 * Untags the person at the specified `INDEX` from the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* Wedding id is the unique identifier of the wedding event.
+* `WEDDING_ID` is the unique identifier of the wedding event.
 * Contacts can only be untagged from wedding events that are already existing in the system.
 
 Examples:
-* `untag 1 W1` untags the first person from the wedding event with weddingId `W1`
+* `untag 1 W1` untags the first person from the wedding event `W1`
+
 
 ### Filtering contacts : `filter`
 
@@ -231,6 +307,7 @@ Examples:
 
   ![result for 'filter W4'](images/filterW4.png)
 
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact book.
@@ -239,15 +316,18 @@ Format: `clear`
 
 **Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates. 
 
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+
 ### Saving the data
 
 EasyWeds data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### Editing the data file
 
@@ -259,6 +339,7 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
 
 ### Archiving data files `[coming in v2.0]`
 
