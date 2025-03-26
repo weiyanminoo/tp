@@ -22,6 +22,8 @@ public class UnmarkTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Task marked as not done:\n%1$s\nIn Wedding: %2$s";
     public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";
     public static final String MESSAGE_INVALID_TASK_INDEX = "Invalid task index for wedding %1$s.";
+    public static final String MESSAGE_TASK_ALREADY_NOT_DONE =
+            "This task is already marked as not done:\n%1$s\nIn Wedding: %2$s";
 
     private final WeddingId weddingId;
     private final int taskIndex;
@@ -49,6 +51,12 @@ public class UnmarkTaskCommand extends Command {
 
         try {
             WeddingTask taskToUnmark = wedding.getTasks().get(taskIndex - 1);
+            // Check if task is already not done
+            if (!taskToUnmark.isDone()) {
+                throw new CommandException(String.format(MESSAGE_TASK_ALREADY_NOT_DONE,
+                        taskToUnmark, wedding.getWeddingName().fullWeddingName));
+            }
+
             taskToUnmark.unmark();
 
             String resultMsg = String.format(MESSAGE_SUCCESS,

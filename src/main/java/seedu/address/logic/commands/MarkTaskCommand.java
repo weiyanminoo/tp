@@ -22,6 +22,8 @@ public class MarkTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Task marked as done:\n%1$s\nIn Wedding: %2$s";
     public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";
     public static final String MESSAGE_INVALID_TASK_INDEX = "Invalid task index for wedding %1$s.";
+    public static final String MESSAGE_TASK_ALREADY_DONE =
+            "This task is already marked as done:\n%1$s\nIn Wedding: %2$s";
 
     private final WeddingId weddingId;
     private final int taskIndex;
@@ -50,6 +52,11 @@ public class MarkTaskCommand extends Command {
 
         try {
             WeddingTask taskToMark = wedding.getTasks().get(taskIndex - 1); // zero-based
+            // Check if task is already done
+            if (taskToMark.isDone()) {
+                throw new CommandException(String.format(MESSAGE_TASK_ALREADY_DONE,
+                        taskToMark, wedding.getWeddingName().fullWeddingName));
+            }
             taskToMark.markAsDone();
 
             String resultMsg = String.format(MESSAGE_SUCCESS,
