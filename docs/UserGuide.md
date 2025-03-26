@@ -27,7 +27,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory. 
    If you see the `.jar` file, you are in the correct directory. 
-   If not, you can change the directory by typing `cd` followed by the folder name in the command terminal  
+   If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.  
     
    _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac. 
    For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._  
