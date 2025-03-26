@@ -91,7 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * 
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Switches the view between wedding list and person list.
-     * 
+     *
      * @param showWeddingList true if wedding list should be shown, false if person
      *                        list should be shown
      */
