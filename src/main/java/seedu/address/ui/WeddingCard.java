@@ -41,7 +41,7 @@ public class WeddingCard extends UiPart<Region> {
         weddingId.setText("ID: " + wedding.getWeddingId().toString()); // Make it clearer
         weddingDate.setText(wedding.getWeddingDate().toString());
         weddingLocation.setText(wedding.getWeddingLocation().toString());
-        weddingTask.setText(wedding.getTasks().toString());
+        weddingTask.setText(wedding.getTasksString());
     }
 
     @Override
