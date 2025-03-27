@@ -70,6 +70,17 @@ public class Wedding {
     }
 
     /**
+     *
+     */
+    public String getTasksString() {
+        if (tasks.isEmpty()) {
+            return "No tasks found for this wedding";
+        }
+
+        return "There are " + tasks.size() + " tasks for this wedding";
+    }
+
+    /**
      * Adds a task to this wedding's task list.
      */
     public void addTask(WeddingTask task) {
