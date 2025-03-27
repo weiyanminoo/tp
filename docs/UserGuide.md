@@ -83,6 +83,9 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 **Notes about the command format:**<br>
 
+* Press 'TAB' to auto-complete the command you are typing in the command box.<br>
+  e.g. if you type `ad` and press 'TAB', it will auto-complete to `add ` and if you press it again it will auto-complete to 'addWedding' and if you press it again it will auto-complete to 'addTask'.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
