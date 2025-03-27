@@ -24,7 +24,9 @@ public class CommandBox extends UiPart<Region> {
     // List of available commands for autocompletion with proper case
     private static final List<String> COMMAND_LIST = Arrays.asList(
             "add", "clear", "delete", "edit", "exit", "find", "help", "list",
-            "tag", "untag", "filter", "addWedding", "deleteWedding", "editWedding", "listWedding");
+            "tag", "untag", "filter", "addWedding", "deleteWedding", "editWedding",
+            "listWedding", "listTask", "listWeddingByDate", "mark", "unmark",
+            "deleteTask", "addTask", "clear");
 
     private final CommandExecutor commandExecutor;
 
