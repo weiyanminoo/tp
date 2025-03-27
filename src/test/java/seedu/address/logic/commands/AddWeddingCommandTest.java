@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -43,7 +44,7 @@ public class AddWeddingCommandTest {
         // Create a valid wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
-                new WeddingDate("20-Feb-2025"),
+                new WeddingDate("20-Feb-2026"),
                 new WeddingLocation("Grand Ballroom")
         );
 
@@ -55,11 +56,11 @@ public class AddWeddingCommandTest {
     }
 
     @Test
-    public void execute_duplicateWedding_throwsCommandException() {
+    public void execute_duplicateWedding_throwsCommandException() throws ParseException {
         // Create a wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
-                new WeddingDate("20-Feb-2025"),
+                new WeddingDate("20-Feb-2026"),
                 new WeddingLocation("Grand Ballroom")
         );
         AddWeddingCommand addWeddingCommand = new AddWeddingCommand(validWedding);
@@ -71,15 +72,15 @@ public class AddWeddingCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         Wedding aliceWedding = new Wedding(
                 new WeddingName("Alice & Bob's Wedding"),
-                new WeddingDate("21-Feb-2025"),
+                new WeddingDate("21-Feb-2026"),
                 new WeddingLocation("Central Park")
         );
         Wedding bobWedding = new Wedding(
                 new WeddingName("Bob & Charlie's Wedding"),
-                new WeddingDate("22-Feb-2025"),
+                new WeddingDate("22-Feb-2026"),
                 new WeddingLocation("Garden")
         );
 
