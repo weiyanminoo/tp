@@ -183,7 +183,7 @@ public class WeddingTest {
     }
 
     @Test
-    public void getTasksString_noTask() {
+    public void getTasksString_noTask() throws ParseException {
         Wedding w = new Wedding(
                 new WeddingName("Alice & Bob"),
                 new WeddingDate("01-Dec-2025"),
@@ -193,7 +193,7 @@ public class WeddingTest {
     }
 
     @Test
-    public void getTasksString_oneTask() {
+    public void getTasksString_oneTask() throws ParseException {
         Wedding w = new Wedding(
                 new WeddingName("Alice & Bob"),
                 new WeddingDate("01-Dec-2025"),
@@ -204,7 +204,7 @@ public class WeddingTest {
     }
 
     @Test
-    public void getTasksString_multipleTasks() {
+    public void getTasksString_multipleTasks() throws ParseException {
         Wedding w = new Wedding(
                 new WeddingName("Alice & Bob"),
                 new WeddingDate("01-Dec-2025"),
