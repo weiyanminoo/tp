@@ -26,7 +26,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
     - [Listing all Wedding Tasks](#listing-all-wedding-tasks)
     - [Marking a Wedding Task](#marking-a-wedding-task)
     - [Unmarking a Wedding Task](#unmarking-a-wedding-task)
-    - [Deleting a Wedding Task](#deleting-a-wedding-taskk)
+    - [Deleting a Wedding Task](#deleting-a-wedding-task)
     - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding)
     - [Untagging a person](#untagging-a-person)
     - [Filtering contacts](#filtering-contacts)
