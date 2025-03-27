@@ -70,7 +70,7 @@ public class Wedding {
     }
 
     /**
-     *
+     * Returns a string representation of the tasks for this wedding for UI.
      */
     public String getTasksString() {
         if (tasks.isEmpty()) {
