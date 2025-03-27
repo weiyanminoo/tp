@@ -8,15 +8,40 @@
 
 EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. It streamlines planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
+
+- [Quick start](#quick-start)
+- [Features](#features)
+    - [Viewing help](#viewing-help--help)
+    - [Adding a person](#adding-a-person--add)
+    - [Editing a person](#editing-a-person--edit)
+    - [Deleting a person](#deleting-a-person--delete)
+    - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
+    - [Listing all persons](#listing-all-persons--list)
+    - [Adding a Wedding Event](#adding-a-wedding-event--addwedding)
+    - [Editing a Wedding Event](#editing-a-wedding-event--editwedding)
+    - [Deleting a Wedding Event](#deleting-a-wedding-event--deletewedding)
+    - [Listing all Wedding Events](#listing-all-wedding-events--listwedding)
+    - [Adding a Wedding Task](#adding-a-wedding-task--addtask)
+    - [Listing all Wedding Tasks](#listing-all-wedding-tasks--listtask)
+    - [Marking a Wedding Task](#marking-a-wedding-task--mark)
+    - [Unmarking a Wedding Task](#unmarking-a-wedding-task--unmark)
+    - [Deleting a Wedding Task](#deleting-a-wedding-task--deletetask)
+    - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding--tag)
+    - [Untagging a person](#untagging-a-person--untag)
+    - [Filtering contacts](#filtering-contacts--filter)
+    - [Clearing all entries](#clearing-all-entries--clear)
+    - [Exiting the program](#exiting-the-program--exit)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g mac vs windows) or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).   
+   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.3).
@@ -25,12 +50,12 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 1. Next, we need you to navigate to the folder you placed the `.jar` file in by opening a command terminal.
 
-1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory. 
-   If you see the `.jar` file, you are in the correct directory. 
-   If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.  
-    
-   _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac. 
-   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._  
+1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory.
+   If you see the `.jar` file, you are in the correct directory.
+   If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.
+
+   _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.
+   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._
 3. Once you navigate into the correct directory, i.e. when you type `ls`, you see easyweds.jar being listed, type the `java -jar easyweds.jar` command in the command terminal to run the application.<br>
    A Graphic User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -162,12 +187,13 @@ Shows a list of all persons in the contact book.
 
 Format: `list`
 
-
 ### Adding a Wedding Event : `addWedding`
 
 Adds a wedding event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
+
+* Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy"
 
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
@@ -358,6 +384,8 @@ Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g.
 
 _Details coming soon ..._
 
+[Back to content page](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -375,7 +403,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
 | Action            | Format, Examples                                                                                                                                               |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer` |
@@ -387,6 +414,11 @@ _Details coming soon ..._
 | **EditWedding**   | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding** | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
 | **ListWedding**   | `listWedding`                                                                                                                                                  |
+| **AddTask**       | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
+| **ListTask**      | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
+| **Mark**          | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |
+| **Unmark**        | `unmark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `unmark w/W1 i/1`                                                                                                |
+| **DeleteTask**    | `deleteTask w/WEDDING_ID i/TASK_INDEX` <br> e.g., `deleteTask w/W1 i/1`                                                                                        |
 | **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
 | **Untag**         | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
 | **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |

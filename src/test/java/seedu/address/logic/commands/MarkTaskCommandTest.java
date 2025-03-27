@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingId;
@@ -45,7 +46,7 @@ public class MarkTaskCommandTest {
     }
 
     @Test
-    public void execute_weddingNotFound_throwsCommandException() {
+    public void execute_weddingNotFound_throwsCommandException() throws ParseException {
         ModelStubWithOneWedding modelStub = new ModelStubWithOneWedding(new WeddingId("W2"), 2);
         MarkTaskCommand command = new MarkTaskCommand(INVALID_WEDDING_ID, 1);
 
@@ -55,7 +56,7 @@ public class MarkTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
         // Only 2 tasks
         ModelStubWithOneWedding modelStub = new ModelStubWithOneWedding(VALID_WEDDING_ID, 2);
         MarkTaskCommand command = new MarkTaskCommand(VALID_WEDDING_ID, 3);
@@ -94,11 +95,11 @@ public class MarkTaskCommandTest {
     private class ModelStubWithOneWedding extends ModelStub {
         private final ObservableList<Wedding> internalWeddingList = FXCollections.observableArrayList();
 
-        ModelStubWithOneWedding(WeddingId weddingId, int taskCount) {
+        ModelStubWithOneWedding(WeddingId weddingId, int taskCount) throws ParseException {
             Wedding singleWedding = new Wedding(
                     weddingId,
                     new WeddingName("Stub Wedding"),
-                    new WeddingDate("01-Jan-2025"),
+                    new WeddingDate("01-Jan-2026"),
                     new WeddingLocation("Stub Location"),
                     true
             );

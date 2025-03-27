@@ -28,7 +28,7 @@
             <Label fx:id="weddingId" styleClass="cell_small_label" text="\$wedding id" />
             <Label fx:id="weddingDate" styleClass="cell_small_label" text="\$date" />
             <Label fx:id="weddingLocation" styleClass="cell_small_label" text="\$location" />
-            <Label fx:id="weddingTask" styleClass="cell_small_label" text="\$task" />
+            <Label fx:id="weddingTask" styleClass="cell_small_label" text="\$task"/>
         </VBox>
     </GridPane>
 </HBox>

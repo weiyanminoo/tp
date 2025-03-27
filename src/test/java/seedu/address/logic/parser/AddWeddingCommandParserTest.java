@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddWeddingCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingLocation;
@@ -27,7 +28,7 @@ public class AddWeddingCommandParserTest {
     private final AddWeddingCommandParser parser = new AddWeddingCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws ParseException {
         // Example user input: " n/John & Jane's Wedding d/20-Dec-2025 l/Beach Resort"
         String userInput = WEDDING_NAME_DESC_JOHN + WEDDING_DATE_DESC_JOHN + WEDDING_LOCATION_DESC_JOHN;
 

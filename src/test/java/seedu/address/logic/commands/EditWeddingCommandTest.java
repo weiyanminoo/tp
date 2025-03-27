@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditWeddingCommand.EditWeddingDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,19 +27,35 @@ import seedu.address.testutil.WeddingBuilder;
  */
 public class EditWeddingCommandTest {
 
-    private static final Wedding WEDDING_ONE = new WeddingBuilder()
-            .withWeddingId("W001")
-            .withWeddingName("John & Jane Wedding")
-            .withWeddingDate("15-Jun-2025")
-            .withWeddingLocation("Central Park")
-            .build();
+    private static final Wedding WEDDING_ONE;
 
-    private static final Wedding WEDDING_TWO = new WeddingBuilder()
-            .withWeddingId("W002")
-            .withWeddingName("Alice & Bob Wedding")
-            .withWeddingDate("10-Sep-2025")
-            .withWeddingLocation("Beachside Resort")
-            .build();
+    static {
+        try {
+            WEDDING_ONE = new WeddingBuilder()
+                    .withWeddingId("W001")
+                    .withWeddingName("John & Jane Wedding")
+                    .withWeddingDate("15-Jun-2025")
+                    .withWeddingLocation("Central Park")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final Wedding WEDDING_TWO;
+
+    static {
+        try {
+            WEDDING_TWO = new WeddingBuilder()
+                    .withWeddingId("W002")
+                    .withWeddingName("Alice & Bob Wedding")
+                    .withWeddingDate("10-Sep-2025")
+                    .withWeddingLocation("Beachside Resort")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final Model model = createModelWithWeddings();
 
@@ -50,7 +67,7 @@ public class EditWeddingCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
         Wedding editedWedding = new WeddingBuilder()
                 .withWeddingId("W001")
                 .withWeddingName("Unique Wedding Name")

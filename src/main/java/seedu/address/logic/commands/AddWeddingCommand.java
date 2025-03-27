@@ -19,6 +19,7 @@ public class AddWeddingCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/John & Jane's Wedding d/20-Feb-2025 l/Grand Ballroom";
 
     public static final String MESSAGE_SUCCESS = "New wedding added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book";
 
     private final Wedding toAdd;
