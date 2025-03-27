@@ -16,7 +16,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 ## Quick start
 
 1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g mac vs windows) or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).<br>
+   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.3).
@@ -28,9 +28,9 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory.
    If you see the `.jar` file, you are in the correct directory.
    If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.
-<br>
-   _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.<br>
-   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal.
+
+   _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.
+   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._
 3. Once you navigate into the correct directory, i.e. when you type `ls`, you see easyweds.jar being listed, type the `java -jar easyweds.jar` command in the command terminal to run the application.<br>
    A Graphic User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
