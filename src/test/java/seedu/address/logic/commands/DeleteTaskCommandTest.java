@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingId;
@@ -46,7 +47,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_weddingNotFound_throwsCommandException() {
+    public void execute_weddingNotFound_throwsCommandException() throws ParseException {
         // Model stub with wedding ID "W2" instead of W999
         ModelStubWithOneWedding modelStub = new ModelStubWithOneWedding(new WeddingId("W2"));
         DeleteTaskCommand command = new DeleteTaskCommand(INVALID_WEDDING_ID, 1);
@@ -57,7 +58,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() throws ParseException {
         // Model stub has 2 tasks, so index 3 is invalid
         ModelStubWithOneWedding modelStub = new ModelStubWithOneWedding(VALID_WEDDING_ID);
         DeleteTaskCommand command = new DeleteTaskCommand(VALID_WEDDING_ID, 3);
@@ -102,11 +103,11 @@ public class DeleteTaskCommandTest {
     private class ModelStubWithOneWedding extends ModelStub {
         private final ObservableList<Wedding> internalWeddingList = FXCollections.observableArrayList();
 
-        ModelStubWithOneWedding(WeddingId weddingId) {
+        ModelStubWithOneWedding(WeddingId weddingId) throws ParseException {
             Wedding singleWedding = new Wedding(
                     weddingId,
                     new WeddingName("Stub Wedding"),
-                    new WeddingDate("01-Jan-2025"),
+                    new WeddingDate("01-Jan-2026"),
                     new WeddingLocation("Stub Location"),
                     true
             );

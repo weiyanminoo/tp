@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +32,7 @@ public class ListWeddingCommandTest {
     private Model expectedModel;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws ParseException {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -39,13 +40,13 @@ public class ListWeddingCommandTest {
         Wedding wedding1 = new Wedding(
                 WEDDING_ID_W1,
                 new WeddingName("John & Jane's Wedding"),
-                new WeddingDate("20-Feb-2025"),
+                new WeddingDate("20-Feb-2026"),
                 new WeddingLocation("Grand Ballroom"));
 
         Wedding wedding2 = new Wedding(
                 WEDDING_ID_W2,
                 new WeddingName("Bob & Alice's Wedding"),
-                new WeddingDate("21-Feb-2025"),
+                new WeddingDate("21-Feb-2026"),
                 new WeddingLocation("Garden Pavilion"));
 
         model.addWedding(wedding1);

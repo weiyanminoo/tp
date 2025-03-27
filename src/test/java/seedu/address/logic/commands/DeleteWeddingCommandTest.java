@@ -37,7 +37,7 @@ public class DeleteWeddingCommandTest {
     public void execute_validWeddingId_weddingDeleted() throws Exception {
         WeddingId weddingId = new WeddingId("W12345");
         WeddingName weddingName = new WeddingName("Wedding Name");
-        WeddingDate weddingDate = new WeddingDate("01-Jan-2025");
+        WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
         WeddingLocation weddingLocation = new WeddingLocation("Paris");
         Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
         model.addWedding(wedding);
@@ -60,7 +60,7 @@ public class DeleteWeddingCommandTest {
     public void execute_validWeddingId_tagRemovedFromAllContacts() throws Exception {
         WeddingId weddingId = new WeddingId("W123456");
         WeddingName weddingName = new WeddingName("Wedding Name");
-        WeddingDate weddingDate = new WeddingDate("01-Jan-2025");
+        WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
         WeddingLocation weddingLocation = new WeddingLocation("Paris");
         Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
         model.addWedding(wedding);

@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class WeddingDateTest {
 
     @Test
@@ -17,11 +19,11 @@ public class WeddingDateTest {
     }
 
     @Test
-    public void constructor_invalidWeddingDate_throwsIllegalArgumentException() {
-        // Must match "DD-MMM-YYYY", e.g. "20-Dec-2025"
-        // For instance, "2025-12-01" does NOT match, so it's invalid
-        String invalidDate = "2025-12-01";
-        assertThrows(IllegalArgumentException.class, () -> new WeddingDate(invalidDate));
+    public void constructor_invalidWeddingDate_throwsParseException() {
+        // Date should not be in the past
+        // For instance, "2024-12-01" is in the past, so it is invalid
+        String invalidDate = "2024-12-01";
+        assertThrows(ParseException.class, () -> new WeddingDate(invalidDate));
     }
 
     @Test
@@ -31,46 +33,61 @@ public class WeddingDateTest {
     }
 
     @Test
-    public void isValidDate_invalidFormats_returnsFalse() {
-        // Empty string
-        assertFalse(WeddingDate.isValidDate(""));
-        // Whitespace only
-        assertFalse(WeddingDate.isValidDate("   "));
+    public void isValidDate_validFormats_returnsTrue() throws ParseException {
+        assertTrue(WeddingDate.isValidDate("01-Jan-2026"));
+        assertTrue(WeddingDate.isValidDate("01/Jan/2026"));
+        assertTrue(WeddingDate.isValidDate("01.Jan.2026"));
+        assertTrue(WeddingDate.isValidDate("01 Jan 2026"));
 
-        // Wrong order or missing dashes
-        assertFalse(WeddingDate.isValidDate("2025-Dec-20"));
-        assertFalse(WeddingDate.isValidDate("20-Dec2025"));
-        assertFalse(WeddingDate.isValidDate("20/Dec/2025"));
+        assertTrue(WeddingDate.isValidDate("2026-01-01"));
+        assertTrue(WeddingDate.isValidDate("2026/01/01"));
+        assertTrue(WeddingDate.isValidDate("2026.01.01"));
+        assertTrue(WeddingDate.isValidDate("2026 01 01"));
 
-        // Month not exactly 3 letters
-        assertFalse(WeddingDate.isValidDate("20-December-2025"));
-        assertFalse(WeddingDate.isValidDate("20-De-2025"));
+        assertTrue(WeddingDate.isValidDate("2026-Jan-01"));
+        assertTrue(WeddingDate.isValidDate("2026/Jan/01"));
+        assertTrue(WeddingDate.isValidDate("2026.Jan.01"));
+        assertTrue(WeddingDate.isValidDate("2026 Jan 01"));
+        assertTrue(WeddingDate.isValidDate("2026Jan01"));
 
-        // Year not 4 digits
-        assertFalse(WeddingDate.isValidDate("20-Dec-25"));
-        assertFalse(WeddingDate.isValidDate("20-Dec-202"));
+        assertTrue(WeddingDate.isValidDate("2026-January-01"));
+        assertTrue(WeddingDate.isValidDate("2026/January/01"));
+        assertTrue(WeddingDate.isValidDate("2026.January.01"));
+        assertTrue(WeddingDate.isValidDate("2026 January 01"));
+        assertTrue(WeddingDate.isValidDate("2026January01"));
+
+        assertTrue(WeddingDate.isValidDate("01-2026-01"));
+        assertTrue(WeddingDate.isValidDate("01/2026/01"));
+        assertTrue(WeddingDate.isValidDate("01.2026.01"));
+        assertTrue(WeddingDate.isValidDate("01 2026 01"));
+
+        assertTrue(WeddingDate.isValidDate("01-01-2026"));
+        assertTrue(WeddingDate.isValidDate("01/01/2026"));
+        assertTrue(WeddingDate.isValidDate("01.01.2026"));
+        assertTrue(WeddingDate.isValidDate("01 01 2026"));
+        assertTrue(WeddingDate.isValidDate("01012026"));
+
+        assertTrue(WeddingDate.isValidDate("01-Jan-2026"));
+        assertTrue(WeddingDate.isValidDate("01/Jan/2026"));
+        assertTrue(WeddingDate.isValidDate("01.Jan.2026"));
+        assertTrue(WeddingDate.isValidDate("01 Jan 2026"));
+        assertTrue(WeddingDate.isValidDate("01Jan2026"));
+
+        assertTrue(WeddingDate.isValidDate("01-January-2026"));
+        assertTrue(WeddingDate.isValidDate("01/January/2026"));
+        assertTrue(WeddingDate.isValidDate("01.January.2026"));
+        assertTrue(WeddingDate.isValidDate("01 January 2026"));
+        assertTrue(WeddingDate.isValidDate("01January2026"));
     }
 
     @Test
-    public void isValidDate_validFormats_returnsTrue() {
-        // Single-digit day
-        assertTrue(WeddingDate.isValidDate("1-Jan-2025"));
-        // Double-digit day
-        assertTrue(WeddingDate.isValidDate("20-Dec-2025"));
-        // Edge-case examples
-        assertTrue(WeddingDate.isValidDate("31-Jan-9999"));
-        // Mixed-case month is allowed by [A-Za-z]{3}
-        assertTrue(WeddingDate.isValidDate("10-dEc-2025"));
-    }
-
-    @Test
-    public void toString_sameValue_equals() {
+    public void toString_sameValue_equals() throws ParseException {
         WeddingDate date = new WeddingDate("20-Dec-2025");
         assertEquals("20-Dec-2025", date.toString());
     }
 
     @Test
-    public void equals_sameValue_returnsTrue() {
+    public void equals_sameValue_returnsTrue() throws ParseException {
         WeddingDate date1 = new WeddingDate("20-Dec-2025");
         WeddingDate date2 = new WeddingDate("20-Dec-2025");
         assertEquals(date1, date2);
@@ -78,7 +95,7 @@ public class WeddingDateTest {
     }
 
     @Test
-    public void equals_differentValue_returnsFalse() {
+    public void equals_differentValue_returnsFalse() throws ParseException {
         WeddingDate date1 = new WeddingDate("20-Dec-2025");
         WeddingDate date2 = new WeddingDate("21-Dec-2025");
         assertNotEquals(date1, date2);
