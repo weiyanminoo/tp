@@ -8,8 +8,33 @@
 
 EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. It streamlines planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
+
+- [Quick start](#quick-start)
+- [Features](#features)
+    - [Viewing help](#viewing-help--help)
+    - [Adding a person](#adding-a-person--add)
+    - [Editing a person](#editing-a-person--edit)
+    - [Deleting a person](#deleting-a-person--delete)
+    - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
+    - [Listing all persons](#listing-all-persons--list)
+    - [Adding a Wedding Event](#adding-a-wedding-event--addwedding)
+    - [Editing a Wedding Event](#editing-a-wedding-event--editwedding)
+    - [Deleting a Wedding Event](#deleting-a-wedding-event--deletewedding)
+    - [Listing all Wedding Events](#listing-all-wedding-events--listwedding)
+    - [Adding a Wedding Task](#adding-a-wedding-task--addtask)
+    - [Listing all Wedding Tasks](#listing-all-wedding-tasks--listtask)
+    - [Marking a Wedding Task](#marking-a-wedding-task--mark)
+    - [Unmarking a Wedding Task](#unmarking-a-wedding-task--unmark)
+    - [Deleting a Wedding Task](#deleting-a-wedding-task--deletetask)
+    - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding--tag)
+    - [Untagging a person](#untagging-a-person--untag)
+    - [Filtering contacts](#filtering-contacts--filter)
+    - [Clearing all entries](#clearing-all-entries--clear)
+    - [Exiting the program](#exiting-the-program--exit)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -162,12 +187,13 @@ Shows a list of all persons in the contact book.
 
 Format: `list`
 
-
 ### Adding a Wedding Event : `addWedding`
 
 Adds a wedding event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
+
+* Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy"
 
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
@@ -354,6 +380,8 @@ Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g.
 
 _Details coming soon ..._
 
+[Back to content page](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -371,7 +399,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
 | Action            | Format, Examples                                                                                                                                               |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer` |
@@ -383,6 +410,11 @@ _Details coming soon ..._
 | **EditWedding**   | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding** | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
 | **ListWedding**   | `listWedding`                                                                                                                                                  |
+| **AddTask**       | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
+| **ListTask**      | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
+| **Mark**          | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |
+| **Unmark**        | `unmark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `unmark w/W1 i/1`                                                                                                |
+| **DeleteTask**    | `deleteTask w/WEDDING_ID i/TASK_INDEX` <br> e.g., `deleteTask w/W1 i/1`                                                                                        |
 | **Tag**           | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
 | **Untag**         | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
 | **Filter**        | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
