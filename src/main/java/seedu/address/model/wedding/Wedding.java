@@ -77,6 +77,9 @@ public class Wedding {
             return "No tasks found for this wedding";
         }
 
+        if (tasks.size() == 1) {
+            return "There is 1 task for this wedding";
+        }
         return "There are " + tasks.size() + " tasks for this wedding";
     }
 

@@ -178,4 +178,38 @@ public class WeddingTest {
                 w.getWeddingName(), w.getWeddingId(), w.getWeddingDate(), w.getWeddingLocation());
         assertEquals(expected, w.toString());
     }
+
+    @Test
+    public void getTasksString_noTask() {
+        Wedding w = new Wedding(
+                new WeddingName("Alice & Bob"),
+                new WeddingDate("01-Dec-2025"),
+                new WeddingLocation("Paris")
+        );
+        assertEquals("No tasks found for this wedding", w.getTasksString());
+    }
+
+    @Test
+    public void getTasksString_oneTask() {
+        Wedding w = new Wedding(
+                new WeddingName("Alice & Bob"),
+                new WeddingDate("01-Dec-2025"),
+                new WeddingLocation("Paris")
+        );
+        w.addTask(new WeddingTask("Task 1"));
+        assertEquals("There is 1 task for this wedding", w.getTasksString());
+    }
+
+    @Test
+    public void getTasksString_multipleTasks() {
+        Wedding w = new Wedding(
+                new WeddingName("Alice & Bob"),
+                new WeddingDate("01-Dec-2025"),
+                new WeddingLocation("Paris")
+        );
+        w.addTask(new WeddingTask("Task 1"));
+        w.addTask(new WeddingTask("Task 2"));
+        w.addTask(new WeddingTask("Task 3"));
+        assertEquals("There are 3 tasks for this wedding", w.getTasksString());
+    }
 }
