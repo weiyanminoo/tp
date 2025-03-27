@@ -91,6 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -121,7 +122,9 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Switches the view between wedding list and person list.
-     * @param showWeddingList true if wedding list should be shown, false if person list should be shown
+     *
+     * @param showWeddingList true if wedding list should be shown, false if person
+     *                        list should be shown
      */
     void switchView(boolean showWeddingList) {
         personListPanelPlaceholder.getChildren().clear();
@@ -164,12 +167,14 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/easyweds_logo.png"));
+        // Load the EW logo from the images directory
+        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
         logoImageView.setImage(logo);
     }
 
     /**
-     * Fills up all the placeholders of this window but with wedding instead of person.
+     * Fills up all the placeholders of this window but with wedding instead of
+     * person.
      * This is used when the user wants to view the wedding list.
      */
     void fillInnerPartsWedding() {
@@ -184,6 +189,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // Load the EW logo from the images directory
+        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
+        logoImageView.setImage(logo);
     }
 
     /**
