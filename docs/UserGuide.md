@@ -234,6 +234,11 @@ Shows a list of all wedding events in the contact book.
 
 Format: `listWedding`
 
+### Listing all Wedding Events sorted by earliest date : `listWeddingSorted`
+
+Shows a list of all wedding events in the contact book sorted by the earliest date.
+
+Format: `listWeddingByDate`
 
 ### Adding a Wedding Task : `addTask`
 
@@ -245,7 +250,6 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 
 Examples:
 * `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
-
 
 ### Listing all Wedding Tasks : `listTask`
 
