@@ -26,7 +26,7 @@ public class CommandBox extends UiPart<Region> {
             "add", "clear", "delete", "edit", "exit", "find", "help", "list",
             "tag", "untag", "filter", "addWedding", "deleteWedding", "editWedding",
             "listWedding", "listTask", "listWeddingByDate", "mark", "unmark",
-            "deleteTask", "addTask", "clear")
+            "deleteTask", "addTask", "clear");
 
     private final CommandExecutor commandExecutor;
 
