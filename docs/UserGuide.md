@@ -83,6 +83,9 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 **Notes about the command format:**<br>
 
+* Press 'TAB' to auto-complete the command you are typing in the command box.<br>
+  e.g. if you type `ad` and press 'TAB', it will auto-complete to `add ` and if you press it again it will auto-complete to 'addWedding' and if you press it again it will auto-complete to 'addTask'.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -231,6 +234,11 @@ Shows a list of all wedding events in the contact book.
 
 Format: `listWedding`
 
+### Listing all Wedding Events sorted by earliest date : `listWeddingSorted`
+
+Shows a list of all wedding events in the contact book sorted by the earliest date.
+
+Format: `listWeddingByDate`
 
 ### Adding a Wedding Task : `addTask`
 
@@ -242,7 +250,6 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 
 Examples:
 * `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
-
 
 ### Listing all Wedding Tasks : `listTask`
 
