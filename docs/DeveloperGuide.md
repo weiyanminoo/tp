@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. The name of the new contact matches an existing contact in the list.
 
     * 2b1. An error message is shown.
-  
+
     * 2b2. User has to confirm whether to add this duplicate contact.
 
         Use case ends.

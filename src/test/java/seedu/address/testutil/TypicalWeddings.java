@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
@@ -16,19 +17,35 @@ import seedu.address.model.wedding.WeddingName;
  */
 public class TypicalWeddings {
 
-    public static final Wedding WEDDING_ONE = new Wedding(
-            new WeddingId("W001"),
-            new WeddingName("John & Jane Wedding"),
-            new WeddingDate("15-Jun-2025"),
-            new WeddingLocation("Central Park")
-    );
+    public static final Wedding WEDDING_ONE;
 
-    public static final Wedding WEDDING_TWO = new Wedding(
-            new WeddingId("W002"),
-            new WeddingName("Cheryl & Ben Wedding"),
-            new WeddingDate("15-Jun-2025"),
-            new WeddingLocation("Central Park")
-    );
+    static {
+        try {
+            WEDDING_ONE = new Wedding(
+                    new WeddingId("W001"),
+                    new WeddingName("John & Jane Wedding"),
+                    new WeddingDate("15-Jun-2025"),
+                    new WeddingLocation("Central Park")
+            );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static final Wedding WEDDING_TWO;
+
+    static {
+        try {
+            WEDDING_TWO = new Wedding(
+                    new WeddingId("W002"),
+                    new WeddingName("Cheryl & Ben Wedding"),
+                    new WeddingDate("15-Jun-2025"),
+                    new WeddingLocation("Central Park")
+            );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private TypicalWeddings() {
         // prevents instantiation

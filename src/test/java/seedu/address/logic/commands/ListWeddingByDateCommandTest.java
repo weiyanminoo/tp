@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -23,7 +24,7 @@ import seedu.address.testutil.PersonBuilder;
 /**
  *
  */
-public class ListWeddingCommandTest {
+public class ListWeddingByDateCommandTest {
     private static final WeddingId WEDDING_ID_W1 = new WeddingId("W1");
     private static final WeddingId WEDDING_ID_W2 = new WeddingId("W2");
     private static final WeddingId WEDDING_ID_NONEXISTENT = new WeddingId("W999");
@@ -46,7 +47,7 @@ public class ListWeddingCommandTest {
         Wedding wedding2 = new Wedding(
                 WEDDING_ID_W2,
                 new WeddingName("Bob & Alice's Wedding"),
-                new WeddingDate("21-Feb-2026"),
+                new WeddingDate("19-Feb-2026"),
                 new WeddingLocation("Garden Pavilion"));
 
         model.addWedding(wedding1);
@@ -69,13 +70,13 @@ public class ListWeddingCommandTest {
 
     @Test
     public void equals() {
-        ListWeddingCommand listWeddingCommand = new ListWeddingCommand();
-        ListWeddingCommand listWeddingCommandCopy = new ListWeddingCommand();
+        ListWeddingByDateCommand listWeddingByDateCommand = new ListWeddingByDateCommand();
+        ListWeddingByDateCommand listWeddingByDateCommandCopy = new ListWeddingByDateCommand();
         ListCommand listCommand = new ListCommand();
 
-        assertTrue(listWeddingCommand.equals(listWeddingCommand));
-        assertTrue(listWeddingCommand.equals(listWeddingCommandCopy));
-        assertFalse(listWeddingCommand.equals(listCommand));
+        assertTrue(listWeddingByDateCommand.equals(listWeddingByDateCommand));
+        assertTrue(listWeddingByDateCommand.equals(listWeddingByDateCommandCopy));
+        assertFalse(listWeddingByDateCommand.equals(listCommand));
     }
 
     @Test
@@ -83,5 +84,20 @@ public class ListWeddingCommandTest {
 
         assertCommandSuccess(new ListWeddingCommand(), model,
                 ListWeddingCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_showsListSortedByDate() {
+        expectedModel.setSortWeddingsByDate(true);
+
+        assertCommandSuccess(new ListWeddingByDateCommand(), model,
+                ListWeddingByDateCommand.MESSAGE_SUCCESS, expectedModel);
+
+        assertTrue(model.isSortingWeddingsByDate());
+
+        assertEquals("Bob & Alice's Wedding",
+                model.getFilteredWeddingList().get(0).getWeddingName().toString());
+        assertEquals("John & Jane's Wedding",
+                model.getFilteredWeddingList().get(1).getWeddingName().toString());
     }
 }

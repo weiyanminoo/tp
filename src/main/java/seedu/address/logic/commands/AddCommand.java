@@ -26,7 +26,7 @@ public class AddCommand extends Command implements ForceableCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_ADDRESS + "ADDRESS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -85,7 +85,7 @@ public class AddCommand extends Command implements ForceableCommand {
         if (!isForce && model.hasPerson(toAdd)) {
             // In normal mode, if a duplicate exists, store this command and signal confirmation required.
             ConfirmationManager.getInstance().setPendingCommand(this);
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true);
+            return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, false, true);
         }
 
         if (isForce) {

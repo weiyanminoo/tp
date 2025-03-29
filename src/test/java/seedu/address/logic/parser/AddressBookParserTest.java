@@ -31,6 +31,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.ListWeddingByDateCommand;
 import seedu.address.logic.commands.ListWeddingCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -105,6 +106,13 @@ public class AddressBookParserTest {
     public void parseCommand_listWedding() throws Exception {
         assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD) instanceof ListWeddingCommand);
         assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD + " 3") instanceof ListWeddingCommand);
+    }
+
+    @Test
+    public void parseCommand_listWeddingByDate() throws Exception {
+        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD) instanceof ListWeddingByDateCommand);
+        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD + " 3")
+                instanceof ListWeddingByDateCommand);
     }
 
     @Test
@@ -200,6 +208,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() throws Exception {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

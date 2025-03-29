@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -126,6 +127,27 @@ public class ModelStub implements Model {
     @Override
     public void updateFilteredWeddingList(Predicate<Wedding> predicate) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setSortWeddingsByDate(boolean sortByDate) {
+
+    }
+
+    @Override
+    public boolean isSortingWeddingsByDate() {
+        return false;
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the
+     * internal sorted list using the provided comparator
+     *
+     * @param comparator
+     */
+    @Override
+    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
+        return null;
     }
 
     @Override
