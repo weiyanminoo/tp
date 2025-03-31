@@ -215,4 +215,18 @@ public class EditCommandTest {
                 + editPersonDescriptor + ", isForce=false}";
         assertEquals(expected, editCommand.toString());
     }
+
+    @Test
+    public void createForceCommand_returnsCommandWithForceTrue() {
+        // Construct a normal EditCommand.
+        EditCommand normalEditCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        // Create the forced version using createForceCommand().
+        ForceableCommand forceable = normalEditCommand.createForceCommand();
+        assertTrue(forceable instanceof EditCommand);
+        EditCommand forcedEditCommand = (EditCommand) forceable;
+        // Construct the expected forced EditCommand.
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY, true);
+        assertEquals(expectedCommand, forcedEditCommand);
+    }
+
 }
