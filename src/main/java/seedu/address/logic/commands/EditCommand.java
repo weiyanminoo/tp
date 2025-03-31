@@ -27,7 +27,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the contact book.
  */
 public class EditCommand extends Command implements ForceableCommand {
 

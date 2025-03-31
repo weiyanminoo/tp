@@ -6,7 +6,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the contact book.
  * <p>
  * In normal mode, if the address book is not empty, the command will signal that confirmation is required
  * to avoid accidental clearing. The command is stored in the ConfirmationManager so that it can be re-executed
