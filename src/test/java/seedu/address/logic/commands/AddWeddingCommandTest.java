@@ -259,6 +259,11 @@ public class AddWeddingCommandTest {
         public seedu.address.commons.core.GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void forceSetPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
