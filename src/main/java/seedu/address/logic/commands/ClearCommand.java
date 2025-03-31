@@ -23,7 +23,7 @@ public class ClearCommand extends Command implements ForceableCommand {
             + "and input 'y' to confirm.\n"
             + "Else, edit your input directly and press 'Enter'. ";
 
-    private final boolean isForce;
+    private final boolean isForced;
 
     /**
      * Creates a ClearCommand in normal mode.
@@ -35,11 +35,11 @@ public class ClearCommand extends Command implements ForceableCommand {
     /**
      * Creates a ClearCommand with the specified mode.
      *
-     * @param isForce If true, the confirmation requirement is bypassed.
+     * @param isForced If true, the confirmation requirement is bypassed.
      */
-    public ClearCommand(boolean isForce) {
-        requireNonNull(isForce);
-        this.isForce = isForce;
+    public ClearCommand(boolean isForced) {
+        requireNonNull(isForced);
+        this.isForced = isForced;
     }
 
     /**
@@ -57,7 +57,7 @@ public class ClearCommand extends Command implements ForceableCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         // Check if the address book is not empty
-        if (!isForce && !model.getAddressBook().getPersonList().isEmpty()) {
+        if (!isForced && !model.getAddressBook().getPersonList().isEmpty()) {
             ConfirmationManager.getInstance().setPendingCommand(this);
             return new CommandResult(MESSAGE_CONFIRMATION_REQUIRED, false, false, false, true);
         }
@@ -85,11 +85,11 @@ public class ClearCommand extends Command implements ForceableCommand {
             return false;
         }
         ClearCommand otherClear = (ClearCommand) other;
-        return isForce == otherClear.isForce;
+        return isForced == otherClear.isForced;
     }
 
     @Override
     public String toString() {
-        return getClass().getCanonicalName() + "{isForce=" + isForce + "}";
+        return getClass().getCanonicalName() + "{isForced=" + isForced + "}";
     }
 }
