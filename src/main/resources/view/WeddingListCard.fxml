@@ -23,4 +23,3 @@
         <Label fx:id="weddingTask" styleClass="cell_small_label" />
     </VBox>
 </HBox>
-

@@ -109,6 +109,7 @@ public class FilterCommandTest {
                 wedding.getWeddingLocation());
 
         expectedModel.updateFilteredPersonList(new TagMatchesPredicate(WEDDING_ID_W1));
+        expectedModel.updateFilteredWeddingList(w -> w.equals(wedding));
 
         assertCommandSuccess(filterCommand, model, expectedMessage, expectedModel);
 
@@ -143,6 +144,7 @@ public class FilterCommandTest {
                 emptyWedding.getWeddingLocation().venue);
 
         expectedModel.updateFilteredPersonList(new TagMatchesPredicate(emptyWeddingId));
+        expectedModel.updateFilteredWeddingList(w -> w.equals(emptyWedding));
 
         assertCommandSuccess(filterCommand, model, expectedMessage, expectedModel);
         assertEquals(0, model.getFilteredPersonList().size());

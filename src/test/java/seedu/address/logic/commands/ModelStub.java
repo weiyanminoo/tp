@@ -135,19 +135,8 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean isSortingWeddingsByDate() {
-        return false;
-    }
+    public void setSortWeddingsById() {
 
-    /**
-     * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the
-     * internal sorted list using the provided comparator
-     *
-     * @param comparator
-     */
-    @Override
-    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
-        return null;
     }
 
     @Override

@@ -139,12 +139,6 @@ public interface Model {
     void setSortWeddingsById();
 
     /**
-     * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the
-     * internal sorted list using the provided comparator
-     */
-    ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator);
-
-    /**
      * Tags a person with the given tag.
      */
     void tagPerson(Person person, Tag tag);

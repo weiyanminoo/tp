@@ -27,7 +27,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.SortByWeddingDateCommand;
-import seedu.address.logic.commands.SortByWeddingIDCommand;
+import seedu.address.logic.commands.SortByWeddingIdCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.UntagCommand;
@@ -100,8 +100,8 @@ public class AddressBookParser {
         case DeleteWeddingCommand.COMMAND_WORD:
             return new DeleteWeddingCommandParser().parse(arguments);
 
-        case SortByWeddingIDCommand.COMMAND_WORD:
-            return new SortByWeddingIDCommand();
+        case SortByWeddingIdCommand.COMMAND_WORD:
+            return new SortByWeddingIdCommand();
 
         case SortByWeddingDateCommand.COMMAND_WORD:
             return new SortByWeddingDateCommand();

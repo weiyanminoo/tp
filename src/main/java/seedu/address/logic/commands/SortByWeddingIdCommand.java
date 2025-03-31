@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Sorts the wedding list by wedding ID.
  */
-public class SortByWeddingIDCommand extends Command {
+public class SortByWeddingIdCommand extends Command {
     public static final String COMMAND_WORD = "sortWID";
     public static final String MESSAGE_SUCCESS = "Wedding list sorted by Wedding ID.";
 
