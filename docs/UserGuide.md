@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
 # EasyWeds User Guide
@@ -18,16 +18,16 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
     - [Deleting a person](#deleting-a-person-delete)
     - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
     - [Listing all persons](#listing-all-persons-list)
-    - [Adding a Wedding Event](#adding-a-wedding-event-addWedding)
-    - [Editing a Wedding Event](#editing-a-wedding-event-editWedding)
-    - [Deleting a Wedding Event](#deleting-a-wedding-event-deleteWedding)
-    - [Listing all Wedding Events](#listing-all-wedding-events-listWedding)
-    - [Listing all Wedding Events sorted by earliest date](#listing-all-wedding-events-sorted-by-earliest-date-listWeddingSorted)
-    - [Adding a Wedding Task](#adding-a-wedding-task-addTask)
-    - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listTask)
+    - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
+    - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
+    - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
+    - [Listing all Wedding Events](#listing-all-wedding-events-listwedding)
+    - [Listing all Wedding Events sorted by earliest date](#listing-all-wedding-events-sorted-by-earliest-date-listweddingsorted)
+    - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
+    - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
     - [Marking a Wedding Task](#marking-a-wedding-task-mark)
     - [Unmarking a Wedding Task](#unmarking-a-wedding-task-unmark)
-    - [Deleting a Wedding Task](#deleting-a-wedding-task-deleteTask)
+    - [Deleting a Wedding Task](#deleting-a-wedding-task-deletetask)
     - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding-tag)
     - [Untagging a person](#untagging-a-person-untag)
     - [Filtering contacts](#filtering-contacts-filter)
@@ -109,6 +109,7 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+* Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 
 
 ### Adding a person : `add`
@@ -117,6 +118,10 @@ Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
+* Input values must be provided for all fields.
+* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter. 
+  * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
+  * This applies to all fields.
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
@@ -203,10 +208,15 @@ Adds a wedding event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
 
-* Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy"
+* Input values must be provided for all fields.
+* If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
+    * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
+    * This applies to all fields.
+* Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".
+* Date must be a valid date and in the future.
 
 Examples:
-* `addWedding n/John & Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`
+* `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
 
 
 ### Editing a Wedding Event : `editWedding`
@@ -388,11 +398,6 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
-
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 [Back to content page](#table-of-contents)
 
