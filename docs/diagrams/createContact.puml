@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":UI" as UI #Green
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":AddCommandParser" as AddCommandParser #Blue
+participant ":ParserUtil" as ParserUtil #Blue
+participant "a:AddCommand" as AddCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> UI: "addContact n/John Doe..."
+UI -> LM: execute("addContact n/John Doe...")
+activate LM
+
+LM -> ABP: parseCommand("addContact n/John Doe...")
+activate ABP
+ABP -> "AddCommandParser": parse(arguments)
+activate "AddCommandParser"
+"AddCommandParser" -> ParserUtil: parseName, parsePhone, etc.
+activate ParserUtil
+ParserUtil --> "AddCommandParser"
+deactivate ParserUtil
+
+"AddCommandParser" -> "AddCommand": new AddCommand(name, phone, etc.)
+activate "AddCommand"
+"AddCommand" --> "AddCommandParser"
+deactivate "AddCommand"
+
+"AddCommandParser" --> ABP: a
+deactivate "AddCommandParser"
+
+ABP --> LM: a
+deactivate ABP
+
+LM -> "AddCommand": execute(m)
+activate "AddCommand"
+
+"AddCommand" -> Model: addPerson(p)
+activate Model
+Model --> "AddCommand"
+deactivate Model
+
+"AddCommand" -> CommandResult
+activate CommandResult
+"CommandResult" --> "AddCommand"
+deactivate CommandResult
+
+"AddCommand" --> LM: r
+deactivate "AddCommand"
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM -> UI: return CommandResult
+deactivate LM
+UI -> User: Display success message
+@enduml
