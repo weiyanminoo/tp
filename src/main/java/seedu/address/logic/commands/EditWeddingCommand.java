@@ -18,7 +18,7 @@ import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
 /**
- * Edits the details of an existing wedding event in the address book.
+ * Edits the details of an existing wedding event in the contact book.
  */
 public class EditWeddingCommand extends Command {
 
