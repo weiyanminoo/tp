@@ -17,7 +17,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
     - [Editing a person](#editing-a-person-edit)
     - [Deleting a person](#deleting-a-person-delete)
     - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
-    - [Listing all persons](#listing-all-persons-list)
+    - [Listing all Persons and Wedding Events](#listing-all-persons-list)
     - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
     - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
     - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
@@ -194,7 +194,7 @@ Examples:
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
 
-### Listing all persons : `list`
+### Listing all Persons and Wedding Events : `list`
 
 Shows a list of all persons and weddings in the contact book.
 
@@ -362,9 +362,9 @@ Format: `filter WEDDING_ID`
 * Only the Wedding event corresponding to the `WEDDING_ID` will be displayed in the list of Weddings.
 
 Examples:
-* `filter W4` displays the details of `W4` and returns the contacts that are tagged to `W4`.
+* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
 
-  ![result for 'filter W4'](images/filterW4.png)
+  ![result for 'filter W2'](images/filterW2.png)
 
 
 ### Clearing all entries : `clear`
