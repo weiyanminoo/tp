@@ -62,6 +62,22 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Forcefully updates the specified person in the list by bypassing duplicate checks.
+     * @param target the person to be updated.
+     * @param editedPerson the new details for the person.
+     * @throws PersonNotFoundException if {@code target} is not found.
+     */
+    public void forceSetPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        // Bypass duplicate checks and update the person.
+        internalList.set(index, editedPerson);
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.

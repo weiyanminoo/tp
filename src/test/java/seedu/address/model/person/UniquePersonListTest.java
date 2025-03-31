@@ -173,4 +173,31 @@ public class UniquePersonListTest {
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
+
+    /**
+     * Tests that calling forceSetPerson on a target that is not in the list
+     * throws a PersonNotFoundException.
+     */
+    @Test
+    public void forceSetPerson_targetNotInList_throwsPersonNotFoundException() {
+        // ALICE is not in the list initially.
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.forceSetPerson(ALICE, ALICE));
+    }
+
+    /**
+     * Tests that calling forceSetPerson on an existing target successfully updates the person's details,
+     * bypassing duplicate checks.
+     */
+    @Test
+    public void forceSetPerson_validTarget_updatesPersonSuccessfully() {
+        uniquePersonList.add(ALICE);
+        // Create an edited version of ALICE.
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress("Forced New Address")
+                .build();
+        uniquePersonList.forceSetPerson(ALICE, editedAlice);
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(editedAlice);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
 }
