@@ -65,8 +65,11 @@
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          <StackPane fx:id="weddingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <!-- Using SplitPane to divide the space equally between Person and Wedding lists -->
+          <SplitPane dividerPositions="0.5">
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="weddingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </SplitPane>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
