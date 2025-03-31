@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the contact book.
  */
 public class AddCommand extends Command implements ForceableCommand {
 
@@ -42,7 +42,7 @@ public class AddCommand extends Command implements ForceableCommand {
             + "Else, edit your input directly and press 'Enter'. ";
 
     private final Person toAdd;
-    private final boolean isForce;
+    private final boolean isForced;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -50,7 +50,7 @@ public class AddCommand extends Command implements ForceableCommand {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
-        isForce = false;
+        isForced = false;
     }
 
     /**
@@ -58,12 +58,12 @@ public class AddCommand extends Command implements ForceableCommand {
      * In force mode, duplicate warnings are bypassed.
      *
      * @param person The person to add.
-     * @param isForce A flag indicating that duplicates should be accepted.
+     * @param isForced If true, bypass duplicate checks and force-add the person.
      */
-    public AddCommand(Person person, boolean isForce) {
+    public AddCommand(Person person, boolean isForced) {
         requireNonNull(person);
         toAdd = person;
-        this.isForce = isForce;
+        this.isForced = isForced;
     }
 
     /**
@@ -82,13 +82,13 @@ public class AddCommand extends Command implements ForceableCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!isForce && model.hasPerson(toAdd)) {
+        if (!isForced && model.hasPerson(toAdd)) {
             // In normal mode, if a duplicate exists, store this command and signal confirmation required.
             ConfirmationManager.getInstance().setPendingCommand(this);
             return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true);
         }
 
-        if (isForce) {
+        if (isForced) {
             // Force mode: bypass duplicate check.
             model.forceAddPerson(toAdd);
         } else {
@@ -115,14 +115,14 @@ public class AddCommand extends Command implements ForceableCommand {
         }
 
         AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd) && isForce == otherAddCommand.isForce;
+        return toAdd.equals(otherAddCommand.toAdd) && isForced == otherAddCommand.isForced;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("toAdd", toAdd)
-                .add("isForce", isForce)
+                .add("isForced", isForced)
                 .toString();
     }
 }

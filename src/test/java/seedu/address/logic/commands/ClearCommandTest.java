@@ -92,7 +92,7 @@ public class ClearCommandTest {
     @Test
     public void toString_normalMode_returnsExpectedString() {
         ClearCommand clearCommand = new ClearCommand(false);
-        String expected = ClearCommand.class.getCanonicalName() + "{isForce=false}";
+        String expected = ClearCommand.class.getCanonicalName() + "{isForced=false}";
         assertEquals(expected, clearCommand.toString());
     }
 
@@ -102,7 +102,7 @@ public class ClearCommandTest {
     @Test
     public void toString_forceMode_returnsExpectedString() {
         ClearCommand clearCommand = new ClearCommand(true);
-        String expected = ClearCommand.class.getCanonicalName() + "{isForce=true}";
+        String expected = ClearCommand.class.getCanonicalName() + "{isForced=true}";
         assertEquals(expected, clearCommand.toString());
     }
 

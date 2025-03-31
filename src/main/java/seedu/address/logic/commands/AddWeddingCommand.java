@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.wedding.Wedding;
 
 /**
- * Adds a Wedding event to the address book.
+ * Adds a Wedding event to the contact book.
  */
 public class AddWeddingCommand extends Command {
 

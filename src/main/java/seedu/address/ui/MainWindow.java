@@ -38,8 +38,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-    private boolean isShowWeddingList = false;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
