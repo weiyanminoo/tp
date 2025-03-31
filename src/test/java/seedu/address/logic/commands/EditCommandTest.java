@@ -99,16 +99,18 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicatePersonUnfilteredList_failure() throws Exception {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandResult commandResult = editCommand.execute(model);
+        assertEquals(EditCommand.MESSAGE_DUPLICATE_PERSON, commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequiresConfirmation());
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicatePersonFilteredList_failure() throws Exception {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
@@ -116,7 +118,9 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        CommandResult commandResult = editCommand.execute(model);
+        assertEquals(EditCommand.MESSAGE_DUPLICATE_PERSON, commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequiresConfirmation());
     }
 
     @Test
@@ -143,6 +147,38 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Tests that forcing an edit (to bypass duplicate checks) successfully updates the person.
+     *
+     * <p>
+     * For example, editing BENSON to have the same details as ALICE would normally be rejected.
+     * When re-executed in force mode, the duplicate check is bypassed and the update succeeds.
+     * </p>
+     */
+    @Test
+    public void execute_duplicatePersonForceMode_success() throws Exception {
+        // Assume our typical address book has at least two persons: ALICE and BENSON.
+        // We will edit BENSON to have the same details as ALICE.
+        Person alice = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person benson = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        // Build an EditPersonDescriptor that changes BENSON's details to match ALICE.
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(alice).build();
+        // Create an EditCommand in force mode targeting BENSON.
+        EditCommand forceEditCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor, true);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(alice));
+
+        // Create an expected model. We start with a copy of the typical address book.
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        // Force-update BENSON in the expected model.
+        expectedModel.forceSetPerson(benson, alice);
+
+        // Execute the force edit command.
+        assertCommandSuccess(forceEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -172,11 +208,11 @@ public class EditCommandTest {
 
     @Test
     public void toStringMethod() {
-        Index index = Index.fromOneBased(1);
+        Index index = INDEX_FIRST_PERSON;
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + "}";
+                + editPersonDescriptor + ", isForce=false}";
         assertEquals(expected, editCommand.toString());
     }
 }
