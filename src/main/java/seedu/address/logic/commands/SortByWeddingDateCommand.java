@@ -18,4 +18,14 @@ public class SortByWeddingDateCommand extends Command {
         model.setSortWeddingsByDate(true);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || other instanceof SortByWeddingDateCommand;
+    }
+
+    @Override
+    public int hashCode() {
+        return SortByWeddingDateCommand.class.hashCode();
+    }
 }

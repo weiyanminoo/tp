@@ -32,6 +32,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.SortByWeddingDateCommand;
+import seedu.address.logic.commands.SortByWeddingIdCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.UntagCommand;
@@ -135,6 +137,22 @@ public class AddressBookParserTest {
         String userInput = DeleteWeddingCommand.COMMAND_WORD + " W12345";
         DeleteWeddingCommand command = (DeleteWeddingCommand) parser.parseCommand(userInput);
         assertEquals(new DeleteWeddingCommand(new WeddingId("W12345")), command);
+    }
+
+    @Test
+    public void parseCommand_sortByWeddingDate() throws Exception {
+        assertTrue(parser.parseCommand(SortByWeddingDateCommand.COMMAND_WORD)
+                instanceof SortByWeddingDateCommand);
+        assertTrue(parser.parseCommand(SortByWeddingDateCommand.COMMAND_WORD + "  ")
+                instanceof SortByWeddingDateCommand);
+    }
+
+    @Test
+    public void parseCommand_sortByWeddingId() throws Exception {
+        assertTrue(parser.parseCommand(SortByWeddingIdCommand.COMMAND_WORD)
+                instanceof SortByWeddingIdCommand);
+        assertTrue(parser.parseCommand(SortByWeddingIdCommand.COMMAND_WORD + "  ")
+                instanceof SortByWeddingIdCommand);
     }
 
     @Test
