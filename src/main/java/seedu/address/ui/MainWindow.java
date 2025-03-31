@@ -120,37 +120,6 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    /**
-     * Switches the view between wedding list and person list.
-     *
-     * @param showWeddingList true if wedding list should be shown, false if person
-     *                        list should be shown
-     */
-    void switchView(boolean showWeddingList) {
-        personListPanelPlaceholder.getChildren().clear();
-        weddingListPanelPlaceholder.getChildren().clear();
-
-        personListPanelPlaceholder.setVisible(!showWeddingList);
-        weddingListPanelPlaceholder.setVisible(showWeddingList);
-
-        if (showWeddingList) {
-            displayWeddingList();
-        } else {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        }
-
-        isShowWeddingList = showWeddingList;
-    }
-
-    /**
-     * Displays the wedding list, sorted by date if needed.
-     */
-    private void displayWeddingList() {
-        weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
-        weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
-    }
-
     void fillInnerParts() {
         // Left side: Person list
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -171,50 +140,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         // Logo
-        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
-        logoImageView.setImage(logo);
-    }
-
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    void fillInnerPartsPerson() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        // Load the EW logo from the images directory
-        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
-        logoImageView.setImage(logo);
-    }
-
-    /**
-     * Fills up all the placeholders of this window but with wedding instead of
-     * person.
-     * This is used when the user wants to view the wedding list.
-     */
-    void fillInnerPartsWedding() {
-        weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
-        weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        // Load the EW logo from the images directory
         Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
         logoImageView.setImage(logo);
     }
@@ -257,10 +182,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

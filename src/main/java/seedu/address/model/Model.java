@@ -128,11 +128,15 @@ public interface Model {
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
 
-
-    // Add to Model.java
+    /**
+     * Sets the comparator for sorting weddings by wedding date.
+     */
     void setSortWeddingsByDate(boolean sortByDate);
 
-    boolean isSortingWeddingsByDate();
+    /**
+     * Sets the comparator for sorting weddings by wedding ID.
+     */
+    void setSortWeddingsById();
 
     /**
      * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the

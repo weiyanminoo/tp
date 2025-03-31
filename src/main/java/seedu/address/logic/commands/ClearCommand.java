@@ -59,7 +59,7 @@ public class ClearCommand extends Command implements ForceableCommand {
         // Check if the address book is not empty
         if (!isForce && !model.getAddressBook().getPersonList().isEmpty()) {
             ConfirmationManager.getInstance().setPendingCommand(this);
-            return new CommandResult(MESSAGE_CONFIRMATION_REQUIRED, false, false, false, true);
+            return new CommandResult(MESSAGE_CONFIRMATION_REQUIRED, false, false, true);
         }
         // If force mode or if the address book is empty, proceed to clear it.
         model.setAddressBook(new AddressBook());

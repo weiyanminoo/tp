@@ -25,7 +25,7 @@ public class CommandBox extends UiPart<Region> {
     private static final List<String> COMMAND_LIST = Arrays.asList(
             "add", "clear", "delete", "edit", "exit", "find", "help", "list",
             "tag", "untag", "filter", "addWedding", "deleteWedding", "editWedding",
-            "listWedding", "listTask", "listWeddingByDate", "mark", "unmark",
+            "listWID", "listWDate", "listTask", "mark", "unmark",
             "deleteTask", "addTask", "clear");
 
     private final CommandExecutor commandExecutor;

@@ -38,13 +38,6 @@ public interface Logic {
     ObservableList<Wedding> getFilteredWeddingList();
 
     /**
-     * Returns an unmodifiable view of the sorted wedding list
-     */
-    ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator);
-
-    boolean isSortingWeddingsByDate();
-
-    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

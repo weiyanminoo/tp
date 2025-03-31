@@ -31,8 +31,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
-import seedu.address.logic.commands.ListWeddingByDateCommand;
-import seedu.address.logic.commands.ListWeddingCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
@@ -100,19 +98,6 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
-
-    @Test
-    public void parseCommand_listWedding() throws Exception {
-        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD) instanceof ListWeddingCommand);
-        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD + " 3") instanceof ListWeddingCommand);
-    }
-
-    @Test
-    public void parseCommand_listWeddingByDate() throws Exception {
-        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD) instanceof ListWeddingByDateCommand);
-        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD + " 3")
-                instanceof ListWeddingByDateCommand);
     }
 
     @Test

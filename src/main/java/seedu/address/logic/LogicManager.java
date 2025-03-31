@@ -79,16 +79,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean isSortingWeddingsByDate() {
-        return model.isSortingWeddingsByDate();
-    }
-
-    @Override
-    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
-        return model.getSortedWeddingList(comparator);
-    }
-
-    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
