@@ -94,7 +94,7 @@ public class AddCommandTest {
     @Test
     public void toStringMethod() {
         AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + ", isForce=false}";
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + ", isForced=false}";
         assertEquals(expected, addCommand.toString());
     }
 

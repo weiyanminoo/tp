@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all wedding events in the address book to the user, sorted by date.
+ * Lists all wedding events in the contact book to the user, sorted by date.
  */
 public class ListWeddingByDateCommand extends Command {
 

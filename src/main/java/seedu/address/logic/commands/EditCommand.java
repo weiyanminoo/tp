@@ -27,7 +27,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the contact book.
  */
 public class EditCommand extends Command implements ForceableCommand {
 
@@ -56,7 +56,7 @@ public class EditCommand extends Command implements ForceableCommand {
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
-    private final boolean isForce;
+    private final boolean isForced;
 
     /**
      * Constructs an EditCommand in normal mode.
@@ -70,15 +70,15 @@ public class EditCommand extends Command implements ForceableCommand {
      *
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
-     * @param isForce flag indicating that duplicate checks are bypassed (force mode)
+     * @param isForced flag indicating that duplicate checks are bypassed (force mode)
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean isForce) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean isForced) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.isForce = isForce;
+        this.isForced = isForced;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class EditCommand extends Command implements ForceableCommand {
 
         // If the edited person is not the same as the original and a duplicate exists:
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            if (!isForce) {
+            if (!isForced) {
                 ConfirmationManager.getInstance().setPendingCommand(this);
                 return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, false, true);
             } else {
@@ -146,7 +146,7 @@ public class EditCommand extends Command implements ForceableCommand {
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor)
-                && isForce == otherEditCommand.isForce;
+                && isForced == otherEditCommand.isForced;
     }
 
     @Override
@@ -154,7 +154,7 @@ public class EditCommand extends Command implements ForceableCommand {
         return new ToStringBuilder(this)
                 .add("index", index)
                 .add("editPersonDescriptor", editPersonDescriptor)
-                .add("isForce", isForce)
+                .add("isForced", isForced)
                 .toString();
     }
 

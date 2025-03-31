@@ -15,6 +15,12 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 - [Quick start](#quick-start)
 - [Features](#features)
     - [Viewing help](#viewing-help-help)
+    - [Managing people](#managing-people)
+        - [Adding a person](#adding-a-person-add)
+        - [Editing a person](#editing-a-person-edit)
+        - [Deleting a person](#deleting-a-person-delete)
+        - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
+        - [Listing all persons](#listing-all-persons-list)
     - [Adding a person](#adding-a-person-add)
     - [Editing a person](#editing-a-person-edit)
     - [Deleting a person](#deleting-a-person-delete)
@@ -104,7 +110,10 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
+<br>
+
+## Getting Help
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -113,8 +122,11 @@ Shows a message explaining how to access the help page.
 Format: `help`
 * Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 
+<br>
 
-### Adding a person : `add`
+## Managing people
+
+### Adding a person: `add`
 
 Adds a person to the contact book.
 
@@ -141,7 +153,7 @@ Examples:
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in the contact book.
 
@@ -158,7 +170,7 @@ Examples:
 **Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
 
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from the contact book.
 
@@ -196,7 +208,7 @@ Examples:
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in the contact book.
 
@@ -204,7 +216,9 @@ Format: `list`
 
 <br>
 
-### Adding a Wedding Event : `addWedding`
+## Managing Wedding Events
+
+### Adding a Wedding Event: `addWedding`
 
 Adds a wedding event to the contact book.
 
@@ -221,7 +235,7 @@ Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
 
 
-### Editing a Wedding Event : `editWedding`
+### Editing a Wedding Event: `editWedding`
 
 Edit an existing wedding event in the contact book.
 
@@ -237,7 +251,7 @@ Examples:
 * `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
 
-### Deleting a Wedding Event : `deleteWedding`
+### Deleting a Wedding Event: `deleteWedding`
 
 Deletes the specified wedding event from the contact book.
 
@@ -247,19 +261,19 @@ Format: `deleteWedding WEDDING_ID`
 * Tags of contacts associated to the deleted wedding event will be removed.
 
 
-### Listing all Wedding Events : `listWedding`
+### Listing all Wedding Events: `listWedding`
 
 Shows a list of all wedding events in the contact book.
 
 Format: `listWedding`
 
-### Listing all Wedding Events sorted by earliest date : `listWeddingSorted`
+### Listing all Wedding Events sorted by earliest date: `listWeddingSorted`
 
 Shows a list of all wedding events in the contact book sorted by the earliest date.
 
 Format: `listWeddingByDate`
 
-### Adding a Wedding Task : `addTask`
+### Adding a Wedding Task: `addTask`
 
 Adds a new Task to a specified wedding event.
 
@@ -270,7 +284,7 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 Examples:
 * `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
 
-### Listing all Wedding Tasks : `listTask`
+### Listing all Wedding Tasks: `listTask`
 
 Shows a list of all Tasks of a specified wedding event.
 
@@ -279,7 +293,7 @@ Format: `listTask w/WEDDING_ID`
 Examples: `listWedding w/W1` Show a list of all Tasks of the wedding event `W1`.
 
 
-### Marking a Wedding Task : `mark`
+### Marking a Wedding Task: `mark`
 
 Marks a specified task of a specified wedding event as completed.
 
@@ -293,7 +307,7 @@ Examples:
 * `mark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as completed.
 
 
-### Unmarking a Wedding Task : `unmark`
+### Unmarking a Wedding Task: `unmark`
 
 Marks a specified task of a specified wedding as not completed.
 
@@ -307,7 +321,7 @@ Examples:
 * `unmark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as not completed.
 
 
-### Deleting a Wedding Task : `deleteTask`
+### Deleting a Wedding Task: `deleteTask`
 
 Deletes the specified task from a specified wedding event.
 
@@ -320,8 +334,11 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 Examples:
 * `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
 
+<br>
 
-### Tagging a person to a Wedding : `tag`
+## Managing Tags
+
+### Tagging a person to a Wedding: `tag`
 
 Tags an existing contact to an existing wedding event.
 
@@ -338,7 +355,7 @@ Examples:
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
 
-### Untagging a person : `untag`
+### Untagging a person: `untag`
 
 Untags an existing contact from an existing wedding event.
 
@@ -353,7 +370,7 @@ Examples:
 * `untag 1 W1` untags the first person from the wedding event `W1`
 
 
-### Filtering contacts : `filter`
+### Filtering contacts: `filter`
 
 Filters contacts related to a specified wedding id.
 
@@ -368,6 +385,9 @@ Examples:
 
   ![result for 'filter W4'](images/filterW4.png)
 
+<br>
+
+## Data Management
 
 ### Clearing all entries : `clear`
 
@@ -376,14 +396,6 @@ Clears all entries from the contact book.
 Format: `clear`
 
 **Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
-
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 
 ### Saving the data
 
@@ -400,6 +412,15 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+<br>
+
+## Exiting the program
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 [Back to content page](#table-of-contents)
 

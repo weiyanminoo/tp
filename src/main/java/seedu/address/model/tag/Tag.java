@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.wedding.WeddingId;
 
 /**
- * Represents a Tag in the address book, now used to store a WeddingId.
+ * Represents a Tag in the contact book, now used to store a WeddingId.
  * Guarantees: immutable; weddingId is valid as per the WeddingId constraints.
  */
 public class Tag {

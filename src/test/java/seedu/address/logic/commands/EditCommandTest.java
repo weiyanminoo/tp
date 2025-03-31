@@ -212,7 +212,7 @@ public class EditCommandTest {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         EditCommand editCommand = new EditCommand(index, editPersonDescriptor);
         String expected = EditCommand.class.getCanonicalName() + "{index=" + index + ", editPersonDescriptor="
-                + editPersonDescriptor + ", isForce=false}";
+                + editPersonDescriptor + ", isForced=false}";
         assertEquals(expected, editCommand.toString());
     }
 

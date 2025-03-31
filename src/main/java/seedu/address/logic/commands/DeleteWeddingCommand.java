@@ -11,7 +11,7 @@ import seedu.address.model.wedding.WeddingId;
 
 
 /**
- * Deletes a Wedding event from the address book.
+ * Deletes a Wedding event from the contact book.
  */
 public class DeleteWeddingCommand extends Command {
 
