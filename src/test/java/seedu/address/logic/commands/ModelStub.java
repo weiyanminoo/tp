@@ -163,4 +163,9 @@ public class ModelStub implements Model {
     public void removeTagFromAllContacts(Tag tag) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void forceSetPerson(Person target, Person editedPerson) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

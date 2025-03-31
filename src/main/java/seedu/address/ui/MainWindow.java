@@ -151,30 +151,6 @@ public class MainWindow extends UiPart<Stage> {
         weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
     }
 
-    void fillInnerParts() {
-        // Left side: Person list
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        // Right side: Wedding list
-        weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
-        weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
-
-        // Result display, status bar, command box as before
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        // Logo
-        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
-        logoImageView.setImage(logo);
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */
@@ -282,8 +258,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            return commandResult;
+            switchView(commandResult.isShowWeddingList());
 
+            return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
