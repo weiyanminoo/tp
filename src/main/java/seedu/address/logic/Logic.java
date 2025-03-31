@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -36,13 +35,6 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     ObservableList<Wedding> getFilteredWeddingList();
-
-    /**
-     * Returns an unmodifiable view of the sorted wedding list
-     */
-    ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator);
-
-    boolean isSortingWeddingsByDate();
 
     /**
      * Returns the user prefs' address book file path.

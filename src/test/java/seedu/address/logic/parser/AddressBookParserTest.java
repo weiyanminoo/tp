@@ -31,9 +31,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
-import seedu.address.logic.commands.ListWeddingByDateCommand;
-import seedu.address.logic.commands.ListWeddingCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.SortByWeddingDateCommand;
+import seedu.address.logic.commands.SortByWeddingIdCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.UntagCommand;
@@ -103,19 +103,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_listWedding() throws Exception {
-        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD) instanceof ListWeddingCommand);
-        assertTrue(parser.parseCommand(ListWeddingCommand.COMMAND_WORD + " 3") instanceof ListWeddingCommand);
-    }
-
-    @Test
-    public void parseCommand_listWeddingByDate() throws Exception {
-        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD) instanceof ListWeddingByDateCommand);
-        assertTrue(parser.parseCommand(ListWeddingByDateCommand.COMMAND_WORD + " 3")
-                instanceof ListWeddingByDateCommand);
-    }
-
-    @Test
     public void parseCommand_filter() throws Exception {
         String userInput = FilterCommand.COMMAND_WORD + " W1";
         assertTrue(parser.parseCommand(userInput) instanceof FilterCommand);
@@ -150,6 +137,22 @@ public class AddressBookParserTest {
         String userInput = DeleteWeddingCommand.COMMAND_WORD + " W12345";
         DeleteWeddingCommand command = (DeleteWeddingCommand) parser.parseCommand(userInput);
         assertEquals(new DeleteWeddingCommand(new WeddingId("W12345")), command);
+    }
+
+    @Test
+    public void parseCommand_sortByWeddingDate() throws Exception {
+        assertTrue(parser.parseCommand(SortByWeddingDateCommand.COMMAND_WORD)
+                instanceof SortByWeddingDateCommand);
+        assertTrue(parser.parseCommand(SortByWeddingDateCommand.COMMAND_WORD + "  ")
+                instanceof SortByWeddingDateCommand);
+    }
+
+    @Test
+    public void parseCommand_sortByWeddingId() throws Exception {
+        assertTrue(parser.parseCommand(SortByWeddingIdCommand.COMMAND_WORD)
+                instanceof SortByWeddingIdCommand);
+        assertTrue(parser.parseCommand(SortByWeddingIdCommand.COMMAND_WORD + "  ")
+                instanceof SortByWeddingIdCommand);
     }
 
     @Test

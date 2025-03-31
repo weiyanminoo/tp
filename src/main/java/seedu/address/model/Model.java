@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -128,17 +127,15 @@ public interface Model {
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
 
-
-    // Add to Model.java
+    /**
+     * Sets the comparator for sorting weddings by wedding date.
+     */
     void setSortWeddingsByDate(boolean sortByDate);
 
-    boolean isSortingWeddingsByDate();
-
     /**
-     * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the
-     * internal sorted list using the provided comparator
+     * Sets the comparator for sorting weddings by wedding ID.
      */
-    ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator);
+    void setSortWeddingsById();
 
     /**
      * Tags a person with the given tag.
