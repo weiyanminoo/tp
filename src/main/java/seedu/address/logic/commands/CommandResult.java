@@ -19,7 +19,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
     private final boolean showWeddingList;
-    private boolean isSortWeddingByDate = false;
+    private final boolean sortWeddingByDate = false;
 
     /**
      * Indicates whether this command result requires further user confirmation.
@@ -65,7 +65,7 @@ public class CommandResult {
     }
 
     public boolean isSortWeddingsByDate() {
-        return isSortWeddingByDate;
+        return sortWeddingByDate;
     }
 
     /**
