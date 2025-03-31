@@ -1,6 +1,5 @@
 package seedu.address.logic;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,8 +16,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX = "The wedding index provided is invalid";
 
     /**
@@ -27,10 +24,12 @@ public class Messages {
     public static String getErrorMessageForDuplicatePrefixes(Prefix... duplicatePrefixes) {
         assert duplicatePrefixes.length > 0;
 
-        Set<String> duplicateFields =
-                Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
+        return Stream.of(duplicatePrefixes)
+                .map(prefix -> "Multiple \"" + prefix.toString() + "\" detected, "
+                        + "if you would like to add a duplicated \"" + prefix.toString()
+                        + "\" in any field, please edit it to be: \"\\" + prefix.toString() + "\"")
+                .collect(Collectors.joining("\n"));
 
-        return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
     }
 
     /**
@@ -38,15 +37,11 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Role: ")
-                .append(person.getRole())
-                .append("; Address: ")
-                .append(person.getAddress());
+        builder.append(person.getName()).append("\n")
+               .append("Phone: ").append(person.getPhone()).append("\n")
+               .append("Email: ").append(person.getEmail()).append("\n")
+               .append("Role: ").append(person.getRole()).append("\n")
+               .append("Address: ").append(person.getAddress()).append("\n");
         return builder.toString();
     }
 
@@ -55,11 +50,9 @@ public class Messages {
      */
     public static String format(Wedding wedding) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(wedding.getWeddingName())
-                .append("; Date: ")
-                .append(wedding.getWeddingDate())
-                .append("; Location: ")
-                .append(wedding.getWeddingLocation());
+        builder.append(wedding.getWeddingName()).append("\n")
+               .append("Date: ").append(wedding.getWeddingDate()).append("\n")
+               .append("Location: ").append(wedding.getWeddingLocation()).append("\n");
         return builder.toString();
     }
 }
