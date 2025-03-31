@@ -14,33 +14,35 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help-help)
+    - [Getting Help](#getting-help)
+      - [Viewing help](#viewing-help-help)
     - [Managing people](#managing-people)
         - [Adding a person](#adding-a-person-add)
         - [Editing a person](#editing-a-person-edit)
         - [Deleting a person](#deleting-a-person-delete)
         - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
-        - [Listing all persons](#listing-all-persons-list)
-    - [Adding a person](#adding-a-person-add)
-    - [Editing a person](#editing-a-person-edit)
-    - [Deleting a person](#deleting-a-person-delete)
-    - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
-    - [Listing all persons](#listing-all-persons-list)
-    - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
-    - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
-    - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
-    - [Listing all Wedding Events](#listing-all-wedding-events-listwedding)
-    - [Listing all Wedding Events sorted by earliest date](#listing-all-wedding-events-sorted-by-earliest-date-listweddingsorted)
-    - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
-    - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
-    - [Marking a Wedding Task](#marking-a-wedding-task-mark)
-    - [Unmarking a Wedding Task](#unmarking-a-wedding-task-unmark)
-    - [Deleting a Wedding Task](#deleting-a-wedding-task-deletetask)
-    - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding-tag)
-    - [Untagging a person](#untagging-a-person-untag)
-    - [Filtering contacts](#filtering-contacts-filter)
-    - [Clearing all entries](#clearing-all-entries-clear)
+        - [Listing all Persons and Wedding Events](#listing-all-persons-list)
+    - [Managing Wedding Events](#managing-wedding-events)
+        - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
+        - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
+        - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
+        - [Sorting all Wedding Events by increasing Wedding ID](#sorting-all-wedding-events-by-increasing-wedding-id-sortWID)
+        - [Sorting all Wedding Events by earliest date](#sorting-all-wedding-events-by-earliest-date-sortWDate)
+        - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
+        - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
+        - [Marking a Wedding Task](#marking-a-wedding-task-mark)
+        - [Unmarking a Wedding Task](#unmarking-a-wedding-task-unmark)
+        - [Deleting a Wedding Task](#deleting-a-wedding-task-deletetask)
+    - [Managing Tags](#managing-tags)
+        - [Tagging a person to a Wedding](#tagging-a-person-to-a-wedding-tag)
+        - [Untagging a person](#untagging-a-person-untag)
+        - [Filtering contacts](#filtering-contacts-filter)
+    - [Data Management](#data-management)
+        - [Clearing all entries](#clearing-all-entries-clear)
+        - [Saving the data](#saving-the-data)
+        - [Editing the data file](#editing-the-data-file)
     - [Exiting the program](#exiting-the-program-exit)
+        - [Exiting the program](#exiting-the-program-exit)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
@@ -208,9 +210,9 @@ Examples:
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
 
-### Listing all persons: `list`
+### Listing all Persons and Wedding Events: `list`
 
-Shows a list of all persons in the contact book.
+Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
@@ -261,17 +263,17 @@ Format: `deleteWedding WEDDING_ID`
 * Tags of contacts associated to the deleted wedding event will be removed.
 
 
-### Listing all Wedding Events: `listWedding`
+### Sorting all Wedding Events by increasing Wedding ID: `sortWID`
 
-Shows a list of all wedding events in the contact book.
+Shows a list of all wedding events in the contact book sorted by increasing Wedding ID.
 
-Format: `listWedding`
+Format: `sortWID`
 
-### Listing all Wedding Events sorted by earliest date: `listWeddingSorted`
+### Sorting all Wedding Events by earliest Date: `sortWDate`
 
 Shows a list of all wedding events in the contact book sorted by the earliest date.
 
-Format: `listWeddingByDate`
+Format: `sortWDate`
 
 ### Adding a Wedding Task: `addTask`
 
@@ -378,18 +380,18 @@ Format: `filter WEDDING_ID`
 
 * Filters contacts that are tagged with the specified `WEDDING_ID`
 * Wedding id is the unique identifier of the wedding event.
-* Wedding details of the event specified by `WEDDING_ID` will be displayed on the message output box.
+* Only the Wedding event corresponding to the `WEDDING_ID` will be displayed in the list of Weddings.
 
 Examples:
-* `filter W4` displays the details of `W4` and returns the contacts that are tagged to `W4`.
+* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
 
-  ![result for 'filter W4'](images/filterW4.png)
+  ![result for 'filter W2'](images/filterW2.png)
 
 <br>
 
 ## Data Management
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the contact book.
 
@@ -416,7 +418,7 @@ Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g.
 <br>
 
 ## Exiting the program
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -451,8 +453,8 @@ Format: `exit`
 | **AddWedding**        | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**       | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding**     | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
-| **ListWedding**       | `listWedding`                                                                                                                                                  |
-| **ListWeddingSorted** | `listWeddingSorted` <br> e.g., `listWeddingSorted`                                                                                                             |
+| **SortByWeddingId**   | `sortWID`                                                                                                                                                      |
+| **SortByWeddingDate** | `sortWDate`                                                                                                            |
 | **AddTask**           | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
 | **ListTask**          | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
 | **Mark**              | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |
