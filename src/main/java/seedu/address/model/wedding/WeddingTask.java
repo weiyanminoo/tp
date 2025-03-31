@@ -2,14 +2,14 @@ package seedu.address.model.wedding;
 
 /**
  * Represents a basic Wedding Task in the contact book.
- * A Task has a description and a completion status.
+ * A Wedding Task has a description and a completion status.
  */
 public class WeddingTask {
     private final String description;
     private boolean isDone;
 
     /**
-     * Constructs a Task with the given description.
+     * Constructs a Wedding Task with the given description.
      * The task is initially not done.
      *
      * @param description The description of the task.
@@ -58,7 +58,7 @@ public class WeddingTask {
     }
 
     /**
-     * Compares this Task to another object for equality.
+     * Compares this Wedding Task to another object for equality.
      * Two tasks are considered equal if they share the same description
      * and the same completion status.
      */
