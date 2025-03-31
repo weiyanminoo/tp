@@ -1,7 +1,7 @@
 package seedu.address.model.wedding;
 
 /**
- * Represents a basic Task in EasyWeds.
+ * Represents a basic Wedding Task in the contact book.
  * A Task has a description and a completion status.
  */
 public class WeddingTask {

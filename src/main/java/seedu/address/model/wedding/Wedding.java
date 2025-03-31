@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents a Wedding event in EasyWeds.
+ * Represents a Wedding event in the contact book.
  */
 public class Wedding {
     private static int nextId = 1; // Static counter to keep track of Wedding ID
