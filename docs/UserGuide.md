@@ -153,6 +153,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/photographer` Edits the name of the 2nd person to be `Betsy Crower` and her role to `photographer`.
 
+**Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
+
 
 ### Deleting a person : `delete`
 
@@ -189,12 +191,16 @@ Examples:
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+**Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
+
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the contact book.
 
 Format: `list`
+
+<br>
 
 ### Adding a Wedding Event : `addWedding`
 
