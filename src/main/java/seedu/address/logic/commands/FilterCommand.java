@@ -48,7 +48,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
 
         // Check if wedding id exists and get the wedding object
-        Wedding matchingWedding = model.getFilteredWeddingList().stream()
+        Wedding matchingWedding = model.getAddressBook().getWeddingList().stream()
                 .filter(wedding -> wedding.getWeddingId().equals(weddingIdToFilter))
                 .findFirst()
                 .orElseThrow(() -> new CommandException("The specified wedding id "

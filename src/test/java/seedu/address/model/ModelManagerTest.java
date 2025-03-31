@@ -1,9 +1,15 @@
 package seedu.address.model;
 
+import javafx.collections.ObservableList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.model.wedding.Wedding;
+import seedu.address.model.wedding.WeddingDate;
+import seedu.address.model.wedding.WeddingId;
+import seedu.address.model.wedding.WeddingLocation;
+import seedu.address.model.wedding.WeddingName;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -153,4 +159,5 @@ public class ModelManagerTest {
         assertEquals(validPerson, modelManager.getFilteredPersonList().get(0));
         assertEquals(validPerson, modelManager.getFilteredPersonList().get(1));
     }
+
 }
