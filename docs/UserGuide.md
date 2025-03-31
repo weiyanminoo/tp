@@ -21,8 +21,8 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
     - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
     - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
     - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
-    - [Listing all Wedding Events](#listing-all-wedding-events-listwedding)
-    - [Listing all Wedding Events sorted by earliest date](#listing-all-wedding-events-sorted-by-earliest-date-listweddingsorted)
+    - [Sorting all Wedding Events by increasing Wedding ID](#listing-all-wedding-events-listwedding)
+    - [Sorting all Wedding Events by earliest date](#listing-all-wedding-events-sorted-by-earliest-date-listweddingsorted)
     - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
     - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
     - [Marking a Wedding Task](#marking-a-wedding-task-mark)
@@ -196,7 +196,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the contact book.
+Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
@@ -245,17 +245,17 @@ Format: `deleteWedding WEDDING_ID`
 * Tags of contacts associated to the deleted wedding event will be removed.
 
 
-### Listing all Wedding Events : `listWedding`
+### Sorting all Wedding Events by increasing Wedding ID : `sortWID`
 
-Shows a list of all wedding events in the contact book.
+Shows a list of all wedding events in the contact book sorted by increasing Wedding ID.
 
-Format: `listWedding`
+Format: `sortWID`
 
-### Listing all Wedding Events sorted by earliest date : `listWeddingSorted`
+### Sorting all Wedding Events by earliest Date : `sortWDate`
 
 Shows a list of all wedding events in the contact book sorted by the earliest date.
 
-Format: `listWeddingByDate`
+Format: `sortWDate`
 
 ### Adding a Wedding Task : `addTask`
 
@@ -359,7 +359,7 @@ Format: `filter WEDDING_ID`
 
 * Filters contacts that are tagged with the specified `WEDDING_ID`
 * Wedding id is the unique identifier of the wedding event.
-* Wedding details of the event specified by `WEDDING_ID` will be displayed on the message output box.
+* Only the Wedding event corresponding to the `WEDDING_ID` will be displayed in the list of Weddings.
 
 Examples:
 * `filter W4` displays the details of `W4` and returns the contacts that are tagged to `W4`.
@@ -428,8 +428,8 @@ Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g.
 | **AddWedding**        | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**       | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding**     | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
-| **ListWedding**       | `listWedding`                                                                                                                                                  |
-| **ListWeddingSorted** | `listWeddingSorted` <br> e.g., `listWeddingSorted`                                                                                                             |
+| **SortByWeddingId**   | `sortWID`                                                                                                                                                      |
+| **SortByWeddingDate** | `sortWDate`                                                                                                                                                    |
 | **AddTask**           | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
 | **ListTask**          | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
 | **Mark**              | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |

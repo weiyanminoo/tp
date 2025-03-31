@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class SortByWeddingDateCommand extends Command {
     public static final String COMMAND_WORD = "sortWDate";
-    public static final String MESSAGE_SUCCESS = "Wedding list sorted by Date.";
+    public static final String MESSAGE_SUCCESS = "Wedding list sorted by Date";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
