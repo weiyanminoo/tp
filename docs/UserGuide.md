@@ -119,7 +119,7 @@ Adds a person to the contact book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
 * Input values must be provided for all fields.
-* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a "\\" before the delimiter. 
+* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter. 
   * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
   * This applies to all fields.
 Examples:
@@ -203,7 +203,7 @@ Adds a wedding event to the contact book.
 Format: `addWedding n/NAME d/DATE l/LOCATION`
 
 * Input values must be provided for all fields.
-* If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a "\\" before the delimiter.
+* If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
     * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
     * This applies to all fields.
 * Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".

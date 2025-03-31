@@ -267,7 +267,7 @@ This section demonstrates how a user interacts with the application to perform e
 5. Deleting the wedding
 
 ### 1. Creating a contact
-The user begins by creating a new contact using the addContact command. For example, the user might input: `addContact n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
+The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
 Below is a sequence diagram that shows the steps involved when a user creates a contact. 
