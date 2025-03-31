@@ -14,7 +14,7 @@ public class Wedding {
     private final WeddingName weddingName;
     private final WeddingDate weddingDate;
     private final WeddingLocation weddingLocation;
-    private final boolean restored;
+    private final boolean isRestored;
     private final List<WeddingTask> tasks;
 
     /**
@@ -25,14 +25,14 @@ public class Wedding {
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.weddingLocation = weddingLocation;
-        this.restored = false;
+        this.isRestored = false;
 
         // Initialize tasks for a newly created wedding
         this.tasks = new ArrayList<>();
     }
 
     /**
-     * Creates a Wedding object with a specified ID (useful for restoration),
+     * Creates a Wedding object with a specified ID
      * defaulting to not restored.
      */
     public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate, WeddingLocation location) {
@@ -40,7 +40,7 @@ public class Wedding {
     }
 
     /**
-     * Creates a Wedding object with a specified ID (useful for restoration).
+     * Creates a Wedding object with a specified ID.
      */
 
     public Wedding(WeddingId weddingId, WeddingName weddingName, WeddingDate weddingDate,
@@ -49,9 +49,9 @@ public class Wedding {
         this.weddingName = weddingName;
         this.weddingDate = weddingDate;
         this.weddingLocation = weddingLocation;
-        this.restored = isRestored;
+        this.isRestored = isRestored;
 
-        // Initialize tasks for a restored wedding (empty by default)
+        // Initialize tasks for a isRestored wedding (empty by default)
         this.tasks = new ArrayList<>();
 
         if (isRestored) {
@@ -100,7 +100,7 @@ public class Wedding {
     }
 
     public boolean isRestored() {
-        return restored;
+        return isRestored;
     }
 
     /**
