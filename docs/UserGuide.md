@@ -120,7 +120,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 Shows a message explaining how to access the help page.
 
-<img src="images/helpMessage.png" alt="help message" width="150">
+<img src="images/helpMessage.png" alt="help message" width="200">
 
 Format: `help`
 * Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
