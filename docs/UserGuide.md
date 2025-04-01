@@ -55,7 +55,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.3).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
@@ -74,13 +74,13 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all persons and wedding events.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes entire contact book (both persons and wedding events).
 
    * `exit` : Exits the app.
 
@@ -128,7 +128,7 @@ Format: `help`
 
 ## Managing people
 
-### Adding a person: `add`
+### Adding a Person: `add`
 
 Adds a person to the contact book.
 
@@ -155,7 +155,7 @@ Examples:
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
 
-### Editing a person: `edit`
+### Editing a Person: `edit`
 
 Edits an existing person in the contact book.
 
@@ -172,7 +172,7 @@ Examples:
 **Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
 
 
-### Deleting a person: `delete`
+### Deleting a Person: `delete`
 
 Deletes the specified person from the contact book.
 
@@ -187,7 +187,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 
-### Locating persons by name or role: `find`
+### Locating Persons by name or role: `find`
 
 Finds persons whose names or roles contain any of the given keywords.
 
