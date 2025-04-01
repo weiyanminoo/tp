@@ -15,19 +15,19 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 - [Quick start](#quick-start)
 - [Features](#features)
     - [Getting Help](#getting-help)
-      - [Viewing help](#viewing-help-help)
+        - [Viewing help](#viewing-help-help)
     - [Managing people](#managing-people)
         - [Adding a person](#adding-a-person-add)
         - [Editing a person](#editing-a-person-edit)
         - [Deleting a person](#deleting-a-person-delete)
         - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
-        - [Listing all Persons and Wedding Events](#listing-all-persons-list)
     - [Managing Wedding Events](#managing-wedding-events)
         - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
         - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
         - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
         - [Sorting all Wedding Events by increasing Wedding ID](#sorting-all-wedding-events-by-increasing-wedding-id-sortWID)
         - [Sorting all Wedding Events by earliest date](#sorting-all-wedding-events-by-earliest-date-sortWDate)
+    - [Managing Wedding Tasks](#managing-wedding-tasks)
         - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
         - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
         - [Marking a Wedding Task](#marking-a-wedding-task-mark)
@@ -38,6 +38,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
         - [Untagging a person](#untagging-a-person-untag)
         - [Filtering contacts](#filtering-contacts-filter)
     - [Data Management](#data-management)
+        - [Listing all Persons and Wedding Events](#listing-all-persons-and-wedding-events-list)
         - [Clearing all entries](#clearing-all-entries-clear)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
@@ -74,15 +75,15 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -110,7 +111,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</box>
+  </box>
 
 <br>
 
@@ -135,10 +136,10 @@ Adds a person to the contact book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
 * Input values must be provided for all fields.
-* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter. 
-  * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
-  * This applies to all fields.
-Examples:
+* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
+    * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
+    * This applies to all fields.
+      Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
@@ -209,13 +210,6 @@ Examples:
 
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
-
-### Listing all Persons and Wedding Events: `list`
-
-Shows a list of all persons and weddings in the contact book.
-
-Format: `list`
-
 <br>
 
 ## Managing Wedding Events
@@ -274,6 +268,10 @@ Format: `sortWID`
 Shows a list of all wedding events in the contact book sorted by the earliest date.
 
 Format: `sortWDate`
+
+<br>
+
+## Managing Wedding Tasks
 
 ### Adding a Wedding Task: `addTask`
 
@@ -388,6 +386,14 @@ Examples:
   ![result for 'filter W2'](images/filterW2.png)
 
 <br>
+
+## Data Management
+
+### Listing all Persons and Wedding Events: `list`
+
+Shows a list of all persons and weddings in the contact book.
+
+Format: `list`
 
 ### Clearing all entries: `clear`
 
