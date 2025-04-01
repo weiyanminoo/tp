@@ -41,12 +41,16 @@ public class JsonSerializableAddressBookTest {
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
+    /**
+     * Test to verify that duplicate persons in the JSON file are loaded successfully.
+     */
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicatePersons_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
-                dataFromFile::toModelType);
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        // If the JSON file contains two duplicate persons, verify that both are loaded.
+        assertEquals(2, addressBookFromFile.getPersonList().size());
     }
 
     @Test

@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.testutil.PersonBuilder;
 
@@ -44,15 +43,27 @@ public class AddressBookTest {
         assertEquals(newData, addressBook);
     }
 
+    /**
+     * This test verifies that forced duplicate persons are loaded.
+     */
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_BOB)
+    public void resetData_withDuplicatePersons_allowsDuplicates() throws Exception {
+        // Create two persons with the same identity fields
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_BOB)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        // resetData uses force mode, so it should not throw an exception.
+        addressBook.resetData(newData);
+
+        // Verify that both persons are loaded (duplicates are allowed)
+        ObservableList<Person> personList = addressBook.getPersonList();
+        assertEquals(2, personList.size());
+        assertTrue(personList.contains(ALICE));
+        assertTrue(personList.contains(editedAlice));
     }
 
     @Test
