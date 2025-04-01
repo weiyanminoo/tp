@@ -56,7 +56,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.3).
+1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
@@ -75,13 +75,13 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list` : Lists all persons and wedding events.
 
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-    * `clear` : Deletes all contacts.
+    * `clear` : Deletes entire contact book (both persons and wedding events).
 
     * `exit` : Exits the app.
 
@@ -120,7 +120,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" alt="help message" width="150">
 
 Format: `help`
 * Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
@@ -129,7 +129,7 @@ Format: `help`
 
 ## Managing people
 
-### Adding a person: `add`
+### Adding a Person: `add`
 
 Adds a person to the contact book.
 
@@ -156,7 +156,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
 
-### Editing a person: `edit`
+### Editing a Person: `edit`
 
 Edits an existing person in the contact book.
 
@@ -173,7 +173,7 @@ Examples:
 **Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
 
 
-### Deleting a person: `delete`
+### Deleting a Person: `delete`
 
 Deletes the specified person from the contact book.
 
@@ -188,7 +188,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 
-### Locating persons by name or role: `find`
+### Locating Persons by name or role: `find`
 
 Finds persons whose names or roles contain any of the given keywords.
 
@@ -286,7 +286,7 @@ Examples:
 
 ### Listing all Wedding Tasks: `listTask`
 
-Shows a list of all Tasks of a specified wedding event.
+Shows a list of all Tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
@@ -304,7 +304,7 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 
 Examples:
-* `mark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as completed.
+* `mark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as completed.
 
 
 ### Unmarking a Wedding Task: `unmark`
@@ -318,7 +318,7 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 
 Examples:
-* `unmark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as not completed.
+* `unmark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as not completed.
 
 
 ### Deleting a Wedding Task: `deleteTask`
@@ -338,7 +338,7 @@ Examples:
 
 ## Managing Tags
 
-### Tagging a person to a Wedding: `tag`
+### Tagging a Person to a Wedding: `tag`
 
 Tags an existing contact to an existing wedding event.
 
@@ -355,7 +355,7 @@ Examples:
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
 
-### Untagging a person: `untag`
+### Untagging a Person: `untag`
 
 Untags an existing contact from an existing wedding event.
 
@@ -370,15 +370,15 @@ Examples:
 * `untag 1 W1` untags the first person from the wedding event `W1`
 
 
-### Filtering contacts: `filter`
+### Filtering Contacts: `filter`
 
-Filters contacts related to a specified wedding id.
+Filters contacts related to a specified wedding ID.
 
 Format: `filter WEDDING_ID`
 
 * Filters contacts that are tagged with the specified `WEDDING_ID`
-* Wedding id is the unique identifier of the wedding event.
-* Only the Wedding event corresponding to the `WEDDING_ID` will be displayed in the list of Weddings.
+* Wedding ID is the unique identifier of the wedding event.
+* Only the wedding event corresponding to the `WEDDING_ID` will be displayed in the list of weddings.
 
 Examples:
 * `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
@@ -413,15 +413,13 @@ EasyWeds data are saved in the hard disk automatically after any command that ch
 EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
-
 **Caution:**
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-<br>
-
 ## Exiting the program
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -454,7 +452,6 @@ Format: `exit`
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
-| **List**               | `list`                                                                                                                                                         |
 | **AddWedding**         | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**        | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding**      | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
@@ -468,5 +465,6 @@ Format: `exit`
 | **Tag**                | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
 | **Untag**              | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
 | **Filter**             | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
+| **List**               | `list`                                                                                                                                                         |
 | **Clear**              | `clear`                                                                                                                                                        |
 | **Exit**               | `exit`                                                                                                                                                         |                                                                                                                                                       |
