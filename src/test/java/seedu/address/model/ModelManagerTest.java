@@ -7,6 +7,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalWeddings.WEDDING_ONE;
+import static seedu.address.testutil.TypicalWeddings.WEDDING_THREE;
+import static seedu.address.testutil.TypicalWeddings.WEDDING_TWO;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,11 +17,14 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.wedding.Wedding;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalWeddings;
 
 public class ModelManagerTest {
 
@@ -153,4 +159,39 @@ public class ModelManagerTest {
         assertEquals(validPerson, modelManager.getFilteredPersonList().get(0));
         assertEquals(validPerson, modelManager.getFilteredPersonList().get(1));
     }
+
+    @Test
+    public void sortWeddingsByDate_correctOrder() {
+        // Use the typical weddings from TypicalWeddings.
+        AddressBook addressBook = TypicalWeddings.getTypicalAddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+        // Set sorting by date.
+        modelManager.setSortWeddingsByDate(true);
+        ObservableList<Wedding> sortedWeddings = modelManager.getFilteredWeddingList();
+
+        // Expected order by date ascending:
+        // WEDDING_TWO (14-Jun-2025), then WEDDING_ONE (15-Jun-2025), then WEDDING_THREE (16-Jun-2025)
+        assertEquals(WEDDING_TWO, sortedWeddings.get(0));
+        assertEquals(WEDDING_ONE, sortedWeddings.get(1));
+        assertEquals(WEDDING_THREE, sortedWeddings.get(2));
+    }
+
+    @Test
+    public void sortWeddingsById_correctOrder() {
+        // Use the typical weddings from TypicalWeddings.
+        AddressBook addressBook = TypicalWeddings.getTypicalAddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+        ModelManager modelManager = new ModelManager(addressBook, userPrefs);
+        // Set sorting by wedding ID.
+        modelManager.setSortWeddingsById();
+        ObservableList<Wedding> sortedWeddings = modelManager.getFilteredWeddingList();
+
+        // Expected order by numeric wedding ID ascending:
+        // WEDDING_ONE ("W001") should be first, then WEDDING_TWO ("W002"), then WEDDING_THREE ("W003")
+        assertEquals(WEDDING_ONE, sortedWeddings.get(0));
+        assertEquals(WEDDING_TWO, sortedWeddings.get(1));
+        assertEquals(WEDDING_THREE, sortedWeddings.get(2));
+    }
+
 }

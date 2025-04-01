@@ -95,6 +95,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Forcefully updates the details of the specified person in the address book.
+     * <p>
+     * This method bypasses duplicate checks. It locates the person in the internal list and
+     * replaces the record with {@code editedPerson}. If the target is not found, a
+     * {@code PersonNotFoundException} is thrown.
+     * </p>
+     */
+    public void forceSetPerson(Person target, Person editedPerson) {
+        // Delegate the force update to the UniquePersonList.
+        persons.forceSetPerson(target, editedPerson);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.

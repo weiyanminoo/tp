@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.exceptions.DuplicateWeddingException;
 import seedu.address.model.wedding.exceptions.WeddingNotFoundException;
 
@@ -19,16 +20,33 @@ public class UniqueWeddingListTest {
 
     // By default, these two use the constructor that auto-generates IDs.
     // For example, WEDDING_A might end up with "W1", WEDDING_B with "W2".
-    private static final Wedding WEDDING_A = new Wedding(
-            new WeddingName("Alice & Bob Wedding"),
-            new WeddingDate("01-Jan-2025"),
-            new WeddingLocation("Beach")
-    );
-    private static final Wedding WEDDING_B = new Wedding(
-            new WeddingName("Carol & David Wedding"),
-            new WeddingDate("02-Feb-2025"),
-            new WeddingLocation("Garden")
-    );
+    private static final Wedding WEDDING_A;
+
+    static {
+        try {
+            WEDDING_A = new Wedding(
+                    new WeddingName("Alice & Bob Wedding"),
+                    new WeddingDate("01-Jan-2026"),
+                    new WeddingLocation("Beach")
+            );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final Wedding WEDDING_B;
+
+    static {
+        try {
+            WEDDING_B = new Wedding(
+                    new WeddingName("Carol & David Wedding"),
+                    new WeddingDate("02-Feb-2026"),
+                    new WeddingLocation("Garden")
+            );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private UniqueWeddingList uniqueWeddingList = new UniqueWeddingList();
 
@@ -63,11 +81,11 @@ public class UniqueWeddingListTest {
     }
 
     @Test
-    public void add_newWedding_incrementsNextId() {
+    public void add_newWedding_incrementsNextId() throws ParseException {
         int originalNextId = Wedding.getNextId();
         Wedding newWedding = new Wedding(
                 new WeddingName("New Wedding"),
-                new WeddingDate("04-Apr-2025"),
+                new WeddingDate("04-Apr-2026"),
                 new WeddingLocation("Hall")
         );
         uniqueWeddingList.add(newWedding);
@@ -76,12 +94,12 @@ public class UniqueWeddingListTest {
     }
 
     @Test
-    public void add_restoredWedding_doesNotIncrementNextId() {
+    public void add_restoredWedding_doesNotIncrementNextId() throws ParseException {
         int originalNextId = Wedding.getNextId();
         Wedding restoredWedding = new Wedding(
                 new WeddingId("W" + originalNextId),
                 new WeddingName("Restored Wedding"),
-                new WeddingDate("05-May-2025"),
+                new WeddingDate("05-May-2026"),
                 new WeddingLocation("Garden"),
                 true
         );

@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -27,7 +29,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Wedding> filteredWeddings;
+    private final SortedList<Wedding> sortedWeddings;
 
+    private boolean sortWeddingsByDate = false;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,6 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredWeddings = new FilteredList<>(this.addressBook.getWeddingList());
+        sortedWeddings = new SortedList<>(filteredWeddings);
     }
 
     public ModelManager() {
@@ -114,6 +119,16 @@ public class ModelManager implements Model {
     public void forceAddPerson(Person person) {
         // Call the overloaded method in your addressBook with force = true.
         addressBook.addPerson(person, true);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    /**
+     * Forcefully updates the details of the specified person in the address book,
+     * bypassing any duplicate checks.
+     */
+    @Override
+    public void forceSetPerson(Person target, Person editedPerson) {
+        addressBook.forceSetPerson(target, editedPerson);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -195,7 +210,59 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
-        return filteredWeddings;
+        // Always return the sorted list. If no comparator is set, the order is the original order.
+        return sortedWeddings;
+    }
+
+    /**
+     * Sets the comparator for sorting weddings by date.
+     */
+    @Override
+    public void setSortWeddingsByDate(boolean sortByDate) {
+        this.sortWeddingsByDate = sortByDate;
+        if (sortByDate) {
+            Comparator<Wedding> dateComparator = createWeddingDateComparator();
+            sortedWeddings.setComparator(dateComparator);
+        } else {
+            sortedWeddings.setComparator(null);
+        }
+    }
+
+    /**
+     * Sets the comparator for sorting weddings by wedding ID.
+     */
+    public void setSortWeddingsById() {
+        // Invalidate any date sorting flag if needed.
+        this.sortWeddingsByDate = false;
+        sortedWeddings.setComparator(createWeddingIdComparator());
+    }
+
+    /**
+     * Creates a comparator that compares weddings by their wedding date.
+     */
+    private Comparator<Wedding> createWeddingDateComparator() {
+        return Comparator.comparing(wedding ->
+                java.time.LocalDate.parse(
+                        wedding.getWeddingDate().toString(),
+                        java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy")
+                )
+        );
+    }
+
+    /**
+     * Creates a comparator that compares weddings by their wedding ID.
+     * This extracts the numeric part of the ID (after the leading "W")
+     * and compares them as integers.
+     */
+    private Comparator<Wedding> createWeddingIdComparator() {
+        return Comparator.comparingInt(wedding ->
+                Integer.parseInt(wedding.getWeddingId().value.substring(1))
+        );
+    }
+
+    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
+        sortedWeddings.setComparator(comparator);
+        return sortedWeddings;
     }
 
     @Override

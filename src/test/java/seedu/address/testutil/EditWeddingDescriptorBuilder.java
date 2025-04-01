@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditWeddingEventCommand.EditWeddingDescriptor;
+import seedu.address.logic.commands.EditWeddingCommand.EditWeddingDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingLocation;
@@ -42,7 +43,7 @@ public class EditWeddingDescriptorBuilder {
     /**
      * Sets the {@code WeddingDate} of the {@code EditWeddingDescriptor} that we are building.
      */
-    public EditWeddingDescriptorBuilder withWeddingDate(String date) {
+    public EditWeddingDescriptorBuilder withWeddingDate(String date) throws ParseException {
         descriptor.setWeddingDate(new WeddingDate(date));
         return this;
     }

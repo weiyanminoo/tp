@@ -18,9 +18,9 @@ import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
 /**
- * Edits the details of an existing wedding event in the address book.
+ * Edits the details of an existing wedding event in the contact book.
  */
-public class EditWeddingEventCommand extends Command {
+public class EditWeddingCommand extends Command {
 
     public static final String COMMAND_WORD = "editWedding";
 
@@ -38,18 +38,18 @@ public class EditWeddingEventCommand extends Command {
 
     public static final String MESSAGE_EDIT_WEDDING_SUCCESS = "Edited Wedding: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book.";
 
     private final WeddingId index;
     private final EditWeddingDescriptor editWeddingDescriptor;
 
     /**
-     * Creates an EditWeddingEventCommand to edit the wedding with the specified {@code weddingId}.
+     * Creates an EditWeddingCommand to edit the wedding with the specified {@code weddingId}.
      *
      * @param weddingId The ID of the wedding to edit.
      * @param editWeddingDescriptor Details of the wedding fields to edit.
      */
-    public EditWeddingEventCommand(WeddingId weddingId, EditWeddingDescriptor editWeddingDescriptor) {
+    public EditWeddingCommand(WeddingId weddingId, EditWeddingDescriptor editWeddingDescriptor) {
         requireNonNull(weddingId);
         requireNonNull(editWeddingDescriptor);
 
@@ -92,7 +92,17 @@ public class EditWeddingEventCommand extends Command {
                                             .orElse(weddingToEdit.getWeddingLocation());
         WeddingName updatedName = editWeddingDescriptor.getWeddingName().orElse(weddingToEdit.getWeddingName());
 
-        return new Wedding(originalId, updatedName, updatedDate, updatedLocation);
+        Wedding editedWedding = new Wedding(
+                originalId,
+                updatedName,
+                updatedDate,
+                updatedLocation,
+                weddingToEdit.isRestored()
+        );
+
+        weddingToEdit.getTasks().forEach(editedWedding::addTask);
+
+        return editedWedding;
     }
 
     @Override
@@ -100,10 +110,10 @@ public class EditWeddingEventCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof EditWeddingEventCommand)) {
+        if (!(other instanceof EditWeddingCommand)) {
             return false;
         }
-        EditWeddingEventCommand e = (EditWeddingEventCommand) other;
+        EditWeddingCommand e = (EditWeddingCommand) other;
         return index.equals(e.index)
                 && editWeddingDescriptor.equals(e.editWeddingDescriptor);
     }
@@ -111,7 +121,7 @@ public class EditWeddingEventCommand extends Command {
     @Override
     public String toString() {
         return String.format(
-                "EditWeddingEventCommand{index=%s, editWeddingDescriptor=%s}",
+                "EditWeddingCommand{index=%s, editWeddingDescriptor=%s}",
                 index.toString(),
                 editWeddingDescriptor.toString());
     }

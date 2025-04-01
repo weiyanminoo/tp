@@ -97,5 +97,4 @@ public class CommandResult {
                 .add("requiresConfirmation", requiresConfirmation)
                 .toString();
     }
-
 }

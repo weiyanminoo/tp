@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
 import seedu.address.model.wedding.WeddingId;
@@ -24,7 +25,7 @@ public class WeddingBuilder {
     /**
      * Creates a {@code WeddingBuilder} with the default details.
      */
-    public WeddingBuilder() {
+    public WeddingBuilder() throws ParseException {
         id = new WeddingId(DEFAULT_WEDDING_ID);
         name = new WeddingName(DEFAULT_WEDDING_NAME);
         date = new WeddingDate(DEFAULT_WEDDING_DATE);
@@ -61,7 +62,7 @@ public class WeddingBuilder {
     /**
      * Sets the {@code WeddingDate} of the {@code Wedding} that we are building.
      */
-    public WeddingBuilder withWeddingDate(String date) {
+    public WeddingBuilder withWeddingDate(String date) throws ParseException {
         this.date = new WeddingDate(date);
         return this;
     }

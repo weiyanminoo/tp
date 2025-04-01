@@ -9,8 +9,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditWeddingEventCommand.EditWeddingDescriptor;
+import seedu.address.logic.commands.EditWeddingCommand.EditWeddingDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -22,23 +23,39 @@ import seedu.address.testutil.WeddingBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code EditWeddingEventCommand}.
+ * {@code EditWeddingCommand}.
  */
-public class EditWeddingEventCommandTest {
+public class EditWeddingCommandTest {
 
-    private static final Wedding WEDDING_ONE = new WeddingBuilder()
-            .withWeddingId("W001")
-            .withWeddingName("John & Jane Wedding")
-            .withWeddingDate("15-Jun-2025")
-            .withWeddingLocation("Central Park")
-            .build();
+    private static final Wedding WEDDING_ONE;
 
-    private static final Wedding WEDDING_TWO = new WeddingBuilder()
-            .withWeddingId("W002")
-            .withWeddingName("Alice & Bob Wedding")
-            .withWeddingDate("10-Sep-2025")
-            .withWeddingLocation("Beachside Resort")
-            .build();
+    static {
+        try {
+            WEDDING_ONE = new WeddingBuilder()
+                    .withWeddingId("W001")
+                    .withWeddingName("John & Jane Wedding")
+                    .withWeddingDate("15-Jun-2025")
+                    .withWeddingLocation("Central Park")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final Wedding WEDDING_TWO;
+
+    static {
+        try {
+            WEDDING_TWO = new WeddingBuilder()
+                    .withWeddingId("W002")
+                    .withWeddingName("Alice & Bob Wedding")
+                    .withWeddingDate("10-Sep-2025")
+                    .withWeddingLocation("Beachside Resort")
+                    .build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final Model model = createModelWithWeddings();
 
@@ -50,7 +67,7 @@ public class EditWeddingEventCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
         Wedding editedWedding = new WeddingBuilder()
                 .withWeddingId("W001")
                 .withWeddingName("Unique Wedding Name")
@@ -59,11 +76,11 @@ public class EditWeddingEventCommandTest {
                 .build();
 
         EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(editedWedding).build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+        EditWeddingCommand editCommand = new EditWeddingCommand(
                 new WeddingId("W001"), descriptor);
 
         String expectedMessage = String.format(
-                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                EditWeddingCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
                 Messages.format(editedWedding)
         );
 
@@ -83,11 +100,11 @@ public class EditWeddingEventCommandTest {
                 .withWeddingName("Unique Wedding Name")
                 .build();
 
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+        EditWeddingCommand editCommand = new EditWeddingCommand(
                 new WeddingId("W001"), descriptor);
 
         String expectedMessage = String.format(
-                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                EditWeddingCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
                 Messages.format(partialEditWedding)
         );
 
@@ -99,13 +116,13 @@ public class EditWeddingEventCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+        EditWeddingCommand editCommand = new EditWeddingCommand(
                 new WeddingId("W001"), new EditWeddingDescriptor()
         );
         Wedding unmodifiedWedding = model.getFilteredWeddingList().get(0);
 
         String expectedMessage = String.format(
-                EditWeddingEventCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
+                EditWeddingCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
                 Messages.format(unmodifiedWedding)
         );
 
@@ -118,12 +135,12 @@ public class EditWeddingEventCommandTest {
     public void execute_duplicateWeddingUnfilteredList_failure() {
         // Attempt to edit WEDDING_TWO to have the same details as WEDDING_ONE
         EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+        EditWeddingCommand editCommand = new EditWeddingCommand(
                 new WeddingId("W002"), descriptor
         );
 
         assertThrows(CommandException.class,
-                EditWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> editCommand.execute(model));
+                EditWeddingCommand.MESSAGE_DUPLICATE_WEDDING, () -> editCommand.execute(model));
     }
 
     @Test
@@ -133,7 +150,7 @@ public class EditWeddingEventCommandTest {
                 .withWeddingName("Unique Wedding Name")
                 .build();
 
-        EditWeddingEventCommand editCommand = new EditWeddingEventCommand(
+        EditWeddingCommand editCommand = new EditWeddingCommand(
                 invalidWeddingId, descriptor
         );
 
@@ -144,13 +161,13 @@ public class EditWeddingEventCommandTest {
     @Test
     public void equals() {
         final EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
-        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(
+        final EditWeddingCommand standardCommand = new EditWeddingCommand(
                 new WeddingId("W001"), descriptor
         );
 
         // same values -> returns true
         EditWeddingDescriptor copyDescriptor = new EditWeddingDescriptor(descriptor);
-        EditWeddingEventCommand commandWithSameValues = new EditWeddingEventCommand(
+        EditWeddingCommand commandWithSameValues = new EditWeddingCommand(
                 new WeddingId("W001"), copyDescriptor
         );
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -165,23 +182,23 @@ public class EditWeddingEventCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditWeddingEventCommand(
+        assertFalse(standardCommand.equals(new EditWeddingCommand(
                 new WeddingId("W002"), descriptor)));
 
         // different descriptor -> returns false
         EditWeddingDescriptor differentDescriptor = new EditWeddingDescriptorBuilder(WEDDING_TWO).build();
-        assertFalse(standardCommand.equals(new EditWeddingEventCommand(
+        assertFalse(standardCommand.equals(new EditWeddingCommand(
                 new WeddingId("W001"), differentDescriptor)));
     }
 
     @Test
     public void toStringMethod() {
         final EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(WEDDING_ONE).build();
-        final EditWeddingEventCommand standardCommand = new EditWeddingEventCommand(
+        final EditWeddingCommand standardCommand = new EditWeddingCommand(
                 new WeddingId("W001"), descriptor
         );
 
-        String expectedString = "EditWeddingEventCommand{index=W001, "
+        String expectedString = "EditWeddingCommand{index=W001, "
                 + "editWeddingDescriptor=EditWeddingDescriptor{"
                 + "weddingName=Optional[John & Jane Wedding], "
                 + "weddingDate=Optional[15-Jun-2025], "

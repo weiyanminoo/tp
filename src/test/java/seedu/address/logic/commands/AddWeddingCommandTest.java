@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -27,13 +28,13 @@ import seedu.address.model.wedding.WeddingName;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code AddWeddingEventCommand}.
+ * {@code AddWeddingCommand}.
  */
-public class AddWeddingEventCommandTest {
+public class AddWeddingCommandTest {
 
     @Test
     public void constructor_nullWedding_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddWeddingEventCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddWeddingCommand(null));
     }
 
     @Test
@@ -42,54 +43,54 @@ public class AddWeddingEventCommandTest {
         // Create a valid wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
-                new WeddingDate("20-Feb-2025"),
+                new WeddingDate("20-Feb-2026"),
                 new WeddingLocation("Grand Ballroom")
         );
 
-        CommandResult commandResult = new AddWeddingEventCommand(validWedding).execute(modelStub);
+        CommandResult commandResult = new AddWeddingCommand(validWedding).execute(modelStub);
 
-        assertEquals(String.format(AddWeddingEventCommand.MESSAGE_SUCCESS, validWedding),
+        assertEquals(String.format(AddWeddingCommand.MESSAGE_SUCCESS, validWedding),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validWedding), modelStub.weddingsAdded);
     }
 
     @Test
-    public void execute_duplicateWedding_throwsCommandException() {
+    public void execute_duplicateWedding_throwsCommandException() throws ParseException {
         // Create a wedding event.
         Wedding validWedding = new Wedding(
                 new WeddingName("John & Jane's Wedding"),
-                new WeddingDate("20-Feb-2025"),
+                new WeddingDate("20-Feb-2026"),
                 new WeddingLocation("Grand Ballroom")
         );
-        AddWeddingEventCommand addWeddingCommand = new AddWeddingEventCommand(validWedding);
+        AddWeddingCommand addWeddingCommand = new AddWeddingCommand(validWedding);
         ModelStub modelStub = new ModelStubWithWedding(validWedding);
 
         // Expect a CommandException because modelStub already has `validWedding`
         assertThrows(CommandException.class,
-                AddWeddingEventCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
+                AddWeddingCommand.MESSAGE_DUPLICATE_WEDDING, () -> addWeddingCommand.execute(modelStub));
     }
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         Wedding aliceWedding = new Wedding(
                 new WeddingName("Alice & Bob's Wedding"),
-                new WeddingDate("21-Feb-2025"),
+                new WeddingDate("21-Feb-2026"),
                 new WeddingLocation("Central Park")
         );
         Wedding bobWedding = new Wedding(
                 new WeddingName("Bob & Charlie's Wedding"),
-                new WeddingDate("22-Feb-2025"),
+                new WeddingDate("22-Feb-2026"),
                 new WeddingLocation("Garden")
         );
 
-        AddWeddingEventCommand addAliceWeddingCommand = new AddWeddingEventCommand(aliceWedding);
-        AddWeddingEventCommand addBobWeddingCommand = new AddWeddingEventCommand(bobWedding);
+        AddWeddingCommand addAliceWeddingCommand = new AddWeddingCommand(aliceWedding);
+        AddWeddingCommand addBobWeddingCommand = new AddWeddingCommand(bobWedding);
 
         // same object -> returns true
         assertTrue(addAliceWeddingCommand.equals(addAliceWeddingCommand));
 
         // same values -> returns true
-        AddWeddingEventCommand addAliceWeddingCommandCopy = new AddWeddingEventCommand(aliceWedding);
+        AddWeddingCommand addAliceWeddingCommandCopy = new AddWeddingCommand(aliceWedding);
         assertTrue(addAliceWeddingCommand.equals(addAliceWeddingCommandCopy));
 
         // different types -> returns false
@@ -196,6 +197,16 @@ public class AddWeddingEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void setSortWeddingsByDate(boolean sortByDate) {
+
+        }
+
+        @Override
+        public void setSortWeddingsById() {
+
+        }
+
         // --- AddressBook / UserPrefs methods (not used by this command test) ---
         @Override
         public ReadOnlyAddressBook getAddressBook() {
@@ -234,6 +245,11 @@ public class AddWeddingEventCommandTest {
 
         @Override
         public seedu.address.commons.core.GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void forceSetPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
     }

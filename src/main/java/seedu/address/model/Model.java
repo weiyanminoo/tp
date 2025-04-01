@@ -80,6 +80,11 @@ public interface Model {
     void forceAddPerson(Person person);
 
     /**
+     * Forcefully updates the details of the specified person in the address book.
+     */
+    void forceSetPerson(Person target, Person editedPerson);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -121,6 +126,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredWeddingList(Predicate<Wedding> predicate);
+
+    /**
+     * Sets the comparator for sorting weddings by wedding date.
+     */
+    void setSortWeddingsByDate(boolean sortByDate);
+
+    /**
+     * Sets the comparator for sorting weddings by wedding ID.
+     */
+    void setSortWeddingsById();
 
     /**
      * Tags a person with the given tag.

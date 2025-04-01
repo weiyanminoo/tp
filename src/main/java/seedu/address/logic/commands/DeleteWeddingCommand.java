@@ -11,13 +11,13 @@ import seedu.address.model.wedding.WeddingId;
 
 
 /**
- * Deletes a Wedding event from the address book.
+ * Deletes a Wedding event from the contact book.
  */
 public class DeleteWeddingCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteWedding";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a wedding from the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a wedding from the contact book. "
             + "Parameters: WEDDING_ID\n"
             + "Example: " + COMMAND_WORD + " W1";
 

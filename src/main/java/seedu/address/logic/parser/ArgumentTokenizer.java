@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
  * 2. Leading and trailing whitespaces of an argument value will be discarded.<br>
  * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
  *    in the above example.<br>
+ *
+ * <p>This updated version supports escaping prefixes. For instance, if a user inputs:
+ * <br><code>addWedding n/John & Jane \d/ Wedding d/30-Apr-2025 l/MBS</code>
+ * <br>then the "\d/" will be treated as literal text (producing "d/") and will not be interpreted as a new prefix.
  */
 public class ArgumentTokenizer {
 
@@ -60,19 +64,26 @@ public class ArgumentTokenizer {
     /**
      * Returns the index of the first occurrence of {@code prefix} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
-     * such occurrence can be found.
+     * is valid if there is a whitespace before {@code prefix} and it is not escaped by a backslash.
+     * Returns -1 if no such occurrence can be found.
      *
-     * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns -1 as there are no valid
-     * occurrences of "p/" with whitespace before it. However, if
-     * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns 5.
+     * E.g. if {@code argsString} = "e/hi p/900" and {@code prefix} = "p/", this method returns 5.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
-        return prefixIndex == -1 ? -1
-                : prefixIndex + 1; // +1 as offset for whitespace
+        int index = fromIndex;
+        while (true) {
+            int prefixIndex = argsString.indexOf(" " + prefix, index);
+            if (prefixIndex == -1) {
+                return -1;
+            }
+            // Check if the delimiter is escaped (i.e. preceded by a backslash)
+            if (prefixIndex - 1 >= 0 && argsString.charAt(prefixIndex - 1) == '\\') {
+                // Skip this occurrence and continue searching
+                index = prefixIndex + 1;
+                continue;
+            }
+            return prefixIndex + 1; // +1 to account for the leading whitespace
+        }
     }
 
     /**
@@ -112,14 +123,19 @@ public class ArgumentTokenizer {
     /**
      * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
      * The end position of the value is determined by {@code nextPrefixPosition}.
+     *
+     * This method also removes the backslash used to escape a delimiter so that "\d/" becomes "d/".
      */
     private static String extractArgumentValue(String argsString,
-                                        PrefixPosition currentPrefixPosition,
-                                        PrefixPosition nextPrefixPosition) {
+                                               PrefixPosition currentPrefixPosition,
+                                               PrefixPosition nextPrefixPosition) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
         int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
+
+        // Remove a backslash that precedes a letter followed by a slash (e.g., \d/ -> d/)
+        value = value.replaceAll("\\\\(?=[A-Za-z]/)", "");
 
         return value.trim();
     }
