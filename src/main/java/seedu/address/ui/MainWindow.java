@@ -38,8 +38,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-    private boolean isShowWeddingList = false;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -120,67 +118,16 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    /**
-     * Switches the view between wedding list and person list.
-     *
-     * @param showWeddingList true if wedding list should be shown, false if person
-     *                        list should be shown
-     */
-    void switchView(boolean showWeddingList) {
-        personListPanelPlaceholder.getChildren().clear();
-        weddingListPanelPlaceholder.getChildren().clear();
-
-        personListPanelPlaceholder.setVisible(!showWeddingList);
-        weddingListPanelPlaceholder.setVisible(showWeddingList);
-
-        if (showWeddingList) {
-            displayWeddingList();
-        } else {
-            personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        }
-
-        isShowWeddingList = showWeddingList;
-    }
-
-    /**
-     * Displays the wedding list, sorted by date if needed.
-     */
-    private void displayWeddingList() {
-        weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
-        weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
-    }
-
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    void fillInnerPartsPerson() {
+    void fillInnerParts() {
+        // Left side: Person list
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        // Load the EW logo from the images directory
-        Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
-        logoImageView.setImage(logo);
-    }
-
-    /**
-     * Fills up all the placeholders of this window but with wedding instead of
-     * person.
-     * This is used when the user wants to view the wedding list.
-     */
-    void fillInnerPartsWedding() {
+        // Right side: Wedding list
         weddingListPanel = new WeddingListPanel(logic.getFilteredWeddingList());
         weddingListPanelPlaceholder.getChildren().add(weddingListPanel.getRoot());
 
+        // Result display, status bar, command box as before
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -190,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        // Load the EW logo from the images directory
+        // Logo
         Image logo = new Image(MainWindow.class.getResourceAsStream("/images/ew.png"));
         logoImageView.setImage(logo);
     }
@@ -235,10 +182,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -258,9 +201,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            switchView(commandResult.isShowWeddingList());
-
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

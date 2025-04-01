@@ -85,7 +85,7 @@ public class AddCommand extends Command implements ForceableCommand {
         if (!isForced && model.hasPerson(toAdd)) {
             // In normal mode, if a duplicate exists, store this command and signal confirmation required.
             ConfirmationManager.getInstance().setPendingCommand(this);
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, false, true);
+            return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true);
         }
 
         if (isForced) {

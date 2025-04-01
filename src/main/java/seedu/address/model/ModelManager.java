@@ -210,12 +210,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
-        if (sortWeddingsByDate) {
-            return sortedWeddings;
-        }
-        return filteredWeddings;
+        // Always return the sorted list. If no comparator is set, the order is the original order.
+        return sortedWeddings;
     }
 
+    /**
+     * Sets the comparator for sorting weddings by date.
+     */
     @Override
     public void setSortWeddingsByDate(boolean sortByDate) {
         this.sortWeddingsByDate = sortByDate;
@@ -227,17 +228,35 @@ public class ModelManager implements Model {
         }
     }
 
-    @Override
-    public boolean isSortingWeddingsByDate() {
-        return sortWeddingsByDate;
+    /**
+     * Sets the comparator for sorting weddings by wedding ID.
+     */
+    public void setSortWeddingsById() {
+        // Invalidate any date sorting flag if needed.
+        this.sortWeddingsByDate = false;
+        sortedWeddings.setComparator(createWeddingIdComparator());
     }
 
+    /**
+     * Creates a comparator that compares weddings by their wedding date.
+     */
     private Comparator<Wedding> createWeddingDateComparator() {
         return Comparator.comparing(wedding ->
                 java.time.LocalDate.parse(
                         wedding.getWeddingDate().toString(),
                         java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy")
                 )
+        );
+    }
+
+    /**
+     * Creates a comparator that compares weddings by their wedding ID.
+     * This extracts the numeric part of the ID (after the leading "W")
+     * and compares them as integers.
+     */
+    private Comparator<Wedding> createWeddingIdComparator() {
+        return Comparator.comparingInt(wedding ->
+                Integer.parseInt(wedding.getWeddingId().value.substring(1))
         );
     }
 
