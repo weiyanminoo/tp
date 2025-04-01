@@ -122,6 +122,16 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    /**
+     * Forcefully updates the details of the specified person in the address book,
+     * bypassing any duplicate checks.
+     */
+    @Override
+    public void forceSetPerson(Person target, Person editedPerson) {
+        addressBook.forceSetPerson(target, editedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
