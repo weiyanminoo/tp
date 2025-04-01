@@ -42,6 +42,13 @@ public class SortByWeddingDateCommandTest {
         assertFalse(command1.equals(null));
     }
 
+    @Test
+    public void hashCode_sameForAllInstances() {
+        SortByWeddingDateCommand command1 = new SortByWeddingDateCommand();
+        SortByWeddingDateCommand command2 = new SortByWeddingDateCommand();
+        assertEquals(command1.hashCode(), command2.hashCode());
+    }
+
     /**
      * A ModelStub that supports sorting, extending the base ModelStub.
      */
