@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -76,16 +75,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Wedding> getFilteredWeddingList() {
         return model.getFilteredWeddingList();
-    }
-
-    @Override
-    public boolean isSortingWeddingsByDate() {
-        return model.isSortingWeddingsByDate();
-    }
-
-    @Override
-    public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
-        return model.getSortedWeddingList(comparator);
     }
 
     @Override

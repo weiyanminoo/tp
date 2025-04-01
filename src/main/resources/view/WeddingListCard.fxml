@@ -2,33 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
-            </padding>
-            <HBox spacing="0.5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="weddingName" text="\$first" styleClass="cell_big_label" />
-            </HBox>
-            <Label fx:id="weddingId" styleClass="cell_small_label" text="\$wedding id" />
-            <Label fx:id="weddingDate" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="weddingLocation" styleClass="cell_small_label" text="\$location" />
-            <Label fx:id="weddingTask" styleClass="cell_small_label" text="\$task"/>
-        </VBox>
-    </GridPane>
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="cardPane" spacing="10">
+    <padding>
+        <Insets top="5" right="10" bottom="5" left="10" />
+    </padding>
+
+    <!-- Index label on the far left -->
+    <Label fx:id="id" styleClass="cell_big_label" />
+
+    <!-- Put all wedding fields in a VBox so they align under the wedding name -->
+    <VBox alignment="CENTER_LEFT" spacing="3">
+        <Label fx:id="weddingName" styleClass="cell_big_label" />
+        <Label fx:id="weddingId" styleClass="cell_small_label" />
+        <Label fx:id="weddingDate" styleClass="cell_small_label" />
+        <Label fx:id="weddingLocation" styleClass="cell_small_label" />
+        <Label fx:id="weddingTask" styleClass="cell_small_label" />
+    </VBox>
 </HBox>

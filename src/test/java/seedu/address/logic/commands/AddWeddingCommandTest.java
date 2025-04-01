@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -200,23 +199,12 @@ public class AddWeddingCommandTest {
 
         @Override
         public void setSortWeddingsByDate(boolean sortByDate) {
-            throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
-        public boolean isSortingWeddingsByDate() {
-            return false;
-        }
+        public void setSortWeddingsById() {
 
-        /**
-         * Returns an unmodifiable view of the sorted list of {@code Wedding} backed by the
-         * internal sorted list using the provided comparator
-         *
-         * @param comparator
-         */
-        @Override
-        public ObservableList<Wedding> getSortedWeddingList(Comparator<Wedding> comparator) {
-            return null;
         }
 
         // --- AddressBook / UserPrefs methods (not used by this command test) ---

@@ -39,8 +39,23 @@ public class TypicalWeddings {
             WEDDING_TWO = new Wedding(
                     new WeddingId("W002"),
                     new WeddingName("Cheryl & Ben Wedding"),
-                    new WeddingDate("15-Jun-2025"),
+                    new WeddingDate("14-Jun-2025"),
                     new WeddingLocation("Central Park")
+            );
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static final Wedding WEDDING_THREE;
+
+    static {
+        try {
+            WEDDING_THREE = new Wedding(
+                    new WeddingId("W003"),
+                    new WeddingName("Alice & Bob Wedding"),
+                    new WeddingDate("16-Jun-2025"),
+                    new WeddingLocation("Downtown Hall")
             );
         } catch (ParseException e) {
             throw new RuntimeException(e);
@@ -58,10 +73,11 @@ public class TypicalWeddings {
         AddressBook ab = new AddressBook();
         ab.addWedding(WEDDING_ONE);
         ab.addWedding(WEDDING_TWO);
+        ab.addWedding(WEDDING_THREE);
         return ab;
     }
 
     public static List<Wedding> getTypicalWeddings() {
-        return new ArrayList<>(Arrays.asList(WEDDING_ONE, WEDDING_TWO));
+        return new ArrayList<>(Arrays.asList(WEDDING_ONE, WEDDING_TWO, WEDDING_THREE));
     }
 }

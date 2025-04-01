@@ -18,3 +18,10 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.header-label {
+    -fx-font-size: 18px;  /* Adjust size as needed */
+    -fx-font-weight: bold; /* Or normal if you prefer */
+    -fx-text-fill: #ffffff; /* Or another color */
+    -fx-padding: 5 0 5 10; /* Top, right, bottom, left padding */
+}

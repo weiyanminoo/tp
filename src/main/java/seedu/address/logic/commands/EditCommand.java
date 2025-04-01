@@ -97,7 +97,7 @@ public class EditCommand extends Command implements ForceableCommand {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             if (!isForced) {
                 ConfirmationManager.getInstance().setPendingCommand(this);
-                return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, false, true);
+                return new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true);
             } else {
                 // Force mode: bypass duplicate check by calling forceSetPerson.
                 model.forceSetPerson(personToEdit, editedPerson);
