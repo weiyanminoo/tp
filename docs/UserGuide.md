@@ -269,6 +269,8 @@ Shows a list of all wedding events in the contact book sorted by the earliest da
 
 Format: `sortWDate`
 
+<br>
+
 ## Managing Wedding Tasks
 
 ### Adding a Wedding Task: `addTask`
