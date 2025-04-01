@@ -120,7 +120,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" alt="help message" width="150">
 
 Format: `help`
 * Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
@@ -286,7 +286,7 @@ Examples:
 
 ### Listing all Wedding Tasks: `listTask`
 
-Shows a list of all Tasks of a specified wedding event.
+Shows a list of all Tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
@@ -304,7 +304,7 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 
 Examples:
-* `mark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as completed.
+* `mark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as completed.
 
 
 ### Unmarking a Wedding Task: `unmark`
@@ -318,7 +318,7 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 
 Examples:
-* `unmark w/W1 i/1` Marks a Task at index 1 of the wedding event `W1` as not completed.
+* `unmark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as not completed.
 
 
 ### Deleting a Wedding Task: `deleteTask`
@@ -338,7 +338,7 @@ Examples:
 
 ## Managing Tags
 
-### Tagging a person to a Wedding: `tag`
+### Tagging a Person to a Wedding: `tag`
 
 Tags an existing contact to an existing wedding event.
 
@@ -355,7 +355,7 @@ Examples:
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
 
-### Untagging a person: `untag`
+### Untagging a Person: `untag`
 
 Untags an existing contact from an existing wedding event.
 
@@ -370,15 +370,15 @@ Examples:
 * `untag 1 W1` untags the first person from the wedding event `W1`
 
 
-### Filtering contacts: `filter`
+### Filtering Contacts: `filter`
 
-Filters contacts related to a specified wedding id.
+Filters contacts related to a specified wedding ID.
 
 Format: `filter WEDDING_ID`
 
 * Filters contacts that are tagged with the specified `WEDDING_ID`
-* Wedding id is the unique identifier of the wedding event.
-* Only the Wedding event corresponding to the `WEDDING_ID` will be displayed in the list of Weddings.
+* Wedding ID is the unique identifier of the wedding event.
+* Only the wedding event corresponding to the `WEDDING_ID` will be displayed in the list of weddings.
 
 Examples:
 * `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
@@ -452,7 +452,6 @@ Format: `exit`
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
-| **List**               | `list`                                                                                                                                                         |
 | **AddWedding**         | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
 | **EditWedding**        | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
 | **DeleteWedding**      | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
@@ -466,5 +465,6 @@ Format: `exit`
 | **Tag**                | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
 | **Untag**              | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
 | **Filter**             | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
+| **List**               | `list`                                                                                                                                                         |
 | **Clear**              | `clear`                                                                                                                                                        |
 | **Exit**               | `exit`                                                                                                                                                         |                                                                                                                                                       |
