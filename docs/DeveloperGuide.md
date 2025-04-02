@@ -38,6 +38,9 @@ pageNav: 3
   * [Launch and shutdown](#launch-and-shutdown)
   * [Deleting a person](#deleting-a-person)
   * [Saving data](#saving-data)
+* [Appendix: Effort](#appendix-effort)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+  
 
 
 
@@ -740,3 +743,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+
+## **Appendix: Planned Enhancements**
