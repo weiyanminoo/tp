@@ -40,7 +40,6 @@ pageNav: 3
   * [Saving data](#saving-data)
 * [Appendix: Effort](#appendix-effort)
 * [Appendix: Planned Enhancements](#appendix-planned-enhancements)
-  
 
 
 
@@ -313,17 +312,17 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Implementation**
 
 This section demonstrates how a user interacts with the application to perform essential tasks. In the following walkthrough, we cover:
-1. Creating a contact 
-2. Creating a wedding 
-3. Tagging the contact to the wedding 
-4. Untagging the contact from the wedding 
+1. Creating a contact
+2. Creating a wedding
+3. Tagging the contact to the wedding
+4. Untagging the contact from the wedding
 5. Deleting the wedding
 
 ### 1. Creating a contact
 The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
-Below is a sequence diagram that shows the steps involved when a user creates a contact. 
+Below is a sequence diagram that shows the steps involved when a user creates a contact.
 This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `AddCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
 
 <puml src="diagrams/createContact.puml" alt="createContact" />
@@ -346,7 +345,7 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts and weddings 
+* has a need to manage a significant number of contacts and weddings
 * freelance wedding planners who need to manage contacts for multiple weddings
 * wishes to centralise the management of contacts and weddings into one spot
 * can type fast
