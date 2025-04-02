@@ -89,8 +89,18 @@ public class EditCommand extends Command implements ForceableCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        // Check if any field is edited.
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        // If no effective changes are made, signal that the input is exactly the same.
+        if (personToEdit.equals(editedPerson)) {
+            throw new CommandException("No changes detected. Your input is exactly the same as the existing values.");
+        }
 
         // If the edited person is not the same as the original and a duplicate exists:
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

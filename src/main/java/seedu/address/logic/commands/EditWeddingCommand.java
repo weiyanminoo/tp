@@ -39,6 +39,8 @@ public class EditWeddingCommand extends Command {
     public static final String MESSAGE_EDIT_WEDDING_SUCCESS = "Edited Wedding: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_WEDDING = "This wedding already exists in the contact book.";
+    public static final String MESSAGE_NO_CHANGES =
+            "No changes detected. Your input is exactly the same as the existing values.";
 
     private final WeddingId index;
     private final EditWeddingDescriptor editWeddingDescriptor;
@@ -69,6 +71,11 @@ public class EditWeddingCommand extends Command {
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX));
 
         Wedding editedWedding = createEditedWedding(weddingToEdit, editWeddingDescriptor);
+
+        // If no effective changes are made, signal that the input is exactly the same.
+        if (weddingToEdit.equals(editedWedding)) {
+            throw new CommandException(MESSAGE_NO_CHANGES);
+        }
 
         if (!weddingToEdit.equals(editedWedding) && model.hasWedding(editedWedding)) {
             throw new CommandException(MESSAGE_DUPLICATE_WEDDING);

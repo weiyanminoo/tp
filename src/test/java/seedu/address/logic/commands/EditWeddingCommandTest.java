@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -115,20 +116,23 @@ public class EditWeddingCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditWeddingCommand editCommand = new EditWeddingCommand(
-                new WeddingId("W001"), new EditWeddingDescriptor()
-        );
-        Wedding unmodifiedWedding = model.getFilteredWeddingList().get(0);
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        // If no fields are specified, expect an error.
+        EditWeddingCommand editCommand = new EditWeddingCommand(new WeddingId("W001"), new EditWeddingDescriptor());
+        assertCommandFailure(editCommand, model, EditWeddingCommand.MESSAGE_NO_CHANGES);
+    }
 
-        String expectedMessage = String.format(
-                EditWeddingCommand.MESSAGE_EDIT_WEDDING_SUCCESS,
-                Messages.format(unmodifiedWedding)
-        );
+    /**
+     * Tests that if the user attempts to edit a wedding with the exact same values,
+     * a CommandException is thrown indicating no changes were detected.
+     */
+    @Test
+    public void execute_noChangesDetected_failure() {
+        Wedding weddingToEdit = model.getFilteredWeddingList().get(0);
+        EditWeddingDescriptor descriptor = new EditWeddingDescriptorBuilder(weddingToEdit).build();
+        EditWeddingCommand editCommand = new EditWeddingCommand(weddingToEdit.getWeddingId(), descriptor);
 
-        Model expectedModel = createModelWithWeddings();
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertThrows(CommandException.class, EditWeddingCommand.MESSAGE_NO_CHANGES, () -> editCommand.execute(model));
     }
 
     @Test
