@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -22,7 +23,6 @@ public class DeleteWeddingCommand extends Command {
             + "Example: " + COMMAND_WORD + " W1";
 
     public static final String MESSAGE_SUCCESS = "Deleted wedding: %1$s";
-    public static final String MESSAGE_WEDDING_NOT_FOUND = "The wedding with the specified wedding id does not exist.";
 
     private final WeddingId weddingId;
 
@@ -48,7 +48,7 @@ public class DeleteWeddingCommand extends Command {
         Wedding weddingToDelete = model.getWeddingById(weddingId);
 
         if (weddingToDelete == null) {
-            throw new CommandException(MESSAGE_WEDDING_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND, weddingId.value));
         }
 
         model.deleteWedding(weddingToDelete);

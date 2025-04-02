@@ -114,16 +114,25 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code persons}, bypassing duplicate checks if {@code force} is true.
+     *
+     * @param persons the list of persons to set.
+     * @param force if true, duplicates are allowed; if false, duplicates are disallowed.
+     * @throws DuplicatePersonException if force is false and duplicates are detected.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(List<Person> persons, boolean force) {
         requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+        if (!force && !personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code persons}, disallowing duplicates.
+     */
+    public void setPersons(List<Person> persons) {
+        setPersons(persons, false);
     }
 
     /**

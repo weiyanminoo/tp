@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.wedding.Wedding;
@@ -53,7 +54,7 @@ public class AddTaskCommandTest {
         AddTaskCommand command = new AddTaskCommand(INVALID_WEDDING_ID, VALID_DESCRIPTION);
 
         assertThrows(CommandException.class,
-                String.format(AddTaskCommand.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), () ->
+                String.format(Messages.MESSAGE_WEDDING_NOT_FOUND, INVALID_WEDDING_ID.value), () ->
                         command.execute(modelStub));
     }
 

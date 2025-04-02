@@ -61,7 +61,7 @@ public class TagCommand extends Command {
         boolean weddingExists = model.getFilteredWeddingList().stream()
                 .anyMatch(wedding -> wedding.getWeddingId().equals(weddingId));
         if (!weddingExists) {
-            throw new CommandException("The specified wedding id " + weddingId + " does not exist.");
+            throw new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND, weddingId.value));
         }
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
