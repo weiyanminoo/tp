@@ -124,7 +124,7 @@ public class EditCommand extends Command implements ForceableCommand {
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, new HashSet<>());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, personToEdit.getTags());
     }
 
     @Override
