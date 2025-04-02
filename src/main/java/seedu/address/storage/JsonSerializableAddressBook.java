@@ -59,10 +59,8 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
+            // Force-add the person if user gives the confirmation
+            addressBook.addPerson(person, true);
         }
 
         for (JsonAdaptedWedding jsonAdaptedWedding : weddings) {

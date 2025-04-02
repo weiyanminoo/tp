@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,6 +47,8 @@ public class EditCommand extends Command implements ForceableCommand {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_CHANGES =
+            "No changes detected. Your input is exactly the same as the existing values.";
     public static final String MESSAGE_DUPLICATE_PERSON =
             "WARNING: This person may already exist in the contact book.\n"
             + "If you wish to proceed, use 'Ctrl / Command + A' and press 'Delete / Backspace' to clear the input box\n"
@@ -93,6 +94,11 @@ public class EditCommand extends Command implements ForceableCommand {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        // If no effective changes are made, signal that the input is exactly the same.
+        if (personToEdit.equals(editedPerson)) {
+            throw new CommandException(MESSAGE_NO_CHANGES);
+        }
+
         // If the edited person is not the same as the original and a duplicate exists:
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             if (!isForced) {
@@ -124,7 +130,7 @@ public class EditCommand extends Command implements ForceableCommand {
         Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, new HashSet<>());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedRole, updatedAddress, personToEdit.getTags());
     }
 
     @Override

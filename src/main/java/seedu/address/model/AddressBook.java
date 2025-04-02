@@ -46,10 +46,23 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Duplicates are disallowed.
+     *
+     * @param persons the list of persons to set.
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }
+
+    /**
+     * Overloaded version that replaces the contents of the person list with {@code persons}.
+     * If {@code force} is true, duplicate checks are bypassed.
+     *
+     * @param persons the list of persons to set.
+     * @param force if true, duplicates are allowed.
+     */
+    public void setPersons(List<Person> persons, boolean force) {
+        this.persons.setPersons(persons, force);
     }
 
     public void setWeddings(List<Wedding> weddings) {
@@ -57,12 +70,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this AddressBook with {@code newData}.
+     * <p>
+     * When loading data, forced duplicates are allowed so that previously forced duplicate entries are preserved.
+     * </p>
+     *
+     * @param newData the new data to reset with.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
+        setPersons(newData.getPersonList(), true); // Bypass duplicate check during load.
         setWeddings(newData.getWeddingList());
     }
 
