@@ -49,7 +49,8 @@ public class DeleteTaskCommand extends Command {
 
         try {
             WeddingTask removed = wedding.removeTask(taskIndex - 1);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, weddingId.value, removed));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, weddingId.value, removed),
+                    false, false, false, true);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_TASK_INDEX, weddingId.value));
         }
