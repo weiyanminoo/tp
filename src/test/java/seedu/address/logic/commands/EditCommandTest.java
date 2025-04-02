@@ -10,6 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import seedu.address.model.wedding.Wedding;
+import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.testutil.EditWeddingDescriptorBuilder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -19,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -74,10 +78,22 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
-        // Creating an empty descriptor.
+        // If no fields are specified, expect an error.
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGES);
+    }
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NOT_EDITED);
+    /**
+     * Tests that if the user attempts to edit a person with the exact same values,
+     * a CommandException is thrown indicating no changes were detected.
+     */
+    @Test
+    public void execute_noChangesDetected_failure() {
+        Person personToEdit = model.getFilteredPersonList().get(0);
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(personToEdit).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertThrows(CommandException.class, EditCommand.MESSAGE_NO_CHANGES, () -> editCommand.execute(model));
     }
 
     @Test

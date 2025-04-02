@@ -47,6 +47,8 @@ public class EditCommand extends Command implements ForceableCommand {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_CHANGES =
+            "No changes detected. Your input is exactly the same as the existing values.";
     public static final String MESSAGE_DUPLICATE_PERSON =
             "WARNING: This person may already exist in the contact book.\n"
             + "If you wish to proceed, use 'Ctrl / Command + A' and press 'Delete / Backspace' to clear the input box\n"
@@ -89,17 +91,12 @@ public class EditCommand extends Command implements ForceableCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        // Check if any field is edited.
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
-        }
-
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         // If no effective changes are made, signal that the input is exactly the same.
         if (personToEdit.equals(editedPerson)) {
-            throw new CommandException("No changes detected. Your input is exactly the same as the existing values.");
+            throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
         // If the edited person is not the same as the original and a duplicate exists:
