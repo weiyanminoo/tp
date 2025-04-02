@@ -7,13 +7,55 @@ pageNav: 3
 # EasyWeds Developer Guide
 
 <!-- * Table of Contents -->
-<page-nav-print />
+## **Table of Content**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+  * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
+  * [[Proposed] Data archiving](#proposed-data-archiving)
+  * [User Workflow Implementation](#implementation)
+    * [Creating a contact](#1-creating-a-contact)
+    * [Creating a wedding](#creating-a-wedding)
+    * [Tagging a contact to a wedding](#tagging-a-contact-to-a-wedding)
+    * [Untagging a contact from a wedding](#untagging-a-contact-from-a-wedding)
+    * [Deleting a wedding](#deleting-a-wedding)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Deleting a person](#deleting-a-person)
+  * [Saving data](#saving-data)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+EasyWeds is a brownfield software project based off AddressBook Level-3, taken under the CS2103T Software Engineering module held by the School of Computing at the National University of Singapore.
+
+Java dependencies:
+
+- JavaFX for GUI
+- JUnit5 for testing
+
+Documentation dependencies:
+
+- Markbind for rendering the website
+- PlantUML for creating UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,6 +66,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [
+_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
+and edit diagrams.
+
+</div>
 
 ### Architecture
 
