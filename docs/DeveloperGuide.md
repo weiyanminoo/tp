@@ -110,7 +110,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name} Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -330,7 +330,7 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -346,33 +346,39 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts and weddings 
 * freelance wedding planners who need to manage contacts for multiple weddings
+* wishes to centralise the management of contacts and weddings into one spot
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts and weddings faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                     | So that I can…​                                         |
-|----------|---------|------------------------------------------------------------------|---------------------------------------------------------|
-| `* * *`  | user    | add a client/vendor with their details                           | keep track of my contacts                               |
-| `* * *`  | user    | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors           |
-| `* * *`  | user    | retrieve a client/vendor's record                                | view the details of my clients/vendors                  |
-| `* * *`  | user    | update a client/vendor's detail                                  | have the most updated information for my contacts       |
-| `* * *`  | user    | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding       |
-| `* * *`  | user    | link vendors to specific weddings                                | know which vendors are handling which events            |
-| `* * *`  | user    | filter according to roles / event                                | have a clear picture of who I need to liaise with for   |
-| `* *`    | user    | hide private contact details                                     | minimize chance of someone else seeing them by accident |
-| `* *`    | user    | receive automatic reminders for upcoming tasks                   | avoid missing important deadlines                       |
-| `*`      | user    | generate the wedding day itinerary                               | ensure that all events during the day runs smoothly     |
-| `*`      | user    | share secure, real-time event summaries with clients and vendors | share information with all personnel involved           |
-
+| Priority | As a …​        | I want to …​                                                     | So that I can…​                                                |
+|----------|----------------|------------------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | user           | add a client/vendor with their details                           | keep track of my contacts                                      |
+| `* * *`  | user           | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors                  |
+| `* * *`  | user           | retrieve a client/vendor's record                                | view the details of my clients/vendors                         |
+| `* * *`  | user           | update a client/vendor's detail                                  | have the most updated information for my contacts              |
+| `* * *`  | user           | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding              |
+| `* * *`  | user           | add a wedding event with its details                             | keep track of the weddings that I am handling                  |
+| `* * *`  | user           | view a list of wedding event with its details                    | view the details of the wedding                                |
+| `* * *`  | user           | view a list of wedding events from the closest to latest date    | have a clear picture of the upcoming weddings                  |
+| `* * *`  | user           | delete a wedding event                                           | remove outdated or irrelevant weddings                         |
+| `* * *`  | user           | edit a wedding event                                             | update the details of the wedding with the correct information |
+| `* * *`  | user           | add a task to a wedding event                                    | keep track of the tasks that need to be done for the wedding   |
+| `* * *`  | user           | delete a task from a wedding event                               | remove outdated or irrelevant tasks                            |
+| `* * *`  | user           | link vendors to specific weddings                                | know which vendors are handling which events                   |
+| `* *`    | user           | view a summary of all my tasks related to a wedding              | have a clear picture of what needs to be done                  |
+| `* *`    | user           | filter according to roles / event                                | have a clear picture of who I need to liaise with for          |
+| `*`      | user           | mark and unmark my tasks related to a wedding                    | know which are the tasks that I have yet to complete           |
+| `*`      | user           | have a confirmation message before I add very similar contacts   | avoid accidentally adding duplicate contacts                   |
 *{More to be added}*
 
 ### Use cases
