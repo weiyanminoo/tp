@@ -48,7 +48,7 @@ public class AddTaskCommand extends Command {
 
         WeddingTask newTask = new WeddingTask(taskDescription);
         wedding.addTask(newTask);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, weddingId.value, newTask));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, weddingId.value, newTask), false, false, false, true);
     }
 
     @Override

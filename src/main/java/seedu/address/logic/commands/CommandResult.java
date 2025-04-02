@@ -19,6 +19,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private boolean refreshUI;
+
     /**
      * Indicates whether this command result requires further user confirmation.
      * For example, this flag can be set when a duplicate person is detected,
@@ -34,6 +36,17 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.requiresConfirmation = requiresConfirmation;
+    }
+
+    /**
+     *  Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean requiresConfirmation, boolean refreshUI) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.requiresConfirmation = requiresConfirmation;
+        this.refreshUI = refreshUI;
     }
 
     /**
@@ -63,6 +76,14 @@ public class CommandResult {
      */
     public boolean isRequiresConfirmation() {
         return requiresConfirmation;
+    }
+
+    /**
+     * Returns if this CommandResult indicates that the UI should be refreshed.
+     * @return {@code true} if UI should be refreshed; {@code false} otherwise.
+     */
+    public boolean isRefreshUI() {
+        return refreshUI;
     }
 
     @Override
