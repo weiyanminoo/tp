@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.wedding.Wedding;
@@ -20,7 +21,6 @@ public class AddTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " w/W1 desc/Book photographer";
 
     public static final String MESSAGE_SUCCESS = "New task added to wedding %1$s:\n%2$s";
-    public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";
     public static final String MESSAGE_INVALID_FORMAT = "Invalid command format. " + MESSAGE_USAGE;
 
     private final WeddingId weddingId;
@@ -43,7 +43,8 @@ public class AddTaskCommand extends Command {
         Wedding wedding = model.getFilteredWeddingList().stream()
                 .filter(w -> w.getWeddingId().equals(weddingId))
                 .findFirst()
-                .orElseThrow(() -> new CommandException(String.format(MESSAGE_WEDDING_NOT_FOUND, weddingId.value)));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND,
+                        weddingId.value)));
 
         WeddingTask newTask = new WeddingTask(taskDescription);
         wedding.addTask(newTask);
