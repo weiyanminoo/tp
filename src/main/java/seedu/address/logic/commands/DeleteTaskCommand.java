@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.wedding.Wedding;
@@ -20,7 +21,6 @@ public class DeleteTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " w/W1 i/2";
 
     public static final String MESSAGE_SUCCESS = "Deleted task from wedding %1$s:\n%2$s";
-    public static final String MESSAGE_WEDDING_NOT_FOUND = "Wedding with ID %1$s not found.";
     public static final String MESSAGE_INVALID_TASK_INDEX = "Invalid task index for wedding %1$s.";
 
     private final WeddingId weddingId;
@@ -44,7 +44,8 @@ public class DeleteTaskCommand extends Command {
         Wedding wedding = model.getFilteredWeddingList().stream()
                 .filter(w -> w.getWeddingId().equals(weddingId))
                 .findFirst()
-                .orElseThrow(() -> new CommandException(String.format(MESSAGE_WEDDING_NOT_FOUND, weddingId.value)));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND,
+                        weddingId.value)));
 
         try {
             WeddingTask removed = wedding.removeTask(taskIndex - 1);
