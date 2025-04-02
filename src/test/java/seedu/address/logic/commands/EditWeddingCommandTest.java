@@ -158,8 +158,9 @@ public class EditWeddingCommandTest {
                 invalidWeddingId, descriptor
         );
 
-        assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX, () -> editCommand.execute(model));
+        String expectedMessage = "The specified wedding ID " + invalidWeddingId + " does not exist.";
+
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
