@@ -22,11 +22,6 @@ pageNav: 3
   * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
   * [[Proposed] Data archiving](#proposed-data-archiving)
   * [User Workflow Implementation](#implementation)
-    * [Creating a contact](#1-creating-a-contact)
-    * [Creating a wedding](#creating-a-wedding)
-    * [Tagging a contact to a wedding](#tagging-a-contact-to-a-wedding)
-    * [Untagging a contact from a wedding](#untagging-a-contact-from-a-wedding)
-    * [Deleting a wedding](#deleting-a-wedding)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
@@ -318,7 +313,7 @@ This section demonstrates how a user interacts with the application to perform e
 4. Untagging the contact from the wedding
 5. Deleting the wedding
 
-### 1. Creating a contact
+### Creating a contact
 The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
