@@ -1,6 +1,7 @@
 package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -27,5 +28,12 @@ public class TagTest {
         // Should not throw any exception for valid wedding ids.
         assertDoesNotThrow(() -> new Tag(new WeddingId("W1")));
         assertDoesNotThrow(() -> new Tag(new WeddingId("W2")));
+    }
+
+    @Test
+    public void getWeddingId_validWeddingId_returnsWeddingId() {
+        WeddingId weddingId = new WeddingId("W1");
+        Tag tag = new Tag(weddingId);
+        assertEquals(weddingId, tag.getWeddingId());
     }
 }

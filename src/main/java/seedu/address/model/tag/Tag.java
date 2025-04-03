@@ -43,6 +43,15 @@ public class Tag {
     }
 
     /**
+     * Returns the WeddingId associated with this {@code Tag}.
+     *
+     * @return The WeddingId of this {@code Tag}.
+     */
+    public WeddingId getWeddingId() {
+        return weddingId;
+    }
+
+    /**
      * Returns the hash code of this {@code Tag}.
      *
      * @return The hash code of this {@code Tag}.
