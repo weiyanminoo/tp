@@ -27,6 +27,8 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Tagged Person: %1$s with WeddingId: %2$s";
 
+    public static final String MESSAGE_TAG_PERSON_DUPLICATE_TAG = "This person is already tagged to %1$s";
+
     private final Index targetIndex;
     private final WeddingId weddingId;
 
@@ -65,6 +67,11 @@ public class TagCommand extends Command {
         }
 
         Person personToTag = lastShownList.get(targetIndex.getZeroBased());
+
+        if (personToTag.getTags().stream().anyMatch(tag -> tag.getWeddingId().equals(weddingId))) {
+            throw new CommandException(String.format(MESSAGE_TAG_PERSON_DUPLICATE_TAG, weddingId.value));
+        }
+
         Tag tag = new Tag(weddingId);
 
         // Tag the person
