@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import seedu.address.model.tag.TagMatchesPredicate;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalWeddings.WEDDING_ONE;
@@ -16,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.TagMatchesPredicate;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingId;
 import seedu.address.testutil.PersonBuilder;
@@ -71,7 +71,6 @@ public class UntagCommandTest {
         // Since the tag was removed, personWithTag should no longer be in the filtered list.
         assertFalse(model.getFilteredPersonList().contains(personWithTag));
     }
-
 
     @Test
     public void equals_sameObject_returnsTrue() {
