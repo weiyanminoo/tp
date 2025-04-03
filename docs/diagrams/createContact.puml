@@ -10,23 +10,54 @@ participant ":AddCommandParser" as AddCommandParser #Blue
 participant ":ParserUtil" as ParserUtil #Blue
 participant "a:AddCommand" as AddCommand #Blue
 participant ":Model" as Model #Red
+participant ":ConfirmationManager" as ConfirmationManager #Blue
 participant "r:CommandResult" as CommandResult #DarkRed
 participant ":Storage" as Storage #Orange
 
-User -> UI: "addContact n/John Doe..."
-UI -> LM: execute("addContact n/John Doe...")
+User -> UI: "add n/John Doe ..."
+UI -> LM: execute("add n/John Doe ...")
 activate LM
 
-LM -> ABP: parseCommand("addContact n/John Doe...")
+LM -> ABP: parseCommand("add n/John Doe ...")
 activate ABP
 ABP -> "AddCommandParser": parse(arguments)
 activate "AddCommandParser"
-"AddCommandParser" -> ParserUtil: parseName, parsePhone, etc.
+
+"AddCommandParser" -> "AddCommandParser": ArgumentTokenizer.tokenize(args, prefixes)
+"AddCommandParser" -> "AddCommandParser": arePrefixesPresent(argMultimap, prefixes)
+"AddCommandParser" -> "AddCommandParser": verifyNoDuplicatePrefixesFor(prefixes)
+
+"AddCommandParser" -> ParserUtil: parseName(name)
 activate ParserUtil
-ParserUtil --> "AddCommandParser"
+ParserUtil --> "AddCommandParser": name
 deactivate ParserUtil
 
-"AddCommandParser" -> "AddCommand": new AddCommand(name, phone, etc.)
+"AddCommandParser" -> ParserUtil: parsePhone(phone)
+activate ParserUtil
+ParserUtil --> "AddCommandParser": phone
+deactivate ParserUtil
+
+"AddCommandParser" -> ParserUtil: parseEmail(email)
+activate ParserUtil
+ParserUtil --> "AddCommandParser": email
+deactivate ParserUtil
+
+"AddCommandParser" -> ParserUtil: parseRole(role)
+activate ParserUtil
+ParserUtil --> "AddCommandParser": role
+deactivate ParserUtil
+
+"AddCommandParser" -> ParserUtil: parseAddress(address)
+activate ParserUtil
+ParserUtil --> "AddCommandParser": address
+deactivate ParserUtil
+
+"AddCommandParser" -> "Person": new Person(name, phone, email, role, address, new HashSet<>())
+activate "Person"
+"Person" --> "AddCommandParser": person
+deactivate "Person"
+
+"AddCommandParser" -> "AddCommand": new AddCommand(person)
 activate "AddCommand"
 "AddCommand" --> "AddCommandParser"
 deactivate "AddCommand"
@@ -37,28 +68,54 @@ deactivate "AddCommandParser"
 ABP --> LM: a
 deactivate ABP
 
-LM -> "AddCommand": execute(m)
+LM -> "AddCommand": execute(model)
 activate "AddCommand"
 
-"AddCommand" -> Model: addPerson(p)
+"AddCommand" -> Model: hasPerson(toAdd)
 activate Model
-Model --> "AddCommand"
+Model --> "AddCommand": personExists
 deactivate Model
 
-"AddCommand" -> CommandResult
-activate CommandResult
-"CommandResult" --> "AddCommand"
-deactivate CommandResult
+alt person exists and !isForced
+    "AddCommand" -> ConfirmationManager: getInstance().setPendingCommand(this)
+    activate ConfirmationManager
+    ConfirmationManager --> "AddCommand"
+    deactivate ConfirmationManager
+
+    "AddCommand" -> CommandResult: new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true)
+    activate CommandResult
+    "CommandResult" --> "AddCommand"
+    deactivate CommandResult
+else person doesn't exist or isForced
+    alt isForced
+        "AddCommand" -> Model: forceAddPerson(toAdd)
+        activate Model
+        Model --> "AddCommand"
+        deactivate Model
+    else
+        "AddCommand" -> Model: addPerson(toAdd)
+        activate Model
+        Model --> "AddCommand"
+        deactivate Model
+    end
+
+    "AddCommand" -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    "CommandResult" --> "AddCommand"
+    deactivate CommandResult
+end
 
 "AddCommand" --> LM: r
 deactivate "AddCommand"
 
-LM -> Storage: saveAddressBook(Model.getAddressBook())
-activate Storage
-Storage --> LM: Save successful
-deactivate Storage
+alt regular command success (not requiring confirmation)
+    LM -> Storage: saveAddressBook(Model.getAddressBook())
+    activate Storage
+    Storage --> LM: Save successful
+    deactivate Storage
+end
 
 LM -> UI: return CommandResult
 deactivate LM
-UI -> User: Display success message
+UI -> User: Display appropriate message
 @enduml

@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":UI" as UI #Green
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":AddWeddingCommandParser" as AddWeddingCommandParser #Blue
+participant ":ParserUtil" as ParserUtil #Blue
+participant "a:AddWeddingCommand" as AddWeddingCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> UI: "addWedding n/John & Jane's Wedding ..."
+UI -> LM: execute("addWedding n/John & Jane's Wedding ...")
+activate LM
+
+LM -> ABP: parseCommand("addWedding n/John & Jane's Wedding ...")
+activate ABP
+ABP -> "AddWeddingCommandParser": parse(arguments)
+activate "AddWeddingCommandParser"
+
+"AddWeddingCommandParser" -> "AddWeddingCommandParser": ArgumentTokenizer.tokenize(args, prefixes)
+"AddWeddingCommandParser" -> "AddWeddingCommandParser": arePrefixesPresent(argMultimap, prefixes)
+"AddWeddingCommandParser" -> "AddWeddingCommandParser": verifyNoDuplicatePrefixesFor(prefixes)
+
+"AddWeddingCommandParser" -> ParserUtil: parseWeddingName(name)
+activate ParserUtil
+ParserUtil --> "AddWeddingCommandParser": weddingName
+deactivate ParserUtil
+
+"AddWeddingCommandParser" -> ParserUtil: parseWeddingDate(date)
+activate ParserUtil
+ParserUtil --> "AddWeddingCommandParser": weddingDate
+deactivate ParserUtil
+
+"AddWeddingCommandParser" -> ParserUtil: parseWeddingLocation(location)
+activate ParserUtil
+ParserUtil --> "AddWeddingCommandParser": weddingLocation
+deactivate ParserUtil
+
+"AddWeddingCommandParser" -> "Wedding": new Wedding(weddingName, weddingDate, location)
+activate "Wedding"
+"Wedding" --> "AddWeddingCommandParser": wedding
+deactivate "Wedding"
+
+"AddWeddingCommandParser" -> "AddWeddingCommand": new AddWeddingCommand(wedding)
+activate "AddWeddingCommand"
+"AddWeddingCommand" --> "AddWeddingCommandParser"
+deactivate "AddWeddingCommand"
+
+"AddWeddingCommandParser" --> ABP: a
+deactivate "AddWeddingCommandParser"
+
+ABP --> LM: a
+deactivate ABP
+
+LM -> "AddWeddingCommand": execute(m)
+activate "AddWeddingCommand"
+
+"AddWeddingCommand" -> Model: hasWedding(toAdd)
+activate Model
+Model --> "AddWeddingCommand": weddingExists
+deactivate Model
+
+"AddWeddingCommand" -> Model: addWedding(toAdd)
+activate Model
+Model --> "AddWeddingCommand"
+deactivate Model
+
+"AddWeddingCommand" -> CommandResult: new CommandResult(successMessage)
+activate CommandResult
+"CommandResult" --> "AddWeddingCommand"
+deactivate CommandResult
+
+"AddWeddingCommand" --> LM: r
+deactivate "AddWeddingCommand"
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM -> UI: return CommandResult
+deactivate LM
+UI -> User: Display success message
+@enduml

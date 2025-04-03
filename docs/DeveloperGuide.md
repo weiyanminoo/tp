@@ -7,7 +7,7 @@ pageNav: 3
 # EasyWeds Developer Guide
 
 <!-- * Table of Contents -->
-## **Table of Content**
+## **Table of Contents**
 
 * [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#setting-up-getting-started)
@@ -21,7 +21,12 @@ pageNav: 3
 * [Implementation](#implementation)
   * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
   * [[Proposed] Data archiving](#proposed-data-archiving)
-  * [User Workflow Implementation](#implementation)
+  * [User Workflow Implementation](#user-workflow-implementation)
+    * [Creating a contact](#1-creating-a-contact)
+    * [Creating a wedding](#2-creating-a-wedding)
+    * [Tagging the contact to the wedding](#3-tagging-the-contact-to-the-wedding)
+    * [Untagging the contact from the wedding](#4-untagging-the-contact-from-the-wedding)
+    * [Deleting the wedding](#5-deleting-the-wedding)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
@@ -42,7 +47,9 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-EasyWeds is a brownfield software project based off AddressBook Level-3, taken under the CS2103T Software Engineering module held by the School of Computing at the National University of Singapore.
+EasyWeds is a brownfield software project based off [AddressBook Level-3](https://se-education.org/addressbook-level3/) ([UG](https://se-education.org/addressbook-level3/UserGuide.html), [DG](https://se-education.org/addressbook-level3/DeveloperGuide.html)), 
+taken under the CS2103T Software Engineering module held by the School of Computing at the National University of 
+Singapore.
 
 Java dependencies:
 
@@ -304,7 +311,7 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
-## **Implementation**
+## **User Workflow Implementation**
 
 This section demonstrates how a user interacts with the application to perform essential tasks. In the following walkthrough, we cover:
 1. Creating a contact
@@ -313,8 +320,8 @@ This section demonstrates how a user interacts with the application to perform e
 4. Untagging the contact from the wedding
 5. Deleting the wedding
 
-### Creating a contact
-The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
+### 1. Creating a contact
+The user begins by creating a new contact using the add command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
 Below is a sequence diagram that shows the steps involved when a user creates a contact.
@@ -322,6 +329,41 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 <puml src="diagrams/createContact.puml" alt="createContact" />
 
+### 2. Creating a wedding
+The user can create a wedding using the addWedding command. For example, the user might input: `addWedding n/John Doe d/2025-12-25 l/Some Venue`
+This command creates a wedding with the specified name, date, and location.
+
+Below is a sequence diagram that shows the steps involved when a user creates a wedding. 
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `AddWeddingCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/createWedding.puml" alt="createWedding" />
+
+### 3. Tagging a contact to a wedding
+The user can tag a contact to a wedding using the tag command. For example, the user might input: `tag 1 W1`
+This command tags the contact with the specified name to the wedding with the specified wedding ID.
+
+Below is a sequence diagram that shows the steps involved when a user tags a contact to a wedding.
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `TagCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/tagContact.puml" alt="tagContact" />
+
+### 4. Untagging a contact from a wedding
+The user can untag a contact from a wedding using the untag command. For example, the user might input: `untag 1 W1`
+This command untags the contact with the specified name from the wedding with the specified wedding ID.
+
+Below is a sequence diagram that shows the steps involved when a user untags a contact from a wedding.
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `UntagCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/untagContact.puml" alt="untagContact" />
+
+### 5. Deleting a wedding
+The user can delete a wedding using the deleteWedding command. For example, the user might input: `deleteWedding W1`
+This command deletes the wedding with the specified wedding ID.
+
+Below is a sequence diagram that shows the steps involved when a user deletes a wedding.
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `DeleteWeddingCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/deleteWedding.puml" alt="deleteWedding" />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, Logging, Testing, Configuration, Dev-Ops**

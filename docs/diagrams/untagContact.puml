@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":UI" as UI #Green
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":UntagCommandParser" as UntagCommandParser #Blue
+participant ":ParserUtil" as ParserUtil #Blue
+participant "u:UntagCommand" as UntagCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> UI: "untag 1 W12345"
+UI -> LM: execute("untag 1 W12345")
+activate LM
+
+LM -> ABP: parseCommand("untag 1 W12345")
+activate ABP
+ABP -> "UntagCommandParser": parse("1 W12345")
+activate "UntagCommandParser"
+
+"UntagCommandParser" -> "UntagCommandParser": args.trim().split("\\s+", 2)
+"UntagCommandParser" -> ParserUtil: parseIndex("1")
+activate ParserUtil
+ParserUtil --> "UntagCommandParser": targetIndex
+deactivate ParserUtil
+
+"UntagCommandParser" -> "WeddingId": new WeddingId("W12345")
+activate "WeddingId"
+"WeddingId" --> "UntagCommandParser": weddingId
+deactivate "WeddingId"
+
+"UntagCommandParser" -> "UntagCommand": new UntagCommand(targetIndex, weddingId)
+activate "UntagCommand"
+"UntagCommand" --> "UntagCommandParser"
+deactivate "UntagCommand"
+
+"UntagCommandParser" --> ABP: u
+deactivate "UntagCommandParser"
+
+ABP --> LM: u
+deactivate ABP
+
+LM -> "UntagCommand": execute(m)
+activate "UntagCommand"
+
+"UntagCommand" -> Model: getFilteredPersonList()
+activate Model
+Model --> "UntagCommand": lastShownList
+deactivate Model
+
+"UntagCommand" -> "UntagCommand": lastShownList.get(targetIndex.getZeroBased())
+"UntagCommand" -> "Tag": new Tag(weddingId)
+activate "Tag"
+"Tag" --> "UntagCommand": tag
+deactivate "Tag"
+
+"UntagCommand" -> "UntagCommand": personToUntag.getTags().contains(tag)
+"UntagCommand" -> Model: untagPerson(personToUntag, tag)
+activate Model
+Model --> "UntagCommand"
+deactivate Model
+
+"UntagCommand" -> CommandResult: new CommandResult(successMessage)
+activate CommandResult
+"CommandResult" --> "UntagCommand"
+deactivate CommandResult
+
+"UntagCommand" --> LM: r
+deactivate "UntagCommand"
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM -> UI: return CommandResult
+deactivate LM
+UI -> User: Display success message
+@enduml

@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":UI" as UI #Green
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":TagCommandParser" as TagCommandParser #Blue
+participant ":ParserUtil" as ParserUtil #Blue
+participant "t:TagCommand" as TagCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> UI: "tag 1 W12345"
+UI -> LM: execute("tag 1 W12345")
+activate LM
+
+LM -> ABP: parseCommand("tag 1 W12345")
+activate ABP
+ABP -> "TagCommandParser": parse("1 W12345")
+activate "TagCommandParser"
+
+"TagCommandParser" -> "TagCommandParser": args.trim().split("\\s+")
+"TagCommandParser" -> ParserUtil: parseIndex("1")
+activate ParserUtil
+ParserUtil --> "TagCommandParser": index
+deactivate ParserUtil
+
+"TagCommandParser" -> ParserUtil: parseWeddingId("W12345")
+activate ParserUtil
+ParserUtil --> "TagCommandParser": weddingId
+deactivate ParserUtil
+
+"TagCommandParser" -> "TagCommand": new TagCommand(index, weddingId)
+activate "TagCommand"
+"TagCommand" --> "TagCommandParser"
+deactivate "TagCommand"
+
+"TagCommandParser" --> ABP: t
+deactivate "TagCommandParser"
+
+ABP --> LM: t
+deactivate ABP
+
+LM -> "TagCommand": execute(m)
+activate "TagCommand"
+
+"TagCommand" -> Model: getFilteredPersonList()
+activate Model
+Model --> "TagCommand": lastShownList
+deactivate Model
+
+"TagCommand" -> "TagCommand": lastShownList.get(targetIndex.getZeroBased())
+"TagCommand" -> Model: getFilteredWeddingList()
+activate Model
+Model --> "TagCommand": weddingList
+deactivate Model
+
+"TagCommand" -> "TagCommand": check if wedding exists
+"TagCommand" -> "Tag": new Tag(weddingId)
+activate "Tag"
+"Tag" --> "TagCommand": tag
+deactivate "Tag"
+
+"TagCommand" -> Model: tagPerson(personToTag, tag)
+activate Model
+Model --> "TagCommand"
+deactivate Model
+
+"TagCommand" -> CommandResult: new CommandResult(successMessage)
+activate CommandResult
+"CommandResult" --> "TagCommand"
+deactivate CommandResult
+
+"TagCommand" --> LM: r
+deactivate "TagCommand"
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM -> UI: return CommandResult
+deactivate LM
+UI -> User: Display success message
+@enduml
