@@ -82,16 +82,16 @@ Here are  EasyWed's main features:
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
+3. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EasyWeds.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EasyWeds.jar` command to run the application.
 
-1. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all persons and wedding events.
@@ -104,7 +104,7 @@ Here are  EasyWed's main features:
 
     * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 <box type="tip" seamless>
 
@@ -188,7 +188,7 @@ Examples:
 <box type="warning" seamless>
 
 **Caution:** <br>
-A person with the same name or a similar name to an existing person in the contacts will be flagged out
+A person with the same name or a similar name to an existing person in the contacts will be flagged out (Refer to the figure below)
 * If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
     * `Alex Yeoh` (exactly the same)
     * `alex<space>yeoh` (no capitalization)
@@ -219,8 +219,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 </box>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower r/photographer` Edits the name of the 2nd person to be `Betsy Crower` and her role to `photographer`.
+*  `edit 1 p/91234567 e/johndoe@example.com`
+    * This command edits the phone number and the email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower r/photographer`
+    * This command edits the name and the role of the 2nd person to be `Betsy Crower` and `photographer` respectively.
 
 <br>
 
@@ -294,7 +296,7 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
-
+    * This command adds a wedding event named `John & Jane's Wedding` on `20-May-2025` at `Marina Bay Sands`.
 <br>
 
 ### Editing a Wedding Event: `editWedding`
@@ -312,8 +314,10 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 </box>
 
 Examples:
-* `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st wedding event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
+* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands` 
+    * This command edits the date and location of the 1st wedding event to be `20-Jun-2025` and `Marina Bay Sands` respectively.
+* `editWedding W2 n/John & Jane's Wedding` 
+    * This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
 <br>
 
@@ -329,6 +333,9 @@ Format: `deleteWedding WEDDING_ID`
 * Tags of contacts associated to the deleted wedding event will be removed.
 </box>
 
+Examples:
+* `deleteWedding W1` deletes the wedding event with ID `W1`.
+
 <br>
 
 ### Sorting all Wedding Events by increasing Wedding ID: `sortWID`
@@ -341,9 +348,11 @@ Format: `sortWID`
 
 ### Sorting all Wedding Events by earliest Date: `sortWDate`
 
-Shows a list of all wedding events in the contact book sorted by the earliest date.
+Shows a list of all wedding events in the contact book sorted by date, from earliest to latest.
 
 Format: `sortWDate`
+
+<br>
 
 --- {.border-secondary}
 
@@ -362,7 +371,8 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 </box>
 
 Examples:
-* `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
+* `addTask w/W1 desc/Book florist`
+    * This command adds a new Task `Book Florist` to the wedding event`W1`.
 
 <br>
 
