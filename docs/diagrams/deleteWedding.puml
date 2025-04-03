@@ -19,55 +19,69 @@ activate LM
 
 LM -> ABP: parseCommand("deleteWedding W1")
 activate ABP
-ABP -> "DeleteWeddingCommandParser": parse("W1")
-activate "DeleteWeddingCommandParser"
+ABP -> DeleteWeddingCommandParser: parse("W1")
+activate DeleteWeddingCommandParser
 
-"DeleteWeddingCommandParser" -> ParserUtil: parseWeddingId("W1")
+DeleteWeddingCommandParser -> ParserUtil: parseWeddingId("W1")
 activate ParserUtil
-ParserUtil --> "DeleteWeddingCommandParser": weddingId
+ParserUtil --> DeleteWeddingCommandParser: weddingId
 deactivate ParserUtil
 
-"DeleteWeddingCommandParser" -> "DeleteWeddingCommand": new DeleteWeddingCommand(weddingId)
-activate "DeleteWeddingCommand"
-"DeleteWeddingCommand" --> "DeleteWeddingCommandParser"
-deactivate "DeleteWeddingCommand"
+DeleteWeddingCommandParser -> DeleteWeddingCommand: new DeleteWeddingCommand(weddingId)
+activate DeleteWeddingCommand
+DeleteWeddingCommand --> DeleteWeddingCommandParser
+deactivate DeleteWeddingCommand
 
-"DeleteWeddingCommandParser" --> ABP: d
-deactivate "DeleteWeddingCommandParser"
+DeleteWeddingCommandParser --> ABP: DeleteWeddingCommand
+deactivate DeleteWeddingCommandParser
 
-ABP --> LM: d
+ABP --> LM: DeleteWeddingCommand
 deactivate ABP
 
-LM -> "DeleteWeddingCommand": execute(m)
-activate "DeleteWeddingCommand"
+LM -> DeleteWeddingCommand: execute(model)
+activate DeleteWeddingCommand
 
-"DeleteWeddingCommand" -> Model: getWeddingById(weddingId)
+DeleteWeddingCommand -> Model: getWeddingById(weddingId)
 activate Model
-Model --> "DeleteWeddingCommand": weddingToDelete
+Model --> DeleteWeddingCommand: weddingToDelete
 deactivate Model
 
-"DeleteWeddingCommand" -> Model: deleteWedding(weddingToDelete)
-activate Model
-Model --> "DeleteWeddingCommand"
-deactivate Model
+alt wedding does not exist
+    DeleteWeddingCommand --> LM: throw CommandException
+else wedding exists
+    DeleteWeddingCommand -> Model: deleteWedding(weddingToDelete)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
 
-"DeleteWeddingCommand" -> "Tag": new Tag(weddingId)
-activate "Tag"
-"Tag" --> "DeleteWeddingCommand": tagToDelete
-deactivate "Tag"
+    DeleteWeddingCommand -> Tag: new Tag(weddingId)
+    activate Tag
+    Tag --> DeleteWeddingCommand: tagToDelete
+    deactivate Tag
 
-"DeleteWeddingCommand" -> Model: removeTagFromAllContacts(tagToDelete)
-activate Model
-Model --> "DeleteWeddingCommand"
-deactivate Model
+    DeleteWeddingCommand -> Model: removeTagFromAllContacts(tagToDelete)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
 
-"DeleteWeddingCommand" -> CommandResult: new CommandResult(successMessage)
-activate CommandResult
-"CommandResult" --> "DeleteWeddingCommand"
-deactivate CommandResult
+    DeleteWeddingCommand -> Model: updateFilteredWeddingList(predicate)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
 
-"DeleteWeddingCommand" --> LM: r
-deactivate "DeleteWeddingCommand"
+    DeleteWeddingCommand -> Model: updateFilteredPersonList(predicate)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
+
+    DeleteWeddingCommand -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    CommandResult --> DeleteWeddingCommand
+    deactivate CommandResult
+end
+
+DeleteWeddingCommand --> LM: CommandResult
+deactivate DeleteWeddingCommand
 
 LM -> Storage: saveAddressBook(Model.getAddressBook())
 activate Storage

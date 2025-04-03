@@ -24,9 +24,11 @@ pageNav: 3
   * [User Workflow Implementation](#user-workflow-implementation)
     * [Creating a contact](#1-creating-a-contact)
     * [Creating a wedding](#2-creating-a-wedding)
-    * [Tagging the contact to the wedding](#3-tagging-the-contact-to-the-wedding)
-    * [Untagging the contact from the wedding](#4-untagging-the-contact-from-the-wedding)
-    * [Deleting the wedding](#5-deleting-the-wedding)
+    * [Tagging the contact to the wedding](#3-tagging-a-contact-to-the-wedding)
+    * [Adding a task to the wedding](#4-adding-a-task-to-a-wedding)
+    * [Deleting a task from the wedding](#5-deleting-a-task-from-a-wedding)
+    * [Untagging the contact from the wedding](#4-untagging-a-contact-from-a-wedding)
+    * [Deleting the wedding](#5-deleting-a-wedding)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
@@ -317,8 +319,10 @@ This section demonstrates how a user interacts with the application to perform e
 1. Creating a contact
 2. Creating a wedding
 3. Tagging the contact to the wedding
-4. Untagging the contact from the wedding
-5. Deleting the wedding
+4. Adding a task to the wedding
+5. Deleting a task from the wedding
+6. Untagging the contact from the wedding
+7. Deleting the wedding
 
 ### 1. Creating a contact
 The user begins by creating a new contact using the add command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
@@ -347,7 +351,25 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 <puml src="diagrams/tagContact.puml" alt="tagContact" />
 
-### 4. Untagging a contact from a wedding
+### 4. Adding a task to a wedding
+The user can add a task to a wedding using the addTask command. For example, the user might input: `addTask w/W1 desc/Book photographer`
+This command adds a task to the wedding with the specified wedding ID.
+
+Below is a sequence diagram that shows the steps involved when a user adds a task to a wedding.
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `AddTaskCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/addTask.puml" alt="addTask" />
+
+### 5. Deleting a task from a wedding
+The user can delete a task from a wedding using the deleteTask command. For example, the user might input: `deleteTask w/W1 i/1`
+This command deletes the task with the specified index from the wedding with the specified wedding ID.
+
+Below is a sequence diagram that shows the steps involved when a user deletes a task from a wedding.
+This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `DeleteTaskCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
+
+<puml src="diagrams/deleteTask.puml" alt="deleteTask" />
+
+### 6. Untagging a contact from a wedding
 The user can untag a contact from a wedding using the untag command. For example, the user might input: `untag 1 W1`
 This command untags the contact with the specified name from the wedding with the specified wedding ID.
 
@@ -356,7 +378,7 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 <puml src="diagrams/untagContact.puml" alt="untagContact" />
 
-### 5. Deleting a wedding
+### 7. Deleting a wedding
 The user can delete a wedding using the deleteWedding command. For example, the user might input: `deleteWedding W1`
 This command deletes the wedding with the specified wedding ID.
 

@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":AddTaskCommandParser" as AddTaskCommandParser #Blue
+participant "a:AddTaskCommand" as AddTaskCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+
+User -> LM: execute("addTask w/W1 desc/Book photographer")
+activate LM
+
+LM -> ABP: parseCommand("addTask w/W1 desc/Book photographer")
+activate ABP
+ABP -> AddTaskCommandParser: parse(arguments)
+activate AddTaskCommandParser
+
+AddTaskCommandParser -> AddTaskCommandParser: validate and parse arguments
+AddTaskCommandParser -> AddTaskCommand: new AddTaskCommand(weddingId, taskDescription)
+activate AddTaskCommand
+AddTaskCommand --> AddTaskCommandParser
+deactivate AddTaskCommandParser
+
+ABP --> LM: AddTaskCommand
+deactivate ABP
+
+LM -> AddTaskCommand: execute(model)
+activate AddTaskCommand
+
+AddTaskCommand -> Model: getFilteredWeddingList()
+activate Model
+Model --> AddTaskCommand: weddingList
+deactivate Model
+
+AddTaskCommand -> AddTaskCommand: find wedding by weddingId
+alt wedding not found
+    AddTaskCommand --> LM: throw CommandException
+else wedding found
+    AddTaskCommand -> AddTaskCommand: create new WeddingTask
+    AddTaskCommand -> Wedding: addTask(newTask)
+    activate Wedding
+    Wedding --> AddTaskCommand
+    deactivate Wedding
+
+    AddTaskCommand -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    CommandResult --> AddTaskCommand
+    deactivate CommandResult
+end
+
+AddTaskCommand --> LM: CommandResult
+deactivate AddTaskCommand
+
+LM --> User: display result
+deactivate LM
+@enduml

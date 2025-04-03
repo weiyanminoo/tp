@@ -3,34 +3,14 @@
 skinparam ArrowFontStyle plain
 
 actor "User" as User
-participant ":UI" as UI #Green
 participant ":LogicManager" as LM #Blue
-participant ":AddressBookParser" as ABP #Blue
-participant ":AddCommandParser" as Parser #Blue
 participant "a:AddCommand" as AddCommand #Blue
 participant ":Model" as Model #Red
 participant ":ConfirmationManager" as CM #Blue
 participant "r:CommandResult" as Result #DarkRed
-participant ":Storage" as Storage #Orange
 
-User -> UI: "add n/John Doe p/98765432 e/johnd@example.com r/Photographer a/311, Clementi Ave 2, #02-25"
-UI -> LM: execute(commandText)
+User -> LM: execute("add n/John Doe ...")
 activate LM
-
-LM -> ABP: parseCommand(commandText)
-activate ABP
-ABP -> Parser: parse(arguments)
-activate Parser
-
-Parser -> Parser: tokenize and validate arguments
-Parser -> Parser: parse all required fields
-Parser -> Parser: create Person object
-Parser -> AddCommand: new AddCommand(person)
-Parser --> ABP: return AddCommand
-deactivate Parser
-
-ABP --> LM: return command
-deactivate ABP
 
 LM -> AddCommand: execute(model)
 activate AddCommand
@@ -55,11 +35,6 @@ end
 AddCommand --> LM: return result
 deactivate AddCommand
 
-alt command succeeded (no confirmation needed)
-    LM -> Storage: saveAddressBook()
-end
-
-LM --> UI: return result
+LM --> User: display result
 deactivate LM
-UI -> User: display message
 @enduml

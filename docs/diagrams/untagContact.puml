@@ -3,81 +3,67 @@
 skinparam ArrowFontStyle plain
 
 actor "User" as User
-participant ":UI" as UI #Green
 participant ":LogicManager" as LM #Blue
 participant ":AddressBookParser" as ABP #Blue
 participant ":UntagCommandParser" as UntagCommandParser #Blue
-participant ":ParserUtil" as ParserUtil #Blue
 participant "u:UntagCommand" as UntagCommand #Blue
 participant ":Model" as Model #Red
 participant "r:CommandResult" as CommandResult #DarkRed
 participant ":Storage" as Storage #Orange
 
-User -> UI: "untag 1 W12345"
-UI -> LM: execute("untag 1 W12345")
+User -> LM: execute("untag 1 W12345")
 activate LM
 
 LM -> ABP: parseCommand("untag 1 W12345")
 activate ABP
-ABP -> "UntagCommandParser": parse("1 W12345")
-activate "UntagCommandParser"
+ABP -> UntagCommandParser: parse(arguments)
+activate UntagCommandParser
 
-"UntagCommandParser" -> "UntagCommandParser": args.trim().split("\\s+", 2)
-"UntagCommandParser" -> ParserUtil: parseIndex("1")
-activate ParserUtil
-ParserUtil --> "UntagCommandParser": targetIndex
-deactivate ParserUtil
+UntagCommandParser -> UntagCommandParser: validate and parse arguments
+UntagCommandParser -> UntagCommand: new UntagCommand(index, weddingId)
+activate UntagCommand
+UntagCommand --> UntagCommandParser
+deactivate UntagCommand
 
-"UntagCommandParser" -> "WeddingId": new WeddingId("W12345")
-activate "WeddingId"
-"WeddingId" --> "UntagCommandParser": weddingId
-deactivate "WeddingId"
+UntagCommandParser --> ABP: UntagCommand
+deactivate UntagCommandParser
 
-"UntagCommandParser" -> "UntagCommand": new UntagCommand(targetIndex, weddingId)
-activate "UntagCommand"
-"UntagCommand" --> "UntagCommandParser"
-deactivate "UntagCommand"
-
-"UntagCommandParser" --> ABP: u
-deactivate "UntagCommandParser"
-
-ABP --> LM: u
+ABP --> LM: UntagCommand
 deactivate ABP
 
-LM -> "UntagCommand": execute(m)
-activate "UntagCommand"
+LM -> UntagCommand: execute(model)
+activate UntagCommand
 
-"UntagCommand" -> Model: getFilteredPersonList()
+UntagCommand -> Model: getFilteredPersonList()
 activate Model
-Model --> "UntagCommand": lastShownList
+Model --> UntagCommand: lastShownList
 deactivate Model
 
-"UntagCommand" -> "UntagCommand": lastShownList.get(targetIndex.getZeroBased())
-"UntagCommand" -> "Tag": new Tag(weddingId)
-activate "Tag"
-"Tag" --> "UntagCommand": tag
-deactivate "Tag"
-
-"UntagCommand" -> "UntagCommand": personToUntag.getTags().contains(tag)
-"UntagCommand" -> Model: untagPerson(personToUntag, tag)
+UntagCommand -> UntagCommand: retrieve person from list
+UntagCommand -> UntagCommand: check if person has the tag
+UntagCommand -> Model: untagPerson(personToUntag, tag)
 activate Model
-Model --> "UntagCommand"
+Model --> UntagCommand
 deactivate Model
 
-"UntagCommand" -> CommandResult: new CommandResult(successMessage)
+UntagCommand -> Model: updateFilteredPersonList(predicate)
+activate Model
+Model --> UntagCommand
+deactivate Model
+
+UntagCommand -> CommandResult: new CommandResult(successMessage)
 activate CommandResult
-"CommandResult" --> "UntagCommand"
+CommandResult --> UntagCommand
 deactivate CommandResult
 
-"UntagCommand" --> LM: r
-deactivate "UntagCommand"
+UntagCommand --> LM: CommandResult
+deactivate UntagCommand
 
 LM -> Storage: saveAddressBook(Model.getAddressBook())
 activate Storage
 Storage --> LM: Save successful
 deactivate Storage
 
-LM -> UI: return CommandResult
+LM --> User: display result
 deactivate LM
-UI -> User: Display success message
 @enduml

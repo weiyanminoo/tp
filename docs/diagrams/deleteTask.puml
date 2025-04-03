@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser #Blue
+participant "d:DeleteTaskCommand" as DeleteTaskCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+
+User -> LM: execute("deleteTask w/W1 i/2")
+activate LM
+
+LM -> ABP: parseCommand("deleteTask w/W1 i/2")
+activate ABP
+ABP -> DeleteTaskCommandParser: parse(arguments)
+activate DeleteTaskCommandParser
+
+DeleteTaskCommandParser -> DeleteTaskCommand: new DeleteTaskCommand(weddingId, taskIndex)
+activate DeleteTaskCommand
+DeleteTaskCommand --> DeleteTaskCommandParser
+deactivate DeleteTaskCommandParser
+
+ABP --> LM: DeleteTaskCommand
+deactivate ABP
+
+LM -> DeleteTaskCommand: execute(model)
+activate DeleteTaskCommand
+
+DeleteTaskCommand -> Model: getFilteredWeddingList()
+activate Model
+Model --> DeleteTaskCommand: weddingList
+deactivate Model
+
+DeleteTaskCommand -> DeleteTaskCommand: find wedding by weddingId
+alt wedding not found
+    DeleteTaskCommand --> LM: throw CommandException
+else wedding found
+    DeleteTaskCommand -> Wedding: removeTask(taskIndex - 1)
+    activate Wedding
+    Wedding --> DeleteTaskCommand: removedTask
+    deactivate Wedding
+
+    DeleteTaskCommand -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    CommandResult --> DeleteTaskCommand
+    deactivate CommandResult
+end
+
+DeleteTaskCommand --> LM: CommandResult
+deactivate DeleteTaskCommand
+
+LM --> User: display result
+deactivate LM
+@enduml
