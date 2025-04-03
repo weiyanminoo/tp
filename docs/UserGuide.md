@@ -86,7 +86,7 @@ Here are  EasyWed's main features:
 
 3. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EasyWeds.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar easyweds.jar` command to run the application.
 
 5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
 ![Ui](images/Ui.png)
@@ -182,13 +182,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
-* `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
+* `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
+    * This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
+* `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
+    * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
 
 <box type="warning" seamless>
 
 **Caution:** <br>
-A person with the same name or a similar name to an existing person in the contacts will be flagged out (Refer to the figure below)
+A person with the same name or a similar name to an existing person in the contacts will be flagged out (Refer to the image below)
 * If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
     * `Alex Yeoh` (exactly the same)
     * `alex<space>yeoh` (no capitalization)
@@ -240,8 +242,10 @@ Format: `delete INDEX`
 </box>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the contact book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` 
+    * This command deletes the 2nd person in the contact book.
+* `find Betsy` followed by `delete 1` 
+    * This command deletes the 1st person in the results of the `find` command.
 
 <br>
 
@@ -334,7 +338,8 @@ Format: `deleteWedding WEDDING_ID`
 </box>
 
 Examples:
-* `deleteWedding W1` deletes the wedding event with ID `W1`.
+* `deleteWedding W1` 
+    * This command deletes the wedding event with ID `W1`.
 
 <br>
 
@@ -361,28 +366,30 @@ Format: `sortWDate`
 
 ### Adding a Wedding Task: `addTask`
 
-Adds a new Task to a specified wedding event.
+Adds a new task to a specified wedding event.
 
 Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 
 <box type="info" seamless>
 
-* Adds a new Task to a wedding event specified by `WEDDING_ID`.
+* Adds a new task to a wedding event specified by `WEDDING_ID`.
 </box>
 
 Examples:
 * `addTask w/W1 desc/Book florist`
-    * This command adds a new Task `Book Florist` to the wedding event`W1`.
+    * This command adds a new task `Book Florist` to the wedding event `W1`.
 
 <br>
 
 ### Listing all Wedding Tasks: `listTask`
 
-Shows a list of all Tasks of a specified wedding event in the output box.
+Shows a list of all tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
-Examples: `listWedding w/W1` Show a list of all Tasks of the wedding event `W1`.
+Examples: 
+* `listWedding w/W1`
+    * This command shows a list of all tasks of the wedding event `W1`.
 
 <br>
 
@@ -400,7 +407,8 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `mark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as completed.
+* `mark w/W1 i/1` 
+    * This command marks the Task at index 1 of the wedding event `W1` as completed.
 
 <br>
 
@@ -418,7 +426,8 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `unmark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as not completed.
+* `unmark w/W1 i/1` 
+    * This command marks the task at index 1 of the wedding event `W1` as not completed.
 
 <br>
 
@@ -436,7 +445,10 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
+* `deleteTask w/W1 i/1` 
+    * This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
+
+<br>
 
 --- {.border-secondary}
 
@@ -535,12 +547,13 @@ EasyWeds data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EasyWeds data are saved automatically as a JSON file: `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:** <br>
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
@@ -630,7 +643,7 @@ cd ~
 
 <box type="important" seamless icon=":question:">
 
-"Why do I get an error when I try to run the command java -jar EasyWeds.jar."
+"Why do I get an error when I try to run the command java -jar easyweds.jar."
 
 </box>
 
@@ -665,25 +678,25 @@ java -jar "<name_of_file>.jar"
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                               |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer` |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
-| **AddWedding**         | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
-| **EditWedding**        | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
-| **DeleteWedding**      | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
-| **SortByWeddingId**    | `sortWID`                                                                                                                                                      |
-| **SortByWeddingDate**  | `sortWDate`                                                                                                                                                    |
-| **AddTask**            | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
-| **ListTask**           | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
-| **Mark**               | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |
-| **Unmark**             | `unmark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `unmark w/W1 i/1`                                                                                                |
-| **DeleteTask**         | `deleteTask w/WEDDING_ID i/TASK_INDEX` <br> e.g., `deleteTask w/W1 i/1`                                                                                        |
-| **Tag**                | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
-| **Untag**              | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
-| **Filter**             | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
-| **List**               | `list`                                                                                                                                                         |
-| **Clear**              | `clear`                                                                                                                                                        |
-| **Exit**               | `exit`                                                                                                                                                         |                                                                                                                                                       |
+| Action                           | Format, Examples                                                                                                                                               |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/Photographer` |
+| **Edit Person**                  | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Delete Person**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
+| **Find Person**                  | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
+| **Add Wedding**                  | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
+| **Edit Wedding**                 | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
+| **Delete Wedding**               | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
+| **Sort Wedding List by Id**      | `sortWID`                                                                                                                                                      |
+| **Sort Wedding List by Date**    | `sortWDate`                                                                                                                                                    |
+| **Add Task to a Wedding**        | `addTask w/WEDDING_ID desc/TASK_DESCRIPTION` <br> e.g., `addTask w/W1 desc/Book florist`                                                                       |
+| **List Tasks of a Wedding**      | `listTask w/WEDDING_ID` <br> e.g., `listTask w/W1`                                                                                                             |
+| **Mark Task as Complete**        | `mark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `mark w/W1 i/1`                                                                                                    |
+| **Mark Task as Incomplete**      | `unmark w/WEDDING_ID i/TASK_INDEX` <br> e.g., `unmark w/W1 i/1`                                                                                                |
+| **Delete Task in a Wedding**     | `deleteTask w/WEDDING_ID i/TASK_INDEX` <br> e.g., `deleteTask w/W1 i/1`                                                                                        |
+| **Tag Wedding to a Person**      | `tag INDEX WEDDING_ID` <br> e.g., `tag 1 W1`                                                                                                                   |
+| **Untag Person from a Wedding**  | `untag INDEX WEDDING_ID` <br> e.g., `untag 1 W1`                                                                                                               |
+| **Filter Details of a Wedding**  | `filter WEDDING_ID` <br> e.g., `filter W4`                                                                                                                     |
+| **List All Contacts & Weddings** | `list`                                                                                                                                                         |
+| **Clear All Content**            | `clear`                                                                                                                                                        |
+| **Exit EasyWeds**                | `exit`                                                                                                                                                         |                                                                                                                                                       |
