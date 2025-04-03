@@ -85,7 +85,7 @@ Here are  EasyWed's main features:
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
-1. Next, we need you to navigate to the folder you placed the `.jar` file in by opening a command terminal.
+1. Navigate to the folder you placed the `.jar` file in by opening a command terminal.
 
 1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory.
    If you see the `.jar` file, you are in the correct directory.
