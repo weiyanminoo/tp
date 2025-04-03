@@ -8,7 +8,32 @@ pageNav: 3
 
 ## About EasyWeds
 
-EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. It streamlines planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
+EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
+
+Here are  EasyWed's main features:
+#### Enhanced Contact Management
+<box type="success" seamless>
+  Contact Tracking: Add phone numbers, emails, addresses, and roles
+</box>
+<box type="success" seamless>
+  Contact Linking: Tag your Clients and your Vendors to Wedding events
+</box>
+<box type="success" seamless>
+  Advanced Filters: Filter by name or role
+</box>
+
+#### Comprehensive Wedding Management
+<box type="success" seamless>
+  Wedding Tracking: Add date and location
+</box>
+<box type="success" seamless>
+  Task Management: Add To-do tasks for each Wedding
+</box>
+<box type="success" seamless>
+  Advanced Sorting: Sort by Wedding ID or date
+</box>
+
+--- {.border-primary .thick}
 
 ## Table of Contents
 
@@ -16,11 +41,11 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 - [Features](#features)
     - [Getting Help](#getting-help)
         - [Viewing help](#viewing-help-help)
-    - [Managing people](#managing-people)
-        - [Adding a person](#adding-a-person-add)
-        - [Editing a person](#editing-a-person-edit)
-        - [Deleting a person](#deleting-a-person-delete)
-        - [Locating persons by name or role](#locating-persons-by-name-or-role-find)
+    - [Managing People](#managing-people)
+        - [Adding a Person](#adding-a-person-add)
+        - [Editing a Person](#editing-a-person-edit)
+        - [Deleting a Person](#deleting-a-person-delete)
+        - [Locating Persons by name or role](#locating-persons-by-name-or-role-find)
     - [Managing Wedding Events](#managing-wedding-events)
         - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
         - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
@@ -48,7 +73,7 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+--- {.border-primary .thick}
 
 ## Quick start
 
@@ -87,7 +112,14 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+--- {.border-primary .thick}
+
+## Terminology
+In this guide, the following terms are used:
+- **Contact(s)** and **Person(s)**: These terms are used interchangeably and refer to the individuals (vendors & clients) stored in EasyWeds.
+- **Contact book**: Refer to the list of contacts and events in EasyWeds.
+
+--- {.border-primary .thick}
 
 ## Features
 
@@ -113,9 +145,10 @@ EasyWeds is a **desktop app designed for freelance wedding planners juggling mul
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-<br>
+--- {.border-primary .thick}
 
 ## Getting Help
+
 ### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
@@ -125,7 +158,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 * Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 
-<br>
+--- {.border-primary .thick}
 
 ## Managing people
 
@@ -210,7 +243,7 @@ Examples:
 
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
-<br>
+--- {.border-primary .thick}
 
 ## Managing Wedding Events
 
@@ -269,7 +302,7 @@ Shows a list of all wedding events in the contact book sorted by the earliest da
 
 Format: `sortWDate`
 
-<br>
+--- {.border-primary .thick}
 
 ## Managing Wedding Tasks
 
@@ -334,7 +367,7 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 Examples:
 * `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
 
-<br>
+--- {.border-primary .thick}
 
 ## Managing Tags
 
@@ -385,7 +418,7 @@ Examples:
 
   ![result for 'filter W2'](images/filterW2.png)
 
-<br>
+--- {.border-primary .thick}
 
 ## Data Management
 
@@ -417,6 +450,8 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+--- {.border-primary .thick}
 
 ## Exiting the program
 
