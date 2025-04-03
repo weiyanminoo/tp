@@ -532,11 +532,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
-**Use case: UC08 - List Wedding Events**
+**Use case: UC08 - View Wedding Events by Wedding Date**
 
 **MSS**
 
-1.  User inputs the command to list wedding events
+1.  User inputs the command to list wedding events sorted from closest to latest date
 2.  EasyWeds shows the list of wedding events
 
     Use case ends.
@@ -545,10 +545,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. There are no wedding events to show.
 
+  Use case ends.
+
+**Use case: UC09 - View Wedding Events by Wedding ID **
+
+**MSS**
+1.  User inputs the command to list wedding events sorted by wedding ID
+2.  EasyWeds shows the list of wedding events
+
     Use case ends.
 
+**Extensions**
 
-**Use case: UC09 - Delete a Wedding Event**
+* 2a. There are no wedding events to show.
+
+  Use case ends.
+
+**Use case: UC10 - Delete a Wedding Event**
 
 **MSS**
 
@@ -568,7 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes at step 2.
 
 
-**Use case: UC10 - Edit a Wedding Event**
+**Use case: UC11 - Edit a Wedding Event**
 
 **MSS**
 
@@ -594,7 +607,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes at step 2.
 
 
-**Use case: UC11 - Tag Contacts to Wedding Events**
+**Use case: UC12 - Tag Contacts to Wedding Events**
 
 **MSS**
 
@@ -618,7 +631,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
-**Use case: UC12 - Untag Contact from Wedding Event**
+**Use case: UC13 - Untag Contact from Wedding Event**
 
 **MSS**
 
@@ -648,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
-**Use case: UC13 - Filter Contacts**
+**Use case: UC14 - Filter Contacts**
 
 **MSS**
 
@@ -671,6 +684,92 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
+**Use case: UC15 - Add a Task to a Wedding**
+
+**MSS**
+
+1.  User inputs the command to add a task to a specific wedding
+2.  EasyWeds adds the task to the wedding
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wedding does not exist.
+
+    * 2a1. An error message is shown.
+
+      Use case ends.
+
+
+**Use case: UC16 - Delete a Task from a Wedding**
+
+**MSS**
+
+1.  User inputs the command to delete a task from a specific wedding
+2.  EasyWeds deletes the task from the wedding
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wedding does not exist.
+
+    * 2a1. An error message is shown.
+
+      Use case ends.
+
+* 2b. The task index is invalid.
+
+    * 2b1. An error message is shown.
+
+      Use case ends.
+
+
+**Use case: UC17 - Confirm Action**
+
+**MSS**
+
+1.  User attempts an action that requires confirmation (e.g., adding a duplicate contact)
+2.  EasyWeds shows a warning message requiring confirmation
+3.  User confirms the action by inputting 'y'
+4.  EasyWeds performs the requested action
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User does not confirm the action.
+
+    * 3a1. User inputs a different command or cancels.
+
+      Use case ends.
+
+
+**Use case: UC18 - Clear Contact Book**
+
+**MSS**
+
+1.  User inputs the command to clear the contact book
+2.  EasyWeds asks for confirmation
+3.  User confirms the action
+4.  EasyWeds clears all contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is already empty.
+
+    * 2a1. EasyWeds clears the contact book without asking for confirmation.
+
+      Use case ends.
+
+* 3a. User does not confirm the action.
+
+    * 3a1. The clear operation is cancelled.
+
+      Use case ends.
 *{More to be added}*
 
 
