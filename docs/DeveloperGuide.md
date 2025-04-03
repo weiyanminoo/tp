@@ -732,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User attempts an action that requires confirmation (e.g., adding a duplicate contact)
 2.  EasyWeds shows a warning message requiring confirmation
-3.  User confirms the action by inputting 'y'
+3.  User confirms the action
 4.  EasyWeds performs the requested action
 
     Use case ends.
@@ -741,7 +741,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User does not confirm the action.
 
-    * 3a1. User inputs a different command or cancels.
+    * 3a1. User inputs a different command.
 
       Use case ends.
 
