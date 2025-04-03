@@ -20,6 +20,8 @@
 </header>
 
 <div id="flex-body">
+
+  <!--
   <nav id="site-nav">
     <div class="site-nav-top">
       <div class="fw-bold mb-2" style="font-size: 1.25rem;">Site Map</div>
@@ -48,15 +50,21 @@
       </site-nav>
     </div>
   </nav>
+  -->
+
   <div id="content-wrapper">
     {{ content }}
   </div>
+
+  <!--
   <nav id="page-nav">
     <div class="nav-component slim-scroll">
       <page-nav />
     </div>
   </nav>
-  <scroll-top-button></scroll-top-button>
+  -->
+
+<scroll-top-button></scroll-top-button>
 </div>
 
 <footer>
