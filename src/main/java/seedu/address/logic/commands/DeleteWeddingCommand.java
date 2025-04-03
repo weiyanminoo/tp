@@ -56,6 +56,10 @@ public class DeleteWeddingCommand extends Command {
         Tag tagToDelete = new Tag(weddingId);
         model.removeTagFromAllContacts(tagToDelete);
 
+        // Update the filtered lists to be empty.
+        model.updateFilteredWeddingList(w -> false);
+        model.updateFilteredPersonList(p -> false);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, weddingToDelete));
     }
 
