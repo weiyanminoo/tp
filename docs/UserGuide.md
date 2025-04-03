@@ -77,7 +77,7 @@ Here are  EasyWed's main features:
 
 ## Quick start
 
-1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g mac vs windows) or above installed in your Computer.<br>
+1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed in your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
@@ -94,7 +94,7 @@ Here are  EasyWed's main features:
    _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.
    For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._
 3. Once you navigate into the correct directory, i.e. when you type `ls`, you see easyweds.jar being listed, type the `java -jar easyweds.jar` command in the command terminal to run the application.<br>
-   A Graphic User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A Graphic User Interface(GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -153,12 +153,14 @@ In this guide, the following terms are used:
 
 Shows a message explaining how to access the help page.
 
+Format: `help`
+
 <img src="images/helpMessage.png" alt="help message" width="200">
 
-Format: `help`
-* Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
+> [!TIP]
+> Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Managing people
 
@@ -188,6 +190,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
     1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
 
+--- {.border-secondary}
 
 ### Editing a Person: `edit`
 
@@ -205,6 +208,7 @@ Examples:
 
 **Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
 
+--- {.border-secondary}
 
 ### Deleting a Person: `delete`
 
@@ -220,6 +224,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+--- {.border-secondary}
 
 ### Locating Persons by name or role: `find`
 
@@ -243,7 +248,7 @@ Examples:
 
 **Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Managing Wedding Events
 
@@ -263,6 +268,7 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
 
+--- {.border-secondary}
 
 ### Editing a Wedding Event: `editWedding`
 
@@ -279,6 +285,7 @@ Examples:
 * `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st wedding event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
 * `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
+--- {.border-secondary}
 
 ### Deleting a Wedding Event: `deleteWedding`
 
@@ -289,6 +296,7 @@ Format: `deleteWedding WEDDING_ID`
 * Deletes the wedding event with the specified `WEDDING_ID`.
 * Tags of contacts associated to the deleted wedding event will be removed.
 
+--- {.border-secondary}
 
 ### Sorting all Wedding Events by increasing Wedding ID: `sortWID`
 
@@ -296,13 +304,15 @@ Shows a list of all wedding events in the contact book sorted by increasing Wedd
 
 Format: `sortWID`
 
+--- {.border-secondary}
+
 ### Sorting all Wedding Events by earliest Date: `sortWDate`
 
 Shows a list of all wedding events in the contact book sorted by the earliest date.
 
 Format: `sortWDate`
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Managing Wedding Tasks
 
@@ -317,6 +327,8 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 Examples:
 * `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
 
+--- {.border-secondary}
+
 ### Listing all Wedding Tasks: `listTask`
 
 Shows a list of all Tasks of a specified wedding event in the output box.
@@ -325,6 +337,7 @@ Format: `listTask w/WEDDING_ID`
 
 Examples: `listWedding w/W1` Show a list of all Tasks of the wedding event `W1`.
 
+--- {.border-secondary}
 
 ### Marking a Wedding Task: `mark`
 
@@ -339,6 +352,7 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 Examples:
 * `mark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as completed.
 
+--- {.border-secondary}
 
 ### Unmarking a Wedding Task: `unmark`
 
@@ -353,6 +367,7 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 Examples:
 * `unmark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as not completed.
 
+--- {.border-secondary}
 
 ### Deleting a Wedding Task: `deleteTask`
 
@@ -367,7 +382,7 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 Examples:
 * `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Managing Tags
 
@@ -387,6 +402,7 @@ Examples:
 * `tag 1 W1` tags the first person to the wedding event `W1`
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
+--- {.border-secondary}
 
 ### Untagging a Person: `untag`
 
@@ -402,6 +418,7 @@ Format: `untag INDEX WEDDING_ID`
 Examples:
 * `untag 1 W1` untags the first person from the wedding event `W1`
 
+--- {.border-secondary}
 
 ### Filtering Contacts: `filter`
 
@@ -418,7 +435,7 @@ Examples:
 
   ![result for 'filter W2'](images/filterW2.png)
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Data Management
 
@@ -428,6 +445,8 @@ Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
+--- {.border-secondary}
+
 ### Clearing all entries: `clear`
 
 Clears all entries from the contact book.
@@ -436,10 +455,13 @@ Format: `clear`
 
 **Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
 
+--- {.border-secondary}
+
 ### Saving the data
 
 EasyWeds data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+--- {.border-secondary}
 
 ### Editing the data file
 
@@ -451,7 +473,7 @@ If your changes to the data file makes its format invalid, EasyWeds will discard
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
---- {.border-primary .thick}
+--- {.border-primary .thin}
 
 ## Exiting the program
 
@@ -463,21 +485,21 @@ Format: `exit`
 
 [Back to content page](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+--- {.border-primary .thick}
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
---------------------------------------------------------------------------------------------------------------------
+--- {.border-primary .thick}
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
---------------------------------------------------------------------------------------------------------------------
+--- {.border-primary .thick}
 
 ## Command summary
 
