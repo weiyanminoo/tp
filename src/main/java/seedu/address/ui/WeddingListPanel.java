@@ -29,6 +29,10 @@ public class WeddingListPanel extends UiPart<Region> {
         weddingListView.setCellFactory(listView -> new WeddingListViewCell());
     }
 
+    public void refresh() {
+        weddingListView.refresh();
+    }
+
     class WeddingListViewCell extends ListCell<Wedding> {
         @Override
         protected void updateItem(Wedding wedding, boolean empty) {

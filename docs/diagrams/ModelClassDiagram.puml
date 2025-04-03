@@ -61,10 +61,10 @@ Email -[hidden]right-> Role
 
 AddressBook *--> "1" UniqueWeddingList
 UniqueWeddingList --> "~* all" Wedding
-Wedding *--> WeddingId
-Wedding *--> WeddingName
-Wedding *--> WeddingDate
-Wedding *--> WeddingLocation
+Wedding *--> "1" WeddingId
+Wedding *--> "1" WeddingName
+Wedding *--> "1" WeddingDate
+Wedding *--> "1" WeddingLocation
 Wedding *--> "*" WeddingTask
 
 ModelManager --> "~* filtered" Person
