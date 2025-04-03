@@ -118,7 +118,7 @@ public class FilterCommandTest {
     @Test
     public void execute_nonExistentWeddingId_throwsCommandException() {
         FilterCommand filterCommand = new FilterCommand(WEDDING_ID_NONEXISTENT);
-        String expectedMessage = "The specified wedding id " + WEDDING_ID_NONEXISTENT + " does not exist.";
+        String expectedMessage = "The specified wedding ID " + WEDDING_ID_NONEXISTENT + " does not exist.";
 
         assertCommandFailure(filterCommand, model, expectedMessage);
     }
