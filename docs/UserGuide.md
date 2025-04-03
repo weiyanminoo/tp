@@ -123,7 +123,7 @@ In this guide, the following terms are used:
 
 ## Features
 
-<box type="info" seamless>
+<box type="note" seamless>
 
 **Notes about the command format:**<br>
 
@@ -148,6 +148,7 @@ In this guide, the following terms are used:
 --- {.border-primary .thick}
 
 ## Getting Help
+<br>
 
 ### Viewing help: `help`
 
@@ -157,12 +158,15 @@ Format: `help`
 
 <img src="images/helpMessage.png" alt="help message" width="200">
 
-> [!TIP]
-> Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
+<box type="tip" seamless>
 
---- {.border-primary .thin}
+**Tip:** Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
+</box>
+
+--- {.border-secondary}
 
 ## Managing people
+<br>
 
 ### Adding a Person: `add`
 
@@ -170,27 +174,36 @@ Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
+<box type="info" seamless>
+
 * Input values must be provided for all fields.
 * If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
     * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
     * This applies to all fields.
-      Examples:
+</box>
+
+Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
-**Note:** A person with the same name or a similar name to an existing person in the contacts will be flagged out
+<box type="warning" seamless>
+
+**Caution:** <br>
+A person with the same name or a similar name to an existing person in the contacts will be flagged out
 * If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
     * `Alex Yeoh` (exactly the same)
     * `alex<space>yeoh` (no capitalization)
     * `Alex<space><space>Yeoh` (extra spacing)
     * `Alex<space><space>yeoh` (combination of the 2)
 * In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
-  ![result for 'add duplicate alex'](images/AddDuplicateName.png)
 * Once you receive the warning message, you can choose to either:
     1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
     2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
+</box>
 
---- {.border-secondary}
+![result for 'add duplicate alex'](images/AddDuplicateName.png)
+
+<br>
 
 ### Editing a Person: `edit`
 
@@ -198,17 +211,19 @@ Edits an existing person in the contact book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 
+<box type="info" seamless>
+
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
+</box>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/photographer` Edits the name of the 2nd person to be `Betsy Crower` and her role to `photographer`.
 
-**Note:** Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
-
---- {.border-secondary}
+<br>
 
 ### Deleting a Person: `delete`
 
@@ -216,15 +231,18 @@ Deletes the specified person from the contact book.
 
 Format: `delete INDEX`
 
+<box type="info" seamless>
+
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+</box>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
---- {.border-secondary}
+<br>
 
 ### Locating Persons by name or role: `find`
 
@@ -232,25 +250,32 @@ Finds persons whose names or roles contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+<box type="info" seamless>
+
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Either the name or the role will be searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+</box>
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find florist` returns all Persons with a role of `florist`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+![result for 'find alex david'](images/findAlexDavidResult.png)
 
-**Note:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
+<box type="tip" seamless>
 
---- {.border-primary .thin}
+**Tip:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
+</box>
+
+--- {.border-secondary}
 
 ## Managing Wedding Events
+<br>
 
 ### Adding a Wedding Event: `addWedding`
 
@@ -258,17 +283,20 @@ Adds a wedding event to the contact book.
 
 Format: `addWedding n/NAME d/DATE l/LOCATION`
 
+<box type="info" seamless>
+
 * Input values must be provided for all fields.
 * If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
     * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
     * This applies to all fields.
 * Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".
 * Date must be a valid date and in the future.
+</box>
 
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
 
---- {.border-secondary}
+<br>
 
 ### Editing a Wedding Event: `editWedding`
 
@@ -276,16 +304,19 @@ Edit an existing wedding event in the contact book.
 
 Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 
+<box type="info" seamless>
+
 * Edits the wedding event at the specified `WEDDING_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Details of wedding you want to edit cannot be the same as what is already in the wedding.
+</box>
 
 Examples:
 * `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands` Edits the date and location of the 1st wedding event to be `20-Feb-2025` and `Marina Bay Sands` respectively.
 * `editWedding W2 n/John & Jane's Wedding` Edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
---- {.border-secondary}
+<br>
 
 ### Deleting a Wedding Event: `deleteWedding`
 
@@ -293,10 +324,13 @@ Deletes the specified wedding event from the contact book.
 
 Format: `deleteWedding WEDDING_ID`
 
+<box type="info" seamless>
+
 * Deletes the wedding event with the specified `WEDDING_ID`.
 * Tags of contacts associated to the deleted wedding event will be removed.
+</box>
 
---- {.border-secondary}
+<br>
 
 ### Sorting all Wedding Events by increasing Wedding ID: `sortWID`
 
@@ -304,7 +338,7 @@ Shows a list of all wedding events in the contact book sorted by increasing Wedd
 
 Format: `sortWID`
 
---- {.border-secondary}
+<br>
 
 ### Sorting all Wedding Events by earliest Date: `sortWDate`
 
@@ -312,9 +346,10 @@ Shows a list of all wedding events in the contact book sorted by the earliest da
 
 Format: `sortWDate`
 
---- {.border-primary .thin}
+--- {.border-secondary}
 
 ## Managing Wedding Tasks
+<br>
 
 ### Adding a Wedding Task: `addTask`
 
@@ -322,12 +357,15 @@ Adds a new Task to a specified wedding event.
 
 Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 
+<box type="info" seamless>
+
 * Adds a new Task to a wedding event specified by `WEDDING_ID`.
+</box>
 
 Examples:
 * `addTask w/W1 desc/Book florist` Adds a new Task `Book Florist` to the wedding event`W1`.
 
---- {.border-secondary}
+<br>
 
 ### Listing all Wedding Tasks: `listTask`
 
@@ -337,7 +375,7 @@ Format: `listTask w/WEDDING_ID`
 
 Examples: `listWedding w/W1` Show a list of all Tasks of the wedding event `W1`.
 
---- {.border-secondary}
+<br>
 
 ### Marking a Wedding Task: `mark`
 
@@ -345,14 +383,17 @@ Marks a specified task of a specified wedding event as completed.
 
 Format: `mark w/WEDDING_ID i/TASK_INDEX`
 
+<box type="info" seamless>
+
 * Marks the task at the specified `INDEX` from the wedding event specified by `WEDDING_ID` as completed.
 * The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * `WEDDING_ID` is the unique identifier of the wedding event.
+</box>
 
 Examples:
 * `mark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as completed.
 
---- {.border-secondary}
+<br>
 
 ### Unmarking a Wedding Task: `unmark`
 
@@ -360,14 +401,17 @@ Marks a specified task of a specified wedding as not completed.
 
 Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 
+<box type="info" seamless>
+
 * Marks the task at the specified `INDEX` from the wedding event specified by `WEDDING_ID` as not completed.
 * The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * `WEDDING_ID` is the unique identifier of the wedding event.
+</box>
 
 Examples:
 * `unmark w/W1 i/1` Marks the Task at index 1 of the wedding event `W1` as not completed.
 
---- {.border-secondary}
+<br>
 
 ### Deleting a Wedding Task: `deleteTask`
 
@@ -375,16 +419,20 @@ Deletes the specified task from a specified wedding event.
 
 Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 
+<box type="info" seamless>
+
 * Deletes the task at the specified `INDEX` from the wedding task list of the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * `WEDDING_ID` is the unique identifier of the wedding event.
+</box>
 
 Examples:
 * `deleteTask w/W1 i/1` Deletes a Task at index 1 from the wedding task list of the wedding event `W1`.
 
---- {.border-primary .thin}
+--- {.border-secondary}
 
 ## Managing Tags
+<br>
 
 ### Tagging a Person to a Wedding: `tag`
 
@@ -392,17 +440,20 @@ Tags an existing contact to an existing wedding event.
 
 Format: `tag INDEX WEDDING_ID`
 
+<box type="info" seamless>
+
 * Tags the person at the specified `INDEX` to the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * `WEDDING_ID` is the unique identifier of the wedding event.
 * Contacts can only be tagged to wedding events that are already existing in the system.
 * Each contact can be tagged to more than one wedding event.
+</box>
 
 Examples:
 * `tag 1 W1` tags the first person to the wedding event `W1`
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
---- {.border-secondary}
+<br>
 
 ### Untagging a Person: `untag`
 
@@ -410,15 +461,18 @@ Untags an existing contact from an existing wedding event.
 
 Format: `untag INDEX WEDDING_ID`
 
+<box type="info" seamless>
+
 * Untags the person at the specified `INDEX` from the wedding event specified by `WEDDING_ID`.
 * The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * `WEDDING_ID` is the unique identifier of the wedding event.
 * Contacts can only be untagged from wedding events that are already existing in the system.
+</box>
 
 Examples:
 * `untag 1 W1` untags the first person from the wedding event `W1`
 
---- {.border-secondary}
+<br>
 
 ### Filtering Contacts: `filter`
 
@@ -426,18 +480,22 @@ Filters contacts related to a specified wedding ID.
 
 Format: `filter WEDDING_ID`
 
+<box type="info" seamless>
+
 * Filters contacts that are tagged with the specified `WEDDING_ID`
 * Wedding ID is the unique identifier of the wedding event.
 * Only the wedding event corresponding to the `WEDDING_ID` will be displayed in the list of weddings.
+</box>
 
 Examples:
 * `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
 
-  ![result for 'filter W2'](images/filterW2.png)
+![result for 'filter W2'](images/filterW2.png)
 
---- {.border-primary .thin}
+--- {.border-secondary}
 
 ## Data Management
+<br>
 
 ### Listing all Persons and Wedding Events: `list`
 
@@ -445,7 +503,7 @@ Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
---- {.border-secondary}
+<br>
 
 ### Clearing all entries: `clear`
 
@@ -453,29 +511,34 @@ Clears all entries from the contact book.
 
 Format: `clear`
 
-**Note:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
+<box type="tip" seamless>
 
---- {.border-secondary}
+**Tip:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
+</box>
+
+<br>
 
 ### Saving the data
 
 EasyWeds data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
---- {.border-secondary}
+<br>
 
 ### Editing the data file
 
 EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
+
 **Caution:**
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
---- {.border-primary .thin}
+--- {.border-secondary}
 
 ## Exiting the program
+<br>
 
 ### Exiting the program: `exit`
 
