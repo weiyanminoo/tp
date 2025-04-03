@@ -49,9 +49,8 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-EasyWeds is a brownfield software project based off [AddressBook Level-3](https://se-education.org/addressbook-level3/) ([UG](https://se-education.org/addressbook-level3/UserGuide.html), [DG](https://se-education.org/addressbook-level3/DeveloperGuide.html)), 
-taken under the CS2103T Software Engineering module held by the School of Computing at the National University of 
-Singapore.
+EasyWeds is a brownfield software project based off [AddressBook Level-3](https://se-education.org/addressbook-level3/) ([UG](https://se-education.org/addressbook-level3/UserGuide.html), [DG](https://se-education.org/addressbook-level3/DeveloperGuide.html)),
+taken under the CS2103T Software Engineering module held by the School of Computing at the National University of Singapore.
 
 Java dependencies:
 
