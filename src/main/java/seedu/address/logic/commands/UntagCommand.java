@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagMatchesPredicate;
 import seedu.address.model.wedding.WeddingId;
 
 /**
@@ -61,6 +62,9 @@ public class UntagCommand extends Command {
 
         // Untag the person
         model.untagPerson(personToUntag, tag);
+
+        // Reapply the filter so that only persons with the specified wedding id remain.
+        model.updateFilteredPersonList(new TagMatchesPredicate(weddingId));
 
         return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS,
                 personToUntag.getName().fullName, weddingId));
