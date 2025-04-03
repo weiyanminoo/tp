@@ -7,13 +7,52 @@ pageNav: 3
 # EasyWeds Developer Guide
 
 <!-- * Table of Contents -->
-<page-nav-print />
+## **Table of Content**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+  * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
+  * [[Proposed] Data archiving](#proposed-data-archiving)
+  * [User Workflow Implementation](#implementation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and shutdown](#launch-and-shutdown)
+  * [Deleting a person](#deleting-a-person)
+  * [Saving data](#saving-data)
+* [Appendix: Effort](#appendix-effort)
+* [Appendix: Planned Enhancements](#appendix-planned-enhancements)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+EasyWeds is a brownfield software project based off AddressBook Level-3, taken under the CS2103T Software Engineering module held by the School of Computing at the National University of Singapore.
+
+Java dependencies:
+
+- JavaFX for GUI
+- JUnit5 for testing
+
+Documentation dependencies:
+
+- Markbind for rendering the website
+- PlantUML for creating UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,6 +63,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [
+_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create
+and edit diagrams.
+
+</div>
 
 ### Architecture
 
@@ -260,24 +307,24 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Implementation**
 
 This section demonstrates how a user interacts with the application to perform essential tasks. In the following walkthrough, we cover:
-1. Creating a contact 
-2. Creating a wedding 
-3. Tagging the contact to the wedding 
-4. Untagging the contact from the wedding 
+1. Creating a contact
+2. Creating a wedding
+3. Tagging the contact to the wedding
+4. Untagging the contact from the wedding
 5. Deleting the wedding
 
-### 1. Creating a contact
+### Creating a contact
 The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
-Below is a sequence diagram that shows the steps involved when a user creates a contact. 
+Below is a sequence diagram that shows the steps involved when a user creates a contact.
 This diagram illustrates how the command flows from the user through the `UI`, is parsed by the `LogicManager` (with help from the `AddressBookParser` and `AddCommandParser`), and then executed on the `Model`. Finally, the updated address book is saved via `Storage` and a success message is returned to the user.
 
 <puml src="diagrams/createContact.puml" alt="createContact" />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-Ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -293,34 +340,40 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts and weddings
 * freelance wedding planners who need to manage contacts for multiple weddings
+* wishes to centralise the management of contacts and weddings into one spot
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts and weddings faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                                                     | So that I can…​                                         |
-|----------|---------|------------------------------------------------------------------|---------------------------------------------------------|
-| `* * *`  | user    | add a client/vendor with their details                           | keep track of my contacts                               |
-| `* * *`  | user    | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors           |
-| `* * *`  | user    | retrieve a client/vendor's record                                | view the details of my clients/vendors                  |
-| `* * *`  | user    | update a client/vendor's detail                                  | have the most updated information for my contacts       |
-| `* * *`  | user    | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding       |
-| `* * *`  | user    | link vendors to specific weddings                                | know which vendors are handling which events            |
-| `* * *`  | user    | filter according to roles / event                                | have a clear picture of who I need to liaise with for   |
-| `* *`    | user    | hide private contact details                                     | minimize chance of someone else seeing them by accident |
-| `* *`    | user    | receive automatic reminders for upcoming tasks                   | avoid missing important deadlines                       |
-| `*`      | user    | generate the wedding day itinerary                               | ensure that all events during the day runs smoothly     |
-| `*`      | user    | share secure, real-time event summaries with clients and vendors | share information with all personnel involved           |
+| Priority | As a …​        | I want to …​                                                     | So that I can…​                                                |
+|----------|----------------|------------------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | user           | add a client/vendor with their details                           | keep track of my contacts                                      |
+| `* * *`  | user           | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors                  |
+| `* * *`  | user           | retrieve a client/vendor's record                                | view the details of my clients/vendors                         |
+| `* * *`  | user           | update a client/vendor's detail                                  | have the most updated information for my contacts              |
+| `* * *`  | user           | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding              |
+| `* * *`  | user           | add a wedding event with its details                             | keep track of the weddings that I am handling                  |
+| `* * *`  | user           | view a list of wedding event with its details                    | view the details of the wedding                                |
+| `* * *`  | user           | view a list of wedding events from the closest to latest date    | have a clear picture of the upcoming weddings                  |
+| `* * *`  | user           | delete a wedding event                                           | remove outdated or irrelevant weddings                         |
+| `* * *`  | user           | edit a wedding event                                             | update the details of the wedding with the correct information |
+| `* * *`  | user           | add a task to a wedding event                                    | keep track of the tasks that need to be done for the wedding   |
+| `* * *`  | user           | delete a task from a wedding event                               | remove outdated or irrelevant tasks                            |
+| `* * *`  | user           | link vendors to specific weddings                                | know which vendors are handling which events                   |
+| `* *`    | user           | view a summary of all my tasks related to a wedding              | have a clear picture of what needs to be done                  |
+| `* *`    | user           | filter according to roles / event                                | have a clear picture of who I need to liaise with for          |
+| `*`      | user           | mark and unmark my tasks related to a wedding                    | know which are the tasks that I have yet to complete           |
+| `*`      | user           | have a confirmation message before I add very similar contacts   | avoid accidentally adding duplicate contacts                   |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -467,18 +520,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-* 2a. All the fields in the input match an existing wedding event in the list.
+* 2b. All the fields in the input match an existing wedding event in the list.
 
-    * 2a1. An error message is shown.
+    * 2b1. An error message is shown.
 
         Use case ends.
 
 
-**Use case: UC08 - List Wedding Events**
+**Use case: UC08 - View Wedding Events by Wedding Date**
 
 **MSS**
 
-1.  User inputs the command to list wedding events
+1.  User inputs the command to list wedding events sorted from earliest to latest date
 2.  EasyWeds shows the list of wedding events
 
     Use case ends.
@@ -487,10 +540,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. There are no wedding events to show.
 
+  Use case ends.
+
+**Use case: UC09 - View Wedding Events by Wedding ID**
+
+**MSS**
+1.  User inputs the command to list wedding events sorted by wedding ID
+2.  EasyWeds shows the list of wedding events
+
     Use case ends.
 
+**Extensions**
 
-**Use case: UC09 - Delete a Wedding Event**
+* 2a. There are no wedding events to show.
+
+  Use case ends.
+
+**Use case: UC10 - Delete a Wedding Event**
 
 **MSS**
 
@@ -510,7 +576,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes at step 2.
 
 
-**Use case: UC10 - Edit a Wedding Event**
+**Use case: UC11 - Edit a Wedding Event**
 
 **MSS**
 
@@ -536,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes at step 2.
 
 
-**Use case: UC11 - Tag Contacts to Wedding Events**
+**Use case: UC12 - Tag Contacts to Wedding Events**
 
 **MSS**
 
@@ -560,7 +626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
-**Use case: UC12 - Untag Contact from Wedding Event**
+**Use case: UC13 - Untag Contact from Wedding Event**
 
 **MSS**
 
@@ -590,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 
-**Use case: UC13 - Filter Contacts**
+**Use case: UC14 - Filter Contacts**
 
 **MSS**
 
@@ -613,7 +679,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-*{More to be added}*
+**Use case: UC15 - Add a Task to a Wedding**
+
+**MSS**
+
+1.  User inputs the command to add a task to a specific wedding
+2.  EasyWeds adds the task to the wedding
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wedding does not exist.
+
+    * 2a1. An error message is shown.
+
+      Use case ends.
+
+
+**Use case: UC16 - Delete a Task from a Wedding**
+
+**MSS**
+
+1.  User inputs the command to delete a task from a specific wedding
+2.  EasyWeds deletes the task from the wedding
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The wedding does not exist.
+
+    * 2a1. An error message is shown.
+
+      Use case ends.
+
+* 2b. The task index is invalid.
+
+    * 2b1. An error message is shown.
+
+      Use case ends.
+
+
+**Use case: UC17 - Clear Contact Book**
+
+**MSS**
+
+1.  User inputs the command to clear the contact book
+2.  EasyWeds asks for confirmation
+3.  User confirms the action
+4.  EasyWeds clears all contacts
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The contact book is already empty.
+
+    * 2a1. EasyWeds clears the contact book without asking for confirmation.
+
+      Use case ends.
+
+* 3a. User does not confirm the action.
+
+    * 3a1. The clear operation is cancelled.
+
+      Use case ends.
 
 
 ### Non-Functional Requirements
@@ -627,7 +758,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. User interface should be intuitive and accessible
 8. Candidate data should be stored securely, ensuring unauthorized users cannot access sensitive information.
 9. Data should not be lost between each session and be persistently stored.
-*{More to be added}*
+
 
 ### Glossary
 
@@ -690,3 +821,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+
+## **Appendix: Planned Enhancements**

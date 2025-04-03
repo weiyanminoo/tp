@@ -68,7 +68,8 @@ public class EditWeddingCommand extends Command {
         Wedding weddingToEdit = lastShownList.stream()
                 .filter(wedding -> wedding.getWeddingId().equals(index))
                 .findFirst()
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_WEDDING_DISPLAYED_INDEX));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND,
+                        index.value)));
 
         Wedding editedWedding = createEditedWedding(weddingToEdit, editWeddingDescriptor);
 

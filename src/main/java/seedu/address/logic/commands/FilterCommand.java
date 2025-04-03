@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.TagMatchesPredicate;
@@ -51,8 +52,8 @@ public class FilterCommand extends Command {
         Wedding matchingWedding = model.getAddressBook().getWeddingList().stream()
                 .filter(wedding -> wedding.getWeddingId().equals(weddingIdToFilter))
                 .findFirst()
-                .orElseThrow(() -> new CommandException("The specified wedding id "
-                        + weddingIdToFilter + " does not exist."));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND,
+                        weddingIdToFilter.value)));
 
         // Update person list using the TagMatchesPredicate.
         model.updateFilteredPersonList(new TagMatchesPredicate(weddingIdToFilter));

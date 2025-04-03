@@ -201,6 +201,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isRefreshUI()) {
+                personListPanel.refresh();
+                weddingListPanel.refresh();
+            }
+
             return commandResult;
 
         } catch (CommandException | ParseException e) {
