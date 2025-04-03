@@ -6,116 +6,60 @@ actor "User" as User
 participant ":UI" as UI #Green
 participant ":LogicManager" as LM #Blue
 participant ":AddressBookParser" as ABP #Blue
-participant ":AddCommandParser" as AddCommandParser #Blue
-participant ":ParserUtil" as ParserUtil #Blue
+participant ":AddCommandParser" as Parser #Blue
 participant "a:AddCommand" as AddCommand #Blue
 participant ":Model" as Model #Red
-participant ":ConfirmationManager" as ConfirmationManager #Blue
-participant "r:CommandResult" as CommandResult #DarkRed
+participant ":ConfirmationManager" as CM #Blue
+participant "r:CommandResult" as Result #DarkRed
 participant ":Storage" as Storage #Orange
 
-User -> UI: "add n/John Doe ..."
-UI -> LM: execute("add n/John Doe ...")
+User -> UI: "add n/John Doe p/98765432 e/johnd@example.com r/Photographer a/311, Clementi Ave 2, #02-25"
+UI -> LM: execute(commandText)
 activate LM
 
-LM -> ABP: parseCommand("add n/John Doe ...")
+LM -> ABP: parseCommand(commandText)
 activate ABP
-ABP -> "AddCommandParser": parse(arguments)
-activate "AddCommandParser"
+ABP -> Parser: parse(arguments)
+activate Parser
 
-"AddCommandParser" -> "AddCommandParser": ArgumentTokenizer.tokenize(args, prefixes)
-"AddCommandParser" -> "AddCommandParser": arePrefixesPresent(argMultimap, prefixes)
-"AddCommandParser" -> "AddCommandParser": verifyNoDuplicatePrefixesFor(prefixes)
+Parser -> Parser: tokenize and validate arguments
+Parser -> Parser: parse all required fields
+Parser -> Parser: create Person object
+Parser -> AddCommand: new AddCommand(person)
+Parser --> ABP: return AddCommand
+deactivate Parser
 
-"AddCommandParser" -> ParserUtil: parseName(name)
-activate ParserUtil
-ParserUtil --> "AddCommandParser": name
-deactivate ParserUtil
-
-"AddCommandParser" -> ParserUtil: parsePhone(phone)
-activate ParserUtil
-ParserUtil --> "AddCommandParser": phone
-deactivate ParserUtil
-
-"AddCommandParser" -> ParserUtil: parseEmail(email)
-activate ParserUtil
-ParserUtil --> "AddCommandParser": email
-deactivate ParserUtil
-
-"AddCommandParser" -> ParserUtil: parseRole(role)
-activate ParserUtil
-ParserUtil --> "AddCommandParser": role
-deactivate ParserUtil
-
-"AddCommandParser" -> ParserUtil: parseAddress(address)
-activate ParserUtil
-ParserUtil --> "AddCommandParser": address
-deactivate ParserUtil
-
-"AddCommandParser" -> "Person": new Person(name, phone, email, role, address, new HashSet<>())
-activate "Person"
-"Person" --> "AddCommandParser": person
-deactivate "Person"
-
-"AddCommandParser" -> "AddCommand": new AddCommand(person)
-activate "AddCommand"
-"AddCommand" --> "AddCommandParser"
-deactivate "AddCommand"
-
-"AddCommandParser" --> ABP: a
-deactivate "AddCommandParser"
-
-ABP --> LM: a
+ABP --> LM: return command
 deactivate ABP
 
-LM -> "AddCommand": execute(model)
-activate "AddCommand"
+LM -> AddCommand: execute(model)
+activate AddCommand
 
-"AddCommand" -> Model: hasPerson(toAdd)
+AddCommand -> Model: hasPerson(toAdd)
 activate Model
-Model --> "AddCommand": personExists
+Model --> AddCommand: personExists
 deactivate Model
 
 alt person exists and !isForced
-    "AddCommand" -> ConfirmationManager: getInstance().setPendingCommand(this)
-    activate ConfirmationManager
-    ConfirmationManager --> "AddCommand"
-    deactivate ConfirmationManager
-
-    "AddCommand" -> CommandResult: new CommandResult(MESSAGE_DUPLICATE_PERSON, false, false, true)
-    activate CommandResult
-    "CommandResult" --> "AddCommand"
-    deactivate CommandResult
+    AddCommand -> CM: setPendingCommand(this)
+    AddCommand -> Result: new CommandResult(duplicateMessage, requiresConfirmation)
 else person doesn't exist or isForced
     alt isForced
-        "AddCommand" -> Model: forceAddPerson(toAdd)
-        activate Model
-        Model --> "AddCommand"
-        deactivate Model
+        AddCommand -> Model: forceAddPerson(toAdd)
     else
-        "AddCommand" -> Model: addPerson(toAdd)
-        activate Model
-        Model --> "AddCommand"
-        deactivate Model
+        AddCommand -> Model: addPerson(toAdd)
     end
-
-    "AddCommand" -> CommandResult: new CommandResult(successMessage)
-    activate CommandResult
-    "CommandResult" --> "AddCommand"
-    deactivate CommandResult
+    AddCommand -> Result: new CommandResult(successMessage)
 end
 
-"AddCommand" --> LM: r
-deactivate "AddCommand"
+AddCommand --> LM: return result
+deactivate AddCommand
 
-alt regular command success (not requiring confirmation)
-    LM -> Storage: saveAddressBook(Model.getAddressBook())
-    activate Storage
-    Storage --> LM: Save successful
-    deactivate Storage
+alt command succeeded (no confirmation needed)
+    LM -> Storage: saveAddressBook()
 end
 
-LM -> UI: return CommandResult
+LM --> UI: return result
 deactivate LM
-UI -> User: Display appropriate message
+UI -> User: display message
 @enduml
