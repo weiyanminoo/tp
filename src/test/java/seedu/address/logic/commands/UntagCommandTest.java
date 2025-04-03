@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import seedu.address.model.tag.TagMatchesPredicate;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalWeddings.WEDDING_ONE;
@@ -43,6 +44,34 @@ public class UntagCommandTest {
 
         assertCommandFailure(untagCommand, model, UntagCommand.MESSAGE_PERSON_NOT_TAGGED);
     }
+
+    @Test
+    public void execute_untagPerson_keepsFilterApplied() throws Exception {
+        WeddingId weddingId = new WeddingId("W1");
+
+        Person personWithTag = new PersonBuilder()
+                .withName("Test Person")
+                .withTags("W1")
+                .build();
+        model.addPerson(personWithTag);
+
+        // Apply the filter so that only persons with wedding tag W1 are shown.
+        model.updateFilteredPersonList(new TagMatchesPredicate(weddingId));
+
+        // Verify that the person is in the filtered list.
+        assertTrue(model.getFilteredPersonList().contains(personWithTag));
+
+        // Get the index of the person in the filtered list.
+        int index = model.getFilteredPersonList().indexOf(personWithTag);
+        UntagCommand untagCommand = new UntagCommand(Index.fromZeroBased(index), weddingId);
+
+        untagCommand.execute(model);
+
+        // The untag command updates the filtered list to show only persons still tagged with W1.
+        // Since the tag was removed, personWithTag should no longer be in the filtered list.
+        assertFalse(model.getFilteredPersonList().contains(personWithTag));
+    }
+
 
     @Test
     public void equals_sameObject_returnsTrue() {
