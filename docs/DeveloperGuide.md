@@ -22,11 +22,6 @@ pageNav: 3
   * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
   * [[Proposed] Data archiving](#proposed-data-archiving)
   * [User Workflow Implementation](#implementation)
-    * [Creating a contact](#1-creating-a-contact)
-    * [Creating a wedding](#creating-a-wedding)
-    * [Tagging a contact to a wedding](#tagging-a-contact-to-a-wedding)
-    * [Untagging a contact from a wedding](#untagging-a-contact-from-a-wedding)
-    * [Deleting a wedding](#deleting-a-wedding)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
@@ -318,7 +313,7 @@ This section demonstrates how a user interacts with the application to perform e
 4. Untagging the contact from the wedding
 5. Deleting the wedding
 
-### 1. Creating a contact
+### Creating a contact
 The user begins by creating a new contact using the addContact command. For example, the user might input: `add n/John Doe p/98765432 e/johndoe@example.com a/123 Some Street r/Manager`
 This command creates a contact with the specified name, phone number, email, address, and role.
 
@@ -378,7 +373,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user           | filter according to roles / event                                | have a clear picture of who I need to liaise with for          |
 | `*`      | user           | mark and unmark my tasks related to a wedding                    | know which are the tasks that I have yet to complete           |
 | `*`      | user           | have a confirmation message before I add very similar contacts   | avoid accidentally adding duplicate contacts                   |
-*{More to be added}*
+
 
 ### Use cases
 
@@ -525,9 +520,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-* 2a. All the fields in the input match an existing wedding event in the list.
+* 2b. All the fields in the input match an existing wedding event in the list.
 
-    * 2a1. An error message is shown.
+    * 2b1. An error message is shown.
 
         Use case ends.
 
@@ -536,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User inputs the command to list wedding events sorted from closest to latest date
+1.  User inputs the command to list wedding events sorted from earliest to latest date
 2.  EasyWeds shows the list of wedding events
 
     Use case ends.
@@ -547,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC09 - View Wedding Events by Wedding ID **
+**Use case: UC09 - View Wedding Events by Wedding ID**
 
 **MSS**
 1.  User inputs the command to list wedding events sorted by wedding ID
@@ -726,27 +721,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: UC17 - Confirm Action**
-
-**MSS**
-
-1.  User attempts an action that requires confirmation (e.g., adding a duplicate contact)
-2.  EasyWeds shows a warning message requiring confirmation
-3.  User confirms the action
-4.  EasyWeds performs the requested action
-
-    Use case ends.
-
-**Extensions**
-
-* 3a. User does not confirm the action.
-
-    * 3a1. User inputs a different command.
-
-      Use case ends.
-
-
-**Use case: UC18 - Clear Contact Book**
+**Use case: UC17 - Clear Contact Book**
 
 **MSS**
 
@@ -770,7 +745,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. The clear operation is cancelled.
 
       Use case ends.
-*{More to be added}*
 
 
 ### Non-Functional Requirements
@@ -784,7 +758,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. User interface should be intuitive and accessible
 8. Candidate data should be stored securely, ensuring unauthorized users cannot access sensitive information.
 9. Data should not be lost between each session and be persistently stored.
-*{More to be added}*
+
 
 ### Glossary
 
