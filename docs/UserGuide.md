@@ -5,6 +5,7 @@ pageNav: 3
 ---
 
 # EasyWeds User Guide
+<br>
 
 ## About EasyWeds
 
@@ -41,7 +42,7 @@ Here are  EasyWed's main features:
 - [Features](#features)
     - [Getting Help](#getting-help)
         - [Viewing help](#viewing-help-help)
-    - [Managing People](#managing-people)
+    - [Managing Contacts](#managing-contacts)
         - [Adding a Person](#adding-a-person-add)
         - [Editing a Person](#editing-a-person-edit)
         - [Deleting a Person](#deleting-a-person-delete)
@@ -85,17 +86,10 @@ Here are  EasyWed's main features:
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
-1. Navigate to the folder you placed the `.jar` file in by opening a command terminal.
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar EasyWeds.jar` command to run the application.
 
-1. Open a command terminal,  check the directory you are currently in by typing `ls` which will show you a list of files in the current directory.
-   If you see the `.jar` file, you are in the correct directory.
-   If not, you can change the directory by typing `cd` followed by the folder name in the command terminal.
-
-   _NOTE: The hierarchy of the folders can be seen by typing `ls` after each `cd` command and the structure follows your files for windows or finder for mac.
-   For example, if you have a folder named `NUS` and within it, a folder named `CS2103T`, you can navigate to the `CS2103T` folder by typing `cd NUS` followed by `ls` to see what file is in it, then type`cd CS2103T` in the command terminal._
-3. Once you navigate into the correct directory, i.e. when you type `ls`, you see easyweds.jar being listed, type the `java -jar easyweds.jar` command in the command terminal to run the application.<br>
-   A Graphic User Interface(GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
+![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -111,6 +105,11 @@ Here are  EasyWed's main features:
     * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<box type="tip" seamless>
+
+**Tip:** Refer to [FAQ](#faq) for help on setting up.
+</box>
 
 --- {.border-primary .thick}
 
@@ -128,7 +127,7 @@ In this guide, the following terms are used:
 **Notes about the command format:**<br>
 
 * Press 'TAB' to auto-complete the command you are typing in the command box.<br>
-  e.g. if you type `ad` and press 'TAB', it will auto-complete to `add ` and if you press it again it will auto-complete to `addWedding ` and if you press it again it will auto-complete to `addTask`.
+  e.g. if you type `ad` and press 'TAB', it will auto-complete to `add` and if you press it again it will auto-complete to `addWedding` and if you press it again it will auto-complete to `addTask`.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -145,7 +144,7 @@ In this guide, the following terms are used:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
---- {.border-primary .thick}
+--- {.border-secondary}
 
 ## Getting Help
 <br>
@@ -165,7 +164,7 @@ Format: `help`
 
 --- {.border-secondary}
 
-## Managing people
+## Managing Contacts
 <br>
 
 ### Adding a Person: `add`
@@ -530,7 +529,7 @@ EasyWeds data are saved automatically as a JSON file `[JAR file location]/data/a
 
 <box type="warning" seamless>
 
-**Caution:**
+**Caution:** <br>
 If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
@@ -552,8 +551,98 @@ Format: `exit`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+<box type="important" seamless icon=":question:">
+
+"How do I know if I have Java installed or what version I have?"
+
+</box>
+
+<box type="tip" seamless>
+
+* Open a terminal (for macOS/Linux) or command prompt (for Windows).
+* Type in this command: ```java -version```
+* If you have Java installed, you will see a version number that looks like this: "17.0.1" (or higher).
+* If you don’t have Java installed or see a version lower than 17, download the latest JDK from [here](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).
+
+</box>
+
+--- {.border-secondary}
+
+<box type="important" seamless icon=":question:">
+
+"What is the home folder is and where do I copy the file?"
+
+</box>
+
+<box type="tip" seamless>
+
+* You can choose any folder to be the home folder where you want to store your EasyWeds files. 
+* Choose a folder location which you can find easily afterwards (e.g. Documents).
+* Copy (or move) the downloaded .jar file into this folder, which will contain your EasyWeds data as you use the application.
+
+</box>
+
+--- {.border-secondary}
+
+<box type="important" seamless icon=":question:">
+
+"How do I open a command terminal and navigate to a folder?"
+
+</box>
+
+<box type="tip" seamless>
+
+On Windows:
+
+Press Win + R, type `cmd`, and press Enter to open the command prompt.
+Use the `cd` command to navigate to your folder. For example, if your file is on the Desktop, type:
+```
+cd Desktop
+```
+
+On MacOS:
+
+Press Command + Space, type `Terminal`, and press Enter.
+Use the `cd` command to navigate to your folder. For example, if your file is on the Desktop, type:
+```
+cd ~/Desktop
+```
+
+On Linux:
+
+Open your terminal (typically found in Applications > Utilities or by pressing Ctrl + Alt + T).
+Use the `cd` command to navigate to your folder. For example, if your file is in your home directory, type:
+```
+cd ~
+```
+
+</box>
+
+<box type="important" seamless icon=":question:">
+
+"Why do I get an error when I try to run the command java -jar EasyWeds.jar."
+
+</box>
+
+<box type="tip" seamless>
+
+Ensure that you have typed in the exact name of the .jar file. If the file was renamed, use that name in the command instead:
+```
+java -jar "<name_of_file>.jar"
+```
+</box>
+
+<box type="important" seamless icon=":question:">
+
+"How do I transfer my data to another Computer?"
+
+</box>
+
+<box type="tip" seamless>
+
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
+
+</box>
 
 --- {.border-primary .thick}
 
