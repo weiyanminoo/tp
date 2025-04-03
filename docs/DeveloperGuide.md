@@ -435,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `EasyWeds` and the **Actor** is the `User`, unless specified otherwise)
+(For all use cases below, the **System** is `EasyWeds` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - Add a Contact**
 
