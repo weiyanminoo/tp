@@ -36,6 +36,8 @@ Here are  EasyWed's main features:
 
 --- {.border-primary .thick}
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [Quick start](#quick-start)
@@ -76,6 +78,9 @@ Here are  EasyWed's main features:
 
 --- {.border-primary .thick}
 
+<div style="page-break-after: always;"></div>
+
+
 ## Quick start
 
 1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed in your computer.<br>
@@ -89,7 +94,7 @@ Here are  EasyWed's main features:
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar easyweds.jar` command to run the application.
 
 5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/Ui.png)
+![Ui](images/sampleData.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -119,6 +124,8 @@ In this guide, the following terms are used:
 - **Contact book**: Refer to the list of contacts and events in EasyWeds.
 
 --- {.border-primary .thick}
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -242,9 +249,9 @@ Format: `delete INDEX`
 </box>
 
 Examples:
-* `list` followed by `delete 2` 
+* `list` followed by `delete 2`
     * This command deletes the 2nd person in the contact book.
-* `find Betsy` followed by `delete 1` 
+* `find Betsy` followed by `delete 1`
     * This command deletes the 1st person in the results of the `find` command.
 
 <br>
@@ -268,7 +275,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find florist` returns all Persons with a role of `florist`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find alex david` returns `Alex Yeoh`, `David Li` (Refer to the image below) <br>
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -318,9 +325,9 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 </box>
 
 Examples:
-* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands` 
+* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands`
     * This command edits the date and location of the 1st wedding event to be `20-Jun-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` 
+* `editWedding W2 n/John & Jane's Wedding`
     * This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
 <br>
@@ -338,8 +345,10 @@ Format: `deleteWedding WEDDING_ID`
 </box>
 
 Examples:
-* `deleteWedding W1` 
-    * This command deletes the wedding event with ID `W1`.
+* `deleteWedding W2`
+    * This command deletes the wedding event with ID `W2`.
+
+![result for 'deleteWedding W2'](images/DeleteWedding.png)
 
 <br>
 
@@ -387,9 +396,11 @@ Shows a list of all tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
-Examples: 
-* `listWedding w/W1`
-    * This command shows a list of all tasks of the wedding event `W1`.
+Examples:
+* `listWedding w/W2`
+    * This command shows a list of all tasks of the wedding event `W2`.
+
+![result for 'listTask w/W2'](images/listTaskW2.png)
 
 <br>
 
@@ -407,8 +418,10 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `mark w/W1 i/1` 
+* `mark w/W1 i/1`
     * This command marks the Task at index 1 of the wedding event `W1` as completed.
+
+![result for 'mark w/W1 i/1'](images/MarkTask.png)
 
 <br>
 
@@ -426,7 +439,7 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `unmark w/W1 i/1` 
+* `unmark w/W1 i/1`
     * This command marks the task at index 1 of the wedding event `W1` as not completed.
 
 <br>
@@ -445,7 +458,7 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `deleteTask w/W1 i/1` 
+* `deleteTask w/W1 i/1`
     * This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
 
 <br>
@@ -473,6 +486,8 @@ Format: `tag INDEX WEDDING_ID`
 Examples:
 * `tag 1 W1` tags the first person to the wedding event `W1`
 * `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+
+![result for 'tag person'](images/TagPerson.png)
 
 <br>
 
@@ -509,7 +524,7 @@ Format: `filter WEDDING_ID`
 </box>
 
 Examples:
-* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`.
+* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
 
 ![result for 'filter W2'](images/filterW2.png)
 
@@ -574,6 +589,8 @@ Format: `exit`
 
 --- {.border-primary .thick}
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 <box type="important" seamless icon=":question:">
@@ -601,7 +618,7 @@ Format: `exit`
 
 <box type="tip" seamless>
 
-* You can choose any folder to be the home folder where you want to store your EasyWeds files. 
+* You can choose any folder to be the home folder where you want to store your EasyWeds files.
 * Choose a folder location which you can find easily afterwards (e.g. Documents).
 * Copy (or move) the downloaded .jar file into this folder, which will contain your EasyWeds data as you use the application.
 
@@ -643,6 +660,8 @@ cd ~
 
 </box>
 
+--- {.border-secondary}
+
 <box type="important" seamless icon=":question:">
 
 "Why do I get an error when I try to run the command java -jar easyweds.jar."
@@ -657,6 +676,8 @@ java -jar "<name_of_file>.jar"
 ```
 </box>
 
+--- {.border-secondary}
+
 <box type="important" seamless icon=":question:">
 
 "How do I transfer my data to another Computer?"
@@ -665,7 +686,7 @@ java -jar "<name_of_file>.jar"
 
 <box type="tip" seamless>
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
 </box>
 
@@ -677,6 +698,8 @@ java -jar "<name_of_file>.jar"
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --- {.border-primary .thick}
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 

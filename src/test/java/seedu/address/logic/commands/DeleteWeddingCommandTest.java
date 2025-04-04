@@ -46,6 +46,7 @@ public class DeleteWeddingCommandTest {
         deleteWeddingCommand.execute(model);
 
         assertTrue(model.getFilteredWeddingList().isEmpty());
+        assertTrue(model.getFilteredPersonList().isEmpty());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class DeleteWeddingCommandTest {
         DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
         deleteWeddingCommand.execute(model);
 
-        assertTrue(model.getFilteredPersonList().get(0).getTags().isEmpty());
+        assertTrue(model.getFilteredPersonList().isEmpty());
     }
 
     @Test

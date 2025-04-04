@@ -116,6 +116,18 @@ public class TagCommandTest {
     }
 
     @Test
+    public void execute_personAlreadyTaggedWithWeddingId_throwsCommandException() {
+        WeddingId weddingId = new WeddingId("W12345");
+        Person person = new Person(new Name("John Doe"), new Phone("12345678"), new Email("johndoe@example.com"),
+                new Role("Guest"), new Address("123 Street"), Set.of(new Tag(weddingId)));
+        model.addPerson(person);
+
+        TagCommand tagCommand = new TagCommand(Index.fromZeroBased(0), weddingId);
+
+        assertThrows(CommandException.class, () -> tagCommand.execute(model));
+    }
+
+    @Test
     public void toString_validInputs_correctStringRepresentation() {
         Index targetIndex = Index.fromZeroBased(0);
         WeddingId weddingId = new WeddingId("W12345");

@@ -3,62 +3,38 @@
 skinparam ArrowFontStyle plain
 
 actor "User" as User
-participant ":UI" as UI #Green
 participant ":LogicManager" as LM #Blue
-participant ":AddressBookParser" as ABP #Blue
-participant ":AddCommandParser" as AddCommandParser #Blue
-participant ":ParserUtil" as ParserUtil #Blue
 participant "a:AddCommand" as AddCommand #Blue
 participant ":Model" as Model #Red
-participant "r:CommandResult" as CommandResult #DarkRed
-participant ":Storage" as Storage #Orange
+participant ":ConfirmationManager" as CM #Blue
+participant "r:CommandResult" as Result #DarkRed
 
-User -> UI: "addContact n/John Doe..."
-UI -> LM: execute("addContact n/John Doe...")
+User -> LM: execute("add n/John Doe ...")
 activate LM
 
-LM -> ABP: parseCommand("addContact n/John Doe...")
-activate ABP
-ABP -> "AddCommandParser": parse(arguments)
-activate "AddCommandParser"
-"AddCommandParser" -> ParserUtil: parseName, parsePhone, etc.
-activate ParserUtil
-ParserUtil --> "AddCommandParser"
-deactivate ParserUtil
+LM -> AddCommand: execute(model)
+activate AddCommand
 
-"AddCommandParser" -> "AddCommand": new AddCommand(name, phone, etc.)
-activate "AddCommand"
-"AddCommand" --> "AddCommandParser"
-deactivate "AddCommand"
-
-"AddCommandParser" --> ABP: a
-deactivate "AddCommandParser"
-
-ABP --> LM: a
-deactivate ABP
-
-LM -> "AddCommand": execute(m)
-activate "AddCommand"
-
-"AddCommand" -> Model: addPerson(p)
+AddCommand -> Model: hasPerson(toAdd)
 activate Model
-Model --> "AddCommand"
+Model --> AddCommand: personExists
 deactivate Model
 
-"AddCommand" -> CommandResult
-activate CommandResult
-"CommandResult" --> "AddCommand"
-deactivate CommandResult
+alt person exists and !isForced
+    AddCommand -> CM: setPendingCommand(this)
+    AddCommand -> Result: new CommandResult(duplicateMessage, requiresConfirmation)
+else person doesn't exist or isForced
+    alt isForced
+        AddCommand -> Model: forceAddPerson(toAdd)
+    else
+        AddCommand -> Model: addPerson(toAdd)
+    end
+    AddCommand -> Result: new CommandResult(successMessage)
+end
 
-"AddCommand" --> LM: r
-deactivate "AddCommand"
+AddCommand --> LM: return result
+deactivate AddCommand
 
-LM -> Storage: saveAddressBook(Model.getAddressBook())
-activate Storage
-Storage --> LM: Save successful
-deactivate Storage
-
-LM -> UI: return CommandResult
+LM --> User: display result
 deactivate LM
-UI -> User: Display success message
 @enduml
