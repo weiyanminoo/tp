@@ -20,7 +20,6 @@ pageNav: 3
   * [Common classes](#common-classes)
 * [Implementation](#implementation)
   * [[Proposed] Undo/redo feature](#proposed-undoredo-feature)
-  * [[Proposed] Data archiving](#proposed-data-archiving)
   * [User Workflow Implementation](#user-workflow-implementation)
     * [Creating a contact](#1-creating-a-contact)
     * [Creating a wedding](#2-creating-a-wedding)
