@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":TagCommandParser" as TagCommandParser #Blue
+participant "t:TagCommand" as TagCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> LM: execute("tag 1 W12345")
+activate LM
+
+LM -> ABP: parseCommand("tag 1 W12345")
+activate ABP
+ABP -> TagCommandParser: parse(arguments)
+activate TagCommandParser
+
+TagCommandParser -> TagCommandParser: validate and parse arguments
+TagCommandParser -> TagCommand: new TagCommand(index, weddingId)
+activate TagCommand
+TagCommand --> TagCommandParser
+deactivate TagCommand
+
+TagCommandParser --> ABP: TagCommand
+deactivate TagCommandParser
+
+ABP --> LM: TagCommand
+deactivate ABP
+
+LM -> TagCommand: execute(model)
+activate TagCommand
+
+TagCommand -> Model: getFilteredPersonList()
+activate Model
+Model --> TagCommand: lastShownList
+deactivate Model
+
+TagCommand -> TagCommand: retrieve person from list
+TagCommand -> Model: getFilteredWeddingList()
+activate Model
+Model --> TagCommand: weddingList
+deactivate Model
+
+TagCommand -> TagCommand: check if wedding exists
+TagCommand -> TagCommand: check if person already tagged
+TagCommand -> Model: tagPerson(personToTag, tag)
+activate Model
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> CommandResult: new CommandResult(successMessage)
+activate CommandResult
+CommandResult --> TagCommand
+deactivate CommandResult
+
+TagCommand --> LM: CommandResult
+deactivate TagCommand
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM --> User: display result
+deactivate LM
+@enduml

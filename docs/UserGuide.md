@@ -249,9 +249,9 @@ Format: `delete INDEX`
 </box>
 
 Examples:
-* `list` followed by `delete 2` 
+* `list` followed by `delete 2`
     * This command deletes the 2nd person in the contact book.
-* `find Betsy` followed by `delete 1` 
+* `find Betsy` followed by `delete 1`
     * This command deletes the 1st person in the results of the `find` command.
 
 <br>
@@ -325,9 +325,9 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 </box>
 
 Examples:
-* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands` 
+* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands`
     * This command edits the date and location of the 1st wedding event to be `20-Jun-2025` and `Marina Bay Sands` respectively.
-* `editWedding W2 n/John & Jane's Wedding` 
+* `editWedding W2 n/John & Jane's Wedding`
     * This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
 <br>
@@ -345,7 +345,7 @@ Format: `deleteWedding WEDDING_ID`
 </box>
 
 Examples:
-* `deleteWedding W2` 
+* `deleteWedding W2`
     * This command deletes the wedding event with ID `W2`.
 
 ![result for 'deleteWedding W2'](images/DeleteWedding.png)
@@ -396,7 +396,7 @@ Shows a list of all tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
-Examples: 
+Examples:
 * `listWedding w/W2`
     * This command shows a list of all tasks of the wedding event `W2`.
 
@@ -418,7 +418,7 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `mark w/W1 i/1` 
+* `mark w/W1 i/1`
     * This command marks the Task at index 1 of the wedding event `W1` as completed.
 
 ![result for 'mark w/W1 i/1'](images/MarkTask.png)
@@ -439,7 +439,7 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `unmark w/W1 i/1` 
+* `unmark w/W1 i/1`
     * This command marks the task at index 1 of the wedding event `W1` as not completed.
 
 <br>
@@ -458,7 +458,7 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 </box>
 
 Examples:
-* `deleteTask w/W1 i/1` 
+* `deleteTask w/W1 i/1`
     * This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
 
 <br>
@@ -618,7 +618,7 @@ Format: `exit`
 
 <box type="tip" seamless>
 
-* You can choose any folder to be the home folder where you want to store your EasyWeds files. 
+* You can choose any folder to be the home folder where you want to store your EasyWeds files.
 * Choose a folder location which you can find easily afterwards (e.g. Documents).
 * Copy (or move) the downloaded .jar file into this folder, which will contain your EasyWeds data as you use the application.
 
