@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":AddWeddingCommandParser" as AddWeddingCommandParser #Blue
+participant "a:AddWeddingCommand" as AddWeddingCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+
+User -> LM: execute("addWedding n/John & Jane's Wedding ...")
+activate LM
+
+LM -> ABP: parseCommand("addWedding n/John & Jane's Wedding ...")
+activate ABP
+ABP -> AddWeddingCommandParser: parse(arguments)
+activate AddWeddingCommandParser
+
+AddWeddingCommandParser -> AddWeddingCommandParser: validate and parse arguments
+AddWeddingCommandParser -> AddWeddingCommandParser: create Wedding object
+AddWeddingCommandParser --> ABP: AddWeddingCommand
+deactivate AddWeddingCommandParser
+
+ABP --> LM: AddWeddingCommand
+deactivate ABP
+
+LM -> AddWeddingCommand: execute(model)
+activate AddWeddingCommand
+
+AddWeddingCommand -> Model: hasWedding(toAdd)
+activate Model
+Model --> AddWeddingCommand: weddingExists
+deactivate Model
+
+alt wedding exists
+    AddWeddingCommand --> LM: throw CommandException
+else wedding does not exist
+    AddWeddingCommand -> Model: addWedding(toAdd)
+    activate Model
+    Model --> AddWeddingCommand
+    deactivate Model
+
+    AddWeddingCommand -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    CommandResult --> AddWeddingCommand
+    deactivate CommandResult
+end
+
+AddWeddingCommand --> LM: CommandResult
+deactivate AddWeddingCommand
+
+LM --> User: display result
+deactivate LM
+@enduml

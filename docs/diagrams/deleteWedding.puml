@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor "User" as User
+participant ":UI" as UI #Green
+participant ":LogicManager" as LM #Blue
+participant ":AddressBookParser" as ABP #Blue
+participant ":DeleteWeddingCommandParser" as DeleteWeddingCommandParser #Blue
+participant ":ParserUtil" as ParserUtil #Blue
+participant "d:DeleteWeddingCommand" as DeleteWeddingCommand #Blue
+participant ":Model" as Model #Red
+participant "r:CommandResult" as CommandResult #DarkRed
+participant ":Storage" as Storage #Orange
+
+User -> UI: "deleteWedding W1"
+UI -> LM: execute("deleteWedding W1")
+activate LM
+
+LM -> ABP: parseCommand("deleteWedding W1")
+activate ABP
+ABP -> DeleteWeddingCommandParser: parse("W1")
+activate DeleteWeddingCommandParser
+
+DeleteWeddingCommandParser -> ParserUtil: parseWeddingId("W1")
+activate ParserUtil
+ParserUtil --> DeleteWeddingCommandParser: weddingId
+deactivate ParserUtil
+
+DeleteWeddingCommandParser -> DeleteWeddingCommand: new DeleteWeddingCommand(weddingId)
+activate DeleteWeddingCommand
+DeleteWeddingCommand --> DeleteWeddingCommandParser
+deactivate DeleteWeddingCommand
+
+DeleteWeddingCommandParser --> ABP: DeleteWeddingCommand
+deactivate DeleteWeddingCommandParser
+
+ABP --> LM: DeleteWeddingCommand
+deactivate ABP
+
+LM -> DeleteWeddingCommand: execute(model)
+activate DeleteWeddingCommand
+
+DeleteWeddingCommand -> Model: getWeddingById(weddingId)
+activate Model
+Model --> DeleteWeddingCommand: weddingToDelete
+deactivate Model
+
+alt wedding does not exist
+    DeleteWeddingCommand --> LM: throw CommandException
+else wedding exists
+    DeleteWeddingCommand -> Model: deleteWedding(weddingToDelete)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
+
+    DeleteWeddingCommand -> Tag: new Tag(weddingId)
+    activate Tag
+    Tag --> DeleteWeddingCommand: tagToDelete
+    deactivate Tag
+
+    DeleteWeddingCommand -> Model: removeTagFromAllContacts(tagToDelete)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
+
+    DeleteWeddingCommand -> Model: updateFilteredWeddingList(predicate)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
+
+    DeleteWeddingCommand -> Model: updateFilteredPersonList(predicate)
+    activate Model
+    Model --> DeleteWeddingCommand
+    deactivate Model
+
+    DeleteWeddingCommand -> CommandResult: new CommandResult(successMessage)
+    activate CommandResult
+    CommandResult --> DeleteWeddingCommand
+    deactivate CommandResult
+end
+
+DeleteWeddingCommand --> LM: CommandResult
+deactivate DeleteWeddingCommand
+
+LM -> Storage: saveAddressBook(Model.getAddressBook())
+activate Storage
+Storage --> LM: Save successful
+deactivate Storage
+
+LM -> UI: return CommandResult
+deactivate LM
+UI -> User: Display success message
+@enduml
