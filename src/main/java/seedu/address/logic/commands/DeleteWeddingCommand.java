@@ -51,7 +51,6 @@ public class DeleteWeddingCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND, weddingId.value));
         }
 
-        // Determine if a filter is currently applied.
         boolean isFiltered = model.getFilteredWeddingList().size()
                 < model.getAddressBook().getWeddingList().size();
 
@@ -60,7 +59,7 @@ public class DeleteWeddingCommand extends Command {
         Tag tagToDelete = new Tag(weddingId);
         model.removeTagFromAllContacts(tagToDelete);
 
-        // If a filter was applied, maintain it, otherwise, show all remaining entries.
+        // If a filter was applied, show blank lists, otherwise, show full lists.
         if (isFiltered) {
             model.updateFilteredWeddingList(w -> false);
             model.updateFilteredPersonList(p -> false);
