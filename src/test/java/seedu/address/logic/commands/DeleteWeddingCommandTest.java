@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +35,9 @@ public class DeleteWeddingCommandTest {
     }
 
     @Test
-    public void execute_validWeddingId_weddingDeleted() throws Exception {
+    public void execute_validWeddingIdForWeddingDeleted_nonFiltered() throws Exception {
+        // Non-filtered scenario: No filter is applied, so deletion should update the filtered lists to show
+        // all remaining items.
         WeddingId weddingId = new WeddingId("W12345");
         WeddingName weddingName = new WeddingName("Wedding Name");
         WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
@@ -42,11 +45,49 @@ public class DeleteWeddingCommandTest {
         Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
         model.addWedding(wedding);
 
+        // No filter applied, so the filtered wedding list equals the full list.
         DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
         deleteWeddingCommand.execute(model);
 
+        // Since the only wedding was deleted, the filtered wedding list should be empty.
+        // And, since no persons were added, the filtered person list should be empty too.
         assertTrue(model.getFilteredWeddingList().isEmpty());
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
+    public void execute_filteredWeddingDeletion_resultsInEmptyLists() throws Exception {
+        // Filtered scenario: User has applied a filter to show only the wedding with a specific ID
+        // and persons with that tag.
+        WeddingId weddingId = new WeddingId("W12345");
+        WeddingName weddingName = new WeddingName("Wedding Name");
+        WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
+        WeddingLocation weddingLocation = new WeddingLocation("Paris");
+        Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
+        model.addWedding(wedding);
+
+        // Also add a person tagged with the wedding.
+        Tag tag = new Tag(weddingId);
+        Person person = new Person(new Name("John Doe"), new Phone("12345678"),
+                new Email("johndoe@example.com"), new Role("Guest"),
+                new Address("123 Street"), Set.of(tag));
+        model.addPerson(person);
+
+        // Apply a filter that only shows weddings with weddingId and persons with the corresponding tag.
+        model.updateFilteredWeddingList(w -> w.getWeddingId().equals(weddingId));
+        model.updateFilteredPersonList(p -> p.getTags().contains(tag));
+
+        // Verify filter is active.
+        assertEquals(1, model.getFilteredWeddingList().size());
+        assertEquals(1, model.getFilteredPersonList().size());
+
+        // Delete the wedding.
+        DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
+        deleteWeddingCommand.execute(model);
+
+        // With the filter still applied, the filtered lists should remain empty.
+        assertTrue(model.getFilteredWeddingList().isEmpty());
+        assertFalse(model.getFilteredPersonList().isEmpty());
     }
 
     @Test
@@ -74,7 +115,8 @@ public class DeleteWeddingCommandTest {
         DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
         deleteWeddingCommand.execute(model);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        model.updateFilteredPersonList(p -> true);
+        assertTrue(model.getFilteredPersonList().get(0).getTags().isEmpty());
     }
 
     @Test
