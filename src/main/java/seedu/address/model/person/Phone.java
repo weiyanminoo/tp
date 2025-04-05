@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, spaces, and can include a '+' prefix for country code.\n"
+            "Phone numbers should only contain numbers, a space, and can include a '+' prefix for country code.\n"
             + "The number should have at least 3 digits and maximum 32 characters total (including '+' and spaces).";
     public static final String VALIDATION_REGEX = "^(\\+\\d[\\d ]*|[\\d ]+)$";
     public final String value;
@@ -36,9 +36,16 @@ public class Phone {
 
         // Check if it has at least 3 digits
         int digitCount = 0;
+        int spaceCount = 0;
+
         for (int i = 0; i < test.length(); i++) {
             if (Character.isDigit(test.charAt(i))) {
                 digitCount++;
+            } else if (test.charAt(i) == ' ') {
+                spaceCount++;
+                if (spaceCount > 1) {
+                    return false; // More than one space is not allowed
+                }
             }
         }
 
