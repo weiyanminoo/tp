@@ -39,8 +39,8 @@ public class ParserUtilTest {
     private static final String WHITESPACE = " \t\r\n";
 
     // set of valid wedding ids for tag-related tests.
-    private static final Set<WeddingId> VALID_WEDDING_IDS = new HashSet<>(
-            Collections.singletonList(new WeddingId(VALID_TAG)));
+    private static final Set<WeddingId> VALID_WEDDING_IDS =
+            new HashSet<>(Collections.singletonList(new WeddingId(VALID_TAG)));
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -49,8 +49,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
-                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
