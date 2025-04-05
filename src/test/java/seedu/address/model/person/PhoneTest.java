@@ -32,7 +32,7 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("+ 12345")); // space after plus sign
         assertFalse(Phone.isValidPhone("1234567890123456789012345678901234")); // exceeds 32 characters
-        assertFalse(Phone.isValidPhone("+65 1234 5678"));// more than one space 
+        assertFalse(Phone.isValidPhone("+65 1234 5678"));// more than one space
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
