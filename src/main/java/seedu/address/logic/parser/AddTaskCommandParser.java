@@ -24,10 +24,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(AddTaskCommand.MESSAGE_INVALID_FORMAT);
         }
 
-        String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
+        WeddingId weddingId = ParserUtil.parseWeddingId(argMultimap.getValue(PREFIX_WEDDING_ID).get());
         String description = argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get();
-
-        WeddingId weddingId = new WeddingId(weddingIdStr);
 
         return new AddTaskCommand(weddingId, description);
     }

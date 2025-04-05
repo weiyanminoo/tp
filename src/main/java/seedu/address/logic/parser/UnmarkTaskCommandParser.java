@@ -24,10 +24,8 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
             throw new ParseException(UnmarkTaskCommand.MESSAGE_USAGE);
         }
 
-        String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
+        WeddingId weddingId = ParserUtil.parseWeddingId(argMultimap.getValue(PREFIX_WEDDING_ID).get());
         String indexStr = argMultimap.getValue(PREFIX_TASK_INDEX).get();
-
-        WeddingId weddingId = new WeddingId(weddingIdStr);
 
         int taskIndex;
         try {
