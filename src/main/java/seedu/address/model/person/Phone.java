@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, spaces, and can include a '+' prefix for country code.\n"
+    public static final String MESSAGE_CONSTRAINTS =
+            "Phone numbers should only contain numbers, spaces, and can include a '+' prefix for country code.\n"
             + "The number should have at least 3 digits and maximum 32 characters total (including '+' and spaces).";
     public static final String VALIDATION_REGEX = "^(\\+\\d[\\d ]*|[\\d ]+)$";
     public final String value;
