@@ -10,9 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, spaces, and can include a '+' prefix for country code.\n"
-            + "The number should have at least 3 digits.\n"
-            + "Country code can have maximum 6 digits, and phone number can have maximum 32 digits.";
-    public static final String VALIDATION_REGEX = "^(\\+\\d{1,6}[ ]?\\d{1,32}|[\\d ]{3,32})$";
+            + "The number should have at least 3 digits and maximum 32 characters total (including '+' and spaces).";
+    public static final String VALIDATION_REGEX = "^(\\+\\d[\\d ]*|[\\d ]+)$";
     public final String value;
 
     /**
@@ -30,6 +29,22 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (test.length() > 32) {
+            return false;
+        }
+
+        // Check if it has at least 3 digits
+        int digitCount = 0;
+        for (int i = 0; i < test.length(); i++) {
+            if (Character.isDigit(test.charAt(i))) {
+                digitCount++;
+            }
+        }
+
+        if (digitCount < 3) {
+            return false;
+        }
+
         return test.matches(VALIDATION_REGEX);
     }
 
