@@ -51,8 +51,7 @@ public class DeleteWeddingCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_WEDDING_NOT_FOUND, weddingId.value));
         }
 
-        boolean isFiltered = model.getFilteredWeddingList().size()
-                < model.getAddressBook().getWeddingList().size();
+        boolean isFiltered = model.getFilteredWeddingList().size() < model.getAddressBook().getWeddingList().size();
 
         model.deleteWedding(weddingToDelete);
 
