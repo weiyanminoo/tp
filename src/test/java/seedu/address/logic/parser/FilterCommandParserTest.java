@@ -60,13 +60,11 @@ public class FilterCommandParserTest {
     public void parse_negativeOrZeroWeddingId_throwsParseException() {
         // Negative wedding ID
         assertThrows(ParseException.class,
-                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID,
-                () -> parser.parse("W-1"));
+                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID, () -> parser.parse("W-1"));
 
         // Zero wedding ID
         assertThrows(ParseException.class,
-                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID,
-                () -> parser.parse("W0"));
+                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID, () -> parser.parse("W0"));
     }
 
     @Test
