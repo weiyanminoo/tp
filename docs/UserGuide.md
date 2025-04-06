@@ -179,7 +179,7 @@ Format: `help`
 Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
-
+__
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
@@ -299,15 +299,15 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 
 * Input values must be provided for all fields.
 * If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
-    * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2025 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
+    * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
     * This applies to all fields.
 * Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".
 * Date must be a valid date and in the future.
 </box>
 
 Examples:
-* `addWedding n/John & Jane's Wedding d/20-May-2025 l/Marina Bay Sands`
-    * This command adds a wedding event named `John & Jane's Wedding` on `20-May-2025` at `Marina Bay Sands`.
+* `addWedding n/John & Jane's Wedding d/20-May-2026 l/Marina Bay Sands`
+    * This command adds a wedding event named `John & Jane's Wedding` on `20-May-2026` at `Marina Bay Sands`.
 <br>
 
 ### Editing a Wedding Event: `editWedding`
@@ -325,8 +325,8 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 </box>
 
 Examples:
-* `editWedding W1 d/20-Jun-2025 l/Marina Bay Sands`
-    * This command edits the date and location of the 1st wedding event to be `20-Jun-2025` and `Marina Bay Sands` respectively.
+* `editWedding W1 d/20-Jun-2026 l/Marina Bay Sands`
+    * This command edits the date and location of the 1st wedding event to be `20-Jun-2026` and `Marina Bay Sands` respectively.
 * `editWedding W2 n/John & Jane's Wedding`
     * This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 
@@ -397,7 +397,7 @@ Shows a list of all tasks of a specified wedding event in the output box.
 Format: `listTask w/WEDDING_ID`
 
 Examples:
-* `listWedding w/W2`
+* `listTask w/W2`
     * This command shows a list of all tasks of the wedding event `W2`.
 
 ![result for 'listTask w/W2'](images/listTaskW2.png)
@@ -709,8 +709,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Edit Person**                  | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | **Delete Person**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
 | **Find Person**                  | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                    |
-| **Add Wedding**                  | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2025 l/Marina Bay Sands`                                       |
-| **Edit Wedding**                 | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2025 l/Marina Bay Sands`                                           |
+| **Add Wedding**                  | `addWedding n/NAME d/DATE l/LOCATION` <br> e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2026 l/Marina Bay Sands`                                       |
+| **Edit Wedding**                 | `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]` <br> e.g., `editWedding W1 d/20-Feb-2026 l/Marina Bay Sands`                                           |
 | **Delete Wedding**               | `deleteWedding WEDDING_ID` <br> e.g., `deleteWedding W1`                                                                                                       |
 | **Sort Wedding List by Id**      | `sortWID`                                                                                                                                                      |
 | **Sort Wedding List by Date**    | `sortWDate`                                                                                                                                                    |
