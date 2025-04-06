@@ -414,25 +414,25 @@ This diagram illustrates how the command flows from the user through the `UI`, i
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                                     | So that I can…​                                                |
-|----------|----------------|------------------------------------------------------------------|----------------------------------------------------------------|
-| `* * *`  | user           | add a client/vendor with their details                           | keep track of my contacts                                      |
-| `* * *`  | user           | delete a client/vendor's record                                  | remove outdated or irrelevant clients/vendors                  |
-| `* * *`  | user           | retrieve a client/vendor's record                                | view the details of my clients/vendors                         |
-| `* * *`  | user           | update a client/vendor's detail                                  | have the most updated information for my contacts              |
-| `* * *`  | user           | search for a client/vendor by name or wedding date               | quickly find the relevant personnel for a wedding              |
-| `* * *`  | user           | add a wedding event with its details                             | keep track of the weddings that I am handling                  |
-| `* * *`  | user           | view a list of wedding event with its details                    | view the details of the wedding                                |
-| `* * *`  | user           | view a list of wedding events from the closest to latest date    | have a clear picture of the upcoming weddings                  |
-| `* * *`  | user           | delete a wedding event                                           | remove outdated or irrelevant weddings                         |
-| `* * *`  | user           | edit a wedding event                                             | update the details of the wedding with the correct information |
-| `* * *`  | user           | add a task to a wedding event                                    | keep track of the tasks that need to be done for the wedding   |
-| `* * *`  | user           | delete a task from a wedding event                               | remove outdated or irrelevant tasks                            |
-| `* * *`  | user           | link vendors to specific weddings                                | know which vendors are handling which events                   |
-| `* *`    | user           | view a summary of all my tasks related to a wedding              | have a clear picture of what needs to be done                  |
-| `* *`    | user           | filter according to roles / event                                | have a clear picture of who I need to liaise with for          |
-| `*`      | user           | mark and unmark my tasks related to a wedding                    | know which are the tasks that I have yet to complete           |
-| `*`      | user           | have a confirmation message before I add very similar contacts   | avoid accidentally adding duplicate contacts                   |
+| Priority | As a …​        | I want to …​                                                    | So that I can…​                                                |
+|----------|----------------|-----------------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | user           | add a client/vendor with their details                          | keep track of my contacts                                      |
+| `* * *`  | user           | delete a client/vendor's record                                 | remove outdated or irrelevant clients/vendors                  |
+| `* * *`  | user           | retrieve a client/vendor's record                               | view the details of my clients/vendors                         |
+| `* * *`  | user           | update a client/vendor's detail                                 | have the most updated information for my contacts              |
+| `* * *`  | user           | search for a client/vendor by name or wedding date              | quickly find the relevant personnel for a wedding              |
+| `* * *`  | user           | add a wedding event with its details                            | keep track of the weddings that I am handling                  |
+| `* * *`  | user           | view a list of wedding event with its details                   | view the details of the wedding                                |
+| `* * *`  | user           | view a list of wedding events sorted in ascending order by date | have a clear picture of the upcoming weddings                  |
+| `* * *`  | user           | delete a wedding event                                          | remove outdated or irrelevant weddings                         |
+| `* * *`  | user           | edit a wedding event                                            | update the details of the wedding with the correct information |
+| `* * *`  | user           | add a task to a wedding event                                   | keep track of the tasks that need to be done for the wedding   |
+| `* * *`  | user           | delete a task from a wedding event                              | remove outdated or irrelevant tasks                            |
+| `* * *`  | user           | tag vendors to specific weddings                                | know which vendors are handling which events                   |
+| `* *`    | user           | view a summary of all my tasks related to a wedding             | have a clear picture of what needs to be done                  |
+| `* *`    | user           | filter according to roles / event                               | have a clear picture of who I need to liaise with for          |
+| `*`      | user           | mark and unmark my tasks related to a wedding                   | know which are the tasks that I have yet to complete           |
+| `*`      | user           | have a confirmation message before I add very similar contacts  | avoid accidentally adding duplicate contacts                   |
 
 
 ### Use cases
