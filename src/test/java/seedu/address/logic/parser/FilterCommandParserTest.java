@@ -45,6 +45,10 @@ public class FilterCommandParserTest {
         // Different types -> returns false
         assertFalse(filterFirstCommand.equals(1));
 
+        assertFalse(filterFirstCommand.equals(-1));
+
+        assertFalse(filterFirstCommand.equals(0));
+
         // Null -> returns false
         assertFalse(filterFirstCommand.equals(null));
 
