@@ -193,8 +193,6 @@ public class EditWeddingCommandParserTest {
                 expectedDateAndLocationCommand);
     }
 
-
-
     @Test
     public void parse_invalidWeddingId_throwsParseException() {
         // Arrange
