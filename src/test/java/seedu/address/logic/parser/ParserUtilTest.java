@@ -23,7 +23,7 @@ import seedu.address.model.wedding.WeddingId;
 
 public class ParserUtilTest {
 
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "R!chel";
     private static final String INVALID_PHONE = "phone"; // non-numeric characters
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
