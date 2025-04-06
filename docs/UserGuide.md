@@ -612,7 +612,7 @@ Format: `exit`
 
 <box type="important" seamless icon=":question:">
 
-"What is the home folder is and where do I copy the file?"
+"What is the home folder and where do I copy the file?"
 
 </box>
 
