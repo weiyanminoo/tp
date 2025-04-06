@@ -120,8 +120,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
-
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2425S2-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java))  
+[Ui is the interface for the UI component. It provides the functionality of the Ui]
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
@@ -138,7 +138,8 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2425S2-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java))  
+[Logic is the interface for the Logic component. It shows you methods for executing commands and accessing the application's data for display in the UI.]
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -170,7 +171,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)  
+[Model is the interface for the model component. It encapsulates the application's data structures and business logic, providing methods to access and modify contact, wedding and task data.]
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 

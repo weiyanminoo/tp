@@ -33,6 +33,9 @@ public class EditWeddingCommandParser implements Parser<EditWeddingCommand> {
         try {
             index = ParserUtil.parseWeddingId(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            if (pe.getMessage().equals(WeddingId.MESSAGE_NEGATIVE_CONSTRAINTS)) {
+                throw pe;
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditWeddingCommand.MESSAGE_USAGE), pe);
         }
