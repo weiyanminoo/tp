@@ -57,6 +57,19 @@ public class FilterCommandParserTest {
     }
 
     @Test
+    public void parse_negativeOrZeroWeddingId_throwsParseException() {
+        // Negative wedding ID
+        assertThrows(ParseException.class,
+                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID,
+                () -> parser.parse("W-1"));
+
+        // Zero wedding ID
+        assertThrows(ParseException.class,
+                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID,
+                () -> parser.parse("W0"));
+    }
+
+    @Test
     public void parse_emptyArgs_throwsParseException() {
         // Arrange
         String userInput = "";
