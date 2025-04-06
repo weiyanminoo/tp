@@ -51,8 +51,8 @@ public class Email {
         if (email == null) {
             throw new NullPointerException("Email cannot be null");
         }
-        String regex = "^[a-zA-Z0-9](?!.*\\.\\.)([a-zA-Z0-9+_.-]*[a-zA-Z0-9])?" // local-part: allows single char, no consecutive dots
-                + "@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+" // domain labels
+        String regex = "^[a-zA-Z0-9](?!.*\\.\\.)([a-zA-Z0-9+_.-]*[a-zA-Z0-9])?" // local-part
+                + "@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+" // domain part
                 + "[a-zA-Z]{2,}$"; // final TLD (e.g. .com, .sg)
         return email.matches(regex);
     }
