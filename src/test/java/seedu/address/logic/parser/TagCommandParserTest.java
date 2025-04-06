@@ -30,7 +30,7 @@ public class TagCommandParserTest {
     @Test
     public void parse_invalidIndex_throwsParseException() {
         String userInput = "a W12345";
-        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX + "\n" + TagCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -50,6 +50,6 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "1 someInvalidArgs", MESSAGE_CONSTRAINTS + "\n" + TagCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "1 someInvalidArgs", MESSAGE_CONSTRAINTS);
     }
 }

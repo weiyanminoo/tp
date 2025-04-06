@@ -24,10 +24,9 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             throw new ParseException(DeleteTaskCommand.MESSAGE_USAGE);
         }
 
-        String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
+        WeddingId weddingId = ParserUtil.parseWeddingId(argMultimap.getValue(PREFIX_WEDDING_ID).get());
         String indexStr = argMultimap.getValue(PREFIX_TASK_INDEX).get();
 
-        WeddingId weddingId = new WeddingId(weddingIdStr);
         int taskIndex;
         try {
             taskIndex = Integer.parseInt(indexStr);

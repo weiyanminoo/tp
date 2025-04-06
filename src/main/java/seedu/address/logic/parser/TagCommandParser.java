@@ -29,12 +29,8 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Index index = ParserUtil.parseIndex(tokens[0]);
-            WeddingId weddingId = ParserUtil.parseWeddingId(tokens[1]);
-            return new TagCommand(index, weddingId);
-        } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + TagCommand.MESSAGE_USAGE, pe);
-        }
+        Index index = ParserUtil.parseIndex(tokens[0]);
+        WeddingId weddingId = ParserUtil.parseWeddingId(tokens[1]);
+        return new TagCommand(index, weddingId);
     }
 }
