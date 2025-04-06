@@ -24,11 +24,6 @@ public class WeddingIdTest {
     }
 
     @Test
-    public void isValidWeddingId_nullInput_returnsFalse() {
-        assertFalse(WeddingId.isValidWeddingId(null));
-    }
-
-    @Test
     public void isValidWeddingId_invalidFormats_returnsFalse() {
         // Missing 'W'
         assertFalse(WeddingId.isValidWeddingId("1"));

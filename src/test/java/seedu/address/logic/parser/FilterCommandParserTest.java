@@ -58,13 +58,17 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_negativeOrZeroWeddingId_throwsParseException() {
+        // Construct the expected error message that includes both constraints and usage
+        String expectedMessage = WeddingId.MESSAGE_NEGATIVE_CONSTRAINTS + "\n"
+                + FilterCommand.MESSAGE_USAGE;
+
         // Negative wedding ID
         assertThrows(ParseException.class,
-                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID, () -> parser.parse("W-1"));
+                expectedMessage, () -> parser.parse("W-1"));
 
         // Zero wedding ID
         assertThrows(ParseException.class,
-                FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID, () -> parser.parse("W0"));
+                expectedMessage, () -> parser.parse("W0"));
     }
 
     @Test
