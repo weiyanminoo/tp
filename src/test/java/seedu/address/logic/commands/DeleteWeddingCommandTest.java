@@ -57,37 +57,49 @@ public class DeleteWeddingCommandTest {
 
     @Test
     public void execute_filteredWeddingDeletion_resultsInEmptyLists() throws Exception {
-        // Filtered scenario: User has applied a filter to show only the wedding with a specific ID
-        // and persons with that tag.
-        WeddingId weddingId = new WeddingId("W12345");
-        WeddingName weddingName = new WeddingName("Wedding Name");
-        WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
-        WeddingLocation weddingLocation = new WeddingLocation("Paris");
-        Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
-        model.addWedding(wedding);
 
-        // Also add a person tagged with the wedding.
-        Tag tag = new Tag(weddingId);
-        Person person = new Person(new Name("John Doe"), new Phone("12345678"),
-                new Email("johndoe@example.com"), new Role("Guest"),
-                new Address("123 Street"), Set.of(tag));
-        model.addPerson(person);
+        WeddingId targetWeddingId = new WeddingId("W12345");
+        Wedding targetWedding = new Wedding(targetWeddingId,
+                new WeddingName("Target Wedding"),
+                new WeddingDate("01-Jan-2026"),
+                new WeddingLocation("Paris"));
+        WeddingId otherWeddingId = new WeddingId("W67890");
+        Wedding otherWedding = new Wedding(otherWeddingId,
+                new WeddingName("Other Wedding"),
+                new WeddingDate("05-Feb-2026"),
+                new WeddingLocation("London"));
 
-        // Apply a filter that only shows weddings with weddingId and persons with the corresponding tag.
-        model.updateFilteredWeddingList(w -> w.getWeddingId().equals(weddingId));
-        model.updateFilteredPersonList(p -> p.getTags().contains(tag));
+        model.addWedding(targetWedding);
+        model.addWedding(otherWedding);
 
-        // Verify filter is active.
+        // Add a person tagged with the target wedding.
+        Tag targetTag = new Tag(targetWeddingId);
+        Person taggedPerson = new Person(new Name("Alice"), new Phone("12345678"),
+                new Email("alice@example.com"), new Role("Guest"),
+                new Address("123 Street"), Set.of(targetTag));
+        model.addPerson(taggedPerson);
+
+        // Apply filter: show only weddings with targetWeddingId and persons with the corresponding tag.
+        model.updateFilteredWeddingList(w -> w.getWeddingId().equals(targetWeddingId));
+        model.updateFilteredPersonList(p -> p.getTags().contains(targetTag));
+
+        // Ensure that the filter is active.
         assertEquals(1, model.getFilteredWeddingList().size());
         assertEquals(1, model.getFilteredPersonList().size());
 
-        // Delete the wedding.
-        DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
+        // Delete the target wedding.
+        DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(targetWeddingId);
         deleteWeddingCommand.execute(model);
 
-        // With the filter still applied, the filtered lists should remain empty.
+        // Since a filter was active, deleteWedding command resets the filtered lists.
+        // Hence, the filtered wedding and person lists should be empty.
         assertTrue(model.getFilteredWeddingList().isEmpty());
-        assertFalse(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredPersonList().isEmpty());
+
+        // Check that the non-deleted wedding is still in the data.
+        model.updateFilteredWeddingList(w -> true);
+        assertEquals(1, model.getFilteredWeddingList().size());
+        assertEquals(otherWedding, model.getFilteredWeddingList().get(0));
     }
 
     @Test
