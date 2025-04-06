@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *    in the above example.<br>
  *
  * <p>This updated version supports escaping prefixes. For instance, if a user inputs:
- * <br><code>addWedding n/John & Jane \d/ Wedding d/30-Apr-2025 l/MBS</code>
+ * <br><code>addWedding n/John & Jane \d/ Wedding d/30-Apr-2026 l/MBS</code>
  * <br>then the "\d/" will be treated as literal text (producing "d/") and will not be interpreted as a new prefix.
  */
 public class ArgumentTokenizer {

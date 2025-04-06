@@ -45,11 +45,30 @@ public class FilterCommandParserTest {
         // Different types -> returns false
         assertFalse(filterFirstCommand.equals(1));
 
+        assertFalse(filterFirstCommand.equals(-1));
+
+        assertFalse(filterFirstCommand.equals(0));
+
         // Null -> returns false
         assertFalse(filterFirstCommand.equals(null));
 
         // Different wedding ID -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
+    }
+
+    @Test
+    public void parse_negativeOrZeroWeddingId_throwsParseException() {
+        // Construct the expected error message that includes both constraints and usage
+        String expectedMessage = WeddingId.MESSAGE_NEGATIVE_CONSTRAINTS + "\n"
+                + FilterCommand.MESSAGE_USAGE;
+
+        // Negative wedding ID
+        assertThrows(ParseException.class,
+                expectedMessage, () -> parser.parse("W-1"));
+
+        // Zero wedding ID
+        assertThrows(ParseException.class,
+                expectedMessage, () -> parser.parse("W0"));
     }
 
     @Test

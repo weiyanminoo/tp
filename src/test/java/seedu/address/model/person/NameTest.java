@@ -39,6 +39,7 @@ public class NameTest {
         assertTrue(Name.isValidName("Arul S/O Siva")); // names with 'son of (s/o)'
         assertTrue(Name.isValidName("Mary-Anne Lim")); // names with hyphens
         assertTrue(Name.isValidName("Steve O'Donnell")); // names with apostrophe
+        assertTrue(Name.isValidName("J@mes Bond")); //name with @
     }
 
     @Test

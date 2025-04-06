@@ -12,10 +12,12 @@ public class WeddingId {
     public static final String MESSAGE_CONSTRAINTS =
             "Wedding ID must start with 'W' followed by one or more digits, e.g. 'W1', 'W15'.";
 
+    public static final String MESSAGE_NEGATIVE_CONSTRAINTS =
+            "Wedding ID cannot be negative or zero. Please use a positive number.";
+
     public static final String VALIDATION_REGEX = "^W\\d+$";
 
     public final String value;
-
     public final int valueInt;
 
     /**
@@ -28,13 +30,6 @@ public class WeddingId {
         checkArgument(isValidWeddingId(id), MESSAGE_CONSTRAINTS);
         this.value = id;
         this.valueInt = Integer.parseInt(id.substring(1)); // Parse the numeric part only
-    }
-
-    /**
-     *  Returns integer value of Id
-     */
-    public int getValueInt() {
-        return valueInt;
     }
 
     /**

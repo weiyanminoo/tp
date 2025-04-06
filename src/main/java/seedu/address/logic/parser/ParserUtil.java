@@ -163,6 +163,11 @@ public class ParserUtil {
     public static WeddingId parseWeddingId(String weddingId) throws ParseException {
         requireNonNull(weddingId);
         String trimmedId = weddingId.trim();
+
+        // Check for negative wedding IDs first
+        if (trimmedId.matches("^W-\\d+$") || trimmedId.equals("W0")) {
+            throw new ParseException(WeddingId.MESSAGE_NEGATIVE_CONSTRAINTS);
+        }
         if (!WeddingId.isValidWeddingId(trimmedId)) {
             throw new ParseException(WeddingId.MESSAGE_CONSTRAINTS);
         }
