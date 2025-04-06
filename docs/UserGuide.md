@@ -140,7 +140,7 @@ In this guide, the following terms are used:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `edit n/NAME [r/ROLE]` can be used as `edit n/John Doe r/Florist` or as `edit n/John Doe`.
+  e.g `edit 1 n/NAME [r/ROLE]` can be used as `edit 1 n/John Doe r/Florist` or as `edit 1 n/John Doe`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
