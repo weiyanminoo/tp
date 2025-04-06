@@ -32,6 +32,9 @@ public class FilterCommand extends Command {
             + "Name: %2$s\n"
             + "No clients/vendors found for this wedding!";
 
+    public static final String MESSAGE_NEGATIVE_WEDDING_ID = "Invalid wedding id! " +
+            "Please enter a valid wedding id that is not 0 or negative.\n" + "Example: W1";
+
     private final WeddingId weddingIdToFilter;
 
     /**

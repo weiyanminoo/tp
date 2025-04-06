@@ -41,7 +41,7 @@ public class    WeddingId {
      * Returns true if a given string is a valid wedding ID.
      */
     public static boolean isValidWeddingId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test != null && test.matches(VALIDATION_REGEX) && !test.contains("-");
     }
 
     @Override

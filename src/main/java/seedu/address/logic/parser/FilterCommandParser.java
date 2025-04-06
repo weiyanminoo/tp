@@ -33,6 +33,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
+        if (tokens[0].contains("-") || trimmedArgs.equals("W0")) {
+            throw new ParseException(FilterCommand.MESSAGE_NEGATIVE_WEDDING_ID);
+        }
+
+
         try {
             WeddingId weddingId = ParserUtil.parseWeddingId(tokens[0]);
             return new FilterCommand(weddingId);
