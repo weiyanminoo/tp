@@ -302,6 +302,7 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
     * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
     * This applies to all fields.
 * Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".
+* If using `MMM` format, only the first letter should be capitalized (e.g. Jan, Feb).
 * Date must be a valid date and in the future.
 </box>
 

@@ -97,7 +97,12 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private void copyUrl() {
         try {
-            Desktop.getDesktop().browse(new URI(USER_GUIDE_URL));
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI(USER_GUIDE_URL));
+            } else {
+                // Fallback for Linux
+                Runtime.getRuntime().exec(new String[]{"xdg-open", USER_GUIDE_URL});
+            }
         } catch (IOException | URISyntaxException e) {
             logger.severe("Failed to open the URL: " + e.getMessage());
         }
