@@ -42,10 +42,14 @@ public class WeddingIdTest {
         assertFalse(WeddingId.isValidWeddingId(""));
         // Whitespace only
         assertFalse(WeddingId.isValidWeddingId("  "));
-        // Negative number
-        assertFalse(WeddingId.isValidWeddingId("W-1"));
         // Contains special characters
         assertFalse(WeddingId.isValidWeddingId("W@1"));
+    }
+
+    @Test
+    public void negativeOrZeroWeddingId_throwsIllegalArgumentException() {
+        // Negative number
+        assertFalse(WeddingId.isValidWeddingId("W-1"));
     }
 
     @Test
