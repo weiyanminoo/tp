@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Format: "W" followed by a positive integer (e.g., "W1", "W42").
  * Guarantees: immutable; is valid as declared in {@link #isValidWeddingId(String)}.
  */
-public class    WeddingId {
+public class WeddingId {
     public static final String MESSAGE_CONSTRAINTS =
             "Wedding ID must start with 'W' followed by one or more digits, e.g. 'W1', 'W15'.";
 
@@ -28,13 +28,6 @@ public class    WeddingId {
         checkArgument(isValidWeddingId(id), MESSAGE_CONSTRAINTS);
         this.value = id;
         this.valueInt = Integer.parseInt(id.substring(1)); // Parse the numeric part only
-    }
-
-    /**
-     *  Returns integer value of Id
-     */
-    public int getValueInt() {
-        return valueInt;
     }
 
     /**

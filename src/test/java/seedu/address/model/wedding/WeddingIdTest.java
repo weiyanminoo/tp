@@ -24,8 +24,8 @@ public class WeddingIdTest {
     }
 
     @Test
-    public void isValidWeddingId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> WeddingId.isValidWeddingId(null));
+    public void isValidWeddingId_nullInput_returnsFalse() {
+        assertFalse(WeddingId.isValidWeddingId(null));
     }
 
     @Test
@@ -42,6 +42,10 @@ public class WeddingIdTest {
         assertFalse(WeddingId.isValidWeddingId(""));
         // Whitespace only
         assertFalse(WeddingId.isValidWeddingId("  "));
+        // Negative number
+        assertFalse(WeddingId.isValidWeddingId("W-1"));
+        // Contains special characters
+        assertFalse(WeddingId.isValidWeddingId("W@1"));
     }
 
     @Test
