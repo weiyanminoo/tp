@@ -23,8 +23,7 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
             throw new ParseException(ListTaskCommand.MESSAGE_USAGE);
         }
 
-        String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
-        WeddingId weddingId = new WeddingId(weddingIdStr);
+        WeddingId weddingId = ParserUtil.parseWeddingId(argMultimap.getValue(PREFIX_WEDDING_ID).get());
 
         return new ListTaskCommand(weddingId);
     }

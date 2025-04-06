@@ -24,10 +24,8 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
             throw new ParseException(MarkTaskCommand.MESSAGE_USAGE);
         }
 
-        String weddingIdStr = argMultimap.getValue(PREFIX_WEDDING_ID).get();
+        WeddingId weddingId = ParserUtil.parseWeddingId(argMultimap.getValue(PREFIX_WEDDING_ID).get());
         String indexStr = argMultimap.getValue(PREFIX_TASK_INDEX).get();
-
-        WeddingId weddingId = new WeddingId(weddingIdStr);
 
         int taskIndex;
         try {
