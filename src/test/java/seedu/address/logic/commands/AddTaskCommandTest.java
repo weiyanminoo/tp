@@ -59,6 +59,12 @@ public class AddTaskCommandTest {
     }
 
     @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        AddTaskCommand command = new AddTaskCommand(VALID_WEDDING_ID, VALID_DESCRIPTION);
+        assertThrows(NullPointerException.class, () -> command.execute(null));
+    }
+
+    @Test
     public void equals() {
         AddTaskCommand addTaskCommandA = new AddTaskCommand(VALID_WEDDING_ID, "Task A");
         AddTaskCommand addTaskCommandB = new AddTaskCommand(VALID_WEDDING_ID, "Task B");
