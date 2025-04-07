@@ -1176,3 +1176,8 @@ The following planned enhancements target future improvements for EasyWeds. Each
 - **Feature Gap**: Currently, users must tag or untag contacts to weddings one by one. For large weddings with many vendors and clients, this process is time-consuming and inefficient.
 - **Proposed Fix**: Implement a batch tagging system that allows users to select multiple contacts and tag or untag them to a wedding in a single command.
 - **Expected Outcome**: Wedding planners will experience a significant reduction in administrative overhead, leading to a more efficient workflow when managing contacts for large events.
+
+### 6. Better Wedding ID handling after deletion
+- **Feature Gap**: When a wedding is deleted, its ID is not reused, which results in non-sequential wedding IDs (e.g., W1, W3, W4). This inconsistency can confuse users and wastes available identifiers.
+- **Proposed Fix**: Implement proper wedding ID management that either reuses IDs from deleted weddings for new entries, or provides an optional command to renumber/reindex all wedding IDs sequentially.\
+- **Expected Outcome**: Wedding IDs will be managed more effectively, eliminating gaps and providing users with a clear and organized identifier sequence for all weddings.
