@@ -11,13 +11,13 @@ pageNav: 3
 
 EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to access and update your planning data swiftly.
 
-Here are  EasyWed's main features:
+Here are  EasyWeds' main features:
 #### Enhanced Contact Management
 <box type="success" seamless>
   Contact Tracking: Add phone numbers, emails, addresses, and roles
 </box>
 <box type="success" seamless>
-  Contact Linking: Tag your Clients and your Vendors to Wedding events
+  Contact Linking: Tag your clients and your vendors to wedding events
 </box>
 <box type="success" seamless>
   Advanced Filters: Filter by name or role
@@ -28,10 +28,10 @@ Here are  EasyWed's main features:
   Wedding Tracking: Add date and location
 </box>
 <box type="success" seamless>
-  Task Management: Add To-do tasks for each Wedding
+  Task Management: Add to-do tasks for each wedding
 </box>
 <box type="success" seamless>
-  Advanced Sorting: Sort by Wedding ID or date
+  Advanced Sorting: Sort by wedding ID or date
 </box>
 
 --- {.border-primary .thick}
@@ -53,8 +53,8 @@ Here are  EasyWed's main features:
         - [Adding a Wedding Event](#adding-a-wedding-event-addwedding)
         - [Editing a Wedding Event](#editing-a-wedding-event-editwedding)
         - [Deleting a Wedding Event](#deleting-a-wedding-event-deletewedding)
-        - [Sorting all Wedding Events by increasing Wedding ID](#sorting-all-wedding-events-by-increasing-wedding-id-sortWID)
-        - [Sorting all Wedding Events by earliest date](#sorting-all-wedding-events-by-earliest-date-sortWDate)
+        - [Sorting all Wedding Events by increasing Wedding ID](#sorting-all-wedding-events-by-increasing-wedding-id-sortwid)
+        - [Sorting all Wedding Events by earliest date](#sorting-all-wedding-events-by-earliest-date-sortwdate)
     - [Managing Wedding Tasks](#managing-wedding-tasks)
         - [Adding a Wedding Task](#adding-a-wedding-task-addtask)
         - [Listing all Wedding Tasks](#listing-all-wedding-tasks-listtask)
@@ -83,9 +83,13 @@ Here are  EasyWed's main features:
 
 ## Quick Start
 
-1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed on your computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-   (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
+1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) or above installed in your computer.<br>
+   Choose the installation package depending on your device: [Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html), [Windows](https://se-education.org/guides/tutorials/javaInstallationWindows.html) or [Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+
+    <box type="tip" seamless>
+    
+    **Tip:** Refer to this [Tutorial](https://se-education.org/guides/tutorials/javaInstallation.html) for help with installing Java.
+    </box>
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
 
@@ -93,7 +97,9 @@ Here are  EasyWed's main features:
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar easyweds.jar` command to run the application.
 
-5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.
+<br>
+
 ![Ui](images/sampleData.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -182,11 +188,14 @@ Format: `help`
 Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
-__
+
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
-* If any of the fields' content includes any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
+* Your name will appear in the contact book exactly as you entered it.
+* Only alphanumeric latin characters are allowed for the name field.
+* A person with the [same name or a similar name](#duplicate-section) to an existing person in the contacts will be flagged out. 
+* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
     * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
     * This applies to all fields.
 </box>
@@ -199,23 +208,6 @@ Examples:
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
     * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
 </box>
-
-<box type="warning" seamless>
-
-**Caution:** <br>
-A person with the same name or a similar name to an existing person in the contacts will be flagged out (Refer to the image below)
-* If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
-    * `Alex Yeoh` (exactly the same)
-    * `alex<space>yeoh` (no capitalization)
-    * `Alex<space><space>Yeoh` (extra spacing)
-    * `Alex<space><space>yeoh` (combination of the 2)
-* In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
-* Once you receive the warning message, you can choose to either:
-    1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person to the contact list.
-    2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added to the contact list.
-</box>
-
-![result for 'add duplicate alex'](images/AddDuplicateName.png)
 
 <br>
 
@@ -230,7 +222,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
+* Similar to adding a person, there will be a check for [duplicates](#duplicate-section) for the person's name
 </box>
 
 Examples:
@@ -319,7 +311,7 @@ Examples:
 
 ### Editing a Wedding Event: `editWedding`
 
-Edit an existing wedding event in the contact book.
+Edits an existing wedding event in the contact book.
 
 Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 
@@ -491,8 +483,10 @@ Format: `tag INDEX WEDDING_ID`
 </box>
 
 Examples:
-* `tag 1 W1` tags the first person to the wedding event `W1`
-* `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+* `tag 1 W1` 
+    * This command tags the first person to the wedding event `W1`
+* `tag 1 W2` 
+    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
 ![result for 'tag person'](images/TagPerson.png)
 
@@ -513,7 +507,8 @@ Format: `untag INDEX WEDDING_ID`
 </box>
 
 Examples:
-* `untag 1 W1` untags the first person from the wedding event `W1`
+* `untag 1 W1` 
+    * This command untags the first person from the wedding event `W1`
 
 <br>
 
@@ -531,7 +526,8 @@ Format: `filter WEDDING_ID`
 </box>
 
 Examples:
-* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+* `filter W2` 
+    * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
 
 ![result for 'filter W2'](images/filterW2.png)
 
@@ -546,6 +542,11 @@ Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
+<box type="tip" seamless>
+
+**Tip:** Remember to use `list` to show the full contact book again after you used `find` and `filter`.
+</box>
+
 <br>
 
 ### Clearing all entries: `clear`
@@ -556,7 +557,7 @@ Format: `clear`
 
 <box type="tip" seamless>
 
-**Tip:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
+**Tip:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a [Confirmation Check](#confirmation-section) similar to adding duplicates.
 </box>
 
 <br>
@@ -696,6 +697,51 @@ java -jar "<name_of_file>.jar"
 Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
 </box>
+
+--- {.border-secondary}
+
+<div id="duplicate-section">
+
+<box type="important" seamless icon=":question:">
+
+"What is considered as a duplicate name?"
+
+</box>
+
+<box type="tip" seamless>
+
+* If there is a Person with the name `Alex Yeoh` in the contacts (Refer to the image below), the following will be flagged out:
+    * `Alex Yeoh` (exactly the same)
+    * `alex<space>yeoh` (no capitalization)
+    * `Alex<space><space>Yeoh` (extra spacing)
+    * `Alex<space><space>yeoh` (combination of the 2)
+* In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
+
+![result for 'add duplicate alex'](images/AddDuplicateName.png)
+
+</div>
+
+</box>
+
+--- {.border-secondary}
+
+<div id="confirmation-section">
+
+<box type="important" seamless icon=":question:">
+
+"How do I make a confirmation or cancellation of my previous command?"
+
+</box>
+
+<box type="tip" seamless>
+
+Once you receive the warning message, you can choose to either:
+1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
+2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
+
+</box>
+
+</div>
 
 --- {.border-primary .thick}
 
