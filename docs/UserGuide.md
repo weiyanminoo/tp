@@ -191,11 +191,14 @@ __
     * This applies to all fields.
 </box>
 
+<box type="example" seamless>
+
 Examples:
 * `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
     * This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
     * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
+</box>
 
 <box type="warning" seamless>
 
