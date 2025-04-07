@@ -83,9 +83,13 @@ Here are  EasyWed's main features:
 
 ## Quick start
 
-1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed in your computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-   (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
+1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) or above installed in your computer.<br>
+   Choose the installation package depending on your device: [Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html), [Windows](https://se-education.org/guides/tutorials/javaInstallationWindows.html) or [Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
+
+    <box type="tip" seamless>
+    
+    **Tip:** Refer to this [Tutorial](https://se-education.org/guides/tutorials/javaInstallation.html) for help with installing Java.
+    </box>
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
 
@@ -179,7 +183,7 @@ Format: `help`
 Adds a person to the contact book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
-__
+
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
