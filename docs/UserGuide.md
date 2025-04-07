@@ -178,6 +178,8 @@ Format: `help`
 **Tip:** Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 </box>
 
+<br>
+
 --- {.border-secondary}
 
 ## Managing Contacts
@@ -200,7 +202,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
     * This applies to all fields.
 </box>
 
-<box type="example" seamless>
+<box type="note" seamless>
 
 Examples:
 * `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
@@ -282,6 +284,8 @@ Examples:
 **Tip:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 </box>
 
+<br>
+
 --- {.border-secondary}
 
 ## Managing Wedding Events
@@ -307,6 +311,7 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2026 l/Marina Bay Sands`
     * This command adds a wedding event named `John & Jane's Wedding` on `20-May-2026` at `Marina Bay Sands`.
+
 <br>
 
 ### Editing a Wedding Event: `editWedding`
