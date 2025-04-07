@@ -1046,5 +1046,36 @@ testers are expected to do more _exploratory_ testing.
       Expected: The app starts with an empty address book. The status message shows that the data file is missing or corrupted.
 
 ## **Appendix: Effort**
+### Project Scope and Difficulty
+This project was much more tedious than the Address Book (AB3) reference project. 
+While AB3 deals exclusively with one entity type (Persons), our project, EasyWeds, 
+expands its scope by incorporating multiple more entities, Weddings and tasks, 
+and establishing links between them. 
+This broader scope required a more robust data model and detailed planning for application logic, 
+especially for actions that involve managing interdependencies.  
+  
+**Key challenges included:**
+
+- Entity Linking: Establish reliable relationships between contacts, weddings and tasks
+- Testing and Coverage: Ensure such a complex system is thoroughly tested was a challenging and time-consuming task.
+- Communication: Ensure the clear communications among team members was challenging due to differences in perspectives, methodologies,
+everyone's schedule and availability, which made it difficult to find common times to meet and in certain occasions, come to a swift decision.  
+  
+**Effort Involved:**
+
+Overall, this project required roughly 2 times the effort of AB3, primarily because of the additional complexity, ensuring coherence and just the sheer amount of content we had to implement
+  
+**Accomplishments:**  
+
+Despite the challenges, our team successfully:
+- implemented a robust data model that effectively manages the relationships between contacts, weddings, and tasks
+- developed a comprehensive set of commands that allow users to interact with the system in a meaningful way
+- ensured that the application is thoroughly tested, with a high level of code coverage
+- added much new functionality to the application, including the ability to add, delete, and edit contacts, weddings, and tasks and even tag people to different weddings (not exhaustive)
+
+**Library Usage and Reuse:**  
+Critical libraries played a key role in streamlining our work:
+- JUnit 5: Extensively used for unit testing, this library improved code quality and reduced the time required for testing by an estimated 15-20% compared to writing tests from scratch.
+- JavaFX: Employed to build the Graphical User Interface (GUI), it significantly accelerated the implementation process.
 
 ## **Appendix: Planned Enhancements**
