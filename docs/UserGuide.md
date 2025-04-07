@@ -151,7 +151,7 @@ The following picture of the main window shows the four components, numbered acc
 
 ![Ui](images/sampleData2.png)
 
-Besides the main window, GoonBook also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#viewing-help-help) is run.
+Besides the main window, EasyWeds also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#viewing-help-help) is run.
 
 
 --- {.border-primary .thick}
