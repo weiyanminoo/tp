@@ -33,7 +33,7 @@ public class EditWeddingCommand extends Command {
             + "[l/LOCATION]"
             + " Example: " + COMMAND_WORD + " W1"
             + " n/John & Jane's Wedding"
-            + " d/20-Feb-2025"
+            + " d/20-Feb-2026"
             + " l/Grand Ballroom";
 
     public static final String MESSAGE_EDIT_WEDDING_SUCCESS = "Edited Wedding: %1$s";
