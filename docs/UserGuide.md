@@ -129,9 +129,9 @@ In this guide, the following terms are used:
 - **Graphic User Interface**: A graphic user interface (GUI) is a visual way for users to interact with a software application, using elements such as buttons, windows, icons, and menus.
 - **Command Line Interface**: A command line interface (CLI) is a text-based interface that allows users to interact with a program by typing commands into a terminal or console.
 
-<br>
-
 --- {.border-secondary}
+
+<br>
 
 ## Layout
 When you launch EasyWeds, EasyWeds appears on your screen as a Graphical User Interface, or GUI. Let’s look at the layout of the different components of EasyWeds.
@@ -177,6 +177,8 @@ Besides the main window, EasyWeds also has the Help Window. It is not part of th
   </box>
 
 --- {.border-secondary}
+
+<br>
 
 ## Getting Help
 <br>
@@ -504,7 +506,7 @@ This command shows a list of all tasks of the wedding event `W2` (Refer to the i
 ![result for 'listTask w/W2'](images/listTaskW2.png)
 </box>
 
-<div style="page-break-after: always;"></div>
+<br>
 
 ### Marking a Wedding Task: `mark`
 
@@ -740,9 +742,9 @@ Format: `exit`
 
 [Back to content page](#table-of-contents)
 
-<br>
-
 <div style="page-break-after: always;"></div>
+
+<br>
 
 ## FAQ
 
@@ -888,9 +890,9 @@ Once you receive the warning message, you can choose to either:
 
 </div>
 
-<br>
-
 --- {.border-secondary}
+
+<br>
 
 ## Known issues
 
