@@ -41,6 +41,8 @@ Here are  EasyWeds' main features:
 ## Table of Contents
 
 - [Quick start](#quick-start)
+- [Terminology](#terminology)
+- [Layout](#layout)
 - [Features](#features)
     - [Getting Help](#getting-help)
         - [Viewing help](#viewing-help-help)
@@ -100,7 +102,7 @@ Here are  EasyWeds' main features:
 5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.
 <br>
 
-![Ui](images/sampleData.png)
+    ![Ui](images/sampleData.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -205,10 +207,17 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 <box type="definition" seamless>
 
 Examples:
-* `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
-    * This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
-* `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
-    * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
+```
+`add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
+```
+This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
+
+<br>
+
+```
+`add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
+```
+This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
 </box>
 
 <br>
@@ -286,7 +295,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li` (Refer to the image below) <br>
 </box>
 
-![result for 'find alex david'](images/findAlexDavidResult.png)
+    ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 <box type="tip" seamless>
 
@@ -367,10 +376,10 @@ Format: `deleteWedding WEDDING_ID`
 
 Examples:
 * `deleteWedding W2`
-    * This command deletes the wedding event with ID `W2`.
+    * This command deletes the wedding event with ID `W2` (Refer to the image below)
 </box>
 
-![result for 'deleteWedding W2'](images/DeleteWedding.png)
+    ![result for 'deleteWedding W2'](images/DeleteWedding.png)
 
 <br>
 
@@ -425,10 +434,10 @@ Format: `listTask w/WEDDING_ID`
 
 Examples:
 * `listTask w/W2`
-    * This command shows a list of all tasks of the wedding event `W2`.
+    * This command shows a list of all tasks of the wedding event `W2` (Refer to the image below)
 </box>
 
-![result for 'listTask w/W2'](images/listTaskW2.png)
+    ![result for 'listTask w/W2'](images/listTaskW2.png)
 
 <br>
 
@@ -449,10 +458,12 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 
 Examples:
 * `mark w/W1 i/1`
-    * This command marks the Task at index 1 of the wedding event `W1` as completed.
+    * This command marks the Task at index 1 of the wedding event `W1` as completed (Refer to the image below)
+    
+    ![result for 'mark w/W1 i/1'](images/MarkTask.png)
 </box>
 
-![result for 'mark w/W1 i/1'](images/MarkTask.png)
+    
 
 <br>
 
@@ -526,10 +537,11 @@ Examples:
 * `tag 1 W1` 
     * This command tags the first person to the wedding event `W1`
 * `tag 1 W2` 
-    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`. (Refer to the image below)
+    
+    ![result for 'tag person'](images/TagPerson.png)
 </box>
 
-![result for 'tag person'](images/TagPerson.png)
 
 <br>
 
@@ -574,9 +586,10 @@ Format: `filter WEDDING_ID`
 Examples:
 * `filter W2` 
     * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+
+    ![result for 'filter W2'](images/filterW2.png)
 </box>
 
-![result for 'filter W2'](images/filterW2.png)
 
 --- {.border-secondary}
 
