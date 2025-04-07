@@ -230,14 +230,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 
 Examples:
 ```
-`add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
+add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer
 ```
 This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
 
 <br>
 
 ```
-`add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
+add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678
 ```
 This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
 </box>
@@ -261,10 +261,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 <box type="definition" seamless>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com`
-    * This command edits the phone number and the email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower r/photographer`
-    * This command edits the name and the role of the 2nd person to be `Betsy Crower` and `photographer` respectively.
+```
+edit 1 p/91234567 e/johndoe@example.com
+```
+This command edits the phone number and the email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+
+<br>
+
+```
+edit 2 n/Betsy Crower r/photographer
+```
+This command edits the name and the role of the 2nd person to be `Betsy Crower` and `photographer` respectively.
 </box>
 
 <br>
@@ -285,12 +292,28 @@ Format: `delete INDEX`
 <box type="definition" seamless>
 
 Examples:
-* `list` followed by `delete 2`
-    * This command deletes the 2nd person in the contact book.
-* `find Betsy` followed by `delete 1`
-    * This command deletes the 1st person in the results of the `find` command.
+```
+list
+```
+```
+delete 2
+```
+This command deletes the 2nd person in the contact book.
+
+<br>
+
+```
+find Betsy
+``` 
+```
+delete 1
+```
+This command deletes the 1st person in the results of the `find` command.
 </box>
 
+<div style="page-break-after: always;"></div>
+
+<br>
 
 ### Locating Persons by name or role: `find`
 
@@ -311,12 +334,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 <box type="definition" seamless>
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find florist` returns all Persons with the role of `florist`
-* `find alex david` returns `Alex Yeoh`, `David Li` (Refer to the image below) <br>
-</box>
+```
+find John
+``` 
+This command returns `john` and `John Doe`
 
-    ![result for 'find alex david'](images/findAlexDavidResult.png)
+<br>
+
+```
+find florist
+``` 
+This command returns all Persons with the role of `florist`
+
+<br>
+
+```
+find alex david
+``` 
+This command returns `Alex Yeoh`, `David Li` (Refer to the image below) 
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
+</box>
 
 <box type="tip" seamless>
 
@@ -398,9 +436,9 @@ Format: `deleteWedding WEDDING_ID`
 Examples:
 * `deleteWedding W2`
     * This command deletes the wedding event with ID `W2` (Refer to the image below)
-</box>
 
     ![result for 'deleteWedding W2'](images/DeleteWedding.png)
+</box>
 
 <br>
 
@@ -571,12 +609,21 @@ Format: `tag INDEX WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `tag 1 W1` 
-    * This command tags the first person to the wedding event `W1`
-* `tag 1 W2` 
-    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`. (Refer to the image below)
-    
-    ![result for 'tag person'](images/TagPerson.png)
+```
+tag 1 W1 
+```
+This command tags the first person to the wedding event `W1`
+
+<br>
+
+```
+tag 1 W2
+```
+This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`. (Refer to the image below)
+
+<br>
+
+![result for 'tag person'](images/TagPerson.png)
 </box>
 
 
@@ -599,8 +646,10 @@ Format: `untag INDEX WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `untag 1 W1` 
-    * This command untags the first person from the wedding event `W1`
+```
+untag 1 W1
+```
+This command untags the first person from the wedding event `W1`
 </box>
 
 <br>
@@ -621,8 +670,12 @@ Format: `filter WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `filter W2` 
-    * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+```
+filter W2
+```
+This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+
+<br>
 
     ![result for 'filter W2'](images/filterW2.png)
 </box>
