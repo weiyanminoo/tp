@@ -1064,7 +1064,70 @@ everyone's schedule and availability, which made it difficult to find common tim
 **Effort Involved:**
 
 Overall, this project required roughly 2 times the effort of AB3, primarily because of the additional complexity, ensuring coherence and just the sheer amount of content we had to implement
-  
+Appendix: Effort
+This section gives an overview of the challenges we faced as a team and the effort we put in to remedy it.
+
+**Enhanced Wedding Management System ★★★**
+
+EasyWeds required a complete redesign of the underlying data model to support multiple wedding events with various associated data points.
+
+Created new data models for Wedding, WeddingTask, and associated classes
+Implemented a unique ID system for weddings to ensure consistent referencing
+Developed validation logic for wedding dates to ensure they are valid and in the future
+Designed and implemented a tagging system to associate contacts with specific weddings
+Added specialized commands for wedding management (addWedding, editWedding, deleteWedding)
+The team spent considerable time debating different approaches to the wedding model design, especially around how weddings and contacts should be associated. After exploring multiple options, we settled on a tag-based system that maintains the integrity of both data types while allowing for flexible relationships.
+
+**Task Management System ★★**  
+
+Wedding planners needed a way to track tasks for each wedding, requiring a new subsystem for task management.
+
+Designed a task model that supports descriptions and completion status
+Integrated tasks directly into the wedding model for natural organization
+Created specialized commands for task operations (addTask, listTask, mark, unmark, deleteTask)
+Implemented validation to ensure tasks are associated with valid weddings
+This required careful consideration of how to display tasks effectively in the UI, as they needed to be visible when viewing wedding details but not overwhelm the main interface.
+
+**Enhanced Contact Management ★★★**  
+
+The original AddressBook system needed significant enhancements to support wedding-specific contact attributes.
+
+Extended the Person model to include role information essential for wedding planning
+Implemented a robust tagging system to associate contacts with multiple weddings
+Created specialized filtering mechanisms to view contacts by wedding or role
+Improved the contact display to show relevant wedding associations
+This required significant modifications to the existing person model while maintaining backward compatibility with the original AddressBook features.
+
+**UI Enhancements ★★**  
+
+The UI needed to be redesigned to support the dual focus on weddings and contacts.
+
+Created a split-panel design to show both weddings and contacts simultaneously
+Implemented a detailed view for wedding tasks and related information
+Added visual indicators for tagged relationships between contacts and weddings
+Designed a comprehensive output display for command results
+We went through multiple iterations of the UI design, testing with potential users to ensure the interface was intuitive for wedding planners.
+
+**Storage Component Expansion ★★**  
+
+The storage system needed significant changes to accommodate the new data models.
+
+Extended the JSON storage format to include wedding and task data
+Implemented bidirectional references for weddings and contacts
+Ensured data integrity during save/load operations
+Added validation to handle potential data corruption scenarios
+This required careful planning to ensure that data relationships were preserved correctly when saving and loading the application state.
+
+**Comprehensive Testing ★★★**  
+
+With the significant changes to the original AddressBook, thorough testing was essential.
+
+Created extensive integration tests for wedding-contact relationships
+Developed unit tests for all new commands and features
+Conducted manual testing sessions for complex workflows
+Implemented edge case testing for data validation
+The team devoted substantial time to testing, particularly for the complex interactions between weddings, contacts, and tasks, to ensure reliable operation for users.  
+
 **Accomplishments:**  
 
 Despite the challenges, our team successfully:
