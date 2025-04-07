@@ -70,7 +70,7 @@ Here are  EasyWeds' main features:
         - [Clearing all entries](#clearing-all-entries-clear)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
-    - [Exiting the program](#exiting-the-program-exit)
+    - [Exiting the program](#exiting-the-program)
         - [Exiting the program](#exiting-the-program-exit)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
