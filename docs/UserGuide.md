@@ -556,12 +556,21 @@ Format: `tag INDEX WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `tag 1 W1` 
-    * This command tags the first person to the wedding event `W1`
-* `tag 1 W2` 
-    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`. (Refer to the image below)
-    
-    ![result for 'tag person'](images/TagPerson.png)
+```
+tag 1 W1 
+```
+This command tags the first person to the wedding event `W1`
+
+<br>
+
+```
+tag 1 W2
+```
+This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`. (Refer to the image below)
+
+<br>
+
+![result for 'tag person'](images/TagPerson.png)
 </box>
 
 
@@ -584,8 +593,10 @@ Format: `untag INDEX WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `untag 1 W1` 
-    * This command untags the first person from the wedding event `W1`
+```
+untag 1 W1
+```
+This command untags the first person from the wedding event `W1`
 </box>
 
 <br>
@@ -606,10 +617,14 @@ Format: `filter WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `filter W2` 
-    * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+```
+filter W2
+```
+This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
 
-    ![result for 'filter W2'](images/filterW2.png)
+<br>
+
+![result for 'filter W2'](images/filterW2.png)
 </box>
 
 
