@@ -99,4 +99,11 @@ public class WeddingDateTest {
         WeddingDate date2 = new WeddingDate("21-Dec-2025");
         assertNotEquals(date1, date2);
     }
+
+
+    @Test
+    public void isValidDate_pastDate_throwsParseException() {
+        String pastDate = "2020-01-01";
+        assertThrows(ParseException.class, () -> WeddingDate.isValidDate(pastDate));
+    }
 }

@@ -47,8 +47,14 @@ public class Email {
     /**
      * Returns if a given string is a valid email.
      */
-    public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidEmail(String email) {
+        if (email == null) {
+            throw new NullPointerException("Email cannot be null");
+        }
+        String regex = "^[a-zA-Z0-9](?!.*\\.\\.)([a-zA-Z0-9+_.-]*[a-zA-Z0-9])?" // local-part
+                + "@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+" // domain part
+                + "[a-zA-Z]{2,}$"; // final TLD (e.g. .com, .sg)
+        return email.matches(regex);
     }
 
     @Override

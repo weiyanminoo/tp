@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +35,9 @@ public class DeleteWeddingCommandTest {
     }
 
     @Test
-    public void execute_validWeddingId_weddingDeleted() throws Exception {
+    public void execute_validWeddingIdForWeddingDeleted_nonFiltered() throws Exception {
+        // Non-filtered scenario: No filter is applied, so deletion should update the filtered lists to show
+        // all remaining items.
         WeddingId weddingId = new WeddingId("W12345");
         WeddingName weddingName = new WeddingName("Wedding Name");
         WeddingDate weddingDate = new WeddingDate("01-Jan-2026");
@@ -42,11 +45,61 @@ public class DeleteWeddingCommandTest {
         Wedding wedding = new Wedding(weddingId, weddingName, weddingDate, weddingLocation);
         model.addWedding(wedding);
 
+        // No filter applied, so the filtered wedding list equals the full list.
         DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
         deleteWeddingCommand.execute(model);
 
+        // Since the only wedding was deleted, the filtered wedding list should be empty.
+        // And, since no persons were added, the filtered person list should be empty too.
         assertTrue(model.getFilteredWeddingList().isEmpty());
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    @Test
+    public void execute_filteredWeddingDeletion_resultsInEmptyLists() throws Exception {
+
+        WeddingId targetWeddingId = new WeddingId("W12345");
+        Wedding targetWedding = new Wedding(targetWeddingId,
+                new WeddingName("Target Wedding"),
+                new WeddingDate("01-Jan-2026"),
+                new WeddingLocation("Paris"));
+        WeddingId otherWeddingId = new WeddingId("W67890");
+        Wedding otherWedding = new Wedding(otherWeddingId,
+                new WeddingName("Other Wedding"),
+                new WeddingDate("05-Feb-2026"),
+                new WeddingLocation("London"));
+
+        model.addWedding(targetWedding);
+        model.addWedding(otherWedding);
+
+        // Add a person tagged with the target wedding.
+        Tag targetTag = new Tag(targetWeddingId);
+        Person taggedPerson = new Person(new Name("Alice"), new Phone("12345678"),
+                new Email("alice@example.com"), new Role("Guest"),
+                new Address("123 Street"), Set.of(targetTag));
+        model.addPerson(taggedPerson);
+
+        // Apply filter: show only weddings with targetWeddingId and persons with the corresponding tag.
+        model.updateFilteredWeddingList(w -> w.getWeddingId().equals(targetWeddingId));
+        model.updateFilteredPersonList(p -> p.getTags().contains(targetTag));
+
+        // Ensure that the filter is active.
+        assertEquals(1, model.getFilteredWeddingList().size());
+        assertEquals(1, model.getFilteredPersonList().size());
+
+        // Delete the target wedding.
+        DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(targetWeddingId);
+        deleteWeddingCommand.execute(model);
+
+        // Since a filter was active, deleteWedding command resets the filtered lists.
+        // Hence, the filtered wedding and person lists should be empty.
+        assertTrue(model.getFilteredWeddingList().isEmpty());
+        assertTrue(model.getFilteredPersonList().isEmpty());
+
+        // Check that the non-deleted wedding is still in the data.
+        model.updateFilteredWeddingList(w -> true);
+        assertEquals(1, model.getFilteredWeddingList().size());
+        assertEquals(otherWedding, model.getFilteredWeddingList().get(0));
     }
 
     @Test
@@ -74,7 +127,8 @@ public class DeleteWeddingCommandTest {
         DeleteWeddingCommand deleteWeddingCommand = new DeleteWeddingCommand(weddingId);
         deleteWeddingCommand.execute(model);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        model.updateFilteredPersonList(p -> true);
+        assertTrue(model.getFilteredPersonList().get(0).getTags().isEmpty());
     }
 
     @Test
