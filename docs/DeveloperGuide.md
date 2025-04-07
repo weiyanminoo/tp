@@ -1048,3 +1048,21 @@ testers are expected to do more _exploratory_ testing.
 ## **Appendix: Effort**
 
 ## **Appendix: Planned Enhancements**
+Team size: 5
+
+The following planned enhancements target future improvements for EasyWeds. Each enhancement describes a feature gap in the current system and outlines the proposed solution along with the expected benefits. This section lists enhancements that focus on advancing wedding task management and overall user experience.
+
+### 1. Integrate Task Deadlines
+- **Feature Gap**: Wedding tasks currently lack deadline functionality, which limits the ability to prioritize and track upcoming work.
+- **Proposed Fix**: Add deadlines to each wedding task, enabling users to assign due dates and times.
+- **Expected Outcome**: Improved task management with clear deadlines, leading to better prioritization and timely completion of tasks.
+
+### 2. Advanced Task Filtering and Sorting by Deadline
+- **Feature Gap**: Users are currently unable to quickly identify urgent tasks since the task list lacks filtering and sorting by deadline.
+- **Proposed Fix**: Enhance the task management interface to include options for filtering and sorting wedding tasks based on their assigned deadlines. 
+- **Expected Outcome**: Faster identification of high-priority tasks and improved workflow through better visual organization.
+
+### 3. Support for Non-Latin Characters in Names
+- **Feature Gap**: Currently, only alphanumeric Latin characters are allowed for the name field, which may exclude users whose names include non-Latin characters (e.g.,Chinese, Arabic).
+- **Proposed Fix**: Revise the validation rules for the name field to accept non-Latin characters while maintaining data integrity. This could involve updating the regex patterns and ensuring compatibility with the rest of the system.
+- **Expected Outcome**: Increased inclusivity and usability for international users, allowing a more diverse range of names to be stored accurately within EasyWeds.
