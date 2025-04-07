@@ -125,6 +125,21 @@ public class AddCommandTest {
         assertEquals(new AddCommand(validPerson, true), forcedCommand);
     }
 
+    @Test
+    public void execute_duplicatePersonWithDifferentCase_returnsConfirmationResult() throws Exception {
+        Person original = new PersonBuilder().withName("Alice").build();
+        // Create a duplicate with a different case in the name.
+        Person duplicate = new PersonBuilder().withName("alice").build();
+        AddCommand addCommand = new AddCommand(duplicate);
+        ModelStub modelStub = new ModelStubWithPerson(original);
+
+        CommandResult commandResult = addCommand.execute(modelStub);
+
+        // Since duplicate detection is case-insensitive, the command should trigger duplicate logic.
+        assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON, commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequiresConfirmation());
+    }
+
     /**
      * A Model stub that contains a single person.
      */
