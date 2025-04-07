@@ -9,7 +9,7 @@ pageNav: 3
 
 ## About EasyWeds
 
-EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
+EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to access and update your planning data swiftly.
 
 Here are  EasyWed's main features:
 #### Enhanced Contact Management
