@@ -202,7 +202,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
     * This applies to all fields.
 </box>
 
-<box type="note" seamless>
+<box type="definition" seamless>
 
 Examples:
 * `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
@@ -227,11 +227,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 * Similar to adding a person, there will be a check for [duplicates](#duplicate-section) for the person's name
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com`
     * This command edits the phone number and the email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/photographer`
     * This command edits the name and the role of the 2nd person to be `Betsy Crower` and `photographer` respectively.
+</box>
 
 <br>
 
@@ -248,11 +251,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `list` followed by `delete 2`
     * This command deletes the 2nd person in the contact book.
 * `find Betsy` followed by `delete 1`
     * This command deletes the 1st person in the results of the `find` command.
+</box>
 
 <br>
 
@@ -272,10 +278,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find florist` returns all Persons with the role of `florist`
 * `find alex david` returns `Alex Yeoh`, `David Li` (Refer to the image below) <br>
+</box>
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -308,9 +317,12 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 * Date must be a valid date and in the future.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `addWedding n/John & Jane's Wedding d/20-May-2026 l/Marina Bay Sands`
     * This command adds a wedding event named `John & Jane's Wedding` on `20-May-2026` at `Marina Bay Sands`.
+</box>
 
 <br>
 
@@ -328,11 +340,14 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 * Details of the wedding you want to edit cannot be the same as what is already in the wedding.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `editWedding W1 d/20-Jun-2026 l/Marina Bay Sands`
     * This command edits the date and location of the 1st wedding event to be `20-Jun-2026` and `Marina Bay Sands` respectively.
 * `editWedding W2 n/John & Jane's Wedding`
     * This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
+</box>
 
 <br>
 
@@ -348,9 +363,12 @@ Format: `deleteWedding WEDDING_ID`
 * Tags of contacts associated with the deleted wedding event will be removed.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `deleteWedding W2`
     * This command deletes the wedding event with ID `W2`.
+</box>
 
 ![result for 'deleteWedding W2'](images/DeleteWedding.png)
 
@@ -388,9 +406,12 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 * Adds a new task to a wedding event specified by `WEDDING_ID`.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `addTask w/W1 desc/Book florist`
     * This command adds a new task `Book Florist` to the wedding event `W1`.
+</box>
 
 <br>
 
@@ -400,9 +421,12 @@ Shows a list of all tasks of a specified wedding event in the output box.
 
 Format: `listTask w/WEDDING_ID`
 
+<box type="definition" seamless>
+
 Examples:
 * `listTask w/W2`
     * This command shows a list of all tasks of the wedding event `W2`.
+</box>
 
 ![result for 'listTask w/W2'](images/listTaskW2.png)
 
@@ -421,9 +445,12 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `mark w/W1 i/1`
     * This command marks the Task at index 1 of the wedding event `W1` as completed.
+</box>
 
 ![result for 'mark w/W1 i/1'](images/MarkTask.png)
 
@@ -442,9 +469,12 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `unmark w/W1 i/1`
     * This command marks the task at index 1 of the wedding event `W1` as not completed.
+</box>
 
 <br>
 
@@ -461,9 +491,12 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 * `WEDDING_ID` is the unique identifier of the wedding event.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `deleteTask w/W1 i/1`
     * This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
+</box>
 
 <br>
 
@@ -487,11 +520,14 @@ Format: `tag INDEX WEDDING_ID`
 * Each contact can be tagged to more than one wedding event.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `tag 1 W1` 
     * This command tags the first person to the wedding event `W1`
 * `tag 1 W2` 
     * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+</box>
 
 ![result for 'tag person'](images/TagPerson.png)
 
@@ -511,9 +547,12 @@ Format: `untag INDEX WEDDING_ID`
 * Contacts can only be untagged from wedding events that are already existing in the system.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `untag 1 W1` 
     * This command untags the first person from the wedding event `W1`
+</box>
 
 <br>
 
@@ -530,9 +569,12 @@ Format: `filter WEDDING_ID`
 * Only the wedding event corresponding to the `WEDDING_ID` will be displayed in the list of weddings.
 </box>
 
+<box type="definition" seamless>
+
 Examples:
 * `filter W2` 
     * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+</box>
 
 ![result for 'filter W2'](images/filterW2.png)
 
@@ -612,7 +654,7 @@ Format: `exit`
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 * Open a terminal (for macOS/Linux) or command prompt (for Windows).
 * Type in this command: ```java -version```
@@ -629,7 +671,7 @@ Format: `exit`
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 * You can choose any folder to be the home folder where you want to store your EasyWeds files.
 * Choose a folder location which you can find easily afterwards (e.g. Documents).
@@ -645,7 +687,7 @@ Format: `exit`
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 On Windows:
 
@@ -681,7 +723,7 @@ cd ~
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 Ensure that you have typed in the exact name of the .jar file. If the file was renamed, use that name in the command instead:
 ```
@@ -697,7 +739,7 @@ java -jar "<name_of_file>.jar"
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
@@ -713,7 +755,7 @@ Install the app on the other computer and overwrite the empty data file it creat
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 * If there is a Person with the name `Alex Yeoh` in the contacts (Refer to the image below), the following will be flagged out:
     * `Alex Yeoh` (exactly the same)
@@ -724,9 +766,9 @@ Install the app on the other computer and overwrite the empty data file it creat
 
 ![result for 'add duplicate alex'](images/AddDuplicateName.png)
 
-</div>
-
 </box>
+
+</div>
 
 --- {.border-secondary}
 
@@ -738,7 +780,7 @@ Install the app on the other computer and overwrite the empty data file it creat
 
 </box>
 
-<box type="tip" seamless>
+<box type="success" seamless>
 
 Once you receive the warning message, you can choose to either:
 1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
