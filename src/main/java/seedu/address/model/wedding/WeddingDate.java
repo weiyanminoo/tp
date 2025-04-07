@@ -20,7 +20,8 @@ public class WeddingDate {
     public static final String MESSAGE_CONSTRAINTS =
             """
             Wedding date should be in a valid date format:
-            E.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy"
+            E.g. "dd-Mmm-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy"
+            If using "MMM" format, only the first letter should be capitalized.
             """;
 
     public static final String MESSAGE_DATE_OUT_OF_RANGE = "Wedding date should be a valid date";
@@ -215,6 +216,10 @@ public class WeddingDate {
         for (DateTimeFormatter formatter : DATE_FORMATTERS) {
             try {
                 LocalDate parsedDate = LocalDate.parse(test, formatter);
+                String formattedDate = parsedDate.format(formatter);
+                if (!formattedDate.equals(test)) {
+                    throw new ParseException(MESSAGE_DATE_OUT_OF_RANGE);
+                }
                 if (parsedDate.isBefore(LocalDate.now())) {
                     throw new ParseException(MESSAGE_DATE_IN_PAST);
                 }
@@ -236,6 +241,10 @@ public class WeddingDate {
         for (DateTimeFormatter formatter : DATE_FORMATTERS) {
             try {
                 LocalDate parsedDate = LocalDate.parse(date, formatter);
+                String formattedDate = parsedDate.format(formatter);
+                if (!formattedDate.equals(date)) {
+                    throw new ParseException(MESSAGE_DATE_OUT_OF_RANGE);
+                }
                 return parsedDate.format(OUTPUT_FORMATTER);
             } catch (DateTimeParseException e) {
                 // Continue to the next format
