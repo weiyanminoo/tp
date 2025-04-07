@@ -542,6 +542,11 @@ Shows a list of all persons and weddings in the contact book.
 
 Format: `list`
 
+<box type="tip" seamless>
+
+**Tip:** Remember to use `list` to show the full contact book again after you used `find` and `filter`.
+</box>
+
 <br>
 
 ### Clearing all entries: `clear`
