@@ -124,6 +124,8 @@ Here are  EasyWeds' main features:
 
 --- {.border-primary .thick}
 
+<div style="page-break-after: always;"></div>
+
 ## Terminology
 In this guide, the following terms are used:
 - **Contact(s)** and **Person(s)**: These terms are used interchangeably and refer to the individuals (vendors & clients) stored in EasyWeds.
@@ -598,6 +600,8 @@ Examples:
 
 ![result for 'filter W2'](images/filterW2.png)
 
+<br>
+
 --- {.border-secondary}
 
 ## Data Management
@@ -649,6 +653,8 @@ If your changes to the data file make its format invalid, EasyWeds will discard 
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+<br>
+
 --- {.border-secondary}
 
 ## Exiting the program
@@ -661,6 +667,8 @@ Exits the program.
 Format: `exit`
 
 [Back to content page](#table-of-contents)
+
+<br>
 
 --- {.border-primary .thick}
 
