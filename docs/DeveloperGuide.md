@@ -1066,3 +1066,14 @@ The following planned enhancements target future improvements for EasyWeds. Each
 - **Feature Gap**: Currently, only alphanumeric Latin characters are allowed for the name field, which may exclude users whose names include non-Latin characters (e.g.,Chinese, Arabic).
 - **Proposed Fix**: Revise the validation rules for the name field to accept non-Latin characters while maintaining data integrity. This could involve updating the regex patterns and ensuring compatibility with the rest of the system.
 - **Expected Outcome**: Increased inclusivity and usability for international users, allowing a more diverse range of names to be stored accurately within EasyWeds.
+
+### 4. Expanded Search Capabilities
+- **Feature Gap**: The current search functionality only supports exact keyword matching, which may lead to difficulties when users mistype names or use abbreviations.
+- **Proposed Fix**: Implement a fuzzy search algorithm and support for partial matches, so that slight misspellings or incomplete queries still return relevant results.
+- **Expected Outcome**: Users will experience more forgiving and intuitive search behavior, making it easier to locate contacts and events even with minor input errors.
+
+### 5. Batch Tag/Untag Contacts
+- **Feature Gap**: Currently, users must tag or untag contacts to weddings one by one. For large weddings with many vendors and clients, this process is time-consuming and inefficient.
+- **Proposed Fix**: Implement a batch tagging system that allows users to select multiple contacts and tag or untag them to a wedding in a single command.
+- **Expected Outcome**: Wedding planners will experience a significant reduction in administrative overhead, leading to a more efficient workflow when managing contacts for large events.
+- 
