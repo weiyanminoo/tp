@@ -8,21 +8,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.wedding.Wedding;
 import seedu.address.model.wedding.WeddingDate;
-import seedu.address.model.wedding.WeddingId;
 import seedu.address.model.wedding.WeddingLocation;
 import seedu.address.model.wedding.WeddingName;
 
