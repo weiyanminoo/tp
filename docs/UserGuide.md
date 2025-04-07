@@ -34,8 +34,6 @@ Here are  EasyWeds' main features:
   Advanced Sorting: Sort by wedding ID or date
 </box>
 
---- {.border-primary .thick}
-
 <div style="page-break-after: always;"></div>
 
 ## Table of Contents
@@ -78,10 +76,7 @@ Here are  EasyWeds' main features:
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
 
---- {.border-primary .thick}
-
 <div style="page-break-after: always;"></div>
-
 
 ## Quick Start
 
@@ -124,8 +119,6 @@ Here are  EasyWeds' main features:
 **Tip:** Refer to [FAQ](#faq) for help on setting up.
 </box>
 
---- {.border-primary .thick}
-
 <div style="page-break-after: always;"></div>
 
 ## Terminology
@@ -136,7 +129,9 @@ In this guide, the following terms are used:
 - **Graphic User Interface**: A graphic user interface (GUI) is a visual way for users to interact with a software application, using elements such as buttons, windows, icons, and menus.
 - **Command Line Interface**: A command line interface (CLI) is a text-based interface that allows users to interact with a program by typing commands into a terminal or console.
 
---- {.border-primary .thick}
+<br>
+
+--- {.border-secondary}
 
 ## Layout
 When you launch EasyWeds, EasyWeds appears on your screen as a Graphical User Interface, or GUI. Let’s look at the layout of the different components of EasyWeds.
@@ -154,9 +149,6 @@ The following picture of the main window shows the four components, numbered acc
 ![Ui](images/sampleData2.png)
 
 Besides the main window, EasyWeds also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#viewing-help-help) is run.
-
-
---- {.border-primary .thick}
 
 <div style="page-break-after: always;"></div>
 
@@ -202,9 +194,7 @@ Format: `help`
 **Tip:** Click on the "Go To User Guide" button and the User Guide will be opened in your default browser.
 </box>
 
-<br>
-
---- {.border-secondary}
+<div style="page-break-after: always;"></div>
 
 ## Managing Contacts
 <br>
@@ -311,8 +301,7 @@ delete 1
 This command deletes the 1st person in the results of the `find` command.
 </box>
 
-
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Locating Persons by name or role: `find`
 
@@ -360,9 +349,7 @@ This command returns `Alex Yeoh`, `David Li` (Refer to the image below)
 **Tip:** In order for the 'find' by role command to be effective, ensure that you use the same noun for the same type of role (e.g. please do not call one person 'florist' and another person 'flower maker' and instead choose to give the same role to both)
 </box>
 
-<br>
-
---- {.border-secondary}
+<div style="page-break-after: always;"></div>
 
 ## Managing Wedding Events
 <br>
@@ -425,7 +412,7 @@ editWedding W2 n/John & Jane's Wedding
 This command edits the name of the 2nd wedding event to be `John & Jane's Wedding`.
 </box>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Deleting a Wedding Event: `deleteWedding`
 
@@ -468,9 +455,7 @@ Shows a list of all wedding events in the contact book sorted by date, from earl
 
 Format: `sortWDate`
 
-<br>
-
---- {.border-secondary}
+<div style="page-break-after: always;"></div>
 
 ## Managing Wedding Tasks
 <br>
@@ -516,7 +501,7 @@ This command shows a list of all tasks of the wedding event `W2` (Refer to the i
 ![result for 'listTask w/W2'](images/listTaskW2.png)
 </box>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Marking a Wedding Task: `mark`
 
@@ -592,9 +577,7 @@ deleteTask w/W1 i/1
 This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
 </box>
 
-<br>
-
---- {.border-secondary}
+<div style="page-break-after: always;"></div>
 
 ## Managing Tags
 <br>
@@ -685,13 +668,10 @@ This command displays the details of `W2` and returns the contacts that are tagg
 
 <br>
 
-    ![result for 'filter W2'](images/filterW2.png)
+![result for 'filter W2'](images/filterW2.png)
 </box>
 
-
-<br>
-
---- {.border-secondary}
+<div style="page-break-after: always;"></div>
 
 ## Data Management
 <br>
@@ -758,8 +738,6 @@ Format: `exit`
 [Back to content page](#table-of-contents)
 
 <br>
-
---- {.border-primary .thick}
 
 <div style="page-break-after: always;"></div>
 
@@ -907,14 +885,14 @@ Once you receive the warning message, you can choose to either:
 
 </div>
 
---- {.border-primary .thick}
+<br>
+
+--- {.border-secondary}
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-
---- {.border-primary .thick}
 
 <div style="page-break-after: always;"></div>
 
