@@ -1076,4 +1076,3 @@ The following planned enhancements target future improvements for EasyWeds. Each
 - **Feature Gap**: Currently, users must tag or untag contacts to weddings one by one. For large weddings with many vendors and clients, this process is time-consuming and inefficient.
 - **Proposed Fix**: Implement a batch tagging system that allows users to select multiple contacts and tag or untag them to a wedding in a single command.
 - **Expected Outcome**: Wedding planners will experience a significant reduction in administrative overhead, leading to a more efficient workflow when managing contacts for large events.
-- 
