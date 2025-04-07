@@ -291,7 +291,7 @@ Examples:
     * This command deletes the 1st person in the results of the `find` command.
 </box>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Locating Persons by name or role: `find`
 
