@@ -9,7 +9,7 @@ pageNav: 3
 
 ## About EasyWeds
 
-EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
+EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to access and update your planning data swiftly.
 
 Here are  EasyWed's main features:
 #### Enhanced Contact Management
@@ -81,9 +81,9 @@ Here are  EasyWed's main features:
 <div style="page-break-after: always;"></div>
 
 
-## Quick start
+## Quick Start
 
-1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed in your computer.<br>
+1. Ensure you have [Java `17`](https://www.oracle.com/java/technologies/downloads/#java17) (choose the installation package depending on your device e.g Mac vs Windows) or above installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
    (Relevant tutorial [here](https://se-education.org/guides/tutorials/javaInstallation.html))
 
@@ -99,15 +99,15 @@ Here are  EasyWed's main features:
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all persons and wedding events.
+    * `list`: Lists all persons and wedding events.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer` : Adds a contact named `John Doe` to the contact book in EasyWeds.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`: Adds a contact named `John Doe` to the contact book in EasyWeds.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3`: Deletes the 3rd contact shown in the current list.
 
-    * `clear` : Deletes entire contact book (both persons and wedding events).
+    * `clear`: Deletes entire contact book (both persons and wedding events).
 
-    * `exit` : Exits the app.
+    * `exit`: Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -122,6 +122,9 @@ Here are  EasyWed's main features:
 In this guide, the following terms are used:
 - **Contact(s)** and **Person(s)**: These terms are used interchangeably and refer to the individuals (vendors & clients) stored in EasyWeds.
 - **Contact book**: Refer to the list of contacts and events in EasyWeds.
+- **JSON**: A data format used to store information regarding the contacts and weddings for EasyWeds.
+- **Graphic User Interface**: A graphic user interface (GUI) is a visual way for users to interact with a software application, using elements such as buttons, windows, icons, and menus.
+- **Command Line Interface**: A command line interface (CLI) is a text-based interface that allows users to interact with a program by typing commands into a terminal or console.
 
 --- {.border-primary .thick}
 
@@ -183,16 +186,19 @@ __
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
-* If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
+* If any of the fields' content includes any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
     * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
     * This applies to all fields.
 </box>
+
+<box type="example" seamless>
 
 Examples:
 * `add n/John Doe p/87654321 e/johnd@example.com a/John street, block 123, #01-01 r/Photographer`
     * This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
     * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
+</box>
 
 <box type="warning" seamless>
 
@@ -205,8 +211,8 @@ A person with the same name or a similar name to an existing person in the conta
     * `Alex<space><space>yeoh` (combination of the 2)
 * In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
 * Once you receive the warning message, you can choose to either:
-    1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
-    2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
+    1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person to the contact list.
+    2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added to the contact list.
 </box>
 
 ![result for 'add duplicate alex'](images/AddDuplicateName.png)
@@ -274,7 +280,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find florist` returns all Persons with a role of `florist`
+* `find florist` returns all Persons with the role of `florist`
 * `find alex david` returns `Alex Yeoh`, `David Li` (Refer to the image below) <br>
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -298,8 +304,8 @@ Format: `addWedding n/NAME d/DATE l/LOCATION`
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
-* If any of the fields' content include any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
-    * e.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
+* If any of the fields' content includes any of the delimiters `n/`, `d/`, `l/`, include a `\` before the delimiter.
+    * E.g. Name of a wedding is "John & Jane d/ Doe's Wedding": `addWedding n/John & Jane d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` will not be accepted due to a duplicate delimiter `/d`. Instead, use `addWedding n/John & Jane \d/ Doe's Wedding d/20-May-2026 l/Marina Bay Sands` to denote that `d/` is indeed part of the name.
     * This applies to all fields.
 * Format of the date is flexible, e.g. "dd-MMM-yyyy", "dd/MM/yyyy", "dd.MM.yyyy", "dd MMM yyyy".
 * If using `MMM` format, only the first letter should be capitalized (e.g. Jan, Feb).
@@ -322,7 +328,7 @@ Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 * Edits the wedding event at the specified `WEDDING_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Details of wedding you want to edit cannot be the same as what is already in the wedding.
+* Details of the wedding you want to edit cannot be the same as what is already in the wedding.
 </box>
 
 Examples:
@@ -342,7 +348,7 @@ Format: `deleteWedding WEDDING_ID`
 <box type="info" seamless>
 
 * Deletes the wedding event with the specified `WEDDING_ID`.
-* Tags of contacts associated to the deleted wedding event will be removed.
+* Tags of contacts associated with the deleted wedding event will be removed.
 </box>
 
 Examples:
@@ -570,9 +576,9 @@ EasyWeds data are saved automatically as a JSON file: `[JAR file location]/data/
 **Caution:** <br>
 As much as you are able to manually edit the details of contacts and wedding events, you are strongly advised against editing the weddingIDs in the data file as this will very likely cause the application to behave in unexpected ways.
 
-If your changes to the data file makes its format invalid, EasyWeds will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file make its format invalid, EasyWeds will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 
-Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 --- {.border-secondary}
@@ -687,7 +693,7 @@ java -jar "<name_of_file>.jar"
 
 <box type="tip" seamless>
 
-Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
+Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
 </box>
 
