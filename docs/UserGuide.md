@@ -311,7 +311,6 @@ delete 1
 This command deletes the 1st person in the results of the `find` command.
 </box>
 
-<div style="page-break-after: always;"></div>
 
 <br>
 
