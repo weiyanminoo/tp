@@ -238,7 +238,9 @@ Step 1. The user launches the application, with some contacts already added to t
 
 Step 2. The user executes `addWedding` command with specific details (e.g., `addWedding n/John and Jane's Wedding d/20-Feb-2026 l/Marina Bay Sands`). The `AddWeddingCommand` will then call `execute()`, which checks whether there is a duplicate Wedding in the wedding list before calling `addWedding(Wedding)`.
 
-ℹ️ Note: If the weddingName, weddingDate, or weddingLocation provided is invalid, a `CommandException` will be thrown.
+<box type="info" seamless>
+Note: If the weddingName, weddingDate, or weddingLocation provided is invalid, a `CommandException` will be thrown.
+</box>
 
 #### Sequence Diagram ####
 
@@ -247,10 +249,10 @@ Step 2. The user executes `addWedding` command with specific details (e.g., `add
 <br>
 
 #### Design considerations:
-##### Aspect: How wedding IDs are generated: ####
+**Aspect: How wedding IDs are generated:**
 
 
-##### Alternative 1 (current choice): Automatically generate sequential wedding IDs (W1, W2, etc.) in the Wedding model.
+**Alternative 1 (current choice):** Automatically generate sequential wedding IDs (W1, W2, etc.) in the Wedding model.
 
 * Pros: Easier to implement and more intuitive for users.
 * Cons: May have issues with ID conflicts if weddings are deleted and re-added.
@@ -290,9 +292,9 @@ Step 3. The command also finds all contacts tagged with W1 and removes that tag 
 <br>
 
 #### Design considerations:
-##### Aspect: How wedding deletion affects associated data: ####
+**Aspect: How wedding deletion affects associated data:**
 
-##### Alternative 1 (current choice): Remove wedding tags from all contacts when a wedding is deleted.
+**Alternative 1 (current choice):** Remove wedding tags from all contacts when a wedding is deleted.
 
 * Pros: Maintains data consistency and prevents orphaned tags.
 * Cons: Slightly more complex implementation and slower deletion operation.
@@ -330,9 +332,9 @@ Step 3. The command adds this tag to the person's tag set, creating an associati
 <br>
 
 #### Design considerations:
-##### Aspect: How wedding-contact associations are stored: ####
+**Aspect: How wedding-contact associations are stored:**
 
-##### Alternative 1 (current choice): Store the association as tags on Person objects.
+**Alternative 1 (current choice):** Store the association as tags on Person objects.
 
 * Pros: Leverages existing tag functionality, making implementation simpler.
 * Cons: Limited metadata can be stored about the association.
@@ -367,9 +369,9 @@ Step 2. The `UntagCommand` checks if the person has the W1 tag and removes it if
 
 #### Design considerations:
 
-##### Aspect: Handling non-existent tags in untag command: ####
+**Aspect: Handling non-existent tags in untag command:**
 
-##### Alternative 1 (current choice): Check if the tag exists before attempting to remove it.
+**Alternative 1 (current choice):** Check if the tag exists before attempting to remove it.
 
 * Pros: Provides clear error messages to users.
 * Cons: Requires additional checks in the command execution.
@@ -407,9 +409,9 @@ Step 3. The command adds this task to the wedding's task list.
 
 #### Design considerations:
 
-##### Aspect: Where tasks are stored: ####
+**Aspect: Where tasks are stored:**
 
-##### Alternative 1 (current choice): Store tasks directly in the Wedding object.
+**Alternative 1 (current choice):** Store tasks directly in the Wedding object.
 
 * Pros: Simplifies implementation and maintains clear ownership.
 * Cons: Limited flexibility in sharing tasks across weddings.
@@ -445,9 +447,9 @@ Step 2. The `DeleteTaskCommand` finds wedding W1 and removes the task at index 2
 
 #### Design considerations:
 
-##### Aspect: How task indices are handled: ####
+**Aspect: How task indices are handled:**
 
-##### Alternative 1 (current choice): Use 1-based indexing for users, converting to 0-based for internal operations.
+**Alternative 1 (current choice):** Use 1-based indexing for users, converting to 0-based for internal operations.
 
 * Pros: More intuitive for users who typically count from 1.
 * Cons: Requires index conversion in command execution.
