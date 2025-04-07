@@ -461,9 +461,11 @@ Examples:
 listTask w/W2
 ```
 This command shows a list of all tasks of the wedding event `W2` (Refer to the image below)
+
+![result for 'listTask w/W2'](images/listTaskW2.png)
 </box>
 
-    ![result for 'listTask w/W2'](images/listTaskW2.png)
+
 
 <br>
 
@@ -488,7 +490,7 @@ mark w/W1 i/1
 ```
 This command marks the Task at index 1 of the wedding event `W1` as completed (Refer to the image below)
     
-    ![result for 'mark w/W1 i/1'](images/MarkTask.png)
+![result for 'mark w/W1 i/1'](images/MarkTask.png)
 </box>
 
     
