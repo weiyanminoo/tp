@@ -440,8 +440,10 @@ Format: `addTask w/WEDDING_ID desc/TASK_DESCRIPTION`
 <box type="definition" seamless>
 
 Examples:
-* `addTask w/W1 desc/Book florist`
-    * This command adds a new task `Book Florist` to the wedding event `W1`.
+```
+addTask w/W1 desc/Book florist
+```
+This command adds a new task `Book Florist` to the wedding event `W1`.
 </box>
 
 <br>
@@ -455,8 +457,10 @@ Format: `listTask w/WEDDING_ID`
 <box type="definition" seamless>
 
 Examples:
-* `listTask w/W2`
-    * This command shows a list of all tasks of the wedding event `W2` (Refer to the image below)
+```
+listTask w/W2
+```
+This command shows a list of all tasks of the wedding event `W2` (Refer to the image below)
 </box>
 
     ![result for 'listTask w/W2'](images/listTaskW2.png)
@@ -479,8 +483,10 @@ Format: `mark w/WEDDING_ID i/TASK_INDEX`
 <box type="definition" seamless>
 
 Examples:
-* `mark w/W1 i/1`
-    * This command marks the Task at index 1 of the wedding event `W1` as completed (Refer to the image below)
+```
+mark w/W1 i/1
+```
+This command marks the Task at index 1 of the wedding event `W1` as completed (Refer to the image below)
     
     ![result for 'mark w/W1 i/1'](images/MarkTask.png)
 </box>
@@ -505,8 +511,10 @@ Format: `unmark w/WEDDING_ID i/TASK_INDEX`
 <box type="definition" seamless>
 
 Examples:
-* `unmark w/W1 i/1`
-    * This command marks the task at index 1 of the wedding event `W1` as not completed.
+```
+unmark w/W1 i/1
+```
+This command marks the task at index 1 of the wedding event `W1` as not completed.
 </box>
 
 <br>
@@ -527,8 +535,10 @@ Format: `deleteTask w/WEDDING_ID i/TASK_INDEX`
 <box type="definition" seamless>
 
 Examples:
-* `deleteTask w/W1 i/1`
-    * This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
+```
+deleteTask w/W1 i/1
+```
+This command deletes a task at index 1 from the wedding task list of the wedding event `W1`.
 </box>
 
 <br>
