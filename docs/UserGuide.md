@@ -88,7 +88,7 @@ Here are  EasyWeds' main features:
     **Tip:** Refer to this [Tutorial](https://se-education.org/guides/tutorials/javaInstallation.html) for help with installing Java.
     </box>
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.5).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-F12-2/tp/releases/tag/v1.6).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your EasyWeds.
 
@@ -266,7 +266,7 @@ edit 2 n/Betsy Crower r/photographer
 This command edits the name and the role of the 2nd person to be `Betsy Crower` and `photographer` respectively.
 </box>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Deleting a Person: `delete`
 
@@ -622,8 +622,7 @@ This command tags the first person to the wedding event `W2`. Now the first pers
 ![result for 'tag person'](images/TagPerson.png)
 </box>
 
-
-<br>
+<div style="page-break-after: always;"></div>
 
 ### Untagging a Person: `untag`
 
@@ -727,9 +726,9 @@ If your changes to the data file make its format invalid, EasyWeds will discard 
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-<br>
-
 --- {.border-secondary}
+
+<br>
 
 ## Exiting the program
 <br>
