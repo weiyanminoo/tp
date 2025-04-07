@@ -131,7 +131,7 @@ Here are  EasyWeds' main features:
 ## Terminology
 In this guide, the following terms are used:
 - **Contact(s)** and **Person(s)**: These terms are used interchangeably and refer to the individuals (vendors & clients) stored in EasyWeds.
-- **Contact book**: Refer to the list of contacts and events in EasyWeds.
+- **Contact book**: Refers to the list of contacts and weddings in EasyWeds.
 - **JSON**: A data format used to store information regarding the contacts and weddings for EasyWeds.
 - **Graphic User Interface**: A graphic user interface (GUI) is a visual way for users to interact with a software application, using elements such as buttons, windows, icons, and menus.
 - **Command Line Interface**: A command line interface (CLI) is a text-based interface that allows users to interact with a program by typing commands into a terminal or console.
@@ -351,6 +351,9 @@ This command returns all Persons with the role of `florist`
 find alex david
 ``` 
 This command returns `Alex Yeoh`, `David Li` (Refer to the image below) 
+
+<br>
+
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 </box>
@@ -685,7 +688,7 @@ This command displays the details of `W2` and returns the contacts that are tagg
 
 <br>
 
-    ![result for 'filter W2'](images/filterW2.png)
+![result for 'filter W2'](images/filterW2.png)
 </box>
 
 
