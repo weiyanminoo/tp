@@ -97,7 +97,9 @@ Here are  EasyWeds' main features:
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar easyweds.jar` command to run the application.
 
-5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. A Graphic User Interface (GUI) similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data.
+<br>
+
 ![Ui](images/sampleData.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -187,6 +189,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE`
 <box type="info" seamless>
 
 * Input values must be provided for all fields.
+* Your name will appear in the contact book exactly as you entered it.
+* Only alphanumeric latin characters are allowed for the name field.
+* A person with the [same name or a similar name](#duplicate-section) to an existing person in the contacts will be flagged out. 
 * If any of the fields' content include any of the delimiters `n/`, `p/`, `e/`, `a/`, `r/`, include a `\` before the delimiter.
     * e.g. Name of a contact is "John p/Doe": `add n/John p/Doe p/98765432 ...` will not be accepted due to a duplicate delimiter `p/`. Instead, use `add n/John \p/Doe p/98765432 ...` to denote that "/p" is indeed part of the name.
     * This applies to all fields.
@@ -197,23 +202,6 @@ Examples:
     * This command adds a person named `John Doe` with the phone number `87654321`, email `johnd@example.com`, address `John street, block 123, #01-01`, and role `Photographer`.
 * `add n/Betsy Crowe r/Florist e/betsycrowe@example.com a/Blk 321 Clementi West St 1 p/12345678`
     * This command adds a person named `Betsy Crowe` with the role `Florist`, email `betsycrowe@example.com`, address `Blk 321 Clementi West St 1`, and phone number `12345678`.
-
-<box type="warning" seamless>
-
-**Caution:** <br>
-A person with the same name or a similar name to an existing person in the contacts will be flagged out (Refer to the image below)
-* If there is a Person with the name `Alex Yeoh` in the contacts, the following will be flagged out:
-    * `Alex Yeoh` (exactly the same)
-    * `alex<space>yeoh` (no capitalization)
-    * `Alex<space><space>Yeoh` (extra spacing)
-    * `Alex<space><space>yeoh` (combination of the 2)
-* In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
-* Once you receive the warning message, you can choose to either:
-    1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
-    2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
-</box>
-
-![result for 'add duplicate alex'](images/AddDuplicateName.png)
 
 <br>
 
@@ -228,7 +216,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE]`
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Similar to adding a person, if you try to edit a person to have the same name or a similar name to an existing person in the contacts, you will be required to give a confirmation input
+* Similar to adding a person, there will be a check for [duplicates](#duplicate-section) for the person's name
 </box>
 
 Examples:
@@ -558,7 +546,7 @@ Format: `clear`
 
 <box type="tip" seamless>
 
-**Tip:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a confirmation check similar to adding duplicates.
+**Tip:** In order to prevent you from accidentally clearing the contact book (which is unrecoverable), we have included a [Confirmation Check](#confirmation-section) similar to adding duplicates.
 </box>
 
 <br>
@@ -698,6 +686,51 @@ java -jar "<name_of_file>.jar"
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EasyWeds home folder.
 
 </box>
+
+--- {.border-secondary}
+
+<div id="duplicate-section">
+
+<box type="important" seamless icon=":question:">
+
+"What is considered as a duplicate name?"
+
+</box>
+
+<box type="tip" seamless>
+
+* If there is a Person with the name `Alex Yeoh` in the contacts (Refer to the image below), the following will be flagged out:
+    * `Alex Yeoh` (exactly the same)
+    * `alex<space>yeoh` (no capitalization)
+    * `Alex<space><space>Yeoh` (extra spacing)
+    * `Alex<space><space>yeoh` (combination of the 2)
+* In such a case, the potential duplicate is spotted and the User will need to confirm if he wants to add this Person or make a change to the input
+
+![result for 'add duplicate alex'](images/AddDuplicateName.png)
+
+</div>
+
+</box>
+
+--- {.border-secondary}
+
+<div id="confirmation-section">
+
+<box type="important" seamless icon=":question:">
+
+"How do I make a confirmation or cancellation of my previous command?"
+
+</box>
+
+<box type="tip" seamless>
+
+Once you receive the warning message, you can choose to either:
+1. Confirm - Use 'Ctrl / Command + A' to select the whole input text and press 'Delete / Backspace' to clear the input box. Afterwards, input the command `y` which will add this Person into the contact list.
+2. Cancel - Edit the current input in your input box. Once no duplicates are detected, when you press 'Enter', this Person will be added into the contact list.
+
+</box>
+
+</div>
 
 --- {.border-primary .thick}
 
