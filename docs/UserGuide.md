@@ -72,7 +72,7 @@ Here are  EasyWeds' main features:
         - [Clearing all entries](#clearing-all-entries-clear)
         - [Saving the data](#saving-the-data)
         - [Editing the data file](#editing-the-data-file)
-    - [Exiting the program](#exiting-the-program-exit)
+    - [Exiting the program](#exiting-the-program)
         - [Exiting the program](#exiting-the-program-exit)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
@@ -126,6 +126,8 @@ Here are  EasyWeds' main features:
 
 --- {.border-primary .thick}
 
+<div style="page-break-after: always;"></div>
+
 ## Terminology
 In this guide, the following terms are used:
 - **Contact(s)** and **Person(s)**: These terms are used interchangeably and refer to the individuals (vendors & clients) stored in EasyWeds.
@@ -133,6 +135,26 @@ In this guide, the following terms are used:
 - **JSON**: A data format used to store information regarding the contacts and weddings for EasyWeds.
 - **Graphic User Interface**: A graphic user interface (GUI) is a visual way for users to interact with a software application, using elements such as buttons, windows, icons, and menus.
 - **Command Line Interface**: A command line interface (CLI) is a text-based interface that allows users to interact with a program by typing commands into a terminal or console.
+
+--- {.border-primary .thick}
+
+## Layout
+When you launch EasyWeds, EasyWeds appears on your screen as a Graphical User Interface, or GUI. Let’s look at the layout of the different components of EasyWeds.
+
+EasyWed’s GUI consists of a single main window, as well as the Help Window. The main window consists of four components:
+
+1. Command Input
+1. Output Box
+1. List of Persons
+1. List of Weddings
+
+
+The following picture of the main window shows the four components, numbered accordingly:
+
+![Ui](images/sampleData2.png)
+
+Besides the main window, EasyWeds also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#viewing-help-help) is run.
+
 
 --- {.border-primary .thick}
 
@@ -591,6 +613,8 @@ Examples:
 </box>
 
 
+<br>
+
 --- {.border-secondary}
 
 ## Data Management
@@ -642,6 +666,8 @@ If your changes to the data file make its format invalid, EasyWeds will discard 
 Furthermore, certain edits can cause EasyWeds to behave in unexpected ways (e.g. if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+<br>
+
 --- {.border-secondary}
 
 ## Exiting the program
@@ -654,6 +680,8 @@ Exits the program.
 Format: `exit`
 
 [Back to content page](#table-of-contents)
+
+<br>
 
 --- {.border-primary .thick}
 
