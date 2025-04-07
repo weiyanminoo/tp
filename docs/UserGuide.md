@@ -11,13 +11,13 @@ pageNav: 3
 
 EasyWeds is a **desktop app designed for freelance wedding planners juggling multiple weddings**. You can use EasyWeds to streamline planning by centralising vendor and client information and keeping every wedding detail organised. If you are adept at typing, EasyWeds empowers you to swiftly access and update your planning data.
 
-Here are  EasyWed's main features:
+Here are  EasyWeds' main features:
 #### Enhanced Contact Management
 <box type="success" seamless>
   Contact Tracking: Add phone numbers, emails, addresses, and roles
 </box>
 <box type="success" seamless>
-  Contact Linking: Tag your Clients and your Vendors to Wedding events
+  Contact Linking: Tag your clients and your vendors to wedding events
 </box>
 <box type="success" seamless>
   Advanced Filters: Filter by name or role
@@ -28,10 +28,10 @@ Here are  EasyWed's main features:
   Wedding Tracking: Add date and location
 </box>
 <box type="success" seamless>
-  Task Management: Add To-do tasks for each Wedding
+  Task Management: Add to-do tasks for each wedding
 </box>
 <box type="success" seamless>
-  Advanced Sorting: Sort by Wedding ID or date
+  Advanced Sorting: Sort by wedding ID or date
 </box>
 
 --- {.border-primary .thick}
@@ -317,7 +317,7 @@ Examples:
 
 ### Editing a Wedding Event: `editWedding`
 
-Edit an existing wedding event in the contact book.
+Edits an existing wedding event in the contact book.
 
 Format: `editWedding WEDDING_ID [n/NAME] [d/DATE] [l/LOCATION]`
 
@@ -489,8 +489,10 @@ Format: `tag INDEX WEDDING_ID`
 </box>
 
 Examples:
-* `tag 1 W1` tags the first person to the wedding event `W1`
-* `tag 1 W2` tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
+* `tag 1 W1` 
+    * This command tags the first person to the wedding event `W1`
+* `tag 1 W2` 
+    * This command tags the first person to the wedding event `W2`. Now the first person will be tagged to both `W1` and `W2`.
 
 ![result for 'tag person'](images/TagPerson.png)
 
@@ -511,7 +513,8 @@ Format: `untag INDEX WEDDING_ID`
 </box>
 
 Examples:
-* `untag 1 W1` untags the first person from the wedding event `W1`
+* `untag 1 W1` 
+    * This command untags the first person from the wedding event `W1`
 
 <br>
 
@@ -529,7 +532,8 @@ Format: `filter WEDDING_ID`
 </box>
 
 Examples:
-* `filter W2` displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
+* `filter W2` 
+    * This command displays the details of `W2` and returns the contacts that are tagged to `W2`. (Refer to the image below)
 
 ![result for 'filter W2'](images/filterW2.png)
 
