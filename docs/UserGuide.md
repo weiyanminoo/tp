@@ -134,6 +134,26 @@ In this guide, the following terms are used:
 
 --- {.border-primary .thick}
 
+## Layout
+When you launch EasyWeds, EasyWeds appears on your screen as a Graphical User Interface, or GUI. Let’s look at the layout of the different components of EasyWeds.
+
+EasyWed’s GUI consists of a single main window, as well as the Help Window. The main window consists of four components:
+
+1. Command Input
+1. Output Box
+1. List of Persons
+1. List of Weddings
+
+
+The following picture of the main window shows the four components, numbered accordingly:
+
+![Ui](images/sampleData2.png)
+
+Besides the main window, GoonBook also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#viewing-help-help) is run.
+
+
+--- {.border-primary .thick}
+
 <div style="page-break-after: always;"></div>
 
 ## Features
